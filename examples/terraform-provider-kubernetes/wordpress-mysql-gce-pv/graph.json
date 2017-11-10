@@ -1,0 +1,593 @@
+{
+    "nodes": [
+        {
+            "group": 20000,
+            "definition": {
+                "name": "wordpress-mysql",
+                "type": "pd-ssd",
+                "zone": "${var.gcp_zone}",
+                "size": 20
+            },
+            "simple_name": "google_compute_disk.mysql",
+            "type": "google_compute_disk",
+            "resource_name": "mysql",
+            "label": "[root] google_compute_disk.mysql",
+            "svg_id": "node_0"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "name": "wordpress-frontend",
+                "type": "pd-ssd",
+                "zone": "${var.gcp_zone}",
+                "size": 20
+            },
+            "simple_name": "google_compute_disk.wordpress",
+            "type": "google_compute_disk",
+            "resource_name": "wordpress",
+            "label": "[root] google_compute_disk.wordpress",
+            "svg_id": "node_1"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "metadata": {
+                    "name": "mysql-pv"
+                },
+                "spec": {
+                    "capacity": {
+                        "storage": "20Gi"
+                    },
+                    "access_modes": [
+                        "ReadWriteOnce"
+                    ],
+                    "persistent_volume_source": {
+                        "gce_persistent_disk": {
+                            "pd_name": "${google_compute_disk.mysql.name}",
+                            "fs_type": "ext4"
+                        }
+                    }
+                }
+            },
+            "simple_name": "kubernetes_persistent_volume.mysql",
+            "type": "kubernetes_persistent_volume",
+            "resource_name": "mysql",
+            "label": "[root] kubernetes_persistent_volume.mysql",
+            "svg_id": "node_2"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "metadata": {
+                    "name": "wordpress-pv"
+                },
+                "spec": {
+                    "capacity": {
+                        "storage": "20Gi"
+                    },
+                    "access_modes": [
+                        "ReadWriteOnce"
+                    ],
+                    "persistent_volume_source": {
+                        "gce_persistent_disk": {
+                            "pd_name": "${google_compute_disk.wordpress.name}",
+                            "fs_type": "ext4"
+                        }
+                    }
+                }
+            },
+            "simple_name": "kubernetes_persistent_volume.wordpress",
+            "type": "kubernetes_persistent_volume",
+            "resource_name": "wordpress",
+            "label": "[root] kubernetes_persistent_volume.wordpress",
+            "svg_id": "node_3"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "metadata": {
+                    "name": "mysql-pv-claim",
+                    "labels": {
+                        "app": "wordpress"
+                    }
+                },
+                "spec": {
+                    "access_modes": [
+                        "ReadWriteOnce"
+                    ],
+                    "resources": {
+                        "requests": {
+                            "storage": "20Gi"
+                        }
+                    },
+                    "volume_name": "${kubernetes_persistent_volume.mysql.metadata.0.name}"
+                }
+            },
+            "simple_name": "kubernetes_persistent_volume_claim.mysql",
+            "type": "kubernetes_persistent_volume_claim",
+            "resource_name": "mysql",
+            "label": "[root] kubernetes_persistent_volume_claim.mysql",
+            "svg_id": "node_4"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "metadata": {
+                    "name": "wp-pv-claim",
+                    "labels": {
+                        "app": "wordpress"
+                    }
+                },
+                "spec": {
+                    "access_modes": [
+                        "ReadWriteOnce"
+                    ],
+                    "resources": {
+                        "requests": {
+                            "storage": "20Gi"
+                        }
+                    },
+                    "volume_name": "${kubernetes_persistent_volume.wordpress.metadata.0.name}"
+                }
+            },
+            "simple_name": "kubernetes_persistent_volume_claim.wordpress",
+            "type": "kubernetes_persistent_volume_claim",
+            "resource_name": "wordpress",
+            "label": "[root] kubernetes_persistent_volume_claim.wordpress",
+            "svg_id": "node_5"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "metadata": {
+                    "name": "wordpress-mysql",
+                    "labels": {
+                        "app": "wordpress"
+                    }
+                },
+                "spec": {
+                    "selector": {
+                        "app": "wordpress",
+                        "tier": "mysql"
+                    },
+                    "template": {
+                        "container": {
+                            "image": "mysql:${var.mysql_version}",
+                            "name": "mysql",
+                            "env": {
+                                "name": "MYSQL_ROOT_PASSWORD",
+                                "value_from": {
+                                    "secret_key_ref": {
+                                        "name": "${kubernetes_secret.mysql.metadata.0.name}",
+                                        "key": "password"
+                                    }
+                                }
+                            },
+                            "port": {
+                                "container_port": 3306,
+                                "name": "mysql"
+                            },
+                            "volume_mount": {
+                                "name": "mysql-persistent-storage",
+                                "mount_path": "/var/lib/mysql"
+                            }
+                        },
+                        "volume": {
+                            "name": "mysql-persistent-storage",
+                            "persistent_volume_claim": {
+                                "claim_name": "${kubernetes_persistent_volume_claim.mysql.metadata.0.name}"
+                            }
+                        }
+                    }
+                }
+            },
+            "simple_name": "kubernetes_replication_controller.mysql",
+            "type": "kubernetes_replication_controller",
+            "resource_name": "mysql",
+            "label": "[root] kubernetes_replication_controller.mysql",
+            "svg_id": "node_6"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "metadata": {
+                    "name": "wordpress",
+                    "labels": {
+                        "app": "wordpress"
+                    }
+                },
+                "spec": {
+                    "selector": {
+                        "app": "wordpress",
+                        "tier": "frontend"
+                    },
+                    "template": {
+                        "container": {
+                            "image": "wordpress:${var.wordpress_version}-apache",
+                            "name": "wordpress",
+                            "env": [
+                                {
+                                    "name": "WORDPRESS_DB_HOST",
+                                    "value": "wordpress-mysql"
+                                },
+                                {
+                                    "name": "WORDPRESS_DB_PASSWORD",
+                                    "value_from": {
+                                        "secret_key_ref": {
+                                            "name": "${kubernetes_secret.mysql.metadata.0.name}",
+                                            "key": "password"
+                                        }
+                                    }
+                                }
+                            ],
+                            "port": {
+                                "container_port": 80,
+                                "name": "wordpress"
+                            },
+                            "volume_mount": {
+                                "name": "wordpress-persistent-storage",
+                                "mount_path": "/var/www/html"
+                            }
+                        },
+                        "volume": {
+                            "name": "wordpress-persistent-storage",
+                            "persistent_volume_claim": {
+                                "claim_name": "${kubernetes_persistent_volume_claim.wordpress.metadata.0.name}"
+                            }
+                        }
+                    }
+                }
+            },
+            "simple_name": "kubernetes_replication_controller.wordpress",
+            "type": "kubernetes_replication_controller",
+            "resource_name": "wordpress",
+            "label": "[root] kubernetes_replication_controller.wordpress",
+            "svg_id": "node_7"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "metadata": {
+                    "name": "mysql-pass"
+                },
+                "data": {
+                    "password": "${var.mysql_password}"
+                }
+            },
+            "simple_name": "kubernetes_secret.mysql",
+            "type": "kubernetes_secret",
+            "resource_name": "mysql",
+            "label": "[root] kubernetes_secret.mysql",
+            "svg_id": "node_8"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "metadata": {
+                    "name": "wordpress-mysql",
+                    "labels": {
+                        "app": "wordpress"
+                    }
+                },
+                "spec": {
+                    "port": {
+                        "port": 3306,
+                        "target_port": 3306
+                    },
+                    "selector": {
+                        "app": "wordpress",
+                        "tier": "${kubernetes_replication_controller.mysql.spec.0.selector.tier}"
+                    },
+                    "cluster_ip": "None"
+                }
+            },
+            "simple_name": "kubernetes_service.mysql",
+            "type": "kubernetes_service",
+            "resource_name": "mysql",
+            "label": "[root] kubernetes_service.mysql",
+            "svg_id": "node_9"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "metadata": {
+                    "name": "wordpress",
+                    "labels": {
+                        "app": "wordpress"
+                    }
+                },
+                "spec": {
+                    "port": {
+                        "port": 80,
+                        "target_port": 80
+                    },
+                    "selector": {
+                        "app": "wordpress",
+                        "tier": "${kubernetes_replication_controller.wordpress.spec.0.selector.tier}"
+                    },
+                    "type": "LoadBalancer"
+                }
+            },
+            "simple_name": "kubernetes_service.wordpress",
+            "type": "kubernetes_service",
+            "resource_name": "wordpress",
+            "label": "[root] kubernetes_service.wordpress",
+            "svg_id": "node_10"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "region": "${var.gcp_region}"
+            },
+            "simple_name": "provider.google",
+            "type": "provider",
+            "resource_name": "google",
+            "label": "[root] provider.google",
+            "svg_id": "node_11"
+        },
+        {
+            "group": 20000,
+            "definition": "",
+            "simple_name": "provider.kubernetes",
+            "type": "provider",
+            "resource_name": "kubernetes",
+            "label": "[root] provider.kubernetes",
+            "svg_id": "node_12"
+        },
+        {
+            "group": 20000,
+            "definition": {},
+            "simple_name": "var.gcp_zone",
+            "type": "var",
+            "resource_name": "gcp_zone",
+            "label": "[root] var.gcp_zone",
+            "svg_id": "node_13"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "default": "5.6"
+            },
+            "simple_name": "var.mysql_version",
+            "type": "var",
+            "resource_name": "mysql_version",
+            "label": "[root] var.mysql_version",
+            "svg_id": "node_14"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "default": "4.7.3"
+            },
+            "simple_name": "var.wordpress_version",
+            "type": "var",
+            "resource_name": "wordpress_version",
+            "label": "[root] var.wordpress_version",
+            "svg_id": "node_15"
+        },
+        {
+            "group": 20000,
+            "definition": {},
+            "simple_name": "var.mysql_password",
+            "type": "var",
+            "resource_name": "mysql_password",
+            "label": "[root] var.mysql_password",
+            "svg_id": "node_16"
+        },
+        {
+            "group": 20000,
+            "definition": "",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "type": "meta",
+            "resource_name": "count-boundary",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_17"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "value": "${kubernetes_service.wordpress.load_balancer_ingress.0.ip}"
+            },
+            "simple_name": "output.lb_ip",
+            "type": "output",
+            "resource_name": "lb_ip",
+            "label": "[root] output.lb_ip",
+            "svg_id": "node_18"
+        },
+        {
+            "group": 20000,
+            "definition": {
+                "region": "${var.gcp_region}"
+            },
+            "simple_name": "provider.google (close)",
+            "type": "provider",
+            "resource_name": "google",
+            "label": "[root] provider.google (close)",
+            "svg_id": "node_19"
+        },
+        {
+            "group": 20000,
+            "definition": {},
+            "simple_name": "var.gcp_region",
+            "type": "var",
+            "resource_name": "gcp_region",
+            "label": "[root] var.gcp_region",
+            "svg_id": "node_20"
+        },
+        {
+            "group": 20000,
+            "definition": "",
+            "simple_name": "provider.kubernetes (close)",
+            "type": "provider",
+            "resource_name": "kubernetes",
+            "label": "[root] provider.kubernetes (close)",
+            "svg_id": "node_21"
+        },
+        {
+            "group": 20000,
+            "definition": "",
+            "simple_name": "root",
+            "type": "",
+            "resource_name": "",
+            "label": "[root] root",
+            "svg_id": "node_22"
+        }
+    ],
+    "edges": [
+        {
+            "source": "[root] google_compute_disk.mysql",
+            "target": "[root] provider.google",
+            "svg_id": "edge_0"
+        },
+        {
+            "source": "[root] google_compute_disk.mysql",
+            "target": "[root] var.gcp_zone",
+            "svg_id": "edge_1"
+        },
+        {
+            "source": "[root] google_compute_disk.wordpress",
+            "target": "[root] provider.google",
+            "svg_id": "edge_2"
+        },
+        {
+            "source": "[root] google_compute_disk.wordpress",
+            "target": "[root] var.gcp_zone",
+            "svg_id": "edge_3"
+        },
+        {
+            "source": "[root] kubernetes_persistent_volume.mysql",
+            "target": "[root] google_compute_disk.mysql",
+            "svg_id": "edge_4"
+        },
+        {
+            "source": "[root] kubernetes_persistent_volume.mysql",
+            "target": "[root] provider.kubernetes",
+            "svg_id": "edge_5"
+        },
+        {
+            "source": "[root] kubernetes_persistent_volume.wordpress",
+            "target": "[root] google_compute_disk.wordpress",
+            "svg_id": "edge_6"
+        },
+        {
+            "source": "[root] kubernetes_persistent_volume.wordpress",
+            "target": "[root] provider.kubernetes",
+            "svg_id": "edge_7"
+        },
+        {
+            "source": "[root] kubernetes_persistent_volume_claim.mysql",
+            "target": "[root] kubernetes_persistent_volume.mysql",
+            "svg_id": "edge_8"
+        },
+        {
+            "source": "[root] kubernetes_persistent_volume_claim.wordpress",
+            "target": "[root] kubernetes_persistent_volume.wordpress",
+            "svg_id": "edge_9"
+        },
+        {
+            "source": "[root] kubernetes_replication_controller.mysql",
+            "target": "[root] kubernetes_persistent_volume_claim.mysql",
+            "svg_id": "edge_10"
+        },
+        {
+            "source": "[root] kubernetes_replication_controller.mysql",
+            "target": "[root] kubernetes_secret.mysql",
+            "svg_id": "edge_11"
+        },
+        {
+            "source": "[root] kubernetes_replication_controller.mysql",
+            "target": "[root] var.mysql_version",
+            "svg_id": "edge_12"
+        },
+        {
+            "source": "[root] kubernetes_replication_controller.wordpress",
+            "target": "[root] kubernetes_persistent_volume_claim.wordpress",
+            "svg_id": "edge_13"
+        },
+        {
+            "source": "[root] kubernetes_replication_controller.wordpress",
+            "target": "[root] kubernetes_secret.mysql",
+            "svg_id": "edge_14"
+        },
+        {
+            "source": "[root] kubernetes_replication_controller.wordpress",
+            "target": "[root] var.wordpress_version",
+            "svg_id": "edge_15"
+        },
+        {
+            "source": "[root] kubernetes_secret.mysql",
+            "target": "[root] provider.kubernetes",
+            "svg_id": "edge_16"
+        },
+        {
+            "source": "[root] kubernetes_secret.mysql",
+            "target": "[root] var.mysql_password",
+            "svg_id": "edge_17"
+        },
+        {
+            "source": "[root] kubernetes_service.mysql",
+            "target": "[root] kubernetes_replication_controller.mysql",
+            "svg_id": "edge_18"
+        },
+        {
+            "source": "[root] kubernetes_service.wordpress",
+            "target": "[root] kubernetes_replication_controller.wordpress",
+            "svg_id": "edge_19"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] kubernetes_service.mysql",
+            "svg_id": "edge_20"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.lb_ip",
+            "svg_id": "edge_21"
+        },
+        {
+            "source": "[root] output.lb_ip",
+            "target": "[root] kubernetes_service.wordpress",
+            "svg_id": "edge_22"
+        },
+        {
+            "source": "[root] provider.google (close)",
+            "target": "[root] google_compute_disk.mysql",
+            "svg_id": "edge_23"
+        },
+        {
+            "source": "[root] provider.google (close)",
+            "target": "[root] google_compute_disk.wordpress",
+            "svg_id": "edge_24"
+        },
+        {
+            "source": "[root] provider.google",
+            "target": "[root] var.gcp_region",
+            "svg_id": "edge_25"
+        },
+        {
+            "source": "[root] provider.kubernetes (close)",
+            "target": "[root] kubernetes_service.mysql",
+            "svg_id": "edge_26"
+        },
+        {
+            "source": "[root] provider.kubernetes (close)",
+            "target": "[root] kubernetes_service.wordpress",
+            "svg_id": "edge_27"
+        },
+        {
+            "source": "[root] root",
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_28"
+        },
+        {
+            "source": "[root] root",
+            "target": "[root] provider.google (close)",
+            "svg_id": "edge_29"
+        },
+        {
+            "source": "[root] root",
+            "target": "[root] provider.kubernetes (close)",
+            "svg_id": "edge_30"
+        }
+    ]
+}

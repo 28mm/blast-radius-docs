@@ -1,0 +1,963 @@
+{
+    "nodes": [
+        {
+            "group": 20000,
+            "svg_id": "node_0",
+            "resource_name": "main",
+            "label": "[root] aws_alb.main",
+            "simple_name": "aws_alb.main",
+            "definition": {
+                "name": "tf-example-alb-ecs",
+                "subnets": [
+                    "${aws_subnet.main.*.id}"
+                ],
+                "security_groups": [
+                    "${aws_security_group.lb_sg.id}"
+                ]
+            },
+            "type": "aws_alb"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_1",
+            "resource_name": "front_end",
+            "label": "[root] aws_alb_listener.front_end",
+            "simple_name": "aws_alb_listener.front_end",
+            "definition": {
+                "load_balancer_arn": "${aws_alb.main.id}",
+                "port": "80",
+                "protocol": "HTTP",
+                "default_action": {
+                    "target_group_arn": "${aws_alb_target_group.test.id}",
+                    "type": "forward"
+                }
+            },
+            "type": "aws_alb_listener"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_2",
+            "resource_name": "test",
+            "label": "[root] aws_alb_target_group.test",
+            "simple_name": "aws_alb_target_group.test",
+            "definition": {
+                "name": "tf-example-ecs-ghost",
+                "port": 80,
+                "protocol": "HTTP",
+                "vpc_id": "${aws_vpc.main.id}"
+            },
+            "type": "aws_alb_target_group"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_3",
+            "resource_name": "app",
+            "label": "[root] aws_autoscaling_group.app",
+            "simple_name": "aws_autoscaling_group.app",
+            "definition": {
+                "name": "tf-test-asg",
+                "vpc_zone_identifier": [
+                    "${aws_subnet.main.*.id}"
+                ],
+                "min_size": "${var.asg_min}",
+                "max_size": "${var.asg_max}",
+                "desired_capacity": "${var.asg_desired}",
+                "launch_configuration": "${aws_launch_configuration.app.name}"
+            },
+            "type": "aws_autoscaling_group"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_4",
+            "resource_name": "app",
+            "label": "[root] aws_cloudwatch_log_group.app",
+            "simple_name": "aws_cloudwatch_log_group.app",
+            "definition": {
+                "name": "tf-ecs-group/app-ghost"
+            },
+            "type": "aws_cloudwatch_log_group"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_5",
+            "resource_name": "ecs",
+            "label": "[root] aws_cloudwatch_log_group.ecs",
+            "simple_name": "aws_cloudwatch_log_group.ecs",
+            "definition": {
+                "name": "tf-ecs-group/ecs-agent"
+            },
+            "type": "aws_cloudwatch_log_group"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_6",
+            "resource_name": "main",
+            "label": "[root] aws_ecs_cluster.main",
+            "simple_name": "aws_ecs_cluster.main",
+            "definition": {
+                "name": "terraform_example_ecs_cluster"
+            },
+            "type": "aws_ecs_cluster"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_7",
+            "resource_name": "test",
+            "label": "[root] aws_ecs_service.test",
+            "simple_name": "aws_ecs_service.test",
+            "definition": {
+                "name": "tf-example-ecs-ghost",
+                "cluster": "${aws_ecs_cluster.main.id}",
+                "task_definition": "${aws_ecs_task_definition.ghost.arn}",
+                "desired_count": 1,
+                "iam_role": "${aws_iam_role.ecs_service.name}",
+                "load_balancer": {
+                    "target_group_arn": "${aws_alb_target_group.test.id}",
+                    "container_name": "ghost",
+                    "container_port": "2368"
+                },
+                "depends_on": [
+                    "aws_iam_role_policy.ecs_service",
+                    "aws_alb_listener.front_end"
+                ]
+            },
+            "type": "aws_ecs_service"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_8",
+            "resource_name": "ghost",
+            "label": "[root] aws_ecs_task_definition.ghost",
+            "simple_name": "aws_ecs_task_definition.ghost",
+            "definition": {
+                "family": "tf_example_ghost_td",
+                "container_definitions": "${data.template_file.task_definition.rendered}"
+            },
+            "type": "aws_ecs_task_definition"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_9",
+            "resource_name": "app",
+            "label": "[root] aws_iam_instance_profile.app",
+            "simple_name": "aws_iam_instance_profile.app",
+            "definition": {
+                "name": "tf-ecs-instprofile",
+                "role": "${aws_iam_role.app_instance.name}"
+            },
+            "type": "aws_iam_instance_profile"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_10",
+            "resource_name": "app_instance",
+            "label": "[root] aws_iam_role.app_instance",
+            "simple_name": "aws_iam_role.app_instance",
+            "definition": {
+                "name": "tf-ecs-example-instance-role",
+                "assume_role_policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"Service\": \"ec2.amazonaws.com\"\n      },\n      \"Action\": \"sts:AssumeRole\"\n    }\n  ]\n}"
+            },
+            "type": "aws_iam_role"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_11",
+            "resource_name": "ecs_service",
+            "label": "[root] aws_iam_role.ecs_service",
+            "simple_name": "aws_iam_role.ecs_service",
+            "definition": {
+                "name": "tf_example_ecs_role",
+                "assume_role_policy": "{\n  \"Version\": \"2008-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"Service\": \"ecs.amazonaws.com\"\n      },\n      \"Action\": \"sts:AssumeRole\"\n    }\n  ]\n}"
+            },
+            "type": "aws_iam_role"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_12",
+            "resource_name": "ecs_service",
+            "label": "[root] aws_iam_role_policy.ecs_service",
+            "simple_name": "aws_iam_role_policy.ecs_service",
+            "definition": {
+                "name": "tf_example_ecs_policy",
+                "role": "${aws_iam_role.ecs_service.name}",
+                "policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"ec2:Describe*\",\n        \"elasticloadbalancing:DeregisterInstancesFromLoadBalancer\",\n        \"elasticloadbalancing:DeregisterTargets\",\n        \"elasticloadbalancing:Describe*\",\n        \"elasticloadbalancing:RegisterInstancesWithLoadBalancer\",\n        \"elasticloadbalancing:RegisterTargets\"\n      ],\n      \"Resource\": \"*\"\n    }\n  ]\n}"
+            },
+            "type": "aws_iam_role_policy"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_13",
+            "resource_name": "instance",
+            "label": "[root] aws_iam_role_policy.instance",
+            "simple_name": "aws_iam_role_policy.instance",
+            "definition": {
+                "name": "TfEcsExampleInstanceRole",
+                "role": "${aws_iam_role.app_instance.name}",
+                "policy": "${data.template_file.instance_profile.rendered}"
+            },
+            "type": "aws_iam_role_policy"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_14",
+            "resource_name": "gw",
+            "label": "[root] aws_internet_gateway.gw",
+            "simple_name": "aws_internet_gateway.gw",
+            "definition": {
+                "vpc_id": "${aws_vpc.main.id}"
+            },
+            "type": "aws_internet_gateway"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_15",
+            "resource_name": "app",
+            "label": "[root] aws_launch_configuration.app",
+            "simple_name": "aws_launch_configuration.app",
+            "definition": {
+                "security_groups": [
+                    "${aws_security_group.instance_sg.id}"
+                ],
+                "key_name": "${var.key_name}",
+                "image_id": "${data.aws_ami.stable_coreos.id}",
+                "instance_type": "${var.instance_type}",
+                "iam_instance_profile": "${aws_iam_instance_profile.app.name}",
+                "user_data": "${data.template_file.cloud_config.rendered}",
+                "associate_public_ip_address": true,
+                "lifecycle": {
+                    "create_before_destroy": true
+                }
+            },
+            "type": "aws_launch_configuration"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_16",
+            "resource_name": "r",
+            "label": "[root] aws_route_table.r",
+            "simple_name": "aws_route_table.r",
+            "definition": {
+                "vpc_id": "${aws_vpc.main.id}",
+                "route": {
+                    "cidr_block": "0.0.0.0/0",
+                    "gateway_id": "${aws_internet_gateway.gw.id}"
+                }
+            },
+            "type": "aws_route_table"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_17",
+            "resource_name": "a",
+            "label": "[root] aws_route_table_association.a",
+            "simple_name": "aws_route_table_association.a",
+            "definition": {
+                "count": "${var.az_count}",
+                "subnet_id": "${element(aws_subnet.main.*.id, count.index)}",
+                "route_table_id": "${aws_route_table.r.id}"
+            },
+            "type": "aws_route_table_association"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_18",
+            "resource_name": "instance_sg",
+            "label": "[root] aws_security_group.instance_sg",
+            "simple_name": "aws_security_group.instance_sg",
+            "definition": {
+                "description": "controls direct access to application instances",
+                "vpc_id": "${aws_vpc.main.id}",
+                "name": "tf-ecs-instsg",
+                "ingress": [
+                    {
+                        "protocol": "tcp",
+                        "from_port": 22,
+                        "to_port": 22,
+                        "cidr_blocks": [
+                            "${var.admin_cidr_ingress}"
+                        ]
+                    },
+                    {
+                        "protocol": "tcp",
+                        "from_port": 8080,
+                        "to_port": 8080,
+                        "security_groups": [
+                            "${aws_security_group.lb_sg.id}"
+                        ]
+                    }
+                ],
+                "egress": {
+                    "from_port": 0,
+                    "to_port": 0,
+                    "protocol": "-1",
+                    "cidr_blocks": [
+                        "0.0.0.0/0"
+                    ]
+                }
+            },
+            "type": "aws_security_group"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_19",
+            "resource_name": "lb_sg",
+            "label": "[root] aws_security_group.lb_sg",
+            "simple_name": "aws_security_group.lb_sg",
+            "definition": {
+                "description": "controls access to the application ELB",
+                "vpc_id": "${aws_vpc.main.id}",
+                "name": "tf-ecs-lbsg",
+                "ingress": {
+                    "protocol": "tcp",
+                    "from_port": 80,
+                    "to_port": 80,
+                    "cidr_blocks": [
+                        "0.0.0.0/0"
+                    ]
+                },
+                "egress": {
+                    "from_port": 0,
+                    "to_port": 0,
+                    "protocol": "-1",
+                    "cidr_blocks": [
+                        "0.0.0.0/0"
+                    ]
+                }
+            },
+            "type": "aws_security_group"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_20",
+            "resource_name": "main",
+            "label": "[root] aws_subnet.main",
+            "simple_name": "aws_subnet.main",
+            "definition": {
+                "count": "${var.az_count}",
+                "cidr_block": "${cidrsubnet(aws_vpc.main.cidr_block, 8, count.index)}",
+                "availability_zone": "${data.aws_availability_zones.available.names[count.index]}",
+                "vpc_id": "${aws_vpc.main.id}"
+            },
+            "type": "aws_subnet"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_21",
+            "resource_name": "main",
+            "label": "[root] aws_vpc.main",
+            "simple_name": "aws_vpc.main",
+            "definition": {
+                "cidr_block": "10.10.0.0/16"
+            },
+            "type": "aws_vpc"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_22",
+            "resource_name": "stable_coreos",
+            "label": "[root] data.aws_ami.stable_coreos",
+            "simple_name": "data.aws_ami.stable_coreos",
+            "definition": "",
+            "type": "data.aws_ami"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_23",
+            "resource_name": "available",
+            "label": "[root] data.aws_availability_zones.available",
+            "simple_name": "data.aws_availability_zones.available",
+            "definition": "",
+            "type": "data.aws_availability_zones"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_24",
+            "resource_name": "cloud_config",
+            "label": "[root] data.template_file.cloud_config",
+            "simple_name": "data.template_file.cloud_config",
+            "definition": "",
+            "type": "data.template_file"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_25",
+            "resource_name": "instance_profile",
+            "label": "[root] data.template_file.instance_profile",
+            "simple_name": "data.template_file.instance_profile",
+            "definition": "",
+            "type": "data.template_file"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_26",
+            "resource_name": "task_definition",
+            "label": "[root] data.template_file.task_definition",
+            "simple_name": "data.template_file.task_definition",
+            "definition": "",
+            "type": "data.template_file"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_27",
+            "resource_name": "aws",
+            "label": "[root] provider.aws",
+            "simple_name": "provider.aws",
+            "definition": {
+                "region": "${var.aws_region}"
+            },
+            "type": "provider"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_28",
+            "resource_name": "template",
+            "label": "[root] provider.template",
+            "simple_name": "provider.template",
+            "definition": "",
+            "type": "provider"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_29",
+            "resource_name": "asg_desired",
+            "label": "[root] var.asg_desired",
+            "simple_name": "var.asg_desired",
+            "definition": {
+                "description": "Desired numbers of servers in ASG",
+                "default": "1"
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_30",
+            "resource_name": "asg_max",
+            "label": "[root] var.asg_max",
+            "simple_name": "var.asg_max",
+            "definition": {
+                "description": "Max numbers of servers in ASG",
+                "default": "2"
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_31",
+            "resource_name": "asg_min",
+            "label": "[root] var.asg_min",
+            "simple_name": "var.asg_min",
+            "definition": {
+                "description": "Min numbers of servers in ASG",
+                "default": "1"
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_32",
+            "resource_name": "instance_type",
+            "label": "[root] var.instance_type",
+            "simple_name": "var.instance_type",
+            "definition": {
+                "default": "t2.small",
+                "description": "AWS instance type"
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_33",
+            "resource_name": "key_name",
+            "label": "[root] var.key_name",
+            "simple_name": "var.key_name",
+            "definition": {
+                "description": "Name of AWS key pair"
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_34",
+            "resource_name": "admin_cidr_ingress",
+            "label": "[root] var.admin_cidr_ingress",
+            "simple_name": "var.admin_cidr_ingress",
+            "definition": {
+                "description": "CIDR to allow tcp/22 ingress to EC2 instance"
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_35",
+            "resource_name": "az_count",
+            "label": "[root] var.az_count",
+            "simple_name": "var.az_count",
+            "definition": {
+                "description": "Number of AZs to cover in a given AWS region",
+                "default": "2"
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_36",
+            "resource_name": "count-boundary",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "definition": "",
+            "type": "meta"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_37",
+            "resource_name": "asg_name",
+            "label": "[root] output.asg_name",
+            "simple_name": "output.asg_name",
+            "definition": {
+                "value": "${aws_autoscaling_group.app.id}"
+            },
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_38",
+            "resource_name": "elb_hostname",
+            "label": "[root] output.elb_hostname",
+            "simple_name": "output.elb_hostname",
+            "definition": {
+                "value": "${aws_alb.main.dns_name}"
+            },
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_39",
+            "resource_name": "instance_security_group",
+            "label": "[root] output.instance_security_group",
+            "simple_name": "output.instance_security_group",
+            "definition": {
+                "value": "${aws_security_group.instance_sg.id}"
+            },
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_40",
+            "resource_name": "launch_configuration",
+            "label": "[root] output.launch_configuration",
+            "simple_name": "output.launch_configuration",
+            "definition": {
+                "value": "${aws_launch_configuration.app.id}"
+            },
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_41",
+            "resource_name": "aws",
+            "label": "[root] provider.aws (close)",
+            "simple_name": "provider.aws (close)",
+            "definition": {
+                "region": "${var.aws_region}"
+            },
+            "type": "provider"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_42",
+            "resource_name": "aws_region",
+            "label": "[root] var.aws_region",
+            "simple_name": "var.aws_region",
+            "definition": {
+                "description": "The AWS region to create things in.",
+                "default": "us-west-2"
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_43",
+            "resource_name": "template",
+            "label": "[root] provider.template (close)",
+            "simple_name": "provider.template (close)",
+            "definition": "",
+            "type": "provider"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_44",
+            "resource_name": "",
+            "label": "[root] root",
+            "simple_name": "root",
+            "definition": "",
+            "type": ""
+        }
+    ],
+    "edges": [
+        {
+            "svg_id": "edge_0",
+            "target": "[root] aws_security_group.lb_sg",
+            "source": "[root] aws_alb.main"
+        },
+        {
+            "svg_id": "edge_1",
+            "target": "[root] aws_subnet.main",
+            "source": "[root] aws_alb.main"
+        },
+        {
+            "svg_id": "edge_2",
+            "target": "[root] aws_alb.main",
+            "source": "[root] aws_alb_listener.front_end"
+        },
+        {
+            "svg_id": "edge_3",
+            "target": "[root] aws_alb_target_group.test",
+            "source": "[root] aws_alb_listener.front_end"
+        },
+        {
+            "svg_id": "edge_4",
+            "target": "[root] aws_vpc.main",
+            "source": "[root] aws_alb_target_group.test"
+        },
+        {
+            "svg_id": "edge_5",
+            "target": "[root] aws_launch_configuration.app",
+            "source": "[root] aws_autoscaling_group.app"
+        },
+        {
+            "svg_id": "edge_6",
+            "target": "[root] aws_subnet.main",
+            "source": "[root] aws_autoscaling_group.app"
+        },
+        {
+            "svg_id": "edge_7",
+            "target": "[root] var.asg_desired",
+            "source": "[root] aws_autoscaling_group.app"
+        },
+        {
+            "svg_id": "edge_8",
+            "target": "[root] var.asg_max",
+            "source": "[root] aws_autoscaling_group.app"
+        },
+        {
+            "svg_id": "edge_9",
+            "target": "[root] var.asg_min",
+            "source": "[root] aws_autoscaling_group.app"
+        },
+        {
+            "svg_id": "edge_10",
+            "target": "[root] provider.aws",
+            "source": "[root] aws_cloudwatch_log_group.app"
+        },
+        {
+            "svg_id": "edge_11",
+            "target": "[root] provider.aws",
+            "source": "[root] aws_cloudwatch_log_group.ecs"
+        },
+        {
+            "svg_id": "edge_12",
+            "target": "[root] provider.aws",
+            "source": "[root] aws_ecs_cluster.main"
+        },
+        {
+            "svg_id": "edge_13",
+            "target": "[root] aws_alb_listener.front_end",
+            "source": "[root] aws_ecs_service.test"
+        },
+        {
+            "svg_id": "edge_14",
+            "target": "[root] aws_ecs_cluster.main",
+            "source": "[root] aws_ecs_service.test"
+        },
+        {
+            "svg_id": "edge_15",
+            "target": "[root] aws_ecs_task_definition.ghost",
+            "source": "[root] aws_ecs_service.test"
+        },
+        {
+            "svg_id": "edge_16",
+            "target": "[root] aws_iam_role_policy.ecs_service",
+            "source": "[root] aws_ecs_service.test"
+        },
+        {
+            "svg_id": "edge_17",
+            "target": "[root] data.template_file.task_definition",
+            "source": "[root] aws_ecs_task_definition.ghost"
+        },
+        {
+            "svg_id": "edge_18",
+            "target": "[root] aws_iam_role.app_instance",
+            "source": "[root] aws_iam_instance_profile.app"
+        },
+        {
+            "svg_id": "edge_19",
+            "target": "[root] provider.aws",
+            "source": "[root] aws_iam_role.app_instance"
+        },
+        {
+            "svg_id": "edge_20",
+            "target": "[root] provider.aws",
+            "source": "[root] aws_iam_role.ecs_service"
+        },
+        {
+            "svg_id": "edge_21",
+            "target": "[root] aws_iam_role.ecs_service",
+            "source": "[root] aws_iam_role_policy.ecs_service"
+        },
+        {
+            "svg_id": "edge_22",
+            "target": "[root] aws_iam_role.app_instance",
+            "source": "[root] aws_iam_role_policy.instance"
+        },
+        {
+            "svg_id": "edge_23",
+            "target": "[root] data.template_file.instance_profile",
+            "source": "[root] aws_iam_role_policy.instance"
+        },
+        {
+            "svg_id": "edge_24",
+            "target": "[root] aws_vpc.main",
+            "source": "[root] aws_internet_gateway.gw"
+        },
+        {
+            "svg_id": "edge_25",
+            "target": "[root] aws_iam_instance_profile.app",
+            "source": "[root] aws_launch_configuration.app"
+        },
+        {
+            "svg_id": "edge_26",
+            "target": "[root] aws_security_group.instance_sg",
+            "source": "[root] aws_launch_configuration.app"
+        },
+        {
+            "svg_id": "edge_27",
+            "target": "[root] data.aws_ami.stable_coreos",
+            "source": "[root] aws_launch_configuration.app"
+        },
+        {
+            "svg_id": "edge_28",
+            "target": "[root] data.template_file.cloud_config",
+            "source": "[root] aws_launch_configuration.app"
+        },
+        {
+            "svg_id": "edge_29",
+            "target": "[root] var.instance_type",
+            "source": "[root] aws_launch_configuration.app"
+        },
+        {
+            "svg_id": "edge_30",
+            "target": "[root] var.key_name",
+            "source": "[root] aws_launch_configuration.app"
+        },
+        {
+            "svg_id": "edge_31",
+            "target": "[root] aws_internet_gateway.gw",
+            "source": "[root] aws_route_table.r"
+        },
+        {
+            "svg_id": "edge_32",
+            "target": "[root] aws_route_table.r",
+            "source": "[root] aws_route_table_association.a"
+        },
+        {
+            "svg_id": "edge_33",
+            "target": "[root] aws_subnet.main",
+            "source": "[root] aws_route_table_association.a"
+        },
+        {
+            "svg_id": "edge_34",
+            "target": "[root] aws_security_group.lb_sg",
+            "source": "[root] aws_security_group.instance_sg"
+        },
+        {
+            "svg_id": "edge_35",
+            "target": "[root] var.admin_cidr_ingress",
+            "source": "[root] aws_security_group.instance_sg"
+        },
+        {
+            "svg_id": "edge_36",
+            "target": "[root] aws_vpc.main",
+            "source": "[root] aws_security_group.lb_sg"
+        },
+        {
+            "svg_id": "edge_37",
+            "target": "[root] aws_vpc.main",
+            "source": "[root] aws_subnet.main"
+        },
+        {
+            "svg_id": "edge_38",
+            "target": "[root] data.aws_availability_zones.available",
+            "source": "[root] aws_subnet.main"
+        },
+        {
+            "svg_id": "edge_39",
+            "target": "[root] var.az_count",
+            "source": "[root] aws_subnet.main"
+        },
+        {
+            "svg_id": "edge_40",
+            "target": "[root] provider.aws",
+            "source": "[root] aws_vpc.main"
+        },
+        {
+            "svg_id": "edge_41",
+            "target": "[root] provider.aws",
+            "source": "[root] data.aws_ami.stable_coreos"
+        },
+        {
+            "svg_id": "edge_42",
+            "target": "[root] provider.aws",
+            "source": "[root] data.aws_availability_zones.available"
+        },
+        {
+            "svg_id": "edge_43",
+            "target": "[root] aws_cloudwatch_log_group.ecs",
+            "source": "[root] data.template_file.cloud_config"
+        },
+        {
+            "svg_id": "edge_44",
+            "target": "[root] aws_ecs_cluster.main",
+            "source": "[root] data.template_file.cloud_config"
+        },
+        {
+            "svg_id": "edge_45",
+            "target": "[root] provider.template",
+            "source": "[root] data.template_file.cloud_config"
+        },
+        {
+            "svg_id": "edge_46",
+            "target": "[root] aws_cloudwatch_log_group.app",
+            "source": "[root] data.template_file.instance_profile"
+        },
+        {
+            "svg_id": "edge_47",
+            "target": "[root] aws_cloudwatch_log_group.ecs",
+            "source": "[root] data.template_file.instance_profile"
+        },
+        {
+            "svg_id": "edge_48",
+            "target": "[root] provider.template",
+            "source": "[root] data.template_file.instance_profile"
+        },
+        {
+            "svg_id": "edge_49",
+            "target": "[root] aws_cloudwatch_log_group.app",
+            "source": "[root] data.template_file.task_definition"
+        },
+        {
+            "svg_id": "edge_50",
+            "target": "[root] provider.template",
+            "source": "[root] data.template_file.task_definition"
+        },
+        {
+            "svg_id": "edge_51",
+            "target": "[root] aws_ecs_service.test",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_52",
+            "target": "[root] aws_iam_role_policy.instance",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_53",
+            "target": "[root] aws_route_table_association.a",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_54",
+            "target": "[root] output.asg_name",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_55",
+            "target": "[root] output.elb_hostname",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_56",
+            "target": "[root] output.instance_security_group",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_57",
+            "target": "[root] output.launch_configuration",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_58",
+            "target": "[root] aws_autoscaling_group.app",
+            "source": "[root] output.asg_name"
+        },
+        {
+            "svg_id": "edge_59",
+            "target": "[root] aws_alb.main",
+            "source": "[root] output.elb_hostname"
+        },
+        {
+            "svg_id": "edge_60",
+            "target": "[root] aws_security_group.instance_sg",
+            "source": "[root] output.instance_security_group"
+        },
+        {
+            "svg_id": "edge_61",
+            "target": "[root] aws_launch_configuration.app",
+            "source": "[root] output.launch_configuration"
+        },
+        {
+            "svg_id": "edge_62",
+            "target": "[root] aws_autoscaling_group.app",
+            "source": "[root] provider.aws (close)"
+        },
+        {
+            "svg_id": "edge_63",
+            "target": "[root] aws_ecs_service.test",
+            "source": "[root] provider.aws (close)"
+        },
+        {
+            "svg_id": "edge_64",
+            "target": "[root] aws_iam_role_policy.instance",
+            "source": "[root] provider.aws (close)"
+        },
+        {
+            "svg_id": "edge_65",
+            "target": "[root] aws_route_table_association.a",
+            "source": "[root] provider.aws (close)"
+        },
+        {
+            "svg_id": "edge_66",
+            "target": "[root] var.aws_region",
+            "source": "[root] provider.aws"
+        },
+        {
+            "svg_id": "edge_67",
+            "target": "[root] data.template_file.cloud_config",
+            "source": "[root] provider.template (close)"
+        },
+        {
+            "svg_id": "edge_68",
+            "target": "[root] data.template_file.instance_profile",
+            "source": "[root] provider.template (close)"
+        },
+        {
+            "svg_id": "edge_69",
+            "target": "[root] data.template_file.task_definition",
+            "source": "[root] provider.template (close)"
+        },
+        {
+            "svg_id": "edge_70",
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "source": "[root] root"
+        },
+        {
+            "svg_id": "edge_71",
+            "target": "[root] provider.aws (close)",
+            "source": "[root] root"
+        },
+        {
+            "svg_id": "edge_72",
+            "target": "[root] provider.template (close)",
+            "source": "[root] root"
+        }
+    ]
+}

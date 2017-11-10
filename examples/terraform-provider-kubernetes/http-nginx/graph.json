@@ -1,0 +1,176 @@
+{
+    "nodes": [
+        {
+            "definition": {
+                "metadata": {
+                    "name": "terraform-nginx-example",
+                    "labels": {
+                        "App": "TerraformNginxExample"
+                    }
+                },
+                "spec": {
+                    "selector": {
+                        "App": "TerraformNginxExample"
+                    },
+                    "template": {
+                        "container": {
+                            "image": "nginx:${var.nginx_version}",
+                            "name": "example",
+                            "port": {
+                                "container_port": 80
+                            },
+                            "liveness_probe": {
+                                "http_get": {
+                                    "path": "/index.html",
+                                    "port": 80
+                                },
+                                "initial_delay_seconds": 30,
+                                "timeout_seconds": 1
+                            },
+                            "resources": {
+                                "limits": {
+                                    "cpu": "0.5",
+                                    "memory": "512Mi"
+                                },
+                                "requests": {
+                                    "cpu": "250m",
+                                    "memory": "50Mi"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "type": "kubernetes_replication_controller",
+            "svg_id": "node_0",
+            "group": 20000,
+            "simple_name": "kubernetes_replication_controller.example",
+            "resource_name": "example",
+            "label": "[root] kubernetes_replication_controller.example"
+        },
+        {
+            "definition": {
+                "metadata": {
+                    "name": "terraform-nginx-example"
+                },
+                "spec": {
+                    "selector": {
+                        "App": "${kubernetes_replication_controller.example.metadata.0.labels.App}"
+                    },
+                    "session_affinity": "ClientIP",
+                    "port": {
+                        "port": 80,
+                        "target_port": 80
+                    },
+                    "type": "LoadBalancer"
+                }
+            },
+            "type": "kubernetes_service",
+            "svg_id": "node_1",
+            "group": 20000,
+            "simple_name": "kubernetes_service.example",
+            "resource_name": "example",
+            "label": "[root] kubernetes_service.example"
+        },
+        {
+            "definition": "",
+            "type": "provider",
+            "svg_id": "node_2",
+            "group": 20000,
+            "simple_name": "provider.kubernetes",
+            "resource_name": "kubernetes",
+            "label": "[root] provider.kubernetes"
+        },
+        {
+            "definition": {
+                "default": "1.7.8"
+            },
+            "type": "var",
+            "svg_id": "node_3",
+            "group": 20000,
+            "simple_name": "var.nginx_version",
+            "resource_name": "nginx_version",
+            "label": "[root] var.nginx_version"
+        },
+        {
+            "definition": "",
+            "type": "meta",
+            "svg_id": "node_4",
+            "group": 20000,
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary",
+            "label": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "definition": {
+                "value": "${kubernetes_service.example.load_balancer_ingress.0.ip}"
+            },
+            "type": "output",
+            "svg_id": "node_5",
+            "group": 20000,
+            "simple_name": "output.lb_ip",
+            "resource_name": "lb_ip",
+            "label": "[root] output.lb_ip"
+        },
+        {
+            "definition": "",
+            "type": "provider",
+            "svg_id": "node_6",
+            "group": 20000,
+            "simple_name": "provider.kubernetes (close)",
+            "resource_name": "kubernetes",
+            "label": "[root] provider.kubernetes (close)"
+        },
+        {
+            "definition": "",
+            "type": "",
+            "svg_id": "node_7",
+            "group": 20000,
+            "simple_name": "root",
+            "resource_name": "",
+            "label": "[root] root"
+        }
+    ],
+    "edges": [
+        {
+            "target": "[root] provider.kubernetes",
+            "source": "[root] kubernetes_replication_controller.example",
+            "svg_id": "edge_0"
+        },
+        {
+            "target": "[root] var.nginx_version",
+            "source": "[root] kubernetes_replication_controller.example",
+            "svg_id": "edge_1"
+        },
+        {
+            "target": "[root] kubernetes_replication_controller.example",
+            "source": "[root] kubernetes_service.example",
+            "svg_id": "edge_2"
+        },
+        {
+            "target": "[root] output.lb_ip",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_3"
+        },
+        {
+            "target": "[root] kubernetes_service.example",
+            "source": "[root] output.lb_ip",
+            "svg_id": "edge_4"
+        },
+        {
+            "target": "[root] kubernetes_service.example",
+            "source": "[root] provider.kubernetes (close)",
+            "svg_id": "edge_5"
+        },
+        {
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "source": "[root] root",
+            "svg_id": "edge_6"
+        },
+        {
+            "target": "[root] provider.kubernetes (close)",
+            "source": "[root] root",
+            "svg_id": "edge_7"
+        }
+    ]
+}

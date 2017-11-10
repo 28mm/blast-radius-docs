@@ -1,0 +1,745 @@
+{
+    "nodes": [
+        {
+            "label": "[root] azurerm_network_interface.nic",
+            "svg_id": "node_0",
+            "definition": {
+                "name": "nic",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "ip_configuration": {
+                    "name": "ipconfig",
+                    "subnet_id": "${azurerm_subnet.subnet.id}",
+                    "private_ip_address_allocation": "Dynamic"
+                }
+            },
+            "group": 20000,
+            "simple_name": "azurerm_network_interface.nic",
+            "type": "azurerm_network_interface",
+            "resource_name": "nic"
+        },
+        {
+            "label": "[root] azurerm_resource_group.rg",
+            "svg_id": "node_1",
+            "definition": {
+                "name": "${var.resource_group}",
+                "location": "${var.location}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_resource_group.rg",
+            "type": "azurerm_resource_group",
+            "resource_name": "rg"
+        },
+        {
+            "label": "[root] azurerm_storage_account.stor",
+            "svg_id": "node_2",
+            "definition": {
+                "name": "${var.hostname}stor",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_replication_type}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_storage_account.stor",
+            "type": "azurerm_storage_account",
+            "resource_name": "stor"
+        },
+        {
+            "label": "[root] azurerm_subnet.subnet",
+            "svg_id": "node_3",
+            "definition": {
+                "name": "${var.hostname}subnet",
+                "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "${var.subnet_prefix}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_subnet.subnet",
+            "type": "azurerm_subnet",
+            "resource_name": "subnet"
+        },
+        {
+            "label": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "node_4",
+            "definition": {
+                "name": "encrypt",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "deployment_mode": "Incremental",
+                "depends_on": [
+                    "azurerm_virtual_machine.vm"
+                ],
+                "template_body": "{\n  \"$schema\": \"https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#\",\n  \"contentVersion\": \"1.0.0.0\",\n  \"parameters\": {\n    \"aadClientID\": {\n      \"defaultValue\": \"${var.aad_client_id}\",\n      \"type\": \"string\"\n    },\n    \"aadClientSecret\": {\n      \"defaultValue\": \"${var.aad_client_secret}\",\n      \"type\": \"string\"\n    },\n    \"diskFormatQuery\": {\n      \"defaultValue\": \"\",\n      \"type\": \"string\"\n    },\n    \"encryptionOperation\": {\n      \"allowedValues\": [ \"EnableEncryption\", \"EnableEncryptionFormat\" ],\n      \"defaultValue\": \"${var.encryption_operation}\",\n      \"type\": \"string\"\n    },\n    \"volumeType\": {\n      \"allowedValues\": [ \"OS\", \"Data\", \"All\" ],\n      \"defaultValue\": \"${var.volume_type}\",\n      \"type\": \"string\"\n    },\n    \"keyEncryptionKeyURL\": {\n      \"defaultValue\": \"${var.key_encryption_key_url}\",\n      \"type\": \"string\"\n    },\n    \"keyVaultName\": {\n      \"defaultValue\": \"${var.key_vault_name}\",\n      \"type\": \"string\"\n    },\n    \"keyVaultResourceGroup\": {\n      \"defaultValue\": \"${azurerm_resource_group.rg.name}\",\n      \"type\": \"string\"\n    },\n    \"passphrase\": {\n      \"defaultValue\": \"${var.passphrase}\",\n      \"type\": \"string\"\n    },\n    \"sequenceVersion\": {\n      \"defaultValue\": \"${var.sequence_version}\",\n      \"type\": \"string\"\n    },\n    \"useKek\": {\n      \"allowedValues\": [\n        \"nokek\",\n        \"kek\"\n      ],\n      \"defaultValue\": \"${var.use_kek}\",\n      \"type\": \"string\"\n    },\n    \"vmName\": {\n      \"defaultValue\": \"${azurerm_virtual_machine.vm.name}\",\n      \"type\": \"string\"\n    },\n    \"_artifactsLocation\": {\n      \"type\": \"string\",\n      \"defaultValue\": \"${var.artifacts_location}\"\n    },\n    \"_artifactsLocationSasToken\": {\n      \"type\": \"string\",\n      \"defaultValue\": \"${var.artifacts_location_sas_token}\"\n    }    \n  },\n  \"variables\": {\n    \"extensionName\": \"${var.extension_name}\",\n    \"extensionVersion\": \"0.1\",\n    \"keyEncryptionAlgorithm\": \"RSA-OAEP\",\n    \"keyVaultURL\": \"https://${var.key_vault_name}.vault.azure.net/\",\n    \"keyVaultResourceID\": \"${var.key_vault_resource_id}\",\n    \"updateVmUrl\": \"${var.artifacts_location}/201-encrypt-running-linux-vm/updatevm-${var.use_kek}.json${var.artifacts_location_sas_token}\"\n  },\n  \"resources\": [\n    {\n      \"type\": \"Microsoft.Compute/virtualMachines/extensions\",\n      \"name\": \"[concat(parameters('vmName'),'/', variables('extensionName'))]\",\n      \"apiVersion\": \"2015-06-15\",\n      \"location\": \"[resourceGroup().location]\",\n      \"properties\": {\n        \"protectedSettings\": {\n          \"AADClientSecret\": \"[parameters('aadClientSecret')]\",\n          \"Passphrase\": \"[parameters('passphrase')]\"\n        },\n        \"publisher\": \"Microsoft.Azure.Security\",\n        \"settings\": {\n          \"AADClientID\": \"[parameters('aadClientID')]\",\n          \"DiskFormatQuery\": \"[parameters('diskFormatQuery')]\",\n          \"EncryptionOperation\": \"[parameters('encryptionOperation')]\",\n          \"KeyEncryptionAlgorithm\": \"[variables('keyEncryptionAlgorithm')]\",\n          \"KeyEncryptionKeyURL\": \"[parameters('keyEncryptionKeyURL')]\",\n          \"KeyVaultURL\": \"[variables('keyVaultURL')]\",\n          \"SequenceVersion\": \"[parameters('sequenceVersion')]\",\n          \"VolumeType\": \"[parameters('volumeType')]\"\n        },\n        \"type\": \"AzureDiskEncryptionForLinux\",\n        \"typeHandlerVersion\": \"[variables('extensionVersion')]\"\n      }\n    },\n    {\n      \"apiVersion\": \"2015-01-01\",\n      \"dependsOn\": [\n        \"[resourceId('Microsoft.Compute/virtualMachines/extensions',  parameters('vmName'), variables('extensionName'))]\"\n      ],\n      \"name\": \"[concat(parameters('vmName'), 'updateVm')]\",\n      \"type\": \"Microsoft.Resources/deployments\",\n      \"properties\": {\n        \"mode\": \"Incremental\",\n        \"parameters\": {\n          \"keyEncryptionKeyURL\": {\n            \"value\": \"[parameters('keyEncryptionKeyURL')]\"\n          },\n          \"keyVaultResourceID\": {\n            \"value\": \"[variables('keyVaultResourceID')]\"\n          },\n          \"keyVaultSecretUrl\": {\n            \"value\": \"[reference(resourceId('Microsoft.Compute/virtualMachines/extensions',  parameters('vmName'), variables('extensionName'))).instanceView.statuses[0].message]\"\n          },\n          \"vmName\": {\n            \"value\": \"[parameters('vmName')]\"\n          }\n        },\n        \"templateLink\": {\n          \"contentVersion\": \"1.0.0.0\",\n          \"uri\": \"[variables('updateVmUrl')]\"\n        }\n      }\n    }\n  ],\n  \"outputs\": {\n    \"BitLockerKey\": {\n      \"type\": \"string\",\n      \"value\": \"[reference(resourceId('Microsoft.Compute/virtualMachines/extensions',  parameters('vmName'), variables('extensionName'))).instanceView.statuses[0].message]\"\n    }\n  }\n}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_template_deployment.linux_vm",
+            "type": "azurerm_template_deployment",
+            "resource_name": "linux_vm"
+        },
+        {
+            "label": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "node_5",
+            "definition": {
+                "name": "${var.hostname}",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "vm_size": "${var.vm_size}",
+                "network_interface_ids": [
+                    "${azurerm_network_interface.nic.id}"
+                ],
+                "storage_image_reference": {
+                    "publisher": "${var.image_publisher}",
+                    "offer": "${var.image_offer}",
+                    "sku": "${var.image_sku}",
+                    "version": "${var.image_version}"
+                },
+                "storage_os_disk": {
+                    "name": "${var.hostname}osdisk",
+                    "create_option": "FromImage",
+                    "disk_size_gb": "30"
+                },
+                "os_profile": {
+                    "computer_name": "${var.hostname}",
+                    "admin_username": "${var.admin_username}",
+                    "admin_password": "${var.admin_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                }
+            },
+            "group": 20000,
+            "simple_name": "azurerm_virtual_machine.vm",
+            "type": "azurerm_virtual_machine",
+            "resource_name": "vm"
+        },
+        {
+            "label": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "node_6",
+            "definition": {
+                "name": "${var.hostname}vnet",
+                "location": "${var.location}",
+                "address_space": [
+                    "${var.address_space}"
+                ],
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_virtual_network.vnet",
+            "type": "azurerm_virtual_network",
+            "resource_name": "vnet"
+        },
+        {
+            "label": "[root] provider.azurerm",
+            "svg_id": "node_7",
+            "definition": "",
+            "group": 20000,
+            "simple_name": "provider.azurerm",
+            "type": "provider",
+            "resource_name": "azurerm"
+        },
+        {
+            "label": "[root] var.location",
+            "svg_id": "node_8",
+            "definition": {
+                "description": "The location/region where the virtual network is created. Changing this forces a new resource to be created.",
+                "default": "southcentralus"
+            },
+            "group": 20000,
+            "simple_name": "var.location",
+            "type": "var",
+            "resource_name": "location"
+        },
+        {
+            "label": "[root] var.resource_group",
+            "svg_id": "node_9",
+            "definition": {
+                "description": "Resource group name into which your new virtual machine will go."
+            },
+            "group": 20000,
+            "simple_name": "var.resource_group",
+            "type": "var",
+            "resource_name": "resource_group"
+        },
+        {
+            "label": "[root] var.hostname",
+            "svg_id": "node_10",
+            "definition": {
+                "description": "Used to form various names including the key vault, vm, and storage. Must be unique."
+            },
+            "group": 20000,
+            "simple_name": "var.hostname",
+            "type": "var",
+            "resource_name": "hostname"
+        },
+        {
+            "label": "[root] var.storage_account_tier",
+            "svg_id": "node_11",
+            "definition": {
+                "description": "Defines the Tier of storage account to be created. Valid options are Standard and Premium.",
+                "default": "Standard"
+            },
+            "group": 20000,
+            "simple_name": "var.storage_account_tier",
+            "type": "var",
+            "resource_name": "storage_account_tier"
+        },
+        {
+            "label": "[root] var.storage_replication_type",
+            "svg_id": "node_12",
+            "definition": {
+                "description": "Defines the Replication Type to use for this storage account. Valid options include LRS, GRS etc.",
+                "default": "LRS"
+            },
+            "group": 20000,
+            "simple_name": "var.storage_replication_type",
+            "type": "var",
+            "resource_name": "storage_replication_type"
+        },
+        {
+            "label": "[root] var.subnet_prefix",
+            "svg_id": "node_13",
+            "definition": {
+                "description": "The address prefix to use for the subnet.",
+                "default": "10.0.0.0/24"
+            },
+            "group": 20000,
+            "simple_name": "var.subnet_prefix",
+            "type": "var",
+            "resource_name": "subnet_prefix"
+        },
+        {
+            "label": "[root] var.aad_client_id",
+            "svg_id": "node_14",
+            "definition": {
+                "description": "Client ID of AAD app which has permissions to KeyVault"
+            },
+            "group": 20000,
+            "simple_name": "var.aad_client_id",
+            "type": "var",
+            "resource_name": "aad_client_id"
+        },
+        {
+            "label": "[root] var.aad_client_secret",
+            "svg_id": "node_15",
+            "definition": {
+                "description": "Client Secret of AAD app which has permissions to KeyVault"
+            },
+            "group": 20000,
+            "simple_name": "var.aad_client_secret",
+            "type": "var",
+            "resource_name": "aad_client_secret"
+        },
+        {
+            "label": "[root] var.artifacts_location",
+            "svg_id": "node_16",
+            "definition": {
+                "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated.",
+                "default": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master"
+            },
+            "group": 20000,
+            "simple_name": "var.artifacts_location",
+            "type": "var",
+            "resource_name": "artifacts_location"
+        },
+        {
+            "label": "[root] var.artifacts_location_sas_token",
+            "svg_id": "node_17",
+            "definition": {
+                "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated.",
+                "default": ""
+            },
+            "group": 20000,
+            "simple_name": "var.artifacts_location_sas_token",
+            "type": "var",
+            "resource_name": "artifacts_location_sas_token"
+        },
+        {
+            "label": "[root] var.encryption_operation",
+            "svg_id": "node_18",
+            "definition": {
+                "description": "EnableEncryption would encrypt the disks in place and EnableEncryptionFormat would format the disks directly",
+                "default": "EnableEncryption"
+            },
+            "group": 20000,
+            "simple_name": "var.encryption_operation",
+            "type": "var",
+            "resource_name": "encryption_operation"
+        },
+        {
+            "label": "[root] var.extension_name",
+            "svg_id": "node_19",
+            "definition": {
+                "description": "the name of the vm extension",
+                "default": "AzureDiskEncryptionForLinux"
+            },
+            "group": 20000,
+            "simple_name": "var.extension_name",
+            "type": "var",
+            "resource_name": "extension_name"
+        },
+        {
+            "label": "[root] var.key_encryption_key_url",
+            "svg_id": "node_20",
+            "definition": {
+                "description": "URL of the KeyEncryptionKey used to encrypt the volume encryption key"
+            },
+            "group": 20000,
+            "simple_name": "var.key_encryption_key_url",
+            "type": "var",
+            "resource_name": "key_encryption_key_url"
+        },
+        {
+            "label": "[root] var.key_vault_name",
+            "svg_id": "node_21",
+            "definition": {
+                "description": "name of Azure key vault resource"
+            },
+            "group": 20000,
+            "simple_name": "var.key_vault_name",
+            "type": "var",
+            "resource_name": "key_vault_name"
+        },
+        {
+            "label": "[root] var.key_vault_resource_id",
+            "svg_id": "node_22",
+            "definition": {
+                "description": "uri of Azure key vault resource"
+            },
+            "group": 20000,
+            "simple_name": "var.key_vault_resource_id",
+            "type": "var",
+            "resource_name": "key_vault_resource_id"
+        },
+        {
+            "label": "[root] var.passphrase",
+            "svg_id": "node_23",
+            "definition": {
+                "description": "The passphrase for the disks"
+            },
+            "group": 20000,
+            "simple_name": "var.passphrase",
+            "type": "var",
+            "resource_name": "passphrase"
+        },
+        {
+            "label": "[root] var.sequence_version",
+            "svg_id": "node_24",
+            "definition": {
+                "description": "sequence version of the bitlocker operation. Increment this everytime an operation is performed on the same VM",
+                "default": 1
+            },
+            "group": 20000,
+            "simple_name": "var.sequence_version",
+            "type": "var",
+            "resource_name": "sequence_version"
+        },
+        {
+            "label": "[root] var.use_kek",
+            "svg_id": "node_25",
+            "definition": {
+                "description": "Select kek if the secret should be encrypted with a key encryption key. Allowed values: kek, nokek",
+                "default": "kek"
+            },
+            "group": 20000,
+            "simple_name": "var.use_kek",
+            "type": "var",
+            "resource_name": "use_kek"
+        },
+        {
+            "label": "[root] var.volume_type",
+            "svg_id": "node_26",
+            "definition": {
+                "description": "Defines which drives should be encrypted. OS encryption is supported on RHEL 7.2, CentOS 7.2 & Ubuntu 16.04. Allowed values: OS, Data, All",
+                "default": "All"
+            },
+            "group": 20000,
+            "simple_name": "var.volume_type",
+            "type": "var",
+            "resource_name": "volume_type"
+        },
+        {
+            "label": "[root] var.admin_password",
+            "svg_id": "node_27",
+            "definition": {
+                "description": "administrator password for the vm (recommended to disable password auth)"
+            },
+            "group": 20000,
+            "simple_name": "var.admin_password",
+            "type": "var",
+            "resource_name": "admin_password"
+        },
+        {
+            "label": "[root] var.admin_username",
+            "svg_id": "node_28",
+            "definition": {
+                "description": "administrator user name for the vm",
+                "default": "vmadmin"
+            },
+            "group": 20000,
+            "simple_name": "var.admin_username",
+            "type": "var",
+            "resource_name": "admin_username"
+        },
+        {
+            "label": "[root] var.image_offer",
+            "svg_id": "node_29",
+            "definition": {
+                "description": "the name of the offer (az vm image list)",
+                "default": "UbuntuServer"
+            },
+            "group": 20000,
+            "simple_name": "var.image_offer",
+            "type": "var",
+            "resource_name": "image_offer"
+        },
+        {
+            "label": "[root] var.image_publisher",
+            "svg_id": "node_30",
+            "definition": {
+                "description": "name of the publisher of the image (az vm image list)",
+                "default": "Canonical"
+            },
+            "group": 20000,
+            "simple_name": "var.image_publisher",
+            "type": "var",
+            "resource_name": "image_publisher"
+        },
+        {
+            "label": "[root] var.image_sku",
+            "svg_id": "node_31",
+            "definition": {
+                "description": "image sku to apply (az vm image list)",
+                "default": "16.04-LTS"
+            },
+            "group": 20000,
+            "simple_name": "var.image_sku",
+            "type": "var",
+            "resource_name": "image_sku"
+        },
+        {
+            "label": "[root] var.image_version",
+            "svg_id": "node_32",
+            "definition": {
+                "description": "version of the image to apply (az vm image list)",
+                "default": "latest"
+            },
+            "group": 20000,
+            "simple_name": "var.image_version",
+            "type": "var",
+            "resource_name": "image_version"
+        },
+        {
+            "label": "[root] var.vm_size",
+            "svg_id": "node_33",
+            "definition": {
+                "description": "Specifies the size of the virtual machine. This must be the same as the vm image from which you are copying.",
+                "default": "Standard_A0"
+            },
+            "group": 20000,
+            "simple_name": "var.vm_size",
+            "type": "var",
+            "resource_name": "vm_size"
+        },
+        {
+            "label": "[root] var.address_space",
+            "svg_id": "node_34",
+            "definition": {
+                "description": "The address space that is used by the virtual network. You can supply more than one address space. Changing this forces a new resource to be created.",
+                "default": "10.0.0.0/24"
+            },
+            "group": 20000,
+            "simple_name": "var.address_space",
+            "type": "var",
+            "resource_name": "address_space"
+        },
+        {
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_35",
+            "definition": "",
+            "group": 20000,
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "type": "meta",
+            "resource_name": "count-boundary"
+        },
+        {
+            "label": "[root] output.BitLockerKey",
+            "svg_id": "node_36",
+            "definition": {
+                "value": "${azurerm_template_deployment.linux_vm.outputs[\"BitLockerKey\"]}",
+                "sensitive": true
+            },
+            "group": 20000,
+            "simple_name": "output.BitLockerKey",
+            "type": "output",
+            "resource_name": "BitLockerKey"
+        },
+        {
+            "label": "[root] output.hostname",
+            "svg_id": "node_37",
+            "definition": {
+                "value": "${var.hostname}"
+            },
+            "group": 20000,
+            "simple_name": "output.hostname",
+            "type": "output",
+            "resource_name": "hostname"
+        },
+        {
+            "label": "[root] var.disk_format_query",
+            "svg_id": "node_38",
+            "definition": {
+                "description": "The query string used to identify the disks to format and encrypt. This parameter only works when you set the EncryptionOperation as EnableEncryptionFormat. For example, passing [{\"dev_path\":\"/dev/md0\",\"name\":\"encryptedraid\",\"file_system\":\"ext4\"}] will format /dev/md0, encrypt it and mount it at /mnt/dataraid. This parameter should only be used for RAID devices. The specified device must not have any existing filesystem on it.",
+                "default": ""
+            },
+            "group": 20000,
+            "simple_name": "var.disk_format_query",
+            "type": "var",
+            "resource_name": "disk_format_query"
+        },
+        {
+            "label": "[root] provider.azurerm (close)",
+            "svg_id": "node_39",
+            "definition": "",
+            "group": 20000,
+            "simple_name": "provider.azurerm (close)",
+            "type": "provider",
+            "resource_name": "azurerm"
+        },
+        {
+            "label": "[root] root",
+            "svg_id": "node_40",
+            "definition": "",
+            "group": 20000,
+            "simple_name": "root",
+            "type": "",
+            "resource_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "source": "[root] azurerm_network_interface.nic",
+            "svg_id": "edge_0",
+            "target": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_1",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_2",
+            "target": "[root] var.location"
+        },
+        {
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_3",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_4",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_5",
+            "target": "[root] var.hostname"
+        },
+        {
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_6",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_7",
+            "target": "[root] var.storage_replication_type"
+        },
+        {
+            "source": "[root] azurerm_subnet.subnet",
+            "svg_id": "edge_8",
+            "target": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "source": "[root] azurerm_subnet.subnet",
+            "svg_id": "edge_9",
+            "target": "[root] var.subnet_prefix"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_10",
+            "target": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_11",
+            "target": "[root] var.aad_client_id"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_12",
+            "target": "[root] var.aad_client_secret"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_13",
+            "target": "[root] var.artifacts_location"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_14",
+            "target": "[root] var.artifacts_location_sas_token"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_15",
+            "target": "[root] var.encryption_operation"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_16",
+            "target": "[root] var.extension_name"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_17",
+            "target": "[root] var.key_encryption_key_url"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_18",
+            "target": "[root] var.key_vault_name"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_19",
+            "target": "[root] var.key_vault_resource_id"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_20",
+            "target": "[root] var.passphrase"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_21",
+            "target": "[root] var.sequence_version"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_22",
+            "target": "[root] var.use_kek"
+        },
+        {
+            "source": "[root] azurerm_template_deployment.linux_vm",
+            "svg_id": "edge_23",
+            "target": "[root] var.volume_type"
+        },
+        {
+            "source": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "edge_24",
+            "target": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "source": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "edge_25",
+            "target": "[root] var.admin_password"
+        },
+        {
+            "source": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "edge_26",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "source": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "edge_27",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "source": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "edge_28",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "source": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "edge_29",
+            "target": "[root] var.image_sku"
+        },
+        {
+            "source": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "edge_30",
+            "target": "[root] var.image_version"
+        },
+        {
+            "source": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "edge_31",
+            "target": "[root] var.vm_size"
+        },
+        {
+            "source": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_32",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "source": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_33",
+            "target": "[root] var.address_space"
+        },
+        {
+            "source": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_34",
+            "target": "[root] var.hostname"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_35",
+            "target": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_36",
+            "target": "[root] output.BitLockerKey"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_37",
+            "target": "[root] output.hostname"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_38",
+            "target": "[root] var.disk_format_query"
+        },
+        {
+            "source": "[root] output.BitLockerKey",
+            "svg_id": "edge_39",
+            "target": "[root] azurerm_template_deployment.linux_vm"
+        },
+        {
+            "source": "[root] output.hostname",
+            "svg_id": "edge_40",
+            "target": "[root] var.hostname"
+        },
+        {
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_41",
+            "target": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_42",
+            "target": "[root] azurerm_template_deployment.linux_vm"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_43",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_44",
+            "target": "[root] provider.azurerm (close)"
+        }
+    ]
+}

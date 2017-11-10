@@ -1,0 +1,576 @@
+{
+    "nodes": [
+        {
+            "type": "azurerm_network_interface",
+            "simple_name": "azurerm_network_interface.nic",
+            "definition": {
+                "name": "nic${count.index}",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "count": "${var.num_vms}",
+                "ip_configuration": {
+                    "name": "ipconfig${count.index}",
+                    "subnet_id": "${azurerm_subnet.subnet.id}",
+                    "private_ip_address_allocation": "Dynamic",
+                    "public_ip_address_id": "${element(azurerm_public_ip.pip.*.id, count.index)}"
+                }
+            },
+            "group": 20000,
+            "svg_id": "node_0",
+            "resource_name": "nic",
+            "label": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "type": "azurerm_public_ip",
+            "simple_name": "azurerm_public_ip.pip",
+            "definition": {
+                "name": "ip${count.index}",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "public_ip_address_allocation": "dynamic",
+                "domain_name_label": "${var.dns_name}${count.index}",
+                "count": "${var.num_vms}"
+            },
+            "group": 20000,
+            "svg_id": "node_1",
+            "resource_name": "pip",
+            "label": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "type": "azurerm_resource_group",
+            "simple_name": "azurerm_resource_group.rg",
+            "definition": {
+                "name": "${var.resource_group}",
+                "location": "${var.location}"
+            },
+            "group": 20000,
+            "svg_id": "node_2",
+            "resource_name": "rg",
+            "label": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "type": "azurerm_subnet",
+            "simple_name": "azurerm_subnet.subnet",
+            "definition": {
+                "name": "${var.subnet_name}",
+                "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "${var.subnet_prefix}"
+            },
+            "group": 20000,
+            "svg_id": "node_3",
+            "resource_name": "subnet",
+            "label": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "type": "azurerm_traffic_manager_endpoint",
+            "simple_name": "azurerm_traffic_manager_endpoint.endpoint",
+            "definition": {
+                "name": "endpoint${count.index}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "profile_name": "${azurerm_traffic_manager_profile.profile.name}",
+                "target_resource_id": "${element(azurerm_public_ip.pip.*.id, count.index)}",
+                "type": "azureEndpoints",
+                "weight": 1,
+                "count": 3
+            },
+            "group": 20000,
+            "svg_id": "node_4",
+            "resource_name": "endpoint",
+            "label": "[root] azurerm_traffic_manager_endpoint.endpoint"
+        },
+        {
+            "type": "azurerm_traffic_manager_profile",
+            "simple_name": "azurerm_traffic_manager_profile.profile",
+            "definition": {
+                "name": "trafficmanagerprofile",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "traffic_routing_method": "Weighted",
+                "dns_config": {
+                    "relative_name": "${azurerm_resource_group.rg.name}",
+                    "ttl": 30
+                },
+                "monitor_config": {
+                    "protocol": "http",
+                    "port": 80,
+                    "path": "/"
+                }
+            },
+            "group": 20000,
+            "svg_id": "node_5",
+            "resource_name": "profile",
+            "label": "[root] azurerm_traffic_manager_profile.profile"
+        },
+        {
+            "type": "azurerm_virtual_machine",
+            "simple_name": "azurerm_virtual_machine.vm",
+            "definition": {
+                "name": "vm${count.index}",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "vm_size": "${var.vm_size}",
+                "count": "${var.num_vms}",
+                "network_interface_ids": [
+                    "${element(azurerm_network_interface.nic.*.id, count.index)}"
+                ],
+                "storage_image_reference": {
+                    "publisher": "${var.image_publisher}",
+                    "offer": "${var.image_offer}",
+                    "sku": "${var.image_sku}",
+                    "version": "${var.image_version}"
+                },
+                "storage_os_disk": {
+                    "name": "osdisk${count.index}",
+                    "create_option": "FromImage"
+                },
+                "os_profile": {
+                    "computer_name": "vm${count.index}",
+                    "admin_username": "${var.admin_username}",
+                    "admin_password": "${var.admin_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                }
+            },
+            "group": 20000,
+            "svg_id": "node_6",
+            "resource_name": "vm",
+            "label": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "type": "azurerm_virtual_machine_extension",
+            "simple_name": "azurerm_virtual_machine_extension.ext",
+            "definition": {
+                "depends_on": [
+                    "azurerm_virtual_machine.vm"
+                ],
+                "name": "CustomScript",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "virtual_machine_name": "vm${count.index}",
+                "publisher": "Microsoft.Azure.Extensions",
+                "type": "CustomScript",
+                "type_handler_version": "2.0",
+                "count": "${var.num_vms}",
+                "auto_upgrade_minor_version": true,
+                "settings": "    {\n        \"commandToExecute\": \"sudo bash -c 'apt-get update && apt-get -y install apache2' \"\n    }"
+            },
+            "group": 20000,
+            "svg_id": "node_7",
+            "resource_name": "ext",
+            "label": "[root] azurerm_virtual_machine_extension.ext"
+        },
+        {
+            "type": "azurerm_virtual_network",
+            "simple_name": "azurerm_virtual_network.vnet",
+            "definition": {
+                "name": "${var.vnet}",
+                "location": "${var.location}",
+                "address_space": [
+                    "${var.address_space}"
+                ],
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "group": 20000,
+            "svg_id": "node_8",
+            "resource_name": "vnet",
+            "label": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "type": "provider",
+            "simple_name": "provider.azurerm",
+            "definition": "",
+            "group": 20000,
+            "svg_id": "node_9",
+            "resource_name": "azurerm",
+            "label": "[root] provider.azurerm"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.dns_name",
+            "definition": {
+                "description": "Relative DNS name for the traffic manager profile, resulting FQDN will be <uniqueDnsName>.trafficmanager.net, must be globally unique."
+            },
+            "group": 20000,
+            "svg_id": "node_10",
+            "resource_name": "dns_name",
+            "label": "[root] var.dns_name"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.num_vms",
+            "definition": {
+                "description": "The number of virtual machines you will provision. This variable is also used for NICs and PIPs in this Terraform script.",
+                "default": "3"
+            },
+            "group": 20000,
+            "svg_id": "node_11",
+            "resource_name": "num_vms",
+            "label": "[root] var.num_vms"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.location",
+            "definition": {
+                "description": "The location/region where the virtual network is created. Changing this forces a new resource to be created.",
+                "default": "southcentralus"
+            },
+            "group": 20000,
+            "svg_id": "node_12",
+            "resource_name": "location",
+            "label": "[root] var.location"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.resource_group",
+            "definition": {
+                "description": "The name of the resource group in which to create the virtual network, virtual machines, and traffic manager."
+            },
+            "group": 20000,
+            "svg_id": "node_13",
+            "resource_name": "resource_group",
+            "label": "[root] var.resource_group"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.subnet_name",
+            "definition": {
+                "description": "The name of the subnet",
+                "default": "subnet"
+            },
+            "group": 20000,
+            "svg_id": "node_14",
+            "resource_name": "subnet_name",
+            "label": "[root] var.subnet_name"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.subnet_prefix",
+            "definition": {
+                "description": "The address prefix to use for the subnet",
+                "default": "10.0.0.0/24"
+            },
+            "group": 20000,
+            "svg_id": "node_15",
+            "resource_name": "subnet_prefix",
+            "label": "[root] var.subnet_prefix"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.admin_password",
+            "definition": {
+                "description": "Password for virtual machines"
+            },
+            "group": 20000,
+            "svg_id": "node_16",
+            "resource_name": "admin_password",
+            "label": "[root] var.admin_password"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.admin_username",
+            "definition": {
+                "description": "Username for virtual machines",
+                "default": "vmadmin"
+            },
+            "group": 20000,
+            "svg_id": "node_17",
+            "resource_name": "admin_username",
+            "label": "[root] var.admin_username"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.image_offer",
+            "definition": {
+                "description": "The name of the offer (az vm image list)",
+                "default": "UbuntuServer"
+            },
+            "group": 20000,
+            "svg_id": "node_18",
+            "resource_name": "image_offer",
+            "label": "[root] var.image_offer"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.image_publisher",
+            "definition": {
+                "description": "The name of the publisher of the image (az vm image list)",
+                "default": "Canonical"
+            },
+            "group": 20000,
+            "svg_id": "node_19",
+            "resource_name": "image_publisher",
+            "label": "[root] var.image_publisher"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.image_sku",
+            "definition": {
+                "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.5-LTS, 14.04.2-LTS, 15.10.",
+                "default": "16.04-LTS"
+            },
+            "group": 20000,
+            "svg_id": "node_20",
+            "resource_name": "image_sku",
+            "label": "[root] var.image_sku"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.image_version",
+            "definition": {
+                "description": "the version of the image to apply (az vm image list)",
+                "default": "latest"
+            },
+            "group": 20000,
+            "svg_id": "node_21",
+            "resource_name": "image_version",
+            "label": "[root] var.image_version"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.vm_size",
+            "definition": {
+                "description": "The size of the virtual machine",
+                "default": "Standard_D1"
+            },
+            "group": 20000,
+            "svg_id": "node_22",
+            "resource_name": "vm_size",
+            "label": "[root] var.vm_size"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.address_space",
+            "definition": {
+                "description": "The address space that is used by the virtual network. You can supply more than one address space. Changing this forces a new resource to be created.",
+                "default": "10.0.0.0/16"
+            },
+            "group": 20000,
+            "svg_id": "node_23",
+            "resource_name": "address_space",
+            "label": "[root] var.address_space"
+        },
+        {
+            "type": "var",
+            "simple_name": "var.vnet",
+            "definition": {
+                "description": "The name of virtual network",
+                "default": "vnet"
+            },
+            "group": 20000,
+            "svg_id": "node_24",
+            "resource_name": "vnet",
+            "label": "[root] var.vnet"
+        },
+        {
+            "type": "meta",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "definition": "",
+            "group": 20000,
+            "svg_id": "node_25",
+            "resource_name": "count-boundary",
+            "label": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "type": "output",
+            "simple_name": "output.dns_name",
+            "definition": {
+                "value": "${var.dns_name}"
+            },
+            "group": 20000,
+            "svg_id": "node_26",
+            "resource_name": "dns_name",
+            "label": "[root] output.dns_name"
+        },
+        {
+            "type": "provider",
+            "simple_name": "provider.azurerm (close)",
+            "definition": "",
+            "group": 20000,
+            "svg_id": "node_27",
+            "resource_name": "azurerm",
+            "label": "[root] provider.azurerm (close)"
+        },
+        {
+            "type": "",
+            "simple_name": "root",
+            "definition": "",
+            "group": 20000,
+            "svg_id": "node_28",
+            "resource_name": "",
+            "label": "[root] root"
+        }
+    ],
+    "edges": [
+        {
+            "target": "[root] azurerm_public_ip.pip",
+            "svg_id": "edge_0",
+            "source": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "target": "[root] azurerm_subnet.subnet",
+            "svg_id": "edge_1",
+            "source": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_2",
+            "source": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "target": "[root] var.dns_name",
+            "svg_id": "edge_3",
+            "source": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "target": "[root] var.num_vms",
+            "svg_id": "edge_4",
+            "source": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "target": "[root] provider.azurerm",
+            "svg_id": "edge_5",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "target": "[root] var.location",
+            "svg_id": "edge_6",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "target": "[root] var.resource_group",
+            "svg_id": "edge_7",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_8",
+            "source": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "target": "[root] var.subnet_name",
+            "svg_id": "edge_9",
+            "source": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "target": "[root] var.subnet_prefix",
+            "svg_id": "edge_10",
+            "source": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "target": "[root] azurerm_public_ip.pip",
+            "svg_id": "edge_11",
+            "source": "[root] azurerm_traffic_manager_endpoint.endpoint"
+        },
+        {
+            "target": "[root] azurerm_traffic_manager_profile.profile",
+            "svg_id": "edge_12",
+            "source": "[root] azurerm_traffic_manager_endpoint.endpoint"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_13",
+            "source": "[root] azurerm_traffic_manager_profile.profile"
+        },
+        {
+            "target": "[root] azurerm_network_interface.nic",
+            "svg_id": "edge_14",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "target": "[root] var.admin_password",
+            "svg_id": "edge_15",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "target": "[root] var.admin_username",
+            "svg_id": "edge_16",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "target": "[root] var.image_offer",
+            "svg_id": "edge_17",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "target": "[root] var.image_publisher",
+            "svg_id": "edge_18",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "target": "[root] var.image_sku",
+            "svg_id": "edge_19",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "target": "[root] var.image_version",
+            "svg_id": "edge_20",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "target": "[root] var.vm_size",
+            "svg_id": "edge_21",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.vm",
+            "svg_id": "edge_22",
+            "source": "[root] azurerm_virtual_machine_extension.ext"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_23",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "target": "[root] var.address_space",
+            "svg_id": "edge_24",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "target": "[root] var.vnet",
+            "svg_id": "edge_25",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "target": "[root] azurerm_traffic_manager_endpoint.endpoint",
+            "svg_id": "edge_26",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine_extension.ext",
+            "svg_id": "edge_27",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.dns_name",
+            "svg_id": "edge_28",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] var.dns_name",
+            "svg_id": "edge_29",
+            "source": "[root] output.dns_name"
+        },
+        {
+            "target": "[root] azurerm_traffic_manager_endpoint.endpoint",
+            "svg_id": "edge_30",
+            "source": "[root] provider.azurerm (close)"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine_extension.ext",
+            "svg_id": "edge_31",
+            "source": "[root] provider.azurerm (close)"
+        },
+        {
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_32",
+            "source": "[root] root"
+        },
+        {
+            "target": "[root] provider.azurerm (close)",
+            "svg_id": "edge_33",
+            "source": "[root] root"
+        }
+    ]
+}

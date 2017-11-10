@@ -1,0 +1,707 @@
+{
+    "nodes": [
+        {
+            "definition": {
+                "name": "allow-all-10-128-0-0-20",
+                "network": "${google_compute_network.my-custom-network.name}",
+                "allow": [
+                    {
+                        "protocol": "tcp"
+                    },
+                    {
+                        "protocol": "udp"
+                    },
+                    {
+                        "protocol": "icmp"
+                    }
+                ],
+                "source_ranges": [
+                    "10.128.0.0/20"
+                ]
+            },
+            "svg_id": "node_0",
+            "resource_name": "allow-all-internal",
+            "simple_name": "google_compute_firewall.allow-all-internal",
+            "group": 20000,
+            "label": "[root] google_compute_firewall.allow-all-internal",
+            "type": "google_compute_firewall"
+        },
+        {
+            "definition": {
+                "name": "allow-health-check",
+                "network": "${google_compute_network.my-custom-network.name}",
+                "allow": {
+                    "protocol": "tcp"
+                },
+                "source_ranges": [
+                    "130.211.0.0/22",
+                    "35.191.0.0/16"
+                ],
+                "target_tags": [
+                    "int-lb"
+                ]
+            },
+            "svg_id": "node_1",
+            "resource_name": "allow-health-check",
+            "simple_name": "google_compute_firewall.allow-health-check",
+            "group": 20000,
+            "label": "[root] google_compute_firewall.allow-health-check",
+            "type": "google_compute_firewall"
+        },
+        {
+            "definition": {
+                "name": "allow-internal-lb",
+                "network": "${google_compute_network.my-custom-network.name}",
+                "allow": {
+                    "protocol": "tcp",
+                    "ports": [
+                        "80",
+                        "443"
+                    ]
+                },
+                "source_ranges": [
+                    "10.128.0.0/20"
+                ],
+                "target_tags": [
+                    "int-lb"
+                ]
+            },
+            "svg_id": "node_2",
+            "resource_name": "allow-internal-lb",
+            "simple_name": "google_compute_firewall.allow-internal-lb",
+            "group": 20000,
+            "label": "[root] google_compute_firewall.allow-internal-lb",
+            "type": "google_compute_firewall"
+        },
+        {
+            "definition": {
+                "name": "allow-tcp22-tcp3389-icmp",
+                "network": "${google_compute_network.my-custom-network.name}",
+                "allow": [
+                    {
+                        "protocol": "tcp",
+                        "ports": [
+                            "22",
+                            "3389"
+                        ]
+                    },
+                    {
+                        "protocol": "icmp"
+                    }
+                ]
+            },
+            "svg_id": "node_3",
+            "resource_name": "allow-ssh-rdp-icmp",
+            "simple_name": "google_compute_firewall.allow-ssh-rdp-icmp",
+            "group": 20000,
+            "label": "[root] google_compute_firewall.allow-ssh-rdp-icmp",
+            "type": "google_compute_firewall"
+        },
+        {
+            "definition": {
+                "name": "allow-ssh-to-standalone",
+                "network": "${google_compute_network.my-custom-network.name}",
+                "allow": {
+                    "protocol": "tcp",
+                    "ports": [
+                        "22"
+                    ]
+                },
+                "target_tags": [
+                    "standalone"
+                ]
+            },
+            "svg_id": "node_4",
+            "resource_name": "allow-ssh-to-standalone",
+            "simple_name": "google_compute_firewall.allow-ssh-to-standalone",
+            "group": 20000,
+            "label": "[root] google_compute_firewall.allow-ssh-to-standalone",
+            "type": "google_compute_firewall"
+        },
+        {
+            "definition": {
+                "name": "my-int-lb-forwarding-rule",
+                "load_balancing_scheme": "INTERNAL",
+                "ports": [
+                    "80"
+                ],
+                "network": "${google_compute_network.my-custom-network.self_link}",
+                "subnetwork": "${google_compute_subnetwork.my-custom-subnet.self_link}",
+                "backend_service": "${google_compute_region_backend_service.my-int-lb.self_link}"
+            },
+            "svg_id": "node_5",
+            "resource_name": "my-int-lb-forwarding-rule",
+            "simple_name": "google_compute_forwarding_rule.my-int-lb-forwarding-rule",
+            "group": 20000,
+            "label": "[root] google_compute_forwarding_rule.my-int-lb-forwarding-rule",
+            "type": "google_compute_forwarding_rule"
+        },
+        {
+            "definition": {
+                "name": "my-tcp-health-check",
+                "tcp_health_check": {
+                    "port": "80"
+                }
+            },
+            "svg_id": "node_6",
+            "resource_name": "my-tcp-health-check",
+            "simple_name": "google_compute_health_check.my-tcp-health-check",
+            "group": 20000,
+            "label": "[root] google_compute_health_check.my-tcp-health-check",
+            "type": "google_compute_health_check"
+        },
+        {
+            "definition": {
+                "name": "ilb-instance-1",
+                "machine_type": "n1-standard-1",
+                "zone": "${var.region_zone}",
+                "tags": [
+                    "int-lb"
+                ],
+                "boot_disk": {
+                    "initialize_params": {
+                        "image": "debian-cloud/debian-8"
+                    }
+                },
+                "network_interface": {
+                    "subnetwork": "${google_compute_subnetwork.my-custom-subnet.name}",
+                    "access_config": {}
+                },
+                "service_account": {
+                    "scopes": [
+                        "compute-rw"
+                    ]
+                },
+                "metadata_startup_script": "${file(\"startup.sh\")}"
+            },
+            "svg_id": "node_7",
+            "resource_name": "ilb-instance-1",
+            "simple_name": "google_compute_instance.ilb-instance-1",
+            "group": 20000,
+            "label": "[root] google_compute_instance.ilb-instance-1",
+            "type": "google_compute_instance"
+        },
+        {
+            "definition": {
+                "name": "ilb-instance-2",
+                "machine_type": "n1-standard-1",
+                "zone": "${var.region_zone}",
+                "tags": [
+                    "int-lb"
+                ],
+                "boot_disk": {
+                    "initialize_params": {
+                        "image": "debian-cloud/debian-8"
+                    }
+                },
+                "network_interface": {
+                    "subnetwork": "${google_compute_subnetwork.my-custom-subnet.name}",
+                    "access_config": {}
+                },
+                "service_account": {
+                    "scopes": [
+                        "compute-rw"
+                    ]
+                },
+                "metadata_startup_script": "${file(\"startup.sh\")}"
+            },
+            "svg_id": "node_8",
+            "resource_name": "ilb-instance-2",
+            "simple_name": "google_compute_instance.ilb-instance-2",
+            "group": 20000,
+            "label": "[root] google_compute_instance.ilb-instance-2",
+            "type": "google_compute_instance"
+        },
+        {
+            "definition": {
+                "name": "ilb-instance-3",
+                "machine_type": "n1-standard-1",
+                "zone": "${var.region_zone_2}",
+                "tags": [
+                    "int-lb"
+                ],
+                "boot_disk": {
+                    "initialize_params": {
+                        "image": "debian-cloud/debian-8"
+                    }
+                },
+                "network_interface": {
+                    "subnetwork": "${google_compute_subnetwork.my-custom-subnet.name}",
+                    "access_config": {}
+                },
+                "service_account": {
+                    "scopes": [
+                        "compute-rw"
+                    ]
+                },
+                "metadata_startup_script": "${file(\"startup.sh\")}"
+            },
+            "svg_id": "node_9",
+            "resource_name": "ilb-instance-3",
+            "simple_name": "google_compute_instance.ilb-instance-3",
+            "group": 20000,
+            "label": "[root] google_compute_instance.ilb-instance-3",
+            "type": "google_compute_instance"
+        },
+        {
+            "definition": {
+                "name": "ilb-instance-4",
+                "machine_type": "n1-standard-1",
+                "zone": "${var.region_zone_2}",
+                "tags": [
+                    "int-lb"
+                ],
+                "boot_disk": {
+                    "initialize_params": {
+                        "image": "debian-cloud/debian-8"
+                    }
+                },
+                "network_interface": {
+                    "subnetwork": "${google_compute_subnetwork.my-custom-subnet.name}",
+                    "access_config": {}
+                },
+                "service_account": {
+                    "scopes": [
+                        "compute-rw"
+                    ]
+                },
+                "metadata_startup_script": "${file(\"startup.sh\")}"
+            },
+            "svg_id": "node_10",
+            "resource_name": "ilb-instance-4",
+            "simple_name": "google_compute_instance.ilb-instance-4",
+            "group": 20000,
+            "label": "[root] google_compute_instance.ilb-instance-4",
+            "type": "google_compute_instance"
+        },
+        {
+            "definition": {
+                "name": "standalone-instance-1",
+                "machine_type": "n1-standard-1",
+                "zone": "${var.region_zone}",
+                "tags": [
+                    "standalone"
+                ],
+                "boot_disk": {
+                    "initialize_params": {
+                        "image": "debian-cloud/debian-8"
+                    }
+                },
+                "network_interface": {
+                    "subnetwork": "${google_compute_subnetwork.my-custom-subnet.name}",
+                    "access_config": {}
+                }
+            },
+            "svg_id": "node_11",
+            "resource_name": "standalone-instance-1",
+            "simple_name": "google_compute_instance.standalone-instance-1",
+            "group": 20000,
+            "label": "[root] google_compute_instance.standalone-instance-1",
+            "type": "google_compute_instance"
+        },
+        {
+            "definition": {
+                "name": "us-ig1",
+                "instances": [
+                    "${google_compute_instance.ilb-instance-1.self_link}",
+                    "${google_compute_instance.ilb-instance-2.self_link}"
+                ],
+                "zone": "${var.region_zone}"
+            },
+            "svg_id": "node_12",
+            "resource_name": "us-ig1",
+            "simple_name": "google_compute_instance_group.us-ig1",
+            "group": 20000,
+            "label": "[root] google_compute_instance_group.us-ig1",
+            "type": "google_compute_instance_group"
+        },
+        {
+            "definition": {
+                "name": "us-ig2",
+                "instances": [
+                    "${google_compute_instance.ilb-instance-3.self_link}",
+                    "${google_compute_instance.ilb-instance-4.self_link}"
+                ],
+                "zone": "${var.region_zone_2}"
+            },
+            "svg_id": "node_13",
+            "resource_name": "us-ig2",
+            "simple_name": "google_compute_instance_group.us-ig2",
+            "group": 20000,
+            "label": "[root] google_compute_instance_group.us-ig2",
+            "type": "google_compute_instance_group"
+        },
+        {
+            "definition": {
+                "name": "my-custom-network"
+            },
+            "svg_id": "node_14",
+            "resource_name": "my-custom-network",
+            "simple_name": "google_compute_network.my-custom-network",
+            "group": 20000,
+            "label": "[root] google_compute_network.my-custom-network",
+            "type": "google_compute_network"
+        },
+        {
+            "definition": {
+                "name": "my-int-lb",
+                "health_checks": [
+                    "${google_compute_health_check.my-tcp-health-check.self_link}"
+                ],
+                "region": "${var.region}",
+                "backend": [
+                    {
+                        "group": "${google_compute_instance_group.us-ig1.self_link}"
+                    },
+                    {
+                        "group": "${google_compute_instance_group.us-ig2.self_link}"
+                    }
+                ]
+            },
+            "svg_id": "node_15",
+            "resource_name": "my-int-lb",
+            "simple_name": "google_compute_region_backend_service.my-int-lb",
+            "group": 20000,
+            "label": "[root] google_compute_region_backend_service.my-int-lb",
+            "type": "google_compute_region_backend_service"
+        },
+        {
+            "definition": {
+                "name": "my-custom-subnet",
+                "ip_cidr_range": "10.128.0.0/20",
+                "network": "${google_compute_network.my-custom-network.self_link}",
+                "region": "${var.region}"
+            },
+            "svg_id": "node_16",
+            "resource_name": "my-custom-subnet",
+            "simple_name": "google_compute_subnetwork.my-custom-subnet",
+            "group": 20000,
+            "label": "[root] google_compute_subnetwork.my-custom-subnet",
+            "type": "google_compute_subnetwork"
+        },
+        {
+            "definition": {
+                "region": "${var.region}",
+                "project": "${var.project_name}"
+            },
+            "svg_id": "node_17",
+            "resource_name": "google",
+            "simple_name": "provider.google",
+            "group": 20000,
+            "label": "[root] provider.google",
+            "type": "provider"
+        },
+        {
+            "definition": {
+                "default": "us-central1-b"
+            },
+            "svg_id": "node_18",
+            "resource_name": "region_zone",
+            "simple_name": "var.region_zone",
+            "group": 20000,
+            "label": "[root] var.region_zone",
+            "type": "var"
+        },
+        {
+            "definition": {
+                "default": "us-central1-c"
+            },
+            "svg_id": "node_19",
+            "resource_name": "region_zone_2",
+            "simple_name": "var.region_zone_2",
+            "group": 20000,
+            "label": "[root] var.region_zone_2",
+            "type": "var"
+        },
+        {
+            "definition": "",
+            "svg_id": "node_20",
+            "resource_name": "count-boundary",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "type": "meta"
+        },
+        {
+            "definition": {
+                "value": "${google_compute_forwarding_rule.my-int-lb-forwarding-rule.ip_address}"
+            },
+            "svg_id": "node_21",
+            "resource_name": "internal_load_balancer_ip",
+            "simple_name": "output.internal_load_balancer_ip",
+            "group": 20000,
+            "label": "[root] output.internal_load_balancer_ip",
+            "type": "output"
+        },
+        {
+            "definition": {
+                "region": "${var.region}",
+                "project": "${var.project_name}"
+            },
+            "svg_id": "node_22",
+            "resource_name": "google",
+            "simple_name": "provider.google (close)",
+            "group": 20000,
+            "label": "[root] provider.google (close)",
+            "type": "provider"
+        },
+        {
+            "definition": {
+                "description": "The ID of the Google Cloud project"
+            },
+            "svg_id": "node_23",
+            "resource_name": "project_name",
+            "simple_name": "var.project_name",
+            "group": 20000,
+            "label": "[root] var.project_name",
+            "type": "var"
+        },
+        {
+            "definition": {
+                "default": "us-central1"
+            },
+            "svg_id": "node_24",
+            "resource_name": "region",
+            "simple_name": "var.region",
+            "group": 20000,
+            "label": "[root] var.region",
+            "type": "var"
+        },
+        {
+            "definition": "",
+            "svg_id": "node_25",
+            "resource_name": "",
+            "simple_name": "root",
+            "group": 20000,
+            "label": "[root] root",
+            "type": ""
+        }
+    ],
+    "edges": [
+        {
+            "source": "[root] google_compute_firewall.allow-all-internal",
+            "svg_id": "edge_0",
+            "target": "[root] google_compute_network.my-custom-network"
+        },
+        {
+            "source": "[root] google_compute_firewall.allow-health-check",
+            "svg_id": "edge_1",
+            "target": "[root] google_compute_network.my-custom-network"
+        },
+        {
+            "source": "[root] google_compute_firewall.allow-internal-lb",
+            "svg_id": "edge_2",
+            "target": "[root] google_compute_network.my-custom-network"
+        },
+        {
+            "source": "[root] google_compute_firewall.allow-ssh-rdp-icmp",
+            "svg_id": "edge_3",
+            "target": "[root] google_compute_network.my-custom-network"
+        },
+        {
+            "source": "[root] google_compute_firewall.allow-ssh-to-standalone",
+            "svg_id": "edge_4",
+            "target": "[root] google_compute_network.my-custom-network"
+        },
+        {
+            "source": "[root] google_compute_forwarding_rule.my-int-lb-forwarding-rule",
+            "svg_id": "edge_5",
+            "target": "[root] google_compute_region_backend_service.my-int-lb"
+        },
+        {
+            "source": "[root] google_compute_health_check.my-tcp-health-check",
+            "svg_id": "edge_6",
+            "target": "[root] provider.google"
+        },
+        {
+            "source": "[root] google_compute_instance.ilb-instance-1",
+            "svg_id": "edge_7",
+            "target": "[root] google_compute_subnetwork.my-custom-subnet"
+        },
+        {
+            "source": "[root] google_compute_instance.ilb-instance-1",
+            "svg_id": "edge_8",
+            "target": "[root] var.region_zone"
+        },
+        {
+            "source": "[root] google_compute_instance.ilb-instance-2",
+            "svg_id": "edge_9",
+            "target": "[root] google_compute_subnetwork.my-custom-subnet"
+        },
+        {
+            "source": "[root] google_compute_instance.ilb-instance-2",
+            "svg_id": "edge_10",
+            "target": "[root] var.region_zone"
+        },
+        {
+            "source": "[root] google_compute_instance.ilb-instance-3",
+            "svg_id": "edge_11",
+            "target": "[root] google_compute_subnetwork.my-custom-subnet"
+        },
+        {
+            "source": "[root] google_compute_instance.ilb-instance-3",
+            "svg_id": "edge_12",
+            "target": "[root] var.region_zone_2"
+        },
+        {
+            "source": "[root] google_compute_instance.ilb-instance-4",
+            "svg_id": "edge_13",
+            "target": "[root] google_compute_subnetwork.my-custom-subnet"
+        },
+        {
+            "source": "[root] google_compute_instance.ilb-instance-4",
+            "svg_id": "edge_14",
+            "target": "[root] var.region_zone_2"
+        },
+        {
+            "source": "[root] google_compute_instance.standalone-instance-1",
+            "svg_id": "edge_15",
+            "target": "[root] google_compute_subnetwork.my-custom-subnet"
+        },
+        {
+            "source": "[root] google_compute_instance.standalone-instance-1",
+            "svg_id": "edge_16",
+            "target": "[root] var.region_zone"
+        },
+        {
+            "source": "[root] google_compute_instance_group.us-ig1",
+            "svg_id": "edge_17",
+            "target": "[root] google_compute_instance.ilb-instance-1"
+        },
+        {
+            "source": "[root] google_compute_instance_group.us-ig1",
+            "svg_id": "edge_18",
+            "target": "[root] google_compute_instance.ilb-instance-2"
+        },
+        {
+            "source": "[root] google_compute_instance_group.us-ig2",
+            "svg_id": "edge_19",
+            "target": "[root] google_compute_instance.ilb-instance-3"
+        },
+        {
+            "source": "[root] google_compute_instance_group.us-ig2",
+            "svg_id": "edge_20",
+            "target": "[root] google_compute_instance.ilb-instance-4"
+        },
+        {
+            "source": "[root] google_compute_network.my-custom-network",
+            "svg_id": "edge_21",
+            "target": "[root] provider.google"
+        },
+        {
+            "source": "[root] google_compute_region_backend_service.my-int-lb",
+            "svg_id": "edge_22",
+            "target": "[root] google_compute_health_check.my-tcp-health-check"
+        },
+        {
+            "source": "[root] google_compute_region_backend_service.my-int-lb",
+            "svg_id": "edge_23",
+            "target": "[root] google_compute_instance_group.us-ig1"
+        },
+        {
+            "source": "[root] google_compute_region_backend_service.my-int-lb",
+            "svg_id": "edge_24",
+            "target": "[root] google_compute_instance_group.us-ig2"
+        },
+        {
+            "source": "[root] google_compute_subnetwork.my-custom-subnet",
+            "svg_id": "edge_25",
+            "target": "[root] google_compute_network.my-custom-network"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_26",
+            "target": "[root] google_compute_firewall.allow-all-internal"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_27",
+            "target": "[root] google_compute_firewall.allow-health-check"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_28",
+            "target": "[root] google_compute_firewall.allow-internal-lb"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_29",
+            "target": "[root] google_compute_firewall.allow-ssh-rdp-icmp"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_30",
+            "target": "[root] google_compute_firewall.allow-ssh-to-standalone"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_31",
+            "target": "[root] google_compute_instance.standalone-instance-1"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_32",
+            "target": "[root] output.internal_load_balancer_ip"
+        },
+        {
+            "source": "[root] output.internal_load_balancer_ip",
+            "svg_id": "edge_33",
+            "target": "[root] google_compute_forwarding_rule.my-int-lb-forwarding-rule"
+        },
+        {
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_34",
+            "target": "[root] google_compute_firewall.allow-all-internal"
+        },
+        {
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_35",
+            "target": "[root] google_compute_firewall.allow-health-check"
+        },
+        {
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_36",
+            "target": "[root] google_compute_firewall.allow-internal-lb"
+        },
+        {
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_37",
+            "target": "[root] google_compute_firewall.allow-ssh-rdp-icmp"
+        },
+        {
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_38",
+            "target": "[root] google_compute_firewall.allow-ssh-to-standalone"
+        },
+        {
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_39",
+            "target": "[root] google_compute_forwarding_rule.my-int-lb-forwarding-rule"
+        },
+        {
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_40",
+            "target": "[root] google_compute_instance.standalone-instance-1"
+        },
+        {
+            "source": "[root] provider.google",
+            "svg_id": "edge_41",
+            "target": "[root] var.project_name"
+        },
+        {
+            "source": "[root] provider.google",
+            "svg_id": "edge_42",
+            "target": "[root] var.region"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_43",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_44",
+            "target": "[root] provider.google (close)"
+        }
+    ]
+}

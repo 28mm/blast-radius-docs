@@ -1,0 +1,68 @@
+
+<html>
+<head>
+        <title>Blast Radius</title>
+        <meta charset="utf-8">
+        <script src="/blast-radius-docs/static/js/d3.v4.js"></script>
+        <script src="/blast-radius-docs/static/js/d3-tip.js"></script>
+        <script src="/blast-radius-docs/static/js/terraform-graph.js"></script>
+        <script src="/blast-radius-docs/static/js/categories.js"></script>
+        <link rel="stylesheet" type="text/css" href="/blast-radius-docs/static/css/style.css">
+                <style>
+            svg {
+                margin: 0px 0px 0px 20px;
+            }
+        </style>
+</head>
+<body>
+    <ul class="breadcrumb"><li><a href="/blast-radius-docs">🔥</a></li><li>Blast Radius</li></ul>
+        <h1>Blast Radius</h1>
+        <p class="descr"><i>Blast Radius</i> is a tool for reasoning about <i>Terraform</i> dependency graphs through interactive visualizations. Use <i>Blast Radius</i> to:</p>
+        <ol>
+        <li>Learn about Terraform or one of its cloud providers, through <a href="/blast-radius-docs/examples">example configurations</a>.</li>
+        <li>Document your infrastructure.</li>
+        <li>reason about relationships between resources, and evaluate changes to them.</li>
+        </ol>
+        <div id="graph"></div>
+        <h2>A Catalog of Examples</h2>
+        <p></p>
+        <ol>
+        
+        <li><a href="/blast-radius-docs/examples/terraform-provider-aws">Amazon Web Services</a></li>
+        
+        <li><a href="/blast-radius-docs/examples/terraform-provider-azurem">Azure</a></li>
+        
+        <li><a href="/blast-radius-docs/examples/terraform-provider-digitalocean">Digital Ocean</a></li>
+        
+        <li><a href="/blast-radius-docs/examples/terraform-provider-google">Google</a></li>
+        
+        <li><a href="/blast-radius-docs/examples/terraform-provider-kubernetes">Kubernetes (k8s)</a></li>
+        
+        <li><a href="/blast-radius-docs/examples/terraform-provider-openstack">OpenStack</a></li>
+        
+        </ol>
+        <h2>Quickstart</h2>
+        <p class="descr">Install blastradius with pip, and Graphviz with e.g. Homebrew.</p>
+        <div class="code"><code>[...]$ pip3 install blastradius
+[...]$ brew install graphviz</code></div>
+        <p class="descr">Point Blast Radius at an init-ed Terraform project, and connect with your browser.</p>
+        <div class="code"><code>[...]$ blast-radius --serve /path/to/terraform-project
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</code></div>
+    <h2>Further Reading</h2>
+    <ol>
+    <li>The motivations for <i>Blast Radius</i> are documented in a series of blog posts: <a href="https://28mm.github.io/notes/d3-terraform-graphs">part 1</a>, and <a href="https://28mm.github.io/notes/d3-terraform-graphs-2">part 2</a>.</li>
+    <li>Source for <i>Blast Radius</i> is hosted on <a href="http://www.github.com/28mm/blast-radius">GitHub</a></li>
+    </ol>
+
+
+<ul class="breadcrumb">
+<li><iframe src="https://ghbtns.com/github-btn.html?user=28mm&repo=blast-radius&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></li>
+
+
+</ul>
+</body>
+<script>
+   svg_activate('#graph', '/blast-radius-docs/examples/terraform-provider-aws/two-tier/graph.svg', '/blast-radius-docs/examples/terraform-provider-aws/two-tier/graph.json', "50%");
+</script>
+
+</html>

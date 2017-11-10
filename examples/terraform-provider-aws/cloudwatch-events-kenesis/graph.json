@@ -1,0 +1,296 @@
+{
+    "nodes": [
+        {
+            "resource_name": "foo",
+            "type": "aws_cloudwatch_event_rule",
+            "simple_name": "aws_cloudwatch_event_rule.foo",
+            "svg_id": "node_0",
+            "definition": {
+                "name": "${var.rule_name}",
+                "event_pattern": "{\n  \"detail-type\": [\n    \"AWS API Call via CloudTrail\"\n  ],\n  \"detail\": {\n    \"eventSource\": [\n      \"autoscaling.amazonaws.com\"\n    ]\n  }\n}",
+                "role_arn": "${aws_iam_role.role.arn}"
+            },
+            "label": "[root] aws_cloudwatch_event_rule.foo",
+            "group": 20000
+        },
+        {
+            "resource_name": "foobar",
+            "type": "aws_cloudwatch_event_target",
+            "simple_name": "aws_cloudwatch_event_target.foobar",
+            "svg_id": "node_1",
+            "definition": {
+                "rule": "${aws_cloudwatch_event_rule.foo.name}",
+                "target_id": "${var.target_name}",
+                "arn": "${aws_kinesis_stream.foo.arn}"
+            },
+            "label": "[root] aws_cloudwatch_event_target.foobar",
+            "group": 20000
+        },
+        {
+            "resource_name": "role",
+            "type": "aws_iam_role",
+            "simple_name": "aws_iam_role.role",
+            "svg_id": "node_2",
+            "definition": {
+                "name": "${var.iam_role_name}",
+                "assume_role_policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"events.amazonaws.com\"\n      },\n      \"Effect\": \"Allow\",\n      \"Sid\": \"\"\n    }\n  ]\n}"
+            },
+            "label": "[root] aws_iam_role.role",
+            "group": 20000
+        },
+        {
+            "resource_name": "policy",
+            "type": "aws_iam_role_policy",
+            "simple_name": "aws_iam_role_policy.policy",
+            "svg_id": "node_3",
+            "definition": {
+                "name": "tf-example-policy",
+                "role": "${aws_iam_role.role.id}",
+                "policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": [\n        \"kinesis:PutRecord\",\n        \"kinesis:PutRecords\"\n      ],\n      \"Resource\": [\n        \"*\"\n      ],\n      \"Effect\": \"Allow\"\n    }\n  ]\n}"
+            },
+            "label": "[root] aws_iam_role_policy.policy",
+            "group": 20000
+        },
+        {
+            "resource_name": "foo",
+            "type": "aws_kinesis_stream",
+            "simple_name": "aws_kinesis_stream.foo",
+            "svg_id": "node_4",
+            "definition": {
+                "name": "${var.stream_name}",
+                "shard_count": 1
+            },
+            "label": "[root] aws_kinesis_stream.foo",
+            "group": 20000
+        },
+        {
+            "resource_name": "aws",
+            "type": "provider",
+            "simple_name": "provider.aws",
+            "svg_id": "node_5",
+            "definition": {
+                "region": "${var.aws_region}"
+            },
+            "label": "[root] provider.aws",
+            "group": 20000
+        },
+        {
+            "resource_name": "rule_name",
+            "type": "var",
+            "simple_name": "var.rule_name",
+            "svg_id": "node_6",
+            "definition": {
+                "description": "The name of the CloudWatch Event Rule",
+                "default": "tf-example-cloudwatch-event-rule-for-kinesis"
+            },
+            "label": "[root] var.rule_name",
+            "group": 20000
+        },
+        {
+            "resource_name": "target_name",
+            "type": "var",
+            "simple_name": "var.target_name",
+            "svg_id": "node_7",
+            "definition": {
+                "description": "The name of the CloudWatch Event Target",
+                "default": "tf-example-cloudwatch-event-target-for-kinesis"
+            },
+            "label": "[root] var.target_name",
+            "group": 20000
+        },
+        {
+            "resource_name": "iam_role_name",
+            "type": "var",
+            "simple_name": "var.iam_role_name",
+            "svg_id": "node_8",
+            "definition": {
+                "description": "The name of the IAM Role",
+                "default": "tf-example-iam-role-for-kinesis"
+            },
+            "label": "[root] var.iam_role_name",
+            "group": 20000
+        },
+        {
+            "resource_name": "stream_name",
+            "type": "var",
+            "simple_name": "var.stream_name",
+            "svg_id": "node_9",
+            "definition": {
+                "description": "The name of the Kinesis Stream to send events to",
+                "default": "tf-example-kinesis-stream"
+            },
+            "label": "[root] var.stream_name",
+            "group": 20000
+        },
+        {
+            "resource_name": "count-boundary",
+            "type": "meta",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_10",
+            "definition": "",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "group": 20000
+        },
+        {
+            "resource_name": "kinesis_stream_arn",
+            "type": "output",
+            "simple_name": "output.kinesis_stream_arn",
+            "svg_id": "node_11",
+            "definition": {
+                "value": "${aws_kinesis_stream.foo.arn}"
+            },
+            "label": "[root] output.kinesis_stream_arn",
+            "group": 20000
+        },
+        {
+            "resource_name": "rule_arn",
+            "type": "output",
+            "simple_name": "output.rule_arn",
+            "svg_id": "node_12",
+            "definition": {
+                "value": "${aws_cloudwatch_event_rule.foo.arn}"
+            },
+            "label": "[root] output.rule_arn",
+            "group": 20000
+        },
+        {
+            "resource_name": "aws",
+            "type": "provider",
+            "simple_name": "provider.aws (close)",
+            "svg_id": "node_13",
+            "definition": {
+                "region": "${var.aws_region}"
+            },
+            "label": "[root] provider.aws (close)",
+            "group": 20000
+        },
+        {
+            "resource_name": "aws_region",
+            "type": "var",
+            "simple_name": "var.aws_region",
+            "svg_id": "node_14",
+            "definition": {
+                "description": "The AWS region to create resources in.",
+                "default": "us-east-1"
+            },
+            "label": "[root] var.aws_region",
+            "group": 20000
+        },
+        {
+            "resource_name": "",
+            "type": "",
+            "simple_name": "root",
+            "svg_id": "node_15",
+            "definition": "",
+            "label": "[root] root",
+            "group": 20000
+        }
+    ],
+    "edges": [
+        {
+            "source": "[root] aws_cloudwatch_event_rule.foo",
+            "svg_id": "edge_0",
+            "target": "[root] aws_iam_role.role"
+        },
+        {
+            "source": "[root] aws_cloudwatch_event_rule.foo",
+            "svg_id": "edge_1",
+            "target": "[root] var.rule_name"
+        },
+        {
+            "source": "[root] aws_cloudwatch_event_target.foobar",
+            "svg_id": "edge_2",
+            "target": "[root] aws_cloudwatch_event_rule.foo"
+        },
+        {
+            "source": "[root] aws_cloudwatch_event_target.foobar",
+            "svg_id": "edge_3",
+            "target": "[root] aws_kinesis_stream.foo"
+        },
+        {
+            "source": "[root] aws_cloudwatch_event_target.foobar",
+            "svg_id": "edge_4",
+            "target": "[root] var.target_name"
+        },
+        {
+            "source": "[root] aws_iam_role.role",
+            "svg_id": "edge_5",
+            "target": "[root] provider.aws"
+        },
+        {
+            "source": "[root] aws_iam_role.role",
+            "svg_id": "edge_6",
+            "target": "[root] var.iam_role_name"
+        },
+        {
+            "source": "[root] aws_iam_role_policy.policy",
+            "svg_id": "edge_7",
+            "target": "[root] aws_iam_role.role"
+        },
+        {
+            "source": "[root] aws_kinesis_stream.foo",
+            "svg_id": "edge_8",
+            "target": "[root] provider.aws"
+        },
+        {
+            "source": "[root] aws_kinesis_stream.foo",
+            "svg_id": "edge_9",
+            "target": "[root] var.stream_name"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_10",
+            "target": "[root] aws_cloudwatch_event_target.foobar"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_11",
+            "target": "[root] aws_iam_role_policy.policy"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_12",
+            "target": "[root] output.kinesis_stream_arn"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_13",
+            "target": "[root] output.rule_arn"
+        },
+        {
+            "source": "[root] output.kinesis_stream_arn",
+            "svg_id": "edge_14",
+            "target": "[root] aws_kinesis_stream.foo"
+        },
+        {
+            "source": "[root] output.rule_arn",
+            "svg_id": "edge_15",
+            "target": "[root] aws_cloudwatch_event_rule.foo"
+        },
+        {
+            "source": "[root] provider.aws (close)",
+            "svg_id": "edge_16",
+            "target": "[root] aws_cloudwatch_event_target.foobar"
+        },
+        {
+            "source": "[root] provider.aws (close)",
+            "svg_id": "edge_17",
+            "target": "[root] aws_iam_role_policy.policy"
+        },
+        {
+            "source": "[root] provider.aws",
+            "svg_id": "edge_18",
+            "target": "[root] var.aws_region"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_19",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_20",
+            "target": "[root] provider.aws (close)"
+        }
+    ]
+}

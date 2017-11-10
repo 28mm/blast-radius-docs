@@ -1,0 +1,231 @@
+{
+    "nodes": [
+        {
+            "label": "[root] azurerm_resource_group.rg",
+            "simple_name": "azurerm_resource_group.rg",
+            "group": 20000,
+            "type": "azurerm_resource_group",
+            "svg_id": "node_0",
+            "definition": {
+                "name": "${var.resource_group}",
+                "location": "${var.location}"
+            },
+            "resource_name": "rg"
+        },
+        {
+            "label": "[root] azurerm_search_service.search",
+            "simple_name": "azurerm_search_service.search",
+            "group": 20000,
+            "type": "azurerm_search_service",
+            "svg_id": "node_1",
+            "definition": {
+                "name": "${var.search_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${var.location}",
+                "sku": "${var.sku}",
+                "replica_count": "${var.replica_count}",
+                "partition_count": "${var.partition_count}"
+            },
+            "resource_name": "search"
+        },
+        {
+            "label": "[root] provider.azurerm",
+            "simple_name": "provider.azurerm",
+            "group": 20000,
+            "type": "provider",
+            "svg_id": "node_2",
+            "definition": "",
+            "resource_name": "azurerm"
+        },
+        {
+            "label": "[root] var.location",
+            "simple_name": "var.location",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_3",
+            "definition": {
+                "description": "The location/region where the search service is created. Changing this forces a new resource to be created.",
+                "default": "southcentralus"
+            },
+            "resource_name": "location"
+        },
+        {
+            "label": "[root] var.resource_group",
+            "simple_name": "var.resource_group",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_4",
+            "definition": {
+                "description": "The name of the resource group in which to create search service"
+            },
+            "resource_name": "resource_group"
+        },
+        {
+            "label": "[root] var.partition_count",
+            "simple_name": "var.partition_count",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_5",
+            "definition": {
+                "description": "Partitions allow for scaling of document count as well as faster indexing by sharding your index over multiple Azure Search units. Allowed values: 1, 2, 3, 4, 6, 12",
+                "default": 1
+            },
+            "resource_name": "partition_count"
+        },
+        {
+            "label": "[root] var.replica_count",
+            "simple_name": "var.replica_count",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_6",
+            "definition": {
+                "description": "Replicas distribute search workloads across the service. You need 2 or more to support high availability (applies to Basic and Standard only).",
+                "default": 1
+            },
+            "resource_name": "replica_count"
+        },
+        {
+            "label": "[root] var.search_name",
+            "simple_name": "var.search_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_7",
+            "definition": {
+                "description": "Service name must only contain lowercase letters, digits or dashes, cannot use dash as the first two or last one characters, cannot contain consecutive dashes, and is limited between 2 and 60 characters in length."
+            },
+            "resource_name": "search_name"
+        },
+        {
+            "label": "[root] var.sku",
+            "simple_name": "var.sku",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_8",
+            "definition": {
+                "description": "Valid values are 'free', 'standard', 'standard2', and 'standard3' (2 & 3 must be enabled on the backend by Microsoft support). 'free' provisions the service in shared clusters. 'standard' provisions the service in dedicated clusters.",
+                "default": "standard"
+            },
+            "resource_name": "sku"
+        },
+        {
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "group": 20000,
+            "type": "meta",
+            "svg_id": "node_9",
+            "definition": "",
+            "resource_name": "count-boundary"
+        },
+        {
+            "label": "[root] output.Azure Search Service",
+            "simple_name": "output.Azure Search Service",
+            "group": 20000,
+            "type": "output",
+            "svg_id": "node_10",
+            "definition": "",
+            "resource_name": "Azure"
+        },
+        {
+            "label": "[root] var.hosting_mode",
+            "simple_name": "var.hosting_mode",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_11",
+            "definition": {
+                "description": "Applicable only for SKU set to standard3. You can set this property to enable a single, high density partition that allows up to 1000 indexes, which is much higher than the maximum indexes allowed for any other SKU. Allowed values: default, highDensity",
+                "default": "default"
+            },
+            "resource_name": "hosting_mode"
+        },
+        {
+            "label": "[root] provider.azurerm (close)",
+            "simple_name": "provider.azurerm (close)",
+            "group": 20000,
+            "type": "provider",
+            "svg_id": "node_12",
+            "definition": "",
+            "resource_name": "azurerm"
+        },
+        {
+            "label": "[root] root",
+            "simple_name": "root",
+            "group": 20000,
+            "type": "",
+            "svg_id": "node_13",
+            "definition": "",
+            "resource_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "svg_id": "edge_0",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "svg_id": "edge_1",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.location"
+        },
+        {
+            "svg_id": "edge_2",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "svg_id": "edge_3",
+            "source": "[root] azurerm_search_service.search",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_4",
+            "source": "[root] azurerm_search_service.search",
+            "target": "[root] var.partition_count"
+        },
+        {
+            "svg_id": "edge_5",
+            "source": "[root] azurerm_search_service.search",
+            "target": "[root] var.replica_count"
+        },
+        {
+            "svg_id": "edge_6",
+            "source": "[root] azurerm_search_service.search",
+            "target": "[root] var.search_name"
+        },
+        {
+            "svg_id": "edge_7",
+            "source": "[root] azurerm_search_service.search",
+            "target": "[root] var.sku"
+        },
+        {
+            "svg_id": "edge_8",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.Azure Search Service"
+        },
+        {
+            "svg_id": "edge_9",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] var.hosting_mode"
+        },
+        {
+            "svg_id": "edge_10",
+            "source": "[root] output.Azure Search Service",
+            "target": "[root] azurerm_search_service.search"
+        },
+        {
+            "svg_id": "edge_11",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_search_service.search"
+        },
+        {
+            "svg_id": "edge_12",
+            "source": "[root] root",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_13",
+            "source": "[root] root",
+            "target": "[root] provider.azurerm (close)"
+        }
+    ]
+}

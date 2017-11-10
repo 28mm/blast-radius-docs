@@ -1,0 +1,491 @@
+{
+    "nodes": [
+        {
+            "type": "azurerm_network_security_group",
+            "svg_id": "node_0",
+            "resource_name": "security_group",
+            "definition": {
+                "name": "${var.prefix}-secgrp",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "tags": "${var.tags}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_network_security_group.security_group",
+            "simple_name": "azurerm_network_security_group.security_group"
+        },
+        {
+            "type": "azurerm_network_security_rule",
+            "svg_id": "node_1",
+            "resource_name": "security_rule_rdp",
+            "definition": {
+                "name": "rdp",
+                "priority": 101,
+                "direction": "Inbound",
+                "access": "Allow",
+                "protocol": "Tcp",
+                "source_port_range": "*",
+                "destination_port_range": "3389",
+                "source_address_prefix": "*",
+                "destination_address_prefix": "*",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_name": "${azurerm_network_security_group.security_group.name}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_network_security_rule.security_rule_rdp",
+            "simple_name": "azurerm_network_security_rule.security_rule_rdp"
+        },
+        {
+            "type": "azurerm_network_security_rule",
+            "svg_id": "node_2",
+            "resource_name": "security_rule_ssh",
+            "definition": {
+                "name": "ssh",
+                "priority": 102,
+                "direction": "Inbound",
+                "access": "Allow",
+                "protocol": "Tcp",
+                "source_port_range": "*",
+                "destination_port_range": "22",
+                "source_address_prefix": "*",
+                "destination_address_prefix": "*",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_name": "${azurerm_network_security_group.security_group.name}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_network_security_rule.security_rule_ssh",
+            "simple_name": "azurerm_network_security_rule.security_rule_ssh"
+        },
+        {
+            "type": "azurerm_resource_group",
+            "svg_id": "node_3",
+            "resource_name": "rg",
+            "definition": {
+                "name": "${var.prefix}-rg",
+                "location": "${var.location}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_resource_group.rg",
+            "simple_name": "azurerm_resource_group.rg"
+        },
+        {
+            "type": "azurerm_subnet",
+            "svg_id": "node_4",
+            "resource_name": "subnet",
+            "definition": {
+                "name": "${var.subnet_names[count.index]}",
+                "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "${var.subnet_prefixes[count.index]}",
+                "network_security_group_id": "${azurerm_network_security_group.security_group.id}",
+                "count": "${length(var.subnet_names)}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_subnet.subnet",
+            "simple_name": "azurerm_subnet.subnet"
+        },
+        {
+            "type": "azurerm_virtual_network",
+            "svg_id": "node_5",
+            "resource_name": "vnet",
+            "definition": {
+                "name": "${var.prefix}-vnet",
+                "location": "${var.location}",
+                "address_space": [
+                    "${var.address_space}"
+                ],
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "dns_servers": "${var.dns_servers}",
+                "tags": "${var.tags}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_virtual_network.vnet",
+            "simple_name": "azurerm_virtual_network.vnet"
+        },
+        {
+            "type": "provider",
+            "svg_id": "node_6",
+            "resource_name": "azurerm",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] provider.azurerm",
+            "simple_name": "provider.azurerm"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_7",
+            "resource_name": "tags",
+            "definition": {
+                "type": "map",
+                "default": {
+                    "tag1": "",
+                    "tag2": ""
+                }
+            },
+            "group": 20000,
+            "label": "[root] var.tags",
+            "simple_name": "var.tags"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_8",
+            "resource_name": "location",
+            "definition": {
+                "description": "The location/region where the core network will be created. The full list of Azure regions can be found at https://azure.microsoft.com/regions"
+            },
+            "group": 20000,
+            "label": "[root] var.location",
+            "simple_name": "var.location"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_9",
+            "resource_name": "prefix",
+            "definition": {
+                "description": "Default prefix to use with your resource names.",
+                "default": "myapp"
+            },
+            "group": 20000,
+            "label": "[root] var.prefix",
+            "simple_name": "var.prefix"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_10",
+            "resource_name": "subnet_names",
+            "definition": {
+                "description": "A list of public subnets inside the vNet.",
+                "default": [
+                    "subnet1"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] var.subnet_names",
+            "simple_name": "var.subnet_names"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_11",
+            "resource_name": "subnet_prefixes",
+            "definition": {
+                "description": "The address prefix to use for the subnet.",
+                "default": [
+                    "10.0.1.0/24"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] var.subnet_prefixes",
+            "simple_name": "var.subnet_prefixes"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_12",
+            "resource_name": "address_space",
+            "definition": {
+                "description": "The address space that is used by the virtual network.",
+                "default": "10.0.0.0/16"
+            },
+            "group": 20000,
+            "label": "[root] var.address_space",
+            "simple_name": "var.address_space"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_13",
+            "resource_name": "dns_servers",
+            "definition": {
+                "description": "The DNS servers to be used with vNet",
+                "default": []
+            },
+            "group": 20000,
+            "label": "[root] var.dns_servers",
+            "simple_name": "var.dns_servers"
+        },
+        {
+            "type": "meta",
+            "svg_id": "node_14",
+            "resource_name": "count-boundary",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "simple_name": "meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_15",
+            "resource_name": "security_group_id",
+            "definition": {
+                "value": "${azurerm_network_security_group.security_group.id}"
+            },
+            "group": 20000,
+            "label": "[root] output.security_group_id",
+            "simple_name": "output.security_group_id"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_16",
+            "resource_name": "vnet_address_space",
+            "definition": {
+                "value": "${azurerm_virtual_network.vnet.address_space}"
+            },
+            "group": 20000,
+            "label": "[root] output.vnet_address_space",
+            "simple_name": "output.vnet_address_space"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_17",
+            "resource_name": "vnet_dns_servers",
+            "definition": {
+                "value": "${azurerm_virtual_network.vnet.dns_servers}"
+            },
+            "group": 20000,
+            "label": "[root] output.vnet_dns_servers",
+            "simple_name": "output.vnet_dns_servers"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_18",
+            "resource_name": "vnet_id",
+            "definition": {
+                "value": "${azurerm_virtual_network.vnet.id}"
+            },
+            "group": 20000,
+            "label": "[root] output.vnet_id",
+            "simple_name": "output.vnet_id"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_19",
+            "resource_name": "vnet_location",
+            "definition": {
+                "value": "${azurerm_virtual_network.vnet.location}"
+            },
+            "group": 20000,
+            "label": "[root] output.vnet_location",
+            "simple_name": "output.vnet_location"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_20",
+            "resource_name": "vnet_name",
+            "definition": {
+                "value": "${azurerm_virtual_network.vnet.name}"
+            },
+            "group": 20000,
+            "label": "[root] output.vnet_name",
+            "simple_name": "output.vnet_name"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_21",
+            "resource_name": "vnet_subnets",
+            "definition": {
+                "value": "${azurerm_subnet.subnet.*.id}"
+            },
+            "group": 20000,
+            "label": "[root] output.vnet_subnets",
+            "simple_name": "output.vnet_subnets"
+        },
+        {
+            "type": "provider",
+            "svg_id": "node_22",
+            "resource_name": "azurerm",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] provider.azurerm (close)",
+            "simple_name": "provider.azurerm (close)"
+        },
+        {
+            "type": "",
+            "svg_id": "node_23",
+            "resource_name": "",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] root",
+            "simple_name": "root"
+        }
+    ],
+    "edges": [
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_0",
+            "source": "[root] azurerm_network_security_group.security_group"
+        },
+        {
+            "target": "[root] var.tags",
+            "svg_id": "edge_1",
+            "source": "[root] azurerm_network_security_group.security_group"
+        },
+        {
+            "target": "[root] azurerm_network_security_group.security_group",
+            "svg_id": "edge_2",
+            "source": "[root] azurerm_network_security_rule.security_rule_rdp"
+        },
+        {
+            "target": "[root] azurerm_network_security_group.security_group",
+            "svg_id": "edge_3",
+            "source": "[root] azurerm_network_security_rule.security_rule_ssh"
+        },
+        {
+            "target": "[root] provider.azurerm",
+            "svg_id": "edge_4",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "target": "[root] var.location",
+            "svg_id": "edge_5",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "target": "[root] var.prefix",
+            "svg_id": "edge_6",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "target": "[root] azurerm_network_security_group.security_group",
+            "svg_id": "edge_7",
+            "source": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_8",
+            "source": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "target": "[root] var.subnet_names",
+            "svg_id": "edge_9",
+            "source": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "target": "[root] var.subnet_prefixes",
+            "svg_id": "edge_10",
+            "source": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_11",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "target": "[root] var.address_space",
+            "svg_id": "edge_12",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "target": "[root] var.dns_servers",
+            "svg_id": "edge_13",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "target": "[root] var.tags",
+            "svg_id": "edge_14",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "target": "[root] azurerm_network_security_rule.security_rule_rdp",
+            "svg_id": "edge_15",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] azurerm_network_security_rule.security_rule_ssh",
+            "svg_id": "edge_16",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.security_group_id",
+            "svg_id": "edge_17",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.vnet_address_space",
+            "svg_id": "edge_18",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.vnet_dns_servers",
+            "svg_id": "edge_19",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.vnet_id",
+            "svg_id": "edge_20",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.vnet_location",
+            "svg_id": "edge_21",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.vnet_name",
+            "svg_id": "edge_22",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.vnet_subnets",
+            "svg_id": "edge_23",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] azurerm_network_security_group.security_group",
+            "svg_id": "edge_24",
+            "source": "[root] output.security_group_id"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_25",
+            "source": "[root] output.vnet_address_space"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_26",
+            "source": "[root] output.vnet_dns_servers"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_27",
+            "source": "[root] output.vnet_id"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_28",
+            "source": "[root] output.vnet_location"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_29",
+            "source": "[root] output.vnet_name"
+        },
+        {
+            "target": "[root] azurerm_subnet.subnet",
+            "svg_id": "edge_30",
+            "source": "[root] output.vnet_subnets"
+        },
+        {
+            "target": "[root] azurerm_network_security_rule.security_rule_rdp",
+            "svg_id": "edge_31",
+            "source": "[root] provider.azurerm (close)"
+        },
+        {
+            "target": "[root] azurerm_network_security_rule.security_rule_ssh",
+            "svg_id": "edge_32",
+            "source": "[root] provider.azurerm (close)"
+        },
+        {
+            "target": "[root] azurerm_subnet.subnet",
+            "svg_id": "edge_33",
+            "source": "[root] provider.azurerm (close)"
+        },
+        {
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_34",
+            "source": "[root] root"
+        },
+        {
+            "target": "[root] provider.azurerm (close)",
+            "svg_id": "edge_35",
+            "source": "[root] root"
+        }
+    ]
+}

@@ -1,0 +1,1896 @@
+{
+    "nodes": [
+        {
+            "type": "azurerm_availability_set",
+            "definition": {
+                "name": "${var.availability_slave_name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "platform_update_domain_count": 5,
+                "platform_fault_domain_count": 2
+            },
+            "group": 20000,
+            "label": "[root] azurerm_availability_set.slave",
+            "simple_name": "azurerm_availability_set.slave",
+            "resource_name": "slave",
+            "svg_id": "node_0"
+        },
+        {
+            "type": "azurerm_network_interface",
+            "definition": {
+                "name": "${var.nic_cassandra_name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_id": "${azurerm_network_security_group.cassandra.id}",
+                "depends_on": [
+                    "azurerm_virtual_network.spark",
+                    "azurerm_public_ip.cassandra",
+                    "azurerm_network_security_group.cassandra"
+                ],
+                "ip_configuration": {
+                    "name": "ipconfig1",
+                    "subnet_id": "${azurerm_subnet.subnet3.id}",
+                    "private_ip_address_allocation": "Static",
+                    "private_ip_address": "${var.nic_cassandra_node_ip}",
+                    "public_ip_address_id": "${azurerm_public_ip.cassandra.id}"
+                }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_network_interface.cassandra",
+            "simple_name": "azurerm_network_interface.cassandra",
+            "resource_name": "cassandra",
+            "svg_id": "node_1"
+        },
+        {
+            "type": "azurerm_network_interface",
+            "definition": {
+                "name": "${var.nic_master_name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_id": "${azurerm_network_security_group.master.id}",
+                "depends_on": [
+                    "azurerm_virtual_network.spark",
+                    "azurerm_public_ip.master",
+                    "azurerm_network_security_group.master"
+                ],
+                "ip_configuration": {
+                    "name": "ipconfig1",
+                    "subnet_id": "${azurerm_subnet.subnet1.id}",
+                    "private_ip_address_allocation": "Static",
+                    "private_ip_address": "${var.nic_master_node_ip}",
+                    "public_ip_address_id": "${azurerm_public_ip.master.id}"
+                }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_network_interface.master",
+            "simple_name": "azurerm_network_interface.master",
+            "resource_name": "master",
+            "svg_id": "node_2"
+        },
+        {
+            "type": "azurerm_network_interface",
+            "definition": {
+                "name": "${var.nic_slave_name_prefix}${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_id": "${azurerm_network_security_group.slave.id}",
+                "count": "${var.vm_number_of_slaves}",
+                "depends_on": [
+                    "azurerm_virtual_network.spark",
+                    "azurerm_public_ip.slave",
+                    "azurerm_network_security_group.slave"
+                ],
+                "ip_configuration": {
+                    "name": "ipconfig1",
+                    "subnet_id": "${azurerm_subnet.subnet2.id}",
+                    "private_ip_address_allocation": "Static",
+                    "private_ip_address": "${var.nic_slave_node_ip_prefix}${5 + count.index}",
+                    "public_ip_address_id": "${element(azurerm_public_ip.slave.*.id, count.index)}"
+                }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_network_interface.slave",
+            "simple_name": "azurerm_network_interface.slave",
+            "resource_name": "slave",
+            "svg_id": "node_3"
+        },
+        {
+            "type": "azurerm_network_security_group",
+            "definition": {
+                "name": "${var.nsg_cassandra_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "security_rule": {
+                    "name": "ssh",
+                    "description": "Allow SSH",
+                    "priority": 100,
+                    "direction": "Inbound",
+                    "access": "Allow",
+                    "protocol": "Tcp",
+                    "source_port_range": "*",
+                    "destination_port_range": "22",
+                    "source_address_prefix": "Internet",
+                    "destination_address_prefix": "*"
+                }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_network_security_group.cassandra",
+            "simple_name": "azurerm_network_security_group.cassandra",
+            "resource_name": "cassandra",
+            "svg_id": "node_4"
+        },
+        {
+            "type": "azurerm_network_security_group",
+            "definition": {
+                "name": "${var.nsg_spark_master_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "security_rule": [
+                    {
+                        "name": "ssh",
+                        "description": "Allow SSH",
+                        "priority": 100,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "22",
+                        "source_address_prefix": "Internet",
+                        "destination_address_prefix": "*"
+                    },
+                    {
+                        "name": "http_webui_spark",
+                        "description": "Allow Web UI Access to Spark",
+                        "priority": 101,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "8080",
+                        "source_address_prefix": "Internet",
+                        "destination_address_prefix": "*"
+                    },
+                    {
+                        "name": "http_rest_spark",
+                        "description": "Allow REST API Access to Spark",
+                        "priority": 102,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "6066",
+                        "source_address_prefix": "Internet",
+                        "destination_address_prefix": "*"
+                    }
+                ]
+            },
+            "group": 20000,
+            "label": "[root] azurerm_network_security_group.master",
+            "simple_name": "azurerm_network_security_group.master",
+            "resource_name": "master",
+            "svg_id": "node_5"
+        },
+        {
+            "type": "azurerm_network_security_group",
+            "definition": {
+                "name": "${var.nsg_spark_slave_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "security_rule": {
+                    "name": "ssh",
+                    "description": "Allow SSH",
+                    "priority": 100,
+                    "direction": "Inbound",
+                    "access": "Allow",
+                    "protocol": "Tcp",
+                    "source_port_range": "*",
+                    "destination_port_range": "22",
+                    "source_address_prefix": "Internet",
+                    "destination_address_prefix": "*"
+                }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_network_security_group.slave",
+            "simple_name": "azurerm_network_security_group.slave",
+            "resource_name": "slave",
+            "svg_id": "node_6"
+        },
+        {
+            "type": "azurerm_public_ip",
+            "definition": {
+                "name": "${var.public_ip_cassandra_name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "public_ip_address_allocation": "Static"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_public_ip.cassandra",
+            "simple_name": "azurerm_public_ip.cassandra",
+            "resource_name": "cassandra",
+            "svg_id": "node_7"
+        },
+        {
+            "type": "azurerm_public_ip",
+            "definition": {
+                "name": "${var.public_ip_master_name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "public_ip_address_allocation": "Static"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_public_ip.master",
+            "simple_name": "azurerm_public_ip.master",
+            "resource_name": "master",
+            "svg_id": "node_8"
+        },
+        {
+            "type": "azurerm_public_ip",
+            "definition": {
+                "name": "${var.public_ip_slave_name_prefix}${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "public_ip_address_allocation": "Static",
+                "count": "${var.vm_number_of_slaves}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_public_ip.slave",
+            "simple_name": "azurerm_public_ip.slave",
+            "resource_name": "slave",
+            "svg_id": "node_9"
+        },
+        {
+            "type": "azurerm_resource_group",
+            "definition": {
+                "name": "${var.resource_group}",
+                "location": "${var.location}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_resource_group.rg",
+            "simple_name": "azurerm_resource_group.rg",
+            "resource_name": "rg",
+            "svg_id": "node_10"
+        },
+        {
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "cassandra${var.unique_prefix}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_cassandra_account_tier}",
+                "account_replication_type": "${var.storage_cassandra_replication_type}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_storage_account.cassandra",
+            "simple_name": "azurerm_storage_account.cassandra",
+            "resource_name": "cassandra",
+            "svg_id": "node_11"
+        },
+        {
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "master${var.unique_prefix}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_master_account_tier}",
+                "account_replication_type": "${var.storage_master_replication_type}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_storage_account.master",
+            "simple_name": "azurerm_storage_account.master",
+            "resource_name": "master",
+            "svg_id": "node_12"
+        },
+        {
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "slave${var.unique_prefix}${count.index}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "count": "${var.vm_number_of_slaves}",
+                "account_tier": "${var.storage_slave_account_tier}",
+                "account_replication_type": "${var.storage_slave_replication_type}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_storage_account.slave",
+            "simple_name": "azurerm_storage_account.slave",
+            "resource_name": "slave",
+            "svg_id": "node_13"
+        },
+        {
+            "type": "azurerm_storage_container",
+            "definition": {
+                "name": "${var.vm_cassandra_storage_account_container_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "storage_account_name": "${azurerm_storage_account.cassandra.name}",
+                "container_access_type": "private",
+                "depends_on": [
+                    "azurerm_storage_account.cassandra"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] azurerm_storage_container.cassandra",
+            "simple_name": "azurerm_storage_container.cassandra",
+            "resource_name": "cassandra",
+            "svg_id": "node_14"
+        },
+        {
+            "type": "azurerm_storage_container",
+            "definition": {
+                "name": "${var.vm_master_storage_account_container_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "storage_account_name": "${azurerm_storage_account.master.name}",
+                "container_access_type": "private",
+                "depends_on": [
+                    "azurerm_storage_account.master"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] azurerm_storage_container.master",
+            "simple_name": "azurerm_storage_container.master",
+            "resource_name": "master",
+            "svg_id": "node_15"
+        },
+        {
+            "type": "azurerm_storage_container",
+            "definition": {
+                "name": "${var.vm_slave_storage_account_container_name}${count.index}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "storage_account_name": "${element(azurerm_storage_account.slave.*.name, count.index)}",
+                "container_access_type": "private",
+                "depends_on": [
+                    "azurerm_storage_account.slave"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] azurerm_storage_container.slave",
+            "simple_name": "azurerm_storage_container.slave",
+            "resource_name": "slave",
+            "svg_id": "node_16"
+        },
+        {
+            "type": "azurerm_subnet",
+            "definition": {
+                "name": "${var.vnet_spark_subnet1_name}",
+                "virtual_network_name": "${azurerm_virtual_network.spark.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "${var.vnet_spark_subnet1_prefix}",
+                "network_security_group_id": "${azurerm_network_security_group.master.id}",
+                "depends_on": [
+                    "azurerm_virtual_network.spark"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] azurerm_subnet.subnet1",
+            "simple_name": "azurerm_subnet.subnet1",
+            "resource_name": "subnet1",
+            "svg_id": "node_17"
+        },
+        {
+            "type": "azurerm_subnet",
+            "definition": {
+                "name": "${var.vnet_spark_subnet2_name}",
+                "virtual_network_name": "${azurerm_virtual_network.spark.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "${var.vnet_spark_subnet2_prefix}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_subnet.subnet2",
+            "simple_name": "azurerm_subnet.subnet2",
+            "resource_name": "subnet2",
+            "svg_id": "node_18"
+        },
+        {
+            "type": "azurerm_subnet",
+            "definition": {
+                "name": "${var.vnet_spark_subnet3_name}",
+                "virtual_network_name": "${azurerm_virtual_network.spark.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "${var.vnet_spark_subnet3_prefix}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_subnet.subnet3",
+            "simple_name": "azurerm_subnet.subnet3",
+            "resource_name": "subnet3",
+            "svg_id": "node_19"
+        },
+        {
+            "type": "azurerm_virtual_machine",
+            "definition": {
+                "name": "${var.vm_cassandra_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "vm_size": "${var.vm_cassandra_vm_size}",
+                "network_interface_ids": [
+                    "${azurerm_network_interface.cassandra.id}"
+                ],
+                "depends_on": [
+                    "azurerm_storage_account.cassandra",
+                    "azurerm_network_interface.cassandra",
+                    "azurerm_storage_container.cassandra"
+                ],
+                "storage_image_reference": {
+                    "publisher": "${var.os_image_publisher}",
+                    "offer": "${var.os_image_offer}",
+                    "sku": "${var.os_version}",
+                    "version": "latest"
+                },
+                "storage_os_disk": {
+                    "name": "${var.vm_cassandra_os_disk_name}",
+                    "vhd_uri": "http://${azurerm_storage_account.cassandra.name}.blob.core.windows.net/${azurerm_storage_container.cassandra.name}/${var.vm_cassandra_os_disk_name}.vhd",
+                    "create_option": "FromImage",
+                    "caching": "ReadWrite"
+                },
+                "os_profile": {
+                    "computer_name": "${var.vm_cassandra_name}",
+                    "admin_username": "${var.vm_admin_username}",
+                    "admin_password": "${var.vm_admin_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                },
+                "connection": {
+                    "type": "ssh",
+                    "host": "${azurerm_public_ip.cassandra.ip_address}",
+                    "user": "${var.vm_admin_username}",
+                    "password": "${var.vm_admin_password}"
+                },
+                "provisioner": {
+                    "remote-exec": {
+                        "inline": [
+                            "wget ${var.artifacts_location}${var.script_cassandra_provisioner_script_file_name}",
+                            "echo ${var.vm_admin_password} | sudo -S sh ./${var.script_cassandra_provisioner_script_file_name}"
+                        ]
+                    }
+                }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_virtual_machine.cassandra",
+            "simple_name": "azurerm_virtual_machine.cassandra",
+            "resource_name": "cassandra",
+            "svg_id": "node_20"
+        },
+        {
+            "type": "azurerm_virtual_machine",
+            "definition": {
+                "name": "${var.vm_master_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "vm_size": "${var.vm_master_vm_size}",
+                "network_interface_ids": [
+                    "${azurerm_network_interface.master.id}"
+                ],
+                "depends_on": [
+                    "azurerm_storage_account.master",
+                    "azurerm_network_interface.master",
+                    "azurerm_storage_container.master"
+                ],
+                "storage_image_reference": {
+                    "publisher": "${var.os_image_publisher}",
+                    "offer": "${var.os_image_offer}",
+                    "sku": "${var.os_version}",
+                    "version": "latest"
+                },
+                "storage_os_disk": {
+                    "name": "${var.vm_master_os_disk_name}",
+                    "vhd_uri": "http://${azurerm_storage_account.master.name}.blob.core.windows.net/${azurerm_storage_container.master.name}/${var.vm_master_os_disk_name}.vhd",
+                    "create_option": "FromImage",
+                    "caching": "ReadWrite"
+                },
+                "os_profile": {
+                    "computer_name": "${var.vm_master_name}",
+                    "admin_username": "${var.vm_admin_username}",
+                    "admin_password": "${var.vm_admin_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                },
+                "connection": {
+                    "type": "ssh",
+                    "host": "${azurerm_public_ip.master.ip_address}",
+                    "user": "${var.vm_admin_username}",
+                    "password": "${var.vm_admin_password}"
+                },
+                "provisioner": {
+                    "remote-exec": {
+                        "inline": [
+                            "wget ${var.artifacts_location}${var.script_spark_provisioner_script_file_name}",
+                            "echo ${var.vm_admin_password} | sudo -S sh ./${var.script_spark_provisioner_script_file_name} -runas=master -master=${var.nic_master_node_ip}"
+                        ]
+                    }
+                }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_virtual_machine.master",
+            "simple_name": "azurerm_virtual_machine.master",
+            "resource_name": "master",
+            "svg_id": "node_21"
+        },
+        {
+            "type": "azurerm_virtual_machine",
+            "definition": {
+                "name": "${var.vm_slave_name_prefix}${count.index}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "vm_size": "${var.vm_slave_vm_size}",
+                "network_interface_ids": [
+                    "${element(azurerm_network_interface.slave.*.id, count.index)}"
+                ],
+                "count": "${var.vm_number_of_slaves}",
+                "availability_set_id": "${azurerm_availability_set.slave.id}",
+                "depends_on": [
+                    "azurerm_storage_account.slave",
+                    "azurerm_network_interface.slave",
+                    "azurerm_storage_container.slave"
+                ],
+                "storage_image_reference": {
+                    "publisher": "${var.os_image_publisher}",
+                    "offer": "${var.os_image_offer}",
+                    "sku": "${var.os_version}",
+                    "version": "latest"
+                },
+                "storage_os_disk": {
+                    "name": "${var.vm_slave_os_disk_name_prefix}${count.index}",
+                    "vhd_uri": "http://${element(azurerm_storage_account.slave.*.name, count.index)}.blob.core.windows.net/${element(azurerm_storage_container.slave.*.name, count.index)}/${var.vm_slave_os_disk_name_prefix}.vhd",
+                    "create_option": "FromImage",
+                    "caching": "ReadWrite"
+                },
+                "os_profile": {
+                    "computer_name": "${var.vm_slave_name_prefix}${count.index}",
+                    "admin_username": "${var.vm_admin_username}",
+                    "admin_password": "${var.vm_admin_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                },
+                "connection": {
+                    "type": "ssh",
+                    "host": "${element(azurerm_public_ip.slave.*.ip_address, count.index)}",
+                    "user": "${var.vm_admin_username}",
+                    "password": "${var.vm_admin_password}"
+                },
+                "provisioner": {
+                    "remote-exec": {
+                        "inline": [
+                            "wget ${var.artifacts_location}${var.script_spark_provisioner_script_file_name}",
+                            "echo ${var.vm_admin_password} | sudo -S sh ./${var.script_spark_provisioner_script_file_name} -runas=slave -master=${var.nic_master_node_ip}"
+                        ]
+                    }
+                }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_virtual_machine.slave",
+            "simple_name": "azurerm_virtual_machine.slave",
+            "resource_name": "slave",
+            "svg_id": "node_22"
+        },
+        {
+            "type": "azurerm_virtual_network",
+            "definition": {
+                "name": "vnet-spark",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "address_space": [
+                    "${var.vnet_spark_prefix}"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] azurerm_virtual_network.spark",
+            "simple_name": "azurerm_virtual_network.spark",
+            "resource_name": "spark",
+            "svg_id": "node_23"
+        },
+        {
+            "type": "provider",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] provider.azurerm",
+            "simple_name": "provider.azurerm",
+            "resource_name": "azurerm",
+            "svg_id": "node_24"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the availability set for the slave/agent machines",
+                "default": "availability-slave"
+            },
+            "group": 20000,
+            "label": "[root] var.availability_slave_name",
+            "simple_name": "var.availability_slave_name",
+            "resource_name": "availability_slave_name",
+            "svg_id": "node_25"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the network interface card used by Cassandra",
+                "default": "nic-cassandra"
+            },
+            "group": 20000,
+            "label": "[root] var.nic_cassandra_name",
+            "simple_name": "var.nic_cassandra_name",
+            "resource_name": "nic_cassandra_name",
+            "svg_id": "node_26"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The private IP address of Cassandra's network interface card",
+                "default": "10.0.2.5"
+            },
+            "group": 20000,
+            "label": "[root] var.nic_cassandra_node_ip",
+            "simple_name": "var.nic_cassandra_node_ip",
+            "resource_name": "nic_cassandra_node_ip",
+            "svg_id": "node_27"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the network interface card for Master",
+                "default": "nic-master"
+            },
+            "group": 20000,
+            "label": "[root] var.nic_master_name",
+            "simple_name": "var.nic_master_name",
+            "resource_name": "nic_master_name",
+            "svg_id": "node_28"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The private IP address used by the Master's network interface card",
+                "default": "10.0.0.5"
+            },
+            "group": 20000,
+            "label": "[root] var.nic_master_node_ip",
+            "simple_name": "var.nic_master_node_ip",
+            "resource_name": "nic_master_node_ip",
+            "svg_id": "node_29"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The prefix used to constitute the slave/agents' names",
+                "default": "nic-slave-"
+            },
+            "group": 20000,
+            "label": "[root] var.nic_slave_name_prefix",
+            "simple_name": "var.nic_slave_name_prefix",
+            "resource_name": "nic_slave_name_prefix",
+            "svg_id": "node_30"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The prefix of the private IP address used by the network interface card of the slave/agent nodes",
+                "default": "10.0.1."
+            },
+            "group": 20000,
+            "label": "[root] var.nic_slave_node_ip_prefix",
+            "simple_name": "var.nic_slave_node_ip_prefix",
+            "resource_name": "nic_slave_node_ip_prefix",
+            "svg_id": "node_31"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the network security group for Cassandra",
+                "default": "nsg-cassandra"
+            },
+            "group": 20000,
+            "label": "[root] var.nsg_cassandra_name",
+            "simple_name": "var.nsg_cassandra_name",
+            "resource_name": "nsg_cassandra_name",
+            "svg_id": "node_32"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the network security group for Spark's Master",
+                "default": "nsg-spark-master"
+            },
+            "group": 20000,
+            "label": "[root] var.nsg_spark_master_name",
+            "simple_name": "var.nsg_spark_master_name",
+            "resource_name": "nsg_spark_master_name",
+            "svg_id": "node_33"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the network security group for Spark's slave/agent nodes",
+                "default": "nsg-spark-slave"
+            },
+            "group": 20000,
+            "label": "[root] var.nsg_spark_slave_name",
+            "simple_name": "var.nsg_spark_slave_name",
+            "resource_name": "nsg_spark_slave_name",
+            "svg_id": "node_34"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of Cassandra's node's public IP address",
+                "default": "public-ip-cassandra"
+            },
+            "group": 20000,
+            "label": "[root] var.public_ip_cassandra_name",
+            "simple_name": "var.public_ip_cassandra_name",
+            "resource_name": "public_ip_cassandra_name",
+            "svg_id": "node_35"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the master node's public IP address",
+                "default": "public-ip-master"
+            },
+            "group": 20000,
+            "label": "[root] var.public_ip_master_name",
+            "simple_name": "var.public_ip_master_name",
+            "resource_name": "public_ip_master_name",
+            "svg_id": "node_36"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The prefix to the slave/agent nodes' IP address names",
+                "default": "public-ip-slave-"
+            },
+            "group": 20000,
+            "label": "[root] var.public_ip_slave_name_prefix",
+            "simple_name": "var.public_ip_slave_name_prefix",
+            "resource_name": "public_ip_slave_name_prefix",
+            "svg_id": "node_37"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Number of VMs to create to support the slaves.  Each slave is created on it's own VM.  Minimum of 2 & Maximum of 200 VMs. min = 2, max = 200",
+                "default": 2
+            },
+            "group": 20000,
+            "label": "[root] var.vm_number_of_slaves",
+            "simple_name": "var.vm_number_of_slaves",
+            "resource_name": "vm_number_of_slaves",
+            "svg_id": "node_38"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The location/region where the virtual network is created. Changing this forces a new resource to be created.",
+                "default": "southcentralus"
+            },
+            "group": 20000,
+            "label": "[root] var.location",
+            "simple_name": "var.location",
+            "resource_name": "location",
+            "svg_id": "node_39"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Resource group name into which your Spark and Cassandra deployment will go."
+            },
+            "group": 20000,
+            "label": "[root] var.resource_group",
+            "simple_name": "var.resource_group",
+            "resource_name": "resource_group",
+            "svg_id": "node_40"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Storage type that is used for Cassandra. This storage account is used to store VM disks. Allowed values are Standard and Premium.",
+                "default": "Standard"
+            },
+            "group": 20000,
+            "label": "[root] var.storage_cassandra_account_tier",
+            "simple_name": "var.storage_cassandra_account_tier",
+            "resource_name": "storage_cassandra_account_tier",
+            "svg_id": "node_41"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Storage type that is used for Cassandra. This storage account is used to store VM disks. Possible values include LRS and GRS.",
+                "default": "LRS"
+            },
+            "group": 20000,
+            "label": "[root] var.storage_cassandra_replication_type",
+            "simple_name": "var.storage_cassandra_replication_type",
+            "resource_name": "storage_cassandra_replication_type",
+            "svg_id": "node_42"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "This prefix is used for names which need to be globally unique."
+            },
+            "group": 20000,
+            "label": "[root] var.unique_prefix",
+            "simple_name": "var.unique_prefix",
+            "resource_name": "unique_prefix",
+            "svg_id": "node_43"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Storage Tier that is used for master Spark node. This storage account is used to store VM disks. Allowed values are Standard and Premium.",
+                "default": "Standard"
+            },
+            "group": 20000,
+            "label": "[root] var.storage_master_account_tier",
+            "simple_name": "var.storage_master_account_tier",
+            "resource_name": "storage_master_account_tier",
+            "svg_id": "node_44"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Storage Tier that is used for master Spark node. This storage account is used to store VM disks. Possible values include LRS and GRS.",
+                "default": "LRS"
+            },
+            "group": 20000,
+            "label": "[root] var.storage_master_replication_type",
+            "simple_name": "var.storage_master_replication_type",
+            "resource_name": "storage_master_replication_type",
+            "svg_id": "node_45"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Storage type that is used for each of the slave Spark node. This storage account is used to store VM disks. Allowed values are Standard and Premium.",
+                "default": "Standard"
+            },
+            "group": 20000,
+            "label": "[root] var.storage_slave_account_tier",
+            "simple_name": "var.storage_slave_account_tier",
+            "resource_name": "storage_slave_account_tier",
+            "svg_id": "node_46"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Storage type that is used for each of the slave Spark node. This storage account is used to store VM disks. Possible values include LRS and GRS.",
+                "default": "LRS"
+            },
+            "group": 20000,
+            "label": "[root] var.storage_slave_replication_type",
+            "simple_name": "var.storage_slave_replication_type",
+            "resource_name": "storage_slave_replication_type",
+            "svg_id": "node_47"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the storage account container used by the Cassandra node",
+                "default": "vhds"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_cassandra_storage_account_container_name",
+            "simple_name": "var.vm_cassandra_storage_account_container_name",
+            "resource_name": "vm_cassandra_storage_account_container_name",
+            "svg_id": "node_48"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the storage account container used by Spark's master",
+                "default": "vhds"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_master_storage_account_container_name",
+            "simple_name": "var.vm_master_storage_account_container_name",
+            "resource_name": "vm_master_storage_account_container_name",
+            "svg_id": "node_49"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the storage account container used by the slave/agent nodes",
+                "default": "vhds"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_slave_storage_account_container_name",
+            "simple_name": "var.vm_slave_storage_account_container_name",
+            "resource_name": "vm_slave_storage_account_container_name",
+            "svg_id": "node_50"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name used for the Master subnet.",
+                "default": "Subnet-Master"
+            },
+            "group": 20000,
+            "label": "[root] var.vnet_spark_subnet1_name",
+            "simple_name": "var.vnet_spark_subnet1_name",
+            "resource_name": "vnet_spark_subnet1_name",
+            "svg_id": "node_51"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The address prefix to use for the Master subnet.",
+                "default": "10.0.0.0/24"
+            },
+            "group": 20000,
+            "label": "[root] var.vnet_spark_subnet1_prefix",
+            "simple_name": "var.vnet_spark_subnet1_prefix",
+            "resource_name": "vnet_spark_subnet1_prefix",
+            "svg_id": "node_52"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name used for the slave/agent subnet.",
+                "default": "Subnet-Slave"
+            },
+            "group": 20000,
+            "label": "[root] var.vnet_spark_subnet2_name",
+            "simple_name": "var.vnet_spark_subnet2_name",
+            "resource_name": "vnet_spark_subnet2_name",
+            "svg_id": "node_53"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The address prefix to use for the slave/agent subnet.",
+                "default": "10.0.1.0/24"
+            },
+            "group": 20000,
+            "label": "[root] var.vnet_spark_subnet2_prefix",
+            "simple_name": "var.vnet_spark_subnet2_prefix",
+            "resource_name": "vnet_spark_subnet2_prefix",
+            "svg_id": "node_54"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name used for the subnet used by Cassandra.",
+                "default": "Subnet-Cassandra"
+            },
+            "group": 20000,
+            "label": "[root] var.vnet_spark_subnet3_name",
+            "simple_name": "var.vnet_spark_subnet3_name",
+            "resource_name": "vnet_spark_subnet3_name",
+            "svg_id": "node_55"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The address prefix to use for the subnet used by Cassandra.",
+                "default": "10.0.2.0/24"
+            },
+            "group": 20000,
+            "label": "[root] var.vnet_spark_subnet3_prefix",
+            "simple_name": "var.vnet_spark_subnet3_prefix",
+            "resource_name": "vnet_spark_subnet3_prefix",
+            "svg_id": "node_56"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The base URI where artifacts required by this template are located.",
+                "default": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/spark-and-cassandra-on-centos/CustomScripts/"
+            },
+            "group": 20000,
+            "label": "[root] var.artifacts_location",
+            "simple_name": "var.artifacts_location",
+            "resource_name": "artifacts_location",
+            "svg_id": "node_57"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "the name of the offer (az vm image list)",
+                "default": "CentOS"
+            },
+            "group": 20000,
+            "label": "[root] var.os_image_offer",
+            "simple_name": "var.os_image_offer",
+            "resource_name": "os_image_offer",
+            "svg_id": "node_58"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "name of the publisher of the image (az vm image list)",
+                "default": "OpenLogic"
+            },
+            "group": 20000,
+            "label": "[root] var.os_image_publisher",
+            "simple_name": "var.os_image_publisher",
+            "resource_name": "os_image_publisher",
+            "svg_id": "node_59"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "version of the image to apply (az vm image list)",
+                "default": "7.3"
+            },
+            "group": 20000,
+            "label": "[root] var.os_version",
+            "simple_name": "var.os_version",
+            "resource_name": "os_version",
+            "svg_id": "node_60"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the script kept in version control which will provision Cassandra",
+                "default": "scriptCassandraProvisioner.sh"
+            },
+            "group": 20000,
+            "label": "[root] var.script_cassandra_provisioner_script_file_name",
+            "simple_name": "var.script_cassandra_provisioner_script_file_name",
+            "resource_name": "script_cassandra_provisioner_script_file_name",
+            "svg_id": "node_61"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Specify an admin password that should be used to login to the VM. Must be between 6-72 characters long and must satisfy at least 3 of password complexity requirements from the following: 1) Contains an uppercase character 2) Contains a lowercase character 3) Contains a numeric digit 4) Contains a special character"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_admin_password",
+            "simple_name": "var.vm_admin_password",
+            "resource_name": "vm_admin_password",
+            "svg_id": "node_62"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "Specify an admin username that should be used to login to the VM. Min length: 1"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_admin_username",
+            "simple_name": "var.vm_admin_username",
+            "resource_name": "vm_admin_username",
+            "svg_id": "node_63"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the virtual machine used by Cassandra",
+                "default": "cassandra"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_cassandra_name",
+            "simple_name": "var.vm_cassandra_name",
+            "resource_name": "vm_cassandra_name",
+            "svg_id": "node_64"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the os disk used by the Cassandra virtual machine",
+                "default": "vmCassandraOSDisk"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_cassandra_os_disk_name",
+            "simple_name": "var.vm_cassandra_os_disk_name",
+            "resource_name": "vm_cassandra_os_disk_name",
+            "svg_id": "node_65"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "VM size for Cassandra node.  This VM should be sized based on workloads. Allowed values: Standard_D1_v2, Standard_D2_v2, Standard_D3_v2, Standard_D4_v2, Standard_D5_v2, Standard_D11_v2, Standard_D12_v2, Standard_D13_v2, Standard_D14_v2, Standard_A8, Standard_A9, Standard_A10, Standard_A11",
+                "default": "Standard_D3_v2"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_cassandra_vm_size",
+            "simple_name": "var.vm_cassandra_vm_size",
+            "resource_name": "vm_cassandra_vm_size",
+            "svg_id": "node_66"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the script kept in version control which will provision Spark",
+                "default": "scriptSparkProvisioner.sh"
+            },
+            "group": 20000,
+            "label": "[root] var.script_spark_provisioner_script_file_name",
+            "simple_name": "var.script_spark_provisioner_script_file_name",
+            "resource_name": "script_spark_provisioner_script_file_name",
+            "svg_id": "node_67"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of Spark's Master virtual machine",
+                "default": "spark-master"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_master_name",
+            "simple_name": "var.vm_master_name",
+            "resource_name": "vm_master_name",
+            "svg_id": "node_68"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name of the os disk used by Spark's Master virtual machine",
+                "default": "vmMasterOSDisk"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_master_os_disk_name",
+            "simple_name": "var.vm_master_os_disk_name",
+            "resource_name": "vm_master_os_disk_name",
+            "svg_id": "node_69"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "VM size for master Spark node.  This VM can be sized smaller. Allowed values: Standard_D1_v2, Standard_D2_v2, Standard_D3_v2, Standard_D4_v2, Standard_D5_v2, Standard_D11_v2, Standard_D12_v2, Standard_D13_v2, Standard_D14_v2, Standard_A8, Standard_A9, Standard_A10, Standard_A11",
+                "default": "Standard_D1_v2"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_master_vm_size",
+            "simple_name": "var.vm_master_vm_size",
+            "resource_name": "vm_master_vm_size",
+            "svg_id": "node_70"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The name prefix used by Spark's slave/agent nodes",
+                "default": "spark-slave-"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_slave_name_prefix",
+            "simple_name": "var.vm_slave_name_prefix",
+            "resource_name": "vm_slave_name_prefix",
+            "svg_id": "node_71"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The prefix used to constitute the names of the os disks used by the slave/agent nodes",
+                "default": "vmSlaveOSDisk-"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_slave_os_disk_name_prefix",
+            "simple_name": "var.vm_slave_os_disk_name_prefix",
+            "resource_name": "vm_slave_os_disk_name_prefix",
+            "svg_id": "node_72"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "VM size for slave Spark nodes.  This VM should be sized based on workloads. Allowed values: Standard_D1_v2, Standard_D2_v2, Standard_D3_v2, Standard_D4_v2, Standard_D5_v2, Standard_D11_v2, Standard_D12_v2, Standard_D13_v2, Standard_D14_v2, Standard_A8, Standard_A9, Standard_A10, Standard_A11",
+                "default": "Standard_D3_v2"
+            },
+            "group": 20000,
+            "label": "[root] var.vm_slave_vm_size",
+            "simple_name": "var.vm_slave_vm_size",
+            "resource_name": "vm_slave_vm_size",
+            "svg_id": "node_73"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "description": "The address space that is used by the virtual network. You can supply more than one address space. Changing this forces a new resource to be created.",
+                "default": "10.0.0.0/16"
+            },
+            "group": 20000,
+            "label": "[root] var.vnet_spark_prefix",
+            "simple_name": "var.vnet_spark_prefix",
+            "resource_name": "vnet_spark_prefix",
+            "svg_id": "node_74"
+        },
+        {
+            "type": "meta",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary",
+            "svg_id": "node_75"
+        },
+        {
+            "type": "output",
+            "definition": {
+                "value": "${azurerm_public_ip.master.ip_address}"
+            },
+            "group": 20000,
+            "label": "[root] output.master_ip_address",
+            "simple_name": "output.master_ip_address",
+            "resource_name": "master_ip_address",
+            "svg_id": "node_76"
+        },
+        {
+            "type": "output",
+            "definition": {
+                "value": "ssh ${var.vm_admin_username}@${azurerm_public_ip.master.ip_address}"
+            },
+            "group": 20000,
+            "label": "[root] output.master_ssh_command",
+            "simple_name": "output.master_ssh_command",
+            "resource_name": "master_ssh_command",
+            "svg_id": "node_77"
+        },
+        {
+            "type": "output",
+            "definition": {
+                "value": "${azurerm_public_ip.master.ip_address}:8080"
+            },
+            "group": 20000,
+            "label": "[root] output.master_web_ui_public_ip",
+            "simple_name": "output.master_web_ui_public_ip",
+            "resource_name": "master_web_ui_public_ip",
+            "svg_id": "node_78"
+        },
+        {
+            "type": "output",
+            "definition": {
+                "value": "${var.resource_group}"
+            },
+            "group": 20000,
+            "label": "[root] output.resource_group",
+            "simple_name": "output.resource_group",
+            "resource_name": "resource_group",
+            "svg_id": "node_79"
+        },
+        {
+            "type": "var",
+            "definition": {
+                "default": "2015-06-15"
+            },
+            "group": 20000,
+            "label": "[root] var.api_version",
+            "simple_name": "var.api_version",
+            "resource_name": "api_version",
+            "svg_id": "node_80"
+        },
+        {
+            "type": "provider",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] provider.azurerm (close)",
+            "simple_name": "provider.azurerm (close)",
+            "resource_name": "azurerm",
+            "svg_id": "node_81"
+        },
+        {
+            "type": "provisioner",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] provisioner.remote-exec (close)",
+            "simple_name": "provisioner.remote-exec (close)",
+            "resource_name": "remote-exec",
+            "svg_id": "node_82"
+        },
+        {
+            "type": "",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] root",
+            "simple_name": "root",
+            "resource_name": "",
+            "svg_id": "node_83"
+        }
+    ],
+    "edges": [
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_0",
+            "source": "[root] azurerm_availability_set.slave"
+        },
+        {
+            "target": "[root] var.availability_slave_name",
+            "svg_id": "edge_1",
+            "source": "[root] azurerm_availability_set.slave"
+        },
+        {
+            "target": "[root] azurerm_network_security_group.cassandra",
+            "svg_id": "edge_2",
+            "source": "[root] azurerm_network_interface.cassandra"
+        },
+        {
+            "target": "[root] azurerm_public_ip.cassandra",
+            "svg_id": "edge_3",
+            "source": "[root] azurerm_network_interface.cassandra"
+        },
+        {
+            "target": "[root] azurerm_subnet.subnet3",
+            "svg_id": "edge_4",
+            "source": "[root] azurerm_network_interface.cassandra"
+        },
+        {
+            "target": "[root] var.nic_cassandra_name",
+            "svg_id": "edge_5",
+            "source": "[root] azurerm_network_interface.cassandra"
+        },
+        {
+            "target": "[root] var.nic_cassandra_node_ip",
+            "svg_id": "edge_6",
+            "source": "[root] azurerm_network_interface.cassandra"
+        },
+        {
+            "target": "[root] azurerm_public_ip.master",
+            "svg_id": "edge_7",
+            "source": "[root] azurerm_network_interface.master"
+        },
+        {
+            "target": "[root] azurerm_subnet.subnet1",
+            "svg_id": "edge_8",
+            "source": "[root] azurerm_network_interface.master"
+        },
+        {
+            "target": "[root] var.nic_master_name",
+            "svg_id": "edge_9",
+            "source": "[root] azurerm_network_interface.master"
+        },
+        {
+            "target": "[root] var.nic_master_node_ip",
+            "svg_id": "edge_10",
+            "source": "[root] azurerm_network_interface.master"
+        },
+        {
+            "target": "[root] azurerm_network_security_group.slave",
+            "svg_id": "edge_11",
+            "source": "[root] azurerm_network_interface.slave"
+        },
+        {
+            "target": "[root] azurerm_public_ip.slave",
+            "svg_id": "edge_12",
+            "source": "[root] azurerm_network_interface.slave"
+        },
+        {
+            "target": "[root] azurerm_subnet.subnet2",
+            "svg_id": "edge_13",
+            "source": "[root] azurerm_network_interface.slave"
+        },
+        {
+            "target": "[root] var.nic_slave_name_prefix",
+            "svg_id": "edge_14",
+            "source": "[root] azurerm_network_interface.slave"
+        },
+        {
+            "target": "[root] var.nic_slave_node_ip_prefix",
+            "svg_id": "edge_15",
+            "source": "[root] azurerm_network_interface.slave"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_16",
+            "source": "[root] azurerm_network_security_group.cassandra"
+        },
+        {
+            "target": "[root] var.nsg_cassandra_name",
+            "svg_id": "edge_17",
+            "source": "[root] azurerm_network_security_group.cassandra"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_18",
+            "source": "[root] azurerm_network_security_group.master"
+        },
+        {
+            "target": "[root] var.nsg_spark_master_name",
+            "svg_id": "edge_19",
+            "source": "[root] azurerm_network_security_group.master"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_20",
+            "source": "[root] azurerm_network_security_group.slave"
+        },
+        {
+            "target": "[root] var.nsg_spark_slave_name",
+            "svg_id": "edge_21",
+            "source": "[root] azurerm_network_security_group.slave"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_22",
+            "source": "[root] azurerm_public_ip.cassandra"
+        },
+        {
+            "target": "[root] var.public_ip_cassandra_name",
+            "svg_id": "edge_23",
+            "source": "[root] azurerm_public_ip.cassandra"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_24",
+            "source": "[root] azurerm_public_ip.master"
+        },
+        {
+            "target": "[root] var.public_ip_master_name",
+            "svg_id": "edge_25",
+            "source": "[root] azurerm_public_ip.master"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_26",
+            "source": "[root] azurerm_public_ip.slave"
+        },
+        {
+            "target": "[root] var.public_ip_slave_name_prefix",
+            "svg_id": "edge_27",
+            "source": "[root] azurerm_public_ip.slave"
+        },
+        {
+            "target": "[root] var.vm_number_of_slaves",
+            "svg_id": "edge_28",
+            "source": "[root] azurerm_public_ip.slave"
+        },
+        {
+            "target": "[root] provider.azurerm",
+            "svg_id": "edge_29",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "target": "[root] var.location",
+            "svg_id": "edge_30",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "target": "[root] var.resource_group",
+            "svg_id": "edge_31",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_32",
+            "source": "[root] azurerm_storage_account.cassandra"
+        },
+        {
+            "target": "[root] var.storage_cassandra_account_tier",
+            "svg_id": "edge_33",
+            "source": "[root] azurerm_storage_account.cassandra"
+        },
+        {
+            "target": "[root] var.storage_cassandra_replication_type",
+            "svg_id": "edge_34",
+            "source": "[root] azurerm_storage_account.cassandra"
+        },
+        {
+            "target": "[root] var.unique_prefix",
+            "svg_id": "edge_35",
+            "source": "[root] azurerm_storage_account.cassandra"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_36",
+            "source": "[root] azurerm_storage_account.master"
+        },
+        {
+            "target": "[root] var.storage_master_account_tier",
+            "svg_id": "edge_37",
+            "source": "[root] azurerm_storage_account.master"
+        },
+        {
+            "target": "[root] var.storage_master_replication_type",
+            "svg_id": "edge_38",
+            "source": "[root] azurerm_storage_account.master"
+        },
+        {
+            "target": "[root] var.unique_prefix",
+            "svg_id": "edge_39",
+            "source": "[root] azurerm_storage_account.master"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_40",
+            "source": "[root] azurerm_storage_account.slave"
+        },
+        {
+            "target": "[root] var.storage_slave_account_tier",
+            "svg_id": "edge_41",
+            "source": "[root] azurerm_storage_account.slave"
+        },
+        {
+            "target": "[root] var.storage_slave_replication_type",
+            "svg_id": "edge_42",
+            "source": "[root] azurerm_storage_account.slave"
+        },
+        {
+            "target": "[root] var.unique_prefix",
+            "svg_id": "edge_43",
+            "source": "[root] azurerm_storage_account.slave"
+        },
+        {
+            "target": "[root] var.vm_number_of_slaves",
+            "svg_id": "edge_44",
+            "source": "[root] azurerm_storage_account.slave"
+        },
+        {
+            "target": "[root] azurerm_storage_account.cassandra",
+            "svg_id": "edge_45",
+            "source": "[root] azurerm_storage_container.cassandra"
+        },
+        {
+            "target": "[root] var.vm_cassandra_storage_account_container_name",
+            "svg_id": "edge_46",
+            "source": "[root] azurerm_storage_container.cassandra"
+        },
+        {
+            "target": "[root] azurerm_storage_account.master",
+            "svg_id": "edge_47",
+            "source": "[root] azurerm_storage_container.master"
+        },
+        {
+            "target": "[root] var.vm_master_storage_account_container_name",
+            "svg_id": "edge_48",
+            "source": "[root] azurerm_storage_container.master"
+        },
+        {
+            "target": "[root] azurerm_storage_account.slave",
+            "svg_id": "edge_49",
+            "source": "[root] azurerm_storage_container.slave"
+        },
+        {
+            "target": "[root] var.vm_slave_storage_account_container_name",
+            "svg_id": "edge_50",
+            "source": "[root] azurerm_storage_container.slave"
+        },
+        {
+            "target": "[root] azurerm_network_security_group.master",
+            "svg_id": "edge_51",
+            "source": "[root] azurerm_subnet.subnet1"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.spark",
+            "svg_id": "edge_52",
+            "source": "[root] azurerm_subnet.subnet1"
+        },
+        {
+            "target": "[root] var.vnet_spark_subnet1_name",
+            "svg_id": "edge_53",
+            "source": "[root] azurerm_subnet.subnet1"
+        },
+        {
+            "target": "[root] var.vnet_spark_subnet1_prefix",
+            "svg_id": "edge_54",
+            "source": "[root] azurerm_subnet.subnet1"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.spark",
+            "svg_id": "edge_55",
+            "source": "[root] azurerm_subnet.subnet2"
+        },
+        {
+            "target": "[root] var.vnet_spark_subnet2_name",
+            "svg_id": "edge_56",
+            "source": "[root] azurerm_subnet.subnet2"
+        },
+        {
+            "target": "[root] var.vnet_spark_subnet2_prefix",
+            "svg_id": "edge_57",
+            "source": "[root] azurerm_subnet.subnet2"
+        },
+        {
+            "target": "[root] azurerm_virtual_network.spark",
+            "svg_id": "edge_58",
+            "source": "[root] azurerm_subnet.subnet3"
+        },
+        {
+            "target": "[root] var.vnet_spark_subnet3_name",
+            "svg_id": "edge_59",
+            "source": "[root] azurerm_subnet.subnet3"
+        },
+        {
+            "target": "[root] var.vnet_spark_subnet3_prefix",
+            "svg_id": "edge_60",
+            "source": "[root] azurerm_subnet.subnet3"
+        },
+        {
+            "target": "[root] azurerm_network_interface.cassandra",
+            "svg_id": "edge_61",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] azurerm_storage_container.cassandra",
+            "svg_id": "edge_62",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.artifacts_location",
+            "svg_id": "edge_63",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.os_image_offer",
+            "svg_id": "edge_64",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.os_image_publisher",
+            "svg_id": "edge_65",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.os_version",
+            "svg_id": "edge_66",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.script_cassandra_provisioner_script_file_name",
+            "svg_id": "edge_67",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.vm_admin_password",
+            "svg_id": "edge_68",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.vm_admin_username",
+            "svg_id": "edge_69",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.vm_cassandra_name",
+            "svg_id": "edge_70",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.vm_cassandra_os_disk_name",
+            "svg_id": "edge_71",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] var.vm_cassandra_vm_size",
+            "svg_id": "edge_72",
+            "source": "[root] azurerm_virtual_machine.cassandra"
+        },
+        {
+            "target": "[root] azurerm_network_interface.master",
+            "svg_id": "edge_73",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] azurerm_storage_container.master",
+            "svg_id": "edge_74",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.artifacts_location",
+            "svg_id": "edge_75",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.os_image_offer",
+            "svg_id": "edge_76",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.os_image_publisher",
+            "svg_id": "edge_77",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.os_version",
+            "svg_id": "edge_78",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.script_spark_provisioner_script_file_name",
+            "svg_id": "edge_79",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.vm_admin_password",
+            "svg_id": "edge_80",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.vm_admin_username",
+            "svg_id": "edge_81",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.vm_master_name",
+            "svg_id": "edge_82",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.vm_master_os_disk_name",
+            "svg_id": "edge_83",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] var.vm_master_vm_size",
+            "svg_id": "edge_84",
+            "source": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "target": "[root] azurerm_availability_set.slave",
+            "svg_id": "edge_85",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] azurerm_network_interface.slave",
+            "svg_id": "edge_86",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] azurerm_storage_container.slave",
+            "svg_id": "edge_87",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.artifacts_location",
+            "svg_id": "edge_88",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.nic_master_node_ip",
+            "svg_id": "edge_89",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.os_image_offer",
+            "svg_id": "edge_90",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.os_image_publisher",
+            "svg_id": "edge_91",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.os_version",
+            "svg_id": "edge_92",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.script_spark_provisioner_script_file_name",
+            "svg_id": "edge_93",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.vm_admin_password",
+            "svg_id": "edge_94",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.vm_admin_username",
+            "svg_id": "edge_95",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.vm_slave_name_prefix",
+            "svg_id": "edge_96",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.vm_slave_os_disk_name_prefix",
+            "svg_id": "edge_97",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] var.vm_slave_vm_size",
+            "svg_id": "edge_98",
+            "source": "[root] azurerm_virtual_machine.slave"
+        },
+        {
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_99",
+            "source": "[root] azurerm_virtual_network.spark"
+        },
+        {
+            "target": "[root] var.vnet_spark_prefix",
+            "svg_id": "edge_100",
+            "source": "[root] azurerm_virtual_network.spark"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.cassandra",
+            "svg_id": "edge_101",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.master",
+            "svg_id": "edge_102",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.slave",
+            "svg_id": "edge_103",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.master_ip_address",
+            "svg_id": "edge_104",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.master_ssh_command",
+            "svg_id": "edge_105",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.master_web_ui_public_ip",
+            "svg_id": "edge_106",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] output.resource_group",
+            "svg_id": "edge_107",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] var.api_version",
+            "svg_id": "edge_108",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] azurerm_public_ip.master",
+            "svg_id": "edge_109",
+            "source": "[root] output.master_ip_address"
+        },
+        {
+            "target": "[root] azurerm_public_ip.master",
+            "svg_id": "edge_110",
+            "source": "[root] output.master_ssh_command"
+        },
+        {
+            "target": "[root] var.vm_admin_username",
+            "svg_id": "edge_111",
+            "source": "[root] output.master_ssh_command"
+        },
+        {
+            "target": "[root] azurerm_public_ip.master",
+            "svg_id": "edge_112",
+            "source": "[root] output.master_web_ui_public_ip"
+        },
+        {
+            "target": "[root] var.resource_group",
+            "svg_id": "edge_113",
+            "source": "[root] output.resource_group"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.cassandra",
+            "svg_id": "edge_114",
+            "source": "[root] provider.azurerm (close)"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.master",
+            "svg_id": "edge_115",
+            "source": "[root] provider.azurerm (close)"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.slave",
+            "svg_id": "edge_116",
+            "source": "[root] provider.azurerm (close)"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.cassandra",
+            "svg_id": "edge_117",
+            "source": "[root] provisioner.remote-exec (close)"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.master",
+            "svg_id": "edge_118",
+            "source": "[root] provisioner.remote-exec (close)"
+        },
+        {
+            "target": "[root] azurerm_virtual_machine.slave",
+            "svg_id": "edge_119",
+            "source": "[root] provisioner.remote-exec (close)"
+        },
+        {
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_120",
+            "source": "[root] root"
+        },
+        {
+            "target": "[root] provider.azurerm (close)",
+            "svg_id": "edge_121",
+            "source": "[root] root"
+        },
+        {
+            "target": "[root] provisioner.remote-exec (close)",
+            "svg_id": "edge_122",
+            "source": "[root] root"
+        }
+    ]
+}

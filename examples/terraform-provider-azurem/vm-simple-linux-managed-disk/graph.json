@@ -1,0 +1,636 @@
+{
+    "nodes": [
+        {
+            "type": "azurerm_managed_disk",
+            "svg_id": "node_0",
+            "resource_name": "datadisk",
+            "definition": {
+                "name": "${var.hostname}-datadisk",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "storage_account_type": "Standard_LRS",
+                "create_option": "Empty",
+                "disk_size_gb": "1023"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_managed_disk.datadisk",
+            "label": "[root] azurerm_managed_disk.datadisk"
+        },
+        {
+            "type": "azurerm_network_interface",
+            "svg_id": "node_1",
+            "resource_name": "nic",
+            "definition": {
+                "name": "${var.rg_prefix}nic",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "ip_configuration": {
+                    "name": "${var.rg_prefix}ipconfig",
+                    "subnet_id": "${azurerm_subnet.subnet.id}",
+                    "private_ip_address_allocation": "Dynamic",
+                    "public_ip_address_id": "${azurerm_public_ip.pip.id}"
+                }
+            },
+            "group": 20000,
+            "simple_name": "azurerm_network_interface.nic",
+            "label": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "type": "azurerm_public_ip",
+            "svg_id": "node_2",
+            "resource_name": "pip",
+            "definition": {
+                "name": "${var.rg_prefix}-ip",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "public_ip_address_allocation": "Dynamic",
+                "domain_name_label": "${var.dns_name}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_public_ip.pip",
+            "label": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "type": "azurerm_resource_group",
+            "svg_id": "node_3",
+            "resource_name": "rg",
+            "definition": {
+                "name": "${var.resource_group}",
+                "location": "${var.location}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_resource_group.rg",
+            "label": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "type": "azurerm_storage_account",
+            "svg_id": "node_4",
+            "resource_name": "stor",
+            "definition": {
+                "name": "${var.dns_name}stor",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_replication_type}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_storage_account.stor",
+            "label": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "type": "azurerm_subnet",
+            "svg_id": "node_5",
+            "resource_name": "subnet",
+            "definition": {
+                "name": "${var.rg_prefix}subnet",
+                "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "${var.subnet_prefix}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_subnet.subnet",
+            "label": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "type": "azurerm_virtual_machine",
+            "svg_id": "node_6",
+            "resource_name": "vm",
+            "definition": {
+                "name": "${var.rg_prefix}vm",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "vm_size": "${var.vm_size}",
+                "network_interface_ids": [
+                    "${azurerm_network_interface.nic.id}"
+                ],
+                "storage_image_reference": {
+                    "publisher": "${var.image_publisher}",
+                    "offer": "${var.image_offer}",
+                    "sku": "${var.image_sku}",
+                    "version": "${var.image_version}"
+                },
+                "storage_os_disk": {
+                    "name": "${var.hostname}-osdisk",
+                    "managed_disk_type": "Standard_LRS",
+                    "caching": "ReadWrite",
+                    "create_option": "FromImage"
+                },
+                "storage_data_disk": {
+                    "name": "${var.hostname}-datadisk",
+                    "managed_disk_id": "${azurerm_managed_disk.datadisk.id}",
+                    "managed_disk_type": "Standard_LRS",
+                    "disk_size_gb": "1023",
+                    "create_option": "Attach",
+                    "lun": 0
+                },
+                "os_profile": {
+                    "computer_name": "${var.hostname}",
+                    "admin_username": "${var.admin_username}",
+                    "admin_password": "${var.admin_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                },
+                "boot_diagnostics": {
+                    "enabled": true,
+                    "storage_uri": "${azurerm_storage_account.stor.primary_blob_endpoint}"
+                }
+            },
+            "group": 20000,
+            "simple_name": "azurerm_virtual_machine.vm",
+            "label": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "type": "azurerm_virtual_network",
+            "svg_id": "node_7",
+            "resource_name": "vnet",
+            "definition": {
+                "name": "${var.virtual_network_name}",
+                "location": "${var.location}",
+                "address_space": [
+                    "${var.address_space}"
+                ],
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "group": 20000,
+            "simple_name": "azurerm_virtual_network.vnet",
+            "label": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "type": "provider",
+            "svg_id": "node_8",
+            "resource_name": "azurerm",
+            "definition": "",
+            "group": 20000,
+            "simple_name": "provider.azurerm",
+            "label": "[root] provider.azurerm"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_9",
+            "resource_name": "hostname",
+            "definition": {
+                "description": "VM name referenced also in storage-related names."
+            },
+            "group": 20000,
+            "simple_name": "var.hostname",
+            "label": "[root] var.hostname"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_10",
+            "resource_name": "dns_name",
+            "definition": {
+                "description": " Label for the Domain Name. Will be used to make up the FQDN. If a domain name label is specified, an A DNS record is created for the public IP in the Microsoft Azure DNS system."
+            },
+            "group": 20000,
+            "simple_name": "var.dns_name",
+            "label": "[root] var.dns_name"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_11",
+            "resource_name": "rg_prefix",
+            "definition": {
+                "description": "The shortened abbreviation to represent your resource group that will go on the front of some resources.",
+                "default": "rg"
+            },
+            "group": 20000,
+            "simple_name": "var.rg_prefix",
+            "label": "[root] var.rg_prefix"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_12",
+            "resource_name": "location",
+            "definition": {
+                "description": "The location/region where the virtual network is created. Changing this forces a new resource to be created.",
+                "default": "southcentralus"
+            },
+            "group": 20000,
+            "simple_name": "var.location",
+            "label": "[root] var.location"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_13",
+            "resource_name": "resource_group",
+            "definition": {
+                "description": "The name of the resource group in which to create the virtual network."
+            },
+            "group": 20000,
+            "simple_name": "var.resource_group",
+            "label": "[root] var.resource_group"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_14",
+            "resource_name": "storage_account_tier",
+            "definition": {
+                "description": "Defines the Tier of storage account to be created. Valid options are Standard and Premium.",
+                "default": "Standard"
+            },
+            "group": 20000,
+            "simple_name": "var.storage_account_tier",
+            "label": "[root] var.storage_account_tier"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_15",
+            "resource_name": "storage_replication_type",
+            "definition": {
+                "description": "Defines the Replication Type to use for this storage account. Valid options include LRS, GRS etc.",
+                "default": "LRS"
+            },
+            "group": 20000,
+            "simple_name": "var.storage_replication_type",
+            "label": "[root] var.storage_replication_type"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_16",
+            "resource_name": "subnet_prefix",
+            "definition": {
+                "description": "The address prefix to use for the subnet.",
+                "default": "10.0.10.0/24"
+            },
+            "group": 20000,
+            "simple_name": "var.subnet_prefix",
+            "label": "[root] var.subnet_prefix"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_17",
+            "resource_name": "admin_password",
+            "definition": {
+                "description": "administrator password (recommended to disable password auth)"
+            },
+            "group": 20000,
+            "simple_name": "var.admin_password",
+            "label": "[root] var.admin_password"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_18",
+            "resource_name": "admin_username",
+            "definition": {
+                "description": "administrator user name",
+                "default": "vmadmin"
+            },
+            "group": 20000,
+            "simple_name": "var.admin_username",
+            "label": "[root] var.admin_username"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_19",
+            "resource_name": "image_offer",
+            "definition": {
+                "description": "the name of the offer (az vm image list)",
+                "default": "UbuntuServer"
+            },
+            "group": 20000,
+            "simple_name": "var.image_offer",
+            "label": "[root] var.image_offer"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_20",
+            "resource_name": "image_publisher",
+            "definition": {
+                "description": "name of the publisher of the image (az vm image list)",
+                "default": "Canonical"
+            },
+            "group": 20000,
+            "simple_name": "var.image_publisher",
+            "label": "[root] var.image_publisher"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_21",
+            "resource_name": "image_sku",
+            "definition": {
+                "description": "image sku to apply (az vm image list)",
+                "default": "16.04-LTS"
+            },
+            "group": 20000,
+            "simple_name": "var.image_sku",
+            "label": "[root] var.image_sku"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_22",
+            "resource_name": "image_version",
+            "definition": {
+                "description": "version of the image to apply (az vm image list)",
+                "default": "latest"
+            },
+            "group": 20000,
+            "simple_name": "var.image_version",
+            "label": "[root] var.image_version"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_23",
+            "resource_name": "vm_size",
+            "definition": {
+                "description": "Specifies the size of the virtual machine.",
+                "default": "Standard_A0"
+            },
+            "group": 20000,
+            "simple_name": "var.vm_size",
+            "label": "[root] var.vm_size"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_24",
+            "resource_name": "address_space",
+            "definition": {
+                "description": "The address space that is used by the virtual network. You can supply more than one address space. Changing this forces a new resource to be created.",
+                "default": "10.0.0.0/16"
+            },
+            "group": 20000,
+            "simple_name": "var.address_space",
+            "label": "[root] var.address_space"
+        },
+        {
+            "type": "var",
+            "svg_id": "node_25",
+            "resource_name": "virtual_network_name",
+            "definition": {
+                "description": "The name for the virtual network.",
+                "default": "vnet"
+            },
+            "group": 20000,
+            "simple_name": "var.virtual_network_name",
+            "label": "[root] var.virtual_network_name"
+        },
+        {
+            "type": "meta",
+            "svg_id": "node_26",
+            "resource_name": "count-boundary",
+            "definition": "",
+            "group": 20000,
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "label": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_27",
+            "resource_name": "hostname",
+            "definition": {
+                "value": "${var.hostname}"
+            },
+            "group": 20000,
+            "simple_name": "output.hostname",
+            "label": "[root] output.hostname"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_28",
+            "resource_name": "ssh_command",
+            "definition": {
+                "value": "ssh ${var.admin_username}@${azurerm_public_ip.pip.fqdn}"
+            },
+            "group": 20000,
+            "simple_name": "output.ssh_command",
+            "label": "[root] output.ssh_command"
+        },
+        {
+            "type": "output",
+            "svg_id": "node_29",
+            "resource_name": "vm_fqdn",
+            "definition": {
+                "value": "${azurerm_public_ip.pip.fqdn}"
+            },
+            "group": 20000,
+            "simple_name": "output.vm_fqdn",
+            "label": "[root] output.vm_fqdn"
+        },
+        {
+            "type": "provider",
+            "svg_id": "node_30",
+            "resource_name": "azurerm",
+            "definition": "",
+            "group": 20000,
+            "simple_name": "provider.azurerm (close)",
+            "label": "[root] provider.azurerm (close)"
+        },
+        {
+            "type": "",
+            "svg_id": "node_31",
+            "resource_name": "",
+            "definition": "",
+            "group": 20000,
+            "simple_name": "root",
+            "label": "[root] root"
+        }
+    ],
+    "edges": [
+        {
+            "svg_id": "edge_0",
+            "source": "[root] azurerm_managed_disk.datadisk",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_1",
+            "source": "[root] azurerm_managed_disk.datadisk",
+            "target": "[root] var.hostname"
+        },
+        {
+            "svg_id": "edge_2",
+            "source": "[root] azurerm_network_interface.nic",
+            "target": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "svg_id": "edge_3",
+            "source": "[root] azurerm_network_interface.nic",
+            "target": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "svg_id": "edge_4",
+            "source": "[root] azurerm_public_ip.pip",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_5",
+            "source": "[root] azurerm_public_ip.pip",
+            "target": "[root] var.dns_name"
+        },
+        {
+            "svg_id": "edge_6",
+            "source": "[root] azurerm_public_ip.pip",
+            "target": "[root] var.rg_prefix"
+        },
+        {
+            "svg_id": "edge_7",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "svg_id": "edge_8",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.location"
+        },
+        {
+            "svg_id": "edge_9",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "svg_id": "edge_10",
+            "source": "[root] azurerm_storage_account.stor",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_11",
+            "source": "[root] azurerm_storage_account.stor",
+            "target": "[root] var.dns_name"
+        },
+        {
+            "svg_id": "edge_12",
+            "source": "[root] azurerm_storage_account.stor",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "svg_id": "edge_13",
+            "source": "[root] azurerm_storage_account.stor",
+            "target": "[root] var.storage_replication_type"
+        },
+        {
+            "svg_id": "edge_14",
+            "source": "[root] azurerm_subnet.subnet",
+            "target": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "svg_id": "edge_15",
+            "source": "[root] azurerm_subnet.subnet",
+            "target": "[root] var.rg_prefix"
+        },
+        {
+            "svg_id": "edge_16",
+            "source": "[root] azurerm_subnet.subnet",
+            "target": "[root] var.subnet_prefix"
+        },
+        {
+            "svg_id": "edge_17",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] azurerm_managed_disk.datadisk"
+        },
+        {
+            "svg_id": "edge_18",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "svg_id": "edge_19",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "svg_id": "edge_20",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] var.admin_password"
+        },
+        {
+            "svg_id": "edge_21",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "svg_id": "edge_22",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "svg_id": "edge_23",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "svg_id": "edge_24",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] var.image_sku"
+        },
+        {
+            "svg_id": "edge_25",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] var.image_version"
+        },
+        {
+            "svg_id": "edge_26",
+            "source": "[root] azurerm_virtual_machine.vm",
+            "target": "[root] var.vm_size"
+        },
+        {
+            "svg_id": "edge_27",
+            "source": "[root] azurerm_virtual_network.vnet",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_28",
+            "source": "[root] azurerm_virtual_network.vnet",
+            "target": "[root] var.address_space"
+        },
+        {
+            "svg_id": "edge_29",
+            "source": "[root] azurerm_virtual_network.vnet",
+            "target": "[root] var.virtual_network_name"
+        },
+        {
+            "svg_id": "edge_30",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_31",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.hostname"
+        },
+        {
+            "svg_id": "edge_32",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.ssh_command"
+        },
+        {
+            "svg_id": "edge_33",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.vm_fqdn"
+        },
+        {
+            "svg_id": "edge_34",
+            "source": "[root] output.hostname",
+            "target": "[root] var.hostname"
+        },
+        {
+            "svg_id": "edge_35",
+            "source": "[root] output.ssh_command",
+            "target": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "svg_id": "edge_36",
+            "source": "[root] output.ssh_command",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "svg_id": "edge_37",
+            "source": "[root] output.vm_fqdn",
+            "target": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "svg_id": "edge_38",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_39",
+            "source": "[root] root",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_40",
+            "source": "[root] root",
+            "target": "[root] provider.azurerm (close)"
+        }
+    ]
+}

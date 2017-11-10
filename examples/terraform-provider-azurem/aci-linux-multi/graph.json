@@ -1,0 +1,117 @@
+{
+    "nodes": [
+        {
+            "definition": {
+                "name": "my-aci-hw",
+                "location": "${azurerm_resource_group.aci-rg.location}",
+                "resource_group_name": "${azurerm_resource_group.aci-rg.name}",
+                "ip_address_type": "public",
+                "os_type": "linux",
+                "container": [
+                    {
+                        "name": "hw",
+                        "image": "microsoft/aci-helloworld:latest",
+                        "cpu": "0.5",
+                        "memory": "1.5",
+                        "port": "80"
+                    },
+                    {
+                        "name": "sidecar",
+                        "image": "microsoft/aci-tutorial-sidecar",
+                        "cpu": "0.5",
+                        "memory": "1.5"
+                    }
+                ],
+                "tags": {
+                    "environment": "testing"
+                }
+            },
+            "label": "[root] azurerm_container_group.aci-test",
+            "group": 20000,
+            "svg_id": "node_0",
+            "type": "azurerm_container_group",
+            "simple_name": "azurerm_container_group.aci-test",
+            "resource_name": "aci-test"
+        },
+        {
+            "definition": {
+                "name": "aci-test",
+                "location": "west us"
+            },
+            "label": "[root] azurerm_resource_group.aci-rg",
+            "group": 20000,
+            "svg_id": "node_1",
+            "type": "azurerm_resource_group",
+            "simple_name": "azurerm_resource_group.aci-rg",
+            "resource_name": "aci-rg"
+        },
+        {
+            "definition": "",
+            "label": "[root] provider.azurerm",
+            "group": 20000,
+            "svg_id": "node_2",
+            "type": "provider",
+            "simple_name": "provider.azurerm",
+            "resource_name": "azurerm"
+        },
+        {
+            "definition": "",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "group": 20000,
+            "svg_id": "node_3",
+            "type": "meta",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary"
+        },
+        {
+            "definition": "",
+            "label": "[root] provider.azurerm (close)",
+            "group": 20000,
+            "svg_id": "node_4",
+            "type": "provider",
+            "simple_name": "provider.azurerm (close)",
+            "resource_name": "azurerm"
+        },
+        {
+            "definition": "",
+            "label": "[root] root",
+            "group": 20000,
+            "svg_id": "node_5",
+            "type": "",
+            "simple_name": "root",
+            "resource_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "target": "[root] azurerm_resource_group.aci-rg",
+            "source": "[root] azurerm_container_group.aci-test",
+            "svg_id": "edge_0"
+        },
+        {
+            "target": "[root] provider.azurerm",
+            "source": "[root] azurerm_resource_group.aci-rg",
+            "svg_id": "edge_1"
+        },
+        {
+            "target": "[root] azurerm_container_group.aci-test",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_2"
+        },
+        {
+            "target": "[root] azurerm_container_group.aci-test",
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_3"
+        },
+        {
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "source": "[root] root",
+            "svg_id": "edge_4"
+        },
+        {
+            "target": "[root] provider.azurerm (close)",
+            "source": "[root] root",
+            "svg_id": "edge_5"
+        }
+    ]
+}

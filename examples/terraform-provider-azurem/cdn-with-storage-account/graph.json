@@ -1,0 +1,251 @@
+{
+    "nodes": [
+        {
+            "svg_id": "node_0",
+            "label": "[root] azurerm_cdn_endpoint.cdnendpt",
+            "definition": {
+                "name": "${var.resource_group}CdnEndpoint1",
+                "profile_name": "${azurerm_cdn_profile.cdn.name}",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "origin": {
+                    "name": "${var.resource_group}Origin1",
+                    "host_name": "${var.host_name}",
+                    "http_port": 80,
+                    "https_port": 443
+                }
+            },
+            "group": 20000,
+            "type": "azurerm_cdn_endpoint",
+            "resource_name": "cdnendpt",
+            "simple_name": "azurerm_cdn_endpoint.cdnendpt"
+        },
+        {
+            "svg_id": "node_1",
+            "label": "[root] azurerm_cdn_profile.cdn",
+            "definition": {
+                "name": "${var.resource_group}CdnProfile1",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "sku": "Standard_Akamai"
+            },
+            "group": 20000,
+            "type": "azurerm_cdn_profile",
+            "resource_name": "cdn",
+            "simple_name": "azurerm_cdn_profile.cdn"
+        },
+        {
+            "svg_id": "node_2",
+            "label": "[root] azurerm_resource_group.rg",
+            "definition": {
+                "name": "${var.resource_group}",
+                "location": "${var.location}"
+            },
+            "group": 20000,
+            "type": "azurerm_resource_group",
+            "resource_name": "rg",
+            "simple_name": "azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "node_3",
+            "label": "[root] azurerm_storage_account.stor",
+            "definition": {
+                "name": "${var.resource_group}stor",
+                "location": "${var.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_replication_type}"
+            },
+            "group": 20000,
+            "type": "azurerm_storage_account",
+            "resource_name": "stor",
+            "simple_name": "azurerm_storage_account.stor"
+        },
+        {
+            "svg_id": "node_4",
+            "label": "[root] provider.azurerm",
+            "definition": "",
+            "group": 20000,
+            "type": "provider",
+            "resource_name": "azurerm",
+            "simple_name": "provider.azurerm"
+        },
+        {
+            "svg_id": "node_5",
+            "label": "[root] var.host_name",
+            "definition": {
+                "description": "A string that determines the hostname/IP address of the origin server. This string could be a domain name, IPv4 address or IPv6 address.",
+                "default": "www.hostnameoforiginserver.com"
+            },
+            "group": 20000,
+            "type": "var",
+            "resource_name": "host_name",
+            "simple_name": "var.host_name"
+        },
+        {
+            "svg_id": "node_6",
+            "label": "[root] var.location",
+            "definition": {
+                "description": "The location/region where the virtual network is created. Changing this forces a new resource to be created.",
+                "default": "southcentralus"
+            },
+            "group": 20000,
+            "type": "var",
+            "resource_name": "location",
+            "simple_name": "var.location"
+        },
+        {
+            "svg_id": "node_7",
+            "label": "[root] var.resource_group",
+            "definition": {
+                "description": "The name of the resource group in which to create the virtual network."
+            },
+            "group": 20000,
+            "type": "var",
+            "resource_name": "resource_group",
+            "simple_name": "var.resource_group"
+        },
+        {
+            "svg_id": "node_8",
+            "label": "[root] var.storage_account_tier",
+            "definition": {
+                "description": "Defines the Tier of storage account to be created. Valid options are Standard and Premium.",
+                "default": "Standard"
+            },
+            "group": 20000,
+            "type": "var",
+            "resource_name": "storage_account_tier",
+            "simple_name": "var.storage_account_tier"
+        },
+        {
+            "svg_id": "node_9",
+            "label": "[root] var.storage_replication_type",
+            "definition": {
+                "description": "Defines the Replication Type to use for this storage account. Valid options include LRS, GRS etc.",
+                "default": "LRS"
+            },
+            "group": 20000,
+            "type": "var",
+            "resource_name": "storage_replication_type",
+            "simple_name": "var.storage_replication_type"
+        },
+        {
+            "svg_id": "node_10",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "definition": "",
+            "group": 20000,
+            "type": "meta",
+            "resource_name": "count-boundary",
+            "simple_name": "meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "node_11",
+            "label": "[root] output.CDN Endpoint ID",
+            "definition": "",
+            "group": 20000,
+            "type": "output",
+            "resource_name": "CDN",
+            "simple_name": "output.CDN Endpoint ID"
+        },
+        {
+            "svg_id": "node_12",
+            "label": "[root] provider.azurerm (close)",
+            "definition": "",
+            "group": 20000,
+            "type": "provider",
+            "resource_name": "azurerm",
+            "simple_name": "provider.azurerm (close)"
+        },
+        {
+            "svg_id": "node_13",
+            "label": "[root] root",
+            "definition": "",
+            "group": 20000,
+            "type": "",
+            "resource_name": "",
+            "simple_name": "root"
+        }
+    ],
+    "edges": [
+        {
+            "source": "[root] azurerm_cdn_endpoint.cdnendpt",
+            "svg_id": "edge_0",
+            "target": "[root] azurerm_cdn_profile.cdn"
+        },
+        {
+            "source": "[root] azurerm_cdn_endpoint.cdnendpt",
+            "svg_id": "edge_1",
+            "target": "[root] var.host_name"
+        },
+        {
+            "source": "[root] azurerm_cdn_profile.cdn",
+            "svg_id": "edge_2",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_3",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_4",
+            "target": "[root] var.location"
+        },
+        {
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_5",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_6",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_7",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_8",
+            "target": "[root] var.storage_replication_type"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_9",
+            "target": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_10",
+            "target": "[root] output.CDN Endpoint ID"
+        },
+        {
+            "source": "[root] output.CDN Endpoint ID",
+            "svg_id": "edge_11",
+            "target": "[root] azurerm_cdn_endpoint.cdnendpt"
+        },
+        {
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_12",
+            "target": "[root] azurerm_cdn_endpoint.cdnendpt"
+        },
+        {
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_13",
+            "target": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_14",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_15",
+            "target": "[root] provider.azurerm (close)"
+        }
+    ]
+}

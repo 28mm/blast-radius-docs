@@ -1,0 +1,288 @@
+{
+    "nodes": [
+        {
+            "definition": "",
+            "group": 20000,
+            "resource_name": "available",
+            "svg_id": "node_0",
+            "label": "[root] data.google_compute_zones.available",
+            "type": "data.google_compute_zones",
+            "simple_name": "data.google_compute_zones.available"
+        },
+        {
+            "definition": {
+                "name": "${var.cluster_name}",
+                "zone": "${data.google_compute_zones.available.names[0]}",
+                "initial_node_count": 3,
+                "node_version": "${var.kubernetes_version}",
+                "additional_zones": [
+                    "${data.google_compute_zones.available.names[1]}"
+                ],
+                "master_auth": {
+                    "username": "${var.username}",
+                    "password": "${var.password}"
+                },
+                "node_config": {
+                    "oauth_scopes": [
+                        "https://www.googleapis.com/auth/compute",
+                        "https://www.googleapis.com/auth/devstorage.read_only",
+                        "https://www.googleapis.com/auth/logging.write",
+                        "https://www.googleapis.com/auth/monitoring"
+                    ]
+                }
+            },
+            "group": 20000,
+            "resource_name": "primary",
+            "svg_id": "node_1",
+            "label": "[root] google_container_cluster.primary",
+            "type": "google_container_cluster",
+            "simple_name": "google_container_cluster.primary"
+        },
+        {
+            "definition": {
+                "region": "${var.region}"
+            },
+            "group": 20000,
+            "resource_name": "google",
+            "svg_id": "node_2",
+            "label": "[root] provider.google",
+            "type": "provider",
+            "simple_name": "provider.google"
+        },
+        {
+            "definition": {
+                "default": "terraform-example-cluster"
+            },
+            "group": 20000,
+            "resource_name": "cluster_name",
+            "svg_id": "node_3",
+            "label": "[root] var.cluster_name",
+            "type": "var",
+            "simple_name": "var.cluster_name"
+        },
+        {
+            "definition": {
+                "default": "1.6.7"
+            },
+            "group": 20000,
+            "resource_name": "kubernetes_version",
+            "svg_id": "node_4",
+            "label": "[root] var.kubernetes_version",
+            "type": "var",
+            "simple_name": "var.kubernetes_version"
+        },
+        {
+            "definition": {},
+            "group": 20000,
+            "resource_name": "password",
+            "svg_id": "node_5",
+            "label": "[root] var.password",
+            "type": "var",
+            "simple_name": "var.password"
+        },
+        {
+            "definition": {},
+            "group": 20000,
+            "resource_name": "username",
+            "svg_id": "node_6",
+            "label": "[root] var.username",
+            "type": "var",
+            "simple_name": "var.username"
+        },
+        {
+            "definition": "",
+            "group": 20000,
+            "resource_name": "count-boundary",
+            "svg_id": "node_7",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "type": "meta",
+            "simple_name": "meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "definition": {
+                "value": "${google_container_cluster.primary.additional_zones}"
+            },
+            "group": 20000,
+            "resource_name": "additional_zones",
+            "svg_id": "node_8",
+            "label": "[root] output.additional_zones",
+            "type": "output",
+            "simple_name": "output.additional_zones"
+        },
+        {
+            "definition": {
+                "value": "${google_container_cluster.primary.name}"
+            },
+            "group": 20000,
+            "resource_name": "cluster_name",
+            "svg_id": "node_9",
+            "label": "[root] output.cluster_name",
+            "type": "output",
+            "simple_name": "output.cluster_name"
+        },
+        {
+            "definition": {
+                "value": "${google_container_cluster.primary.endpoint}"
+            },
+            "group": 20000,
+            "resource_name": "endpoint",
+            "svg_id": "node_10",
+            "label": "[root] output.endpoint",
+            "type": "output",
+            "simple_name": "output.endpoint"
+        },
+        {
+            "definition": {
+                "value": "${google_container_cluster.primary.node_version}"
+            },
+            "group": 20000,
+            "resource_name": "node_version",
+            "svg_id": "node_11",
+            "label": "[root] output.node_version",
+            "type": "output",
+            "simple_name": "output.node_version"
+        },
+        {
+            "definition": {
+                "value": "${google_container_cluster.primary.zone}"
+            },
+            "group": 20000,
+            "resource_name": "primary_zone",
+            "svg_id": "node_12",
+            "label": "[root] output.primary_zone",
+            "type": "output",
+            "simple_name": "output.primary_zone"
+        },
+        {
+            "definition": {
+                "region": "${var.region}"
+            },
+            "group": 20000,
+            "resource_name": "google",
+            "svg_id": "node_13",
+            "label": "[root] provider.google (close)",
+            "type": "provider",
+            "simple_name": "provider.google (close)"
+        },
+        {
+            "definition": {},
+            "group": 20000,
+            "resource_name": "region",
+            "svg_id": "node_14",
+            "label": "[root] var.region",
+            "type": "var",
+            "simple_name": "var.region"
+        },
+        {
+            "definition": "",
+            "group": 20000,
+            "resource_name": "",
+            "svg_id": "node_15",
+            "label": "[root] root",
+            "type": "",
+            "simple_name": "root"
+        }
+    ],
+    "edges": [
+        {
+            "svg_id": "edge_0",
+            "source": "[root] data.google_compute_zones.available",
+            "target": "[root] provider.google"
+        },
+        {
+            "svg_id": "edge_1",
+            "source": "[root] google_container_cluster.primary",
+            "target": "[root] data.google_compute_zones.available"
+        },
+        {
+            "svg_id": "edge_2",
+            "source": "[root] google_container_cluster.primary",
+            "target": "[root] var.cluster_name"
+        },
+        {
+            "svg_id": "edge_3",
+            "source": "[root] google_container_cluster.primary",
+            "target": "[root] var.kubernetes_version"
+        },
+        {
+            "svg_id": "edge_4",
+            "source": "[root] google_container_cluster.primary",
+            "target": "[root] var.password"
+        },
+        {
+            "svg_id": "edge_5",
+            "source": "[root] google_container_cluster.primary",
+            "target": "[root] var.username"
+        },
+        {
+            "svg_id": "edge_6",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.additional_zones"
+        },
+        {
+            "svg_id": "edge_7",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.cluster_name"
+        },
+        {
+            "svg_id": "edge_8",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.endpoint"
+        },
+        {
+            "svg_id": "edge_9",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.node_version"
+        },
+        {
+            "svg_id": "edge_10",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.primary_zone"
+        },
+        {
+            "svg_id": "edge_11",
+            "source": "[root] output.additional_zones",
+            "target": "[root] google_container_cluster.primary"
+        },
+        {
+            "svg_id": "edge_12",
+            "source": "[root] output.cluster_name",
+            "target": "[root] google_container_cluster.primary"
+        },
+        {
+            "svg_id": "edge_13",
+            "source": "[root] output.endpoint",
+            "target": "[root] google_container_cluster.primary"
+        },
+        {
+            "svg_id": "edge_14",
+            "source": "[root] output.node_version",
+            "target": "[root] google_container_cluster.primary"
+        },
+        {
+            "svg_id": "edge_15",
+            "source": "[root] output.primary_zone",
+            "target": "[root] google_container_cluster.primary"
+        },
+        {
+            "svg_id": "edge_16",
+            "source": "[root] provider.google (close)",
+            "target": "[root] google_container_cluster.primary"
+        },
+        {
+            "svg_id": "edge_17",
+            "source": "[root] provider.google",
+            "target": "[root] var.region"
+        },
+        {
+            "svg_id": "edge_18",
+            "source": "[root] root",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_19",
+            "source": "[root] root",
+            "target": "[root] provider.google (close)"
+        }
+    ]
+}

@@ -1,0 +1,398 @@
+{
+    "nodes": [
+        {
+            "label": "[root] openstack_compute_floatingip_v2.terraform",
+            "resource_name": "terraform",
+            "definition": {
+                "pool": "${var.pool}",
+                "depends_on": [
+                    "openstack_networking_router_interface_v2.terraform"
+                ]
+            },
+            "group": 20000,
+            "svg_id": "node_0",
+            "simple_name": "openstack_compute_floatingip_v2.terraform",
+            "type": "openstack_compute_floatingip_v2"
+        },
+        {
+            "label": "[root] openstack_compute_instance_v2.terraform",
+            "resource_name": "terraform",
+            "definition": {
+                "name": "terraform",
+                "image_name": "${var.image}",
+                "flavor_name": "${var.flavor}",
+                "key_pair": "${openstack_compute_keypair_v2.terraform.name}",
+                "security_groups": [
+                    "${openstack_compute_secgroup_v2.terraform.name}"
+                ],
+                "floating_ip": "${openstack_compute_floatingip_v2.terraform.address}",
+                "network": {
+                    "uuid": "${openstack_networking_network_v2.terraform.id}"
+                },
+                "provisioner": {
+                    "remote-exec": {
+                        "connection": {
+                            "user": "${var.ssh_user_name}",
+                            "private_key": "${file(var.ssh_key_file)}"
+                        },
+                        "inline": [
+                            "sudo apt-get -y update",
+                            "sudo apt-get -y install nginx",
+                            "sudo service nginx start"
+                        ]
+                    }
+                }
+            },
+            "group": 20000,
+            "svg_id": "node_1",
+            "simple_name": "openstack_compute_instance_v2.terraform",
+            "type": "openstack_compute_instance_v2"
+        },
+        {
+            "label": "[root] openstack_compute_keypair_v2.terraform",
+            "resource_name": "terraform",
+            "definition": {
+                "name": "terraform",
+                "public_key": "${file(\"${var.ssh_key_file}.pub\")}"
+            },
+            "group": 20000,
+            "svg_id": "node_2",
+            "simple_name": "openstack_compute_keypair_v2.terraform",
+            "type": "openstack_compute_keypair_v2"
+        },
+        {
+            "label": "[root] openstack_compute_secgroup_v2.terraform",
+            "resource_name": "terraform",
+            "definition": {
+                "name": "terraform",
+                "description": "Security group for the Terraform example instances",
+                "rule": [
+                    {
+                        "from_port": 22,
+                        "to_port": 22,
+                        "ip_protocol": "tcp",
+                        "cidr": "0.0.0.0/0"
+                    },
+                    {
+                        "from_port": 80,
+                        "to_port": 80,
+                        "ip_protocol": "tcp",
+                        "cidr": "0.0.0.0/0"
+                    },
+                    {
+                        "from_port": -1,
+                        "to_port": -1,
+                        "ip_protocol": "icmp",
+                        "cidr": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "group": 20000,
+            "svg_id": "node_3",
+            "simple_name": "openstack_compute_secgroup_v2.terraform",
+            "type": "openstack_compute_secgroup_v2"
+        },
+        {
+            "label": "[root] openstack_networking_network_v2.terraform",
+            "resource_name": "terraform",
+            "definition": {
+                "name": "terraform",
+                "admin_state_up": "true"
+            },
+            "group": 20000,
+            "svg_id": "node_4",
+            "simple_name": "openstack_networking_network_v2.terraform",
+            "type": "openstack_networking_network_v2"
+        },
+        {
+            "label": "[root] openstack_networking_router_interface_v2.terraform",
+            "resource_name": "terraform",
+            "definition": {
+                "router_id": "${openstack_networking_router_v2.terraform.id}",
+                "subnet_id": "${openstack_networking_subnet_v2.terraform.id}"
+            },
+            "group": 20000,
+            "svg_id": "node_5",
+            "simple_name": "openstack_networking_router_interface_v2.terraform",
+            "type": "openstack_networking_router_interface_v2"
+        },
+        {
+            "label": "[root] openstack_networking_router_v2.terraform",
+            "resource_name": "terraform",
+            "definition": {
+                "name": "terraform",
+                "admin_state_up": "true",
+                "external_gateway": "${var.external_gateway}"
+            },
+            "group": 20000,
+            "svg_id": "node_6",
+            "simple_name": "openstack_networking_router_v2.terraform",
+            "type": "openstack_networking_router_v2"
+        },
+        {
+            "label": "[root] openstack_networking_subnet_v2.terraform",
+            "resource_name": "terraform",
+            "definition": {
+                "name": "terraform",
+                "network_id": "${openstack_networking_network_v2.terraform.id}",
+                "cidr": "10.0.0.0/24",
+                "ip_version": 4,
+                "dns_nameservers": [
+                    "8.8.8.8",
+                    "8.8.4.4"
+                ]
+            },
+            "group": 20000,
+            "svg_id": "node_7",
+            "simple_name": "openstack_networking_subnet_v2.terraform",
+            "type": "openstack_networking_subnet_v2"
+        },
+        {
+            "label": "[root] provider.openstack",
+            "resource_name": "openstack",
+            "definition": "",
+            "group": 20000,
+            "svg_id": "node_8",
+            "simple_name": "provider.openstack",
+            "type": "provider"
+        },
+        {
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary",
+            "definition": "",
+            "group": 20000,
+            "svg_id": "node_9",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "type": "meta"
+        },
+        {
+            "label": "[root] output.address",
+            "resource_name": "address",
+            "definition": {
+                "value": "${openstack_compute_floatingip_v2.terraform.address}"
+            },
+            "group": 20000,
+            "svg_id": "node_10",
+            "simple_name": "output.address",
+            "type": "output"
+        },
+        {
+            "label": "[root] var.pool",
+            "resource_name": "pool",
+            "definition": {
+                "default": "public"
+            },
+            "group": 20000,
+            "svg_id": "node_11",
+            "simple_name": "var.pool",
+            "type": "var"
+        },
+        {
+            "label": "[root] var.flavor",
+            "resource_name": "flavor",
+            "definition": {
+                "default": "m1.small"
+            },
+            "group": 20000,
+            "svg_id": "node_12",
+            "simple_name": "var.flavor",
+            "type": "var"
+        },
+        {
+            "label": "[root] var.image",
+            "resource_name": "image",
+            "definition": {
+                "default": "Ubuntu 14.04"
+            },
+            "group": 20000,
+            "svg_id": "node_13",
+            "simple_name": "var.image",
+            "type": "var"
+        },
+        {
+            "label": "[root] var.ssh_user_name",
+            "resource_name": "ssh_user_name",
+            "definition": {
+                "default": "ubuntu"
+            },
+            "group": 20000,
+            "svg_id": "node_14",
+            "simple_name": "var.ssh_user_name",
+            "type": "var"
+        },
+        {
+            "label": "[root] var.ssh_key_file",
+            "resource_name": "ssh_key_file",
+            "definition": {
+                "default": "~/.ssh/id_rsa.terraform"
+            },
+            "group": 20000,
+            "svg_id": "node_15",
+            "simple_name": "var.ssh_key_file",
+            "type": "var"
+        },
+        {
+            "label": "[root] var.external_gateway",
+            "resource_name": "external_gateway",
+            "definition": {},
+            "group": 20000,
+            "svg_id": "node_16",
+            "simple_name": "var.external_gateway",
+            "type": "var"
+        },
+        {
+            "label": "[root] provider.openstack (close)",
+            "resource_name": "openstack",
+            "definition": "",
+            "group": 20000,
+            "svg_id": "node_17",
+            "simple_name": "provider.openstack (close)",
+            "type": "provider"
+        },
+        {
+            "label": "[root] provisioner.remote-exec (close)",
+            "resource_name": "remote-exec",
+            "definition": "",
+            "group": 20000,
+            "svg_id": "node_18",
+            "simple_name": "provisioner.remote-exec (close)",
+            "type": "provisioner"
+        },
+        {
+            "label": "[root] root",
+            "resource_name": "",
+            "definition": "",
+            "group": 20000,
+            "svg_id": "node_19",
+            "simple_name": "root",
+            "type": ""
+        }
+    ],
+    "edges": [
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_0",
+            "target": "[root] openstack_compute_instance_v2.terraform"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_1",
+            "target": "[root] output.address"
+        },
+        {
+            "source": "[root] openstack_compute_floatingip_v2.terraform",
+            "svg_id": "edge_2",
+            "target": "[root] openstack_networking_router_interface_v2.terraform"
+        },
+        {
+            "source": "[root] openstack_compute_floatingip_v2.terraform",
+            "svg_id": "edge_3",
+            "target": "[root] var.pool"
+        },
+        {
+            "source": "[root] openstack_compute_instance_v2.terraform",
+            "svg_id": "edge_4",
+            "target": "[root] openstack_compute_floatingip_v2.terraform"
+        },
+        {
+            "source": "[root] openstack_compute_instance_v2.terraform",
+            "svg_id": "edge_5",
+            "target": "[root] openstack_compute_keypair_v2.terraform"
+        },
+        {
+            "source": "[root] openstack_compute_instance_v2.terraform",
+            "svg_id": "edge_6",
+            "target": "[root] openstack_compute_secgroup_v2.terraform"
+        },
+        {
+            "source": "[root] openstack_compute_instance_v2.terraform",
+            "svg_id": "edge_7",
+            "target": "[root] var.flavor"
+        },
+        {
+            "source": "[root] openstack_compute_instance_v2.terraform",
+            "svg_id": "edge_8",
+            "target": "[root] var.image"
+        },
+        {
+            "source": "[root] openstack_compute_instance_v2.terraform",
+            "svg_id": "edge_9",
+            "target": "[root] var.ssh_user_name"
+        },
+        {
+            "source": "[root] openstack_compute_keypair_v2.terraform",
+            "svg_id": "edge_10",
+            "target": "[root] provider.openstack"
+        },
+        {
+            "source": "[root] openstack_compute_keypair_v2.terraform",
+            "svg_id": "edge_11",
+            "target": "[root] var.ssh_key_file"
+        },
+        {
+            "source": "[root] openstack_compute_secgroup_v2.terraform",
+            "svg_id": "edge_12",
+            "target": "[root] provider.openstack"
+        },
+        {
+            "source": "[root] openstack_networking_network_v2.terraform",
+            "svg_id": "edge_13",
+            "target": "[root] provider.openstack"
+        },
+        {
+            "source": "[root] openstack_networking_router_interface_v2.terraform",
+            "svg_id": "edge_14",
+            "target": "[root] openstack_networking_router_v2.terraform"
+        },
+        {
+            "source": "[root] openstack_networking_router_interface_v2.terraform",
+            "svg_id": "edge_15",
+            "target": "[root] openstack_networking_subnet_v2.terraform"
+        },
+        {
+            "source": "[root] openstack_networking_router_v2.terraform",
+            "svg_id": "edge_16",
+            "target": "[root] provider.openstack"
+        },
+        {
+            "source": "[root] openstack_networking_router_v2.terraform",
+            "svg_id": "edge_17",
+            "target": "[root] var.external_gateway"
+        },
+        {
+            "source": "[root] openstack_networking_subnet_v2.terraform",
+            "svg_id": "edge_18",
+            "target": "[root] openstack_networking_network_v2.terraform"
+        },
+        {
+            "source": "[root] output.address",
+            "svg_id": "edge_19",
+            "target": "[root] openstack_compute_floatingip_v2.terraform"
+        },
+        {
+            "source": "[root] provider.openstack (close)",
+            "svg_id": "edge_20",
+            "target": "[root] openstack_compute_instance_v2.terraform"
+        },
+        {
+            "source": "[root] provisioner.remote-exec (close)",
+            "svg_id": "edge_21",
+            "target": "[root] openstack_compute_instance_v2.terraform"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_22",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_23",
+            "target": "[root] provider.openstack (close)"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_24",
+            "target": "[root] provisioner.remote-exec (close)"
+        }
+    ]
+}

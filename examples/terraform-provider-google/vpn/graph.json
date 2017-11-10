@@ -1,0 +1,608 @@
+{
+    "nodes": [
+        {
+            "type": "google_compute_address",
+            "label": "[root] google_compute_address.vpn_static_ip1",
+            "resource_name": "vpn_static_ip1",
+            "definition": {
+                "name": "vpn-static-ip1",
+                "region": "${var.region1}"
+            },
+            "svg_id": "node_0",
+            "simple_name": "google_compute_address.vpn_static_ip1",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_address",
+            "label": "[root] google_compute_address.vpn_static_ip2",
+            "resource_name": "vpn_static_ip2",
+            "definition": {
+                "name": "vpn-static-ip2",
+                "region": "${var.region2}"
+            },
+            "svg_id": "node_1",
+            "simple_name": "google_compute_address.vpn_static_ip2",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_firewall",
+            "label": "[root] google_compute_firewall.network1-allow-network1",
+            "resource_name": "network1-allow-network1",
+            "definition": {
+                "name": "network1-allow-network1",
+                "network": "${google_compute_network.network1.name}",
+                "source_ranges": [
+                    "${google_compute_network.network1.ipv4_range}"
+                ],
+                "allow": [
+                    {
+                        "protocol": "tcp"
+                    },
+                    {
+                        "protocol": "udp"
+                    },
+                    {
+                        "protocol": "icmp"
+                    }
+                ]
+            },
+            "svg_id": "node_2",
+            "simple_name": "google_compute_firewall.network1-allow-network1",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_firewall",
+            "label": "[root] google_compute_firewall.network1-allow-network2",
+            "resource_name": "network1-allow-network2",
+            "definition": {
+                "name": "network1-allow-network2",
+                "network": "${google_compute_network.network1.name}",
+                "source_ranges": [
+                    "${google_compute_network.network2.ipv4_range}"
+                ],
+                "allow": [
+                    {
+                        "protocol": "tcp"
+                    },
+                    {
+                        "protocol": "udp"
+                    },
+                    {
+                        "protocol": "icmp"
+                    }
+                ]
+            },
+            "svg_id": "node_3",
+            "simple_name": "google_compute_firewall.network1-allow-network2",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_forwarding_rule",
+            "label": "[root] google_compute_forwarding_rule.fr1_esp",
+            "resource_name": "fr1_esp",
+            "definition": {
+                "name": "fr1-esp",
+                "region": "${var.region1}",
+                "ip_protocol": "ESP",
+                "ip_address": "${google_compute_address.vpn_static_ip1.address}",
+                "target": "${google_compute_vpn_gateway.target_gateway1.self_link}"
+            },
+            "svg_id": "node_4",
+            "simple_name": "google_compute_forwarding_rule.fr1_esp",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_forwarding_rule",
+            "label": "[root] google_compute_forwarding_rule.fr1_udp4500",
+            "resource_name": "fr1_udp4500",
+            "definition": {
+                "name": "fr1-udp4500",
+                "region": "${var.region1}",
+                "ip_protocol": "UDP",
+                "port_range": "4500",
+                "ip_address": "${google_compute_address.vpn_static_ip1.address}",
+                "target": "${google_compute_vpn_gateway.target_gateway1.self_link}"
+            },
+            "svg_id": "node_5",
+            "simple_name": "google_compute_forwarding_rule.fr1_udp4500",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_forwarding_rule",
+            "label": "[root] google_compute_forwarding_rule.fr1_udp500",
+            "resource_name": "fr1_udp500",
+            "definition": {
+                "name": "fr1-udp500",
+                "region": "${var.region1}",
+                "ip_protocol": "UDP",
+                "port_range": "500",
+                "ip_address": "${google_compute_address.vpn_static_ip1.address}",
+                "target": "${google_compute_vpn_gateway.target_gateway1.self_link}"
+            },
+            "svg_id": "node_6",
+            "simple_name": "google_compute_forwarding_rule.fr1_udp500",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_forwarding_rule",
+            "label": "[root] google_compute_forwarding_rule.fr2_esp",
+            "resource_name": "fr2_esp",
+            "definition": {
+                "name": "fr2-esp",
+                "region": "${var.region2}",
+                "ip_protocol": "ESP",
+                "ip_address": "${google_compute_address.vpn_static_ip2.address}",
+                "target": "${google_compute_vpn_gateway.target_gateway2.self_link}"
+            },
+            "svg_id": "node_7",
+            "simple_name": "google_compute_forwarding_rule.fr2_esp",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_forwarding_rule",
+            "label": "[root] google_compute_forwarding_rule.fr2_udp4500",
+            "resource_name": "fr2_udp4500",
+            "definition": {
+                "name": "fr2-udp4500",
+                "region": "${var.region2}",
+                "ip_protocol": "UDP",
+                "port_range": "4500",
+                "ip_address": "${google_compute_address.vpn_static_ip2.address}",
+                "target": "${google_compute_vpn_gateway.target_gateway2.self_link}"
+            },
+            "svg_id": "node_8",
+            "simple_name": "google_compute_forwarding_rule.fr2_udp4500",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_forwarding_rule",
+            "label": "[root] google_compute_forwarding_rule.fr2_udp500",
+            "resource_name": "fr2_udp500",
+            "definition": {
+                "name": "fr2-udp500",
+                "region": "${var.region2}",
+                "ip_protocol": "UDP",
+                "port_range": "500",
+                "ip_address": "${google_compute_address.vpn_static_ip2.address}",
+                "target": "${google_compute_vpn_gateway.target_gateway2.self_link}"
+            },
+            "svg_id": "node_9",
+            "simple_name": "google_compute_forwarding_rule.fr2_udp500",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_network",
+            "label": "[root] google_compute_network.network1",
+            "resource_name": "network1",
+            "definition": {
+                "name": "network1",
+                "ipv4_range": "10.120.0.0/16"
+            },
+            "svg_id": "node_10",
+            "simple_name": "google_compute_network.network1",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_network",
+            "label": "[root] google_compute_network.network2",
+            "resource_name": "network2",
+            "definition": {
+                "name": "network2",
+                "ipv4_range": "10.121.0.0/16"
+            },
+            "svg_id": "node_11",
+            "simple_name": "google_compute_network.network2",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_route",
+            "label": "[root] google_compute_route.route1",
+            "resource_name": "route1",
+            "definition": {
+                "name": "route1",
+                "network": "${google_compute_network.network1.name}",
+                "next_hop_vpn_tunnel": "${google_compute_vpn_tunnel.tunnel1.self_link}",
+                "dest_range": "${google_compute_network.network2.ipv4_range}",
+                "priority": 1000
+            },
+            "svg_id": "node_12",
+            "simple_name": "google_compute_route.route1",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_route",
+            "label": "[root] google_compute_route.route2",
+            "resource_name": "route2",
+            "definition": {
+                "name": "route2",
+                "network": "${google_compute_network.network2.name}",
+                "next_hop_vpn_tunnel": "${google_compute_vpn_tunnel.tunnel2.self_link}",
+                "dest_range": "${google_compute_network.network1.ipv4_range}",
+                "priority": 1000
+            },
+            "svg_id": "node_13",
+            "simple_name": "google_compute_route.route2",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_vpn_gateway",
+            "label": "[root] google_compute_vpn_gateway.target_gateway1",
+            "resource_name": "target_gateway1",
+            "definition": {
+                "name": "vpn1",
+                "network": "${google_compute_network.network1.self_link}",
+                "region": "${var.region1}"
+            },
+            "svg_id": "node_14",
+            "simple_name": "google_compute_vpn_gateway.target_gateway1",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_vpn_gateway",
+            "label": "[root] google_compute_vpn_gateway.target_gateway2",
+            "resource_name": "target_gateway2",
+            "definition": {
+                "name": "vpn2",
+                "network": "${google_compute_network.network2.self_link}",
+                "region": "${var.region2}"
+            },
+            "svg_id": "node_15",
+            "simple_name": "google_compute_vpn_gateway.target_gateway2",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_vpn_tunnel",
+            "label": "[root] google_compute_vpn_tunnel.tunnel1",
+            "resource_name": "tunnel1",
+            "definition": {
+                "name": "tunnel1",
+                "region": "${var.region1}",
+                "peer_ip": "${google_compute_address.vpn_static_ip2.address}",
+                "shared_secret": "a secret message",
+                "target_vpn_gateway": "${google_compute_vpn_gateway.target_gateway1.self_link}",
+                "depends_on": [
+                    "google_compute_forwarding_rule.fr1_udp500",
+                    "google_compute_forwarding_rule.fr1_udp4500",
+                    "google_compute_forwarding_rule.fr1_esp"
+                ]
+            },
+            "svg_id": "node_16",
+            "simple_name": "google_compute_vpn_tunnel.tunnel1",
+            "group": 20000
+        },
+        {
+            "type": "google_compute_vpn_tunnel",
+            "label": "[root] google_compute_vpn_tunnel.tunnel2",
+            "resource_name": "tunnel2",
+            "definition": {
+                "name": "tunnel2",
+                "region": "${var.region2}",
+                "peer_ip": "${google_compute_address.vpn_static_ip1.address}",
+                "shared_secret": "a secret message",
+                "target_vpn_gateway": "${google_compute_vpn_gateway.target_gateway2.self_link}",
+                "depends_on": [
+                    "google_compute_forwarding_rule.fr2_udp500",
+                    "google_compute_forwarding_rule.fr2_udp4500",
+                    "google_compute_forwarding_rule.fr2_esp"
+                ]
+            },
+            "svg_id": "node_17",
+            "simple_name": "google_compute_vpn_tunnel.tunnel2",
+            "group": 20000
+        },
+        {
+            "type": "provider",
+            "label": "[root] provider.google",
+            "resource_name": "google",
+            "definition": {
+                "account_file": "${file(\"~/gce/account.json\")}",
+                "project": "${var.project}",
+                "region": "${var.region1}"
+            },
+            "svg_id": "node_18",
+            "simple_name": "provider.google",
+            "group": 20000
+        },
+        {
+            "type": "var",
+            "label": "[root] var.region2",
+            "resource_name": "region2",
+            "definition": {
+                "description": "The desired region for the second network & VPN"
+            },
+            "svg_id": "node_19",
+            "simple_name": "var.region2",
+            "group": 20000
+        },
+        {
+            "type": "meta",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary",
+            "definition": "",
+            "svg_id": "node_20",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "group": 20000
+        },
+        {
+            "type": "provider",
+            "label": "[root] provider.google (close)",
+            "resource_name": "google",
+            "definition": {
+                "account_file": "${file(\"~/gce/account.json\")}",
+                "project": "${var.project}",
+                "region": "${var.region1}"
+            },
+            "svg_id": "node_21",
+            "simple_name": "provider.google (close)",
+            "group": 20000
+        },
+        {
+            "type": "var",
+            "label": "[root] var.project",
+            "resource_name": "project",
+            "definition": {
+                "description": "Your project name"
+            },
+            "svg_id": "node_22",
+            "simple_name": "var.project",
+            "group": 20000
+        },
+        {
+            "type": "var",
+            "label": "[root] var.region1",
+            "resource_name": "region1",
+            "definition": {
+                "description": "The desired region for the first network & VPN and project"
+            },
+            "svg_id": "node_23",
+            "simple_name": "var.region1",
+            "group": 20000
+        },
+        {
+            "type": "",
+            "label": "[root] root",
+            "resource_name": "",
+            "definition": "",
+            "svg_id": "node_24",
+            "simple_name": "root",
+            "group": 20000
+        }
+    ],
+    "edges": [
+        {
+            "target": "[root] provider.google",
+            "svg_id": "edge_0",
+            "source": "[root] google_compute_address.vpn_static_ip1"
+        },
+        {
+            "target": "[root] provider.google",
+            "svg_id": "edge_1",
+            "source": "[root] google_compute_address.vpn_static_ip2"
+        },
+        {
+            "target": "[root] var.region2",
+            "svg_id": "edge_2",
+            "source": "[root] google_compute_address.vpn_static_ip2"
+        },
+        {
+            "target": "[root] google_compute_network.network1",
+            "svg_id": "edge_3",
+            "source": "[root] google_compute_firewall.network1-allow-network1"
+        },
+        {
+            "target": "[root] google_compute_network.network1",
+            "svg_id": "edge_4",
+            "source": "[root] google_compute_firewall.network1-allow-network2"
+        },
+        {
+            "target": "[root] google_compute_network.network2",
+            "svg_id": "edge_5",
+            "source": "[root] google_compute_firewall.network1-allow-network2"
+        },
+        {
+            "target": "[root] google_compute_address.vpn_static_ip1",
+            "svg_id": "edge_6",
+            "source": "[root] google_compute_forwarding_rule.fr1_esp"
+        },
+        {
+            "target": "[root] google_compute_vpn_gateway.target_gateway1",
+            "svg_id": "edge_7",
+            "source": "[root] google_compute_forwarding_rule.fr1_esp"
+        },
+        {
+            "target": "[root] google_compute_address.vpn_static_ip1",
+            "svg_id": "edge_8",
+            "source": "[root] google_compute_forwarding_rule.fr1_udp4500"
+        },
+        {
+            "target": "[root] google_compute_vpn_gateway.target_gateway1",
+            "svg_id": "edge_9",
+            "source": "[root] google_compute_forwarding_rule.fr1_udp4500"
+        },
+        {
+            "target": "[root] google_compute_address.vpn_static_ip1",
+            "svg_id": "edge_10",
+            "source": "[root] google_compute_forwarding_rule.fr1_udp500"
+        },
+        {
+            "target": "[root] google_compute_vpn_gateway.target_gateway1",
+            "svg_id": "edge_11",
+            "source": "[root] google_compute_forwarding_rule.fr1_udp500"
+        },
+        {
+            "target": "[root] google_compute_address.vpn_static_ip2",
+            "svg_id": "edge_12",
+            "source": "[root] google_compute_forwarding_rule.fr2_esp"
+        },
+        {
+            "target": "[root] google_compute_vpn_gateway.target_gateway2",
+            "svg_id": "edge_13",
+            "source": "[root] google_compute_forwarding_rule.fr2_esp"
+        },
+        {
+            "target": "[root] google_compute_address.vpn_static_ip2",
+            "svg_id": "edge_14",
+            "source": "[root] google_compute_forwarding_rule.fr2_udp4500"
+        },
+        {
+            "target": "[root] google_compute_vpn_gateway.target_gateway2",
+            "svg_id": "edge_15",
+            "source": "[root] google_compute_forwarding_rule.fr2_udp4500"
+        },
+        {
+            "target": "[root] google_compute_address.vpn_static_ip2",
+            "svg_id": "edge_16",
+            "source": "[root] google_compute_forwarding_rule.fr2_udp500"
+        },
+        {
+            "target": "[root] google_compute_vpn_gateway.target_gateway2",
+            "svg_id": "edge_17",
+            "source": "[root] google_compute_forwarding_rule.fr2_udp500"
+        },
+        {
+            "target": "[root] provider.google",
+            "svg_id": "edge_18",
+            "source": "[root] google_compute_network.network1"
+        },
+        {
+            "target": "[root] provider.google",
+            "svg_id": "edge_19",
+            "source": "[root] google_compute_network.network2"
+        },
+        {
+            "target": "[root] google_compute_network.network2",
+            "svg_id": "edge_20",
+            "source": "[root] google_compute_route.route1"
+        },
+        {
+            "target": "[root] google_compute_vpn_tunnel.tunnel1",
+            "svg_id": "edge_21",
+            "source": "[root] google_compute_route.route1"
+        },
+        {
+            "target": "[root] google_compute_network.network1",
+            "svg_id": "edge_22",
+            "source": "[root] google_compute_route.route2"
+        },
+        {
+            "target": "[root] google_compute_vpn_tunnel.tunnel2",
+            "svg_id": "edge_23",
+            "source": "[root] google_compute_route.route2"
+        },
+        {
+            "target": "[root] google_compute_network.network1",
+            "svg_id": "edge_24",
+            "source": "[root] google_compute_vpn_gateway.target_gateway1"
+        },
+        {
+            "target": "[root] google_compute_network.network2",
+            "svg_id": "edge_25",
+            "source": "[root] google_compute_vpn_gateway.target_gateway2"
+        },
+        {
+            "target": "[root] var.region2",
+            "svg_id": "edge_26",
+            "source": "[root] google_compute_vpn_gateway.target_gateway2"
+        },
+        {
+            "target": "[root] google_compute_address.vpn_static_ip2",
+            "svg_id": "edge_27",
+            "source": "[root] google_compute_vpn_tunnel.tunnel1"
+        },
+        {
+            "target": "[root] google_compute_forwarding_rule.fr1_esp",
+            "svg_id": "edge_28",
+            "source": "[root] google_compute_vpn_tunnel.tunnel1"
+        },
+        {
+            "target": "[root] google_compute_forwarding_rule.fr1_udp4500",
+            "svg_id": "edge_29",
+            "source": "[root] google_compute_vpn_tunnel.tunnel1"
+        },
+        {
+            "target": "[root] google_compute_forwarding_rule.fr1_udp500",
+            "svg_id": "edge_30",
+            "source": "[root] google_compute_vpn_tunnel.tunnel1"
+        },
+        {
+            "target": "[root] google_compute_address.vpn_static_ip1",
+            "svg_id": "edge_31",
+            "source": "[root] google_compute_vpn_tunnel.tunnel2"
+        },
+        {
+            "target": "[root] google_compute_forwarding_rule.fr2_esp",
+            "svg_id": "edge_32",
+            "source": "[root] google_compute_vpn_tunnel.tunnel2"
+        },
+        {
+            "target": "[root] google_compute_forwarding_rule.fr2_udp4500",
+            "svg_id": "edge_33",
+            "source": "[root] google_compute_vpn_tunnel.tunnel2"
+        },
+        {
+            "target": "[root] google_compute_forwarding_rule.fr2_udp500",
+            "svg_id": "edge_34",
+            "source": "[root] google_compute_vpn_tunnel.tunnel2"
+        },
+        {
+            "target": "[root] google_compute_firewall.network1-allow-network1",
+            "svg_id": "edge_35",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] google_compute_firewall.network1-allow-network2",
+            "svg_id": "edge_36",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] google_compute_route.route1",
+            "svg_id": "edge_37",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] google_compute_route.route2",
+            "svg_id": "edge_38",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "target": "[root] google_compute_firewall.network1-allow-network1",
+            "svg_id": "edge_39",
+            "source": "[root] provider.google (close)"
+        },
+        {
+            "target": "[root] google_compute_firewall.network1-allow-network2",
+            "svg_id": "edge_40",
+            "source": "[root] provider.google (close)"
+        },
+        {
+            "target": "[root] google_compute_route.route1",
+            "svg_id": "edge_41",
+            "source": "[root] provider.google (close)"
+        },
+        {
+            "target": "[root] google_compute_route.route2",
+            "svg_id": "edge_42",
+            "source": "[root] provider.google (close)"
+        },
+        {
+            "target": "[root] var.project",
+            "svg_id": "edge_43",
+            "source": "[root] provider.google"
+        },
+        {
+            "target": "[root] var.region1",
+            "svg_id": "edge_44",
+            "source": "[root] provider.google"
+        },
+        {
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_45",
+            "source": "[root] root"
+        },
+        {
+            "target": "[root] provider.google (close)",
+            "svg_id": "edge_46",
+            "source": "[root] root"
+        }
+    ]
+}

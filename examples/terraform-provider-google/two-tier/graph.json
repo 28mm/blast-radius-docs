@@ -1,0 +1,450 @@
+{
+    "nodes": [
+        {
+            "simple_name": "google_compute_firewall.default",
+            "svg_id": "node_0",
+            "resource_name": "default",
+            "label": "[root] google_compute_firewall.default",
+            "group": 20000,
+            "definition": {
+                "name": "tf-www-firewall",
+                "network": "default",
+                "allow": {
+                    "protocol": "tcp",
+                    "ports": [
+                        "80"
+                    ]
+                },
+                "source_ranges": [
+                    "0.0.0.0/0"
+                ],
+                "target_tags": [
+                    "www-node"
+                ]
+            },
+            "type": "google_compute_firewall"
+        },
+        {
+            "simple_name": "google_compute_forwarding_rule.default",
+            "svg_id": "node_1",
+            "resource_name": "default",
+            "label": "[root] google_compute_forwarding_rule.default",
+            "group": 20000,
+            "definition": {
+                "name": "tf-www-forwarding-rule",
+                "target": "${google_compute_target_pool.default.self_link}",
+                "port_range": "80"
+            },
+            "type": "google_compute_forwarding_rule"
+        },
+        {
+            "simple_name": "google_compute_http_health_check.default",
+            "svg_id": "node_2",
+            "resource_name": "default",
+            "label": "[root] google_compute_http_health_check.default",
+            "group": 20000,
+            "definition": {
+                "name": "tf-www-basic-check",
+                "request_path": "/",
+                "check_interval_sec": 1,
+                "healthy_threshold": 1,
+                "unhealthy_threshold": 10,
+                "timeout_sec": 1
+            },
+            "type": "google_compute_http_health_check"
+        },
+        {
+            "simple_name": "google_compute_instance.www",
+            "svg_id": "node_3",
+            "resource_name": "www",
+            "label": "[root] google_compute_instance.www",
+            "group": 20000,
+            "definition": {
+                "count": 3,
+                "name": "tf-www-${count.index}",
+                "machine_type": "f1-micro",
+                "zone": "${var.region_zone}",
+                "tags": [
+                    "www-node"
+                ],
+                "boot_disk": {
+                    "initialize_params": {
+                        "image": "ubuntu-os-cloud/ubuntu-1404-trusty-v20160602"
+                    }
+                },
+                "network_interface": {
+                    "network": "default",
+                    "access_config": {}
+                },
+                "metadata": {
+                    "ssh-keys": "root:${file(\"${var.public_key_path}\")}"
+                },
+                "provisioner": [
+                    {
+                        "file": {
+                            "source": "${var.install_script_src_path}",
+                            "destination": "${var.install_script_dest_path}",
+                            "connection": {
+                                "type": "ssh",
+                                "user": "root",
+                                "private_key": "${file(\"${var.private_key_path}\")}",
+                                "agent": false
+                            }
+                        }
+                    },
+                    {
+                        "remote-exec": {
+                            "connection": {
+                                "type": "ssh",
+                                "user": "root",
+                                "private_key": "${file(\"${var.private_key_path}\")}",
+                                "agent": false
+                            },
+                            "inline": [
+                                "chmod +x ${var.install_script_dest_path}",
+                                "sudo ${var.install_script_dest_path} ${count.index}"
+                            ]
+                        }
+                    }
+                ],
+                "service_account": {
+                    "scopes": [
+                        "https://www.googleapis.com/auth/compute.readonly"
+                    ]
+                }
+            },
+            "type": "google_compute_instance"
+        },
+        {
+            "simple_name": "google_compute_target_pool.default",
+            "svg_id": "node_4",
+            "resource_name": "default",
+            "label": "[root] google_compute_target_pool.default",
+            "group": 20000,
+            "definition": {
+                "name": "tf-www-target-pool",
+                "instances": [
+                    "${google_compute_instance.www.*.self_link}"
+                ],
+                "health_checks": [
+                    "${google_compute_http_health_check.default.name}"
+                ]
+            },
+            "type": "google_compute_target_pool"
+        },
+        {
+            "simple_name": "provider.google",
+            "svg_id": "node_5",
+            "resource_name": "google",
+            "label": "[root] provider.google",
+            "group": 20000,
+            "definition": {
+                "region": "${var.region}",
+                "project": "${var.project_name}",
+                "credentials": "${file(\"${var.credentials_file_path}\")}"
+            },
+            "type": "provider"
+        },
+        {
+            "simple_name": "var.install_script_dest_path",
+            "svg_id": "node_6",
+            "resource_name": "install_script_dest_path",
+            "label": "[root] var.install_script_dest_path",
+            "group": 20000,
+            "definition": {
+                "description": "Path to put the install script on each destination resource",
+                "default": "/tmp/install.sh"
+            },
+            "type": "var"
+        },
+        {
+            "simple_name": "var.install_script_src_path",
+            "svg_id": "node_7",
+            "resource_name": "install_script_src_path",
+            "label": "[root] var.install_script_src_path",
+            "group": 20000,
+            "definition": {
+                "description": "Path to install script within this repository",
+                "default": "scripts/install.sh"
+            },
+            "type": "var"
+        },
+        {
+            "simple_name": "var.private_key_path",
+            "svg_id": "node_8",
+            "resource_name": "private_key_path",
+            "label": "[root] var.private_key_path",
+            "group": 20000,
+            "definition": {
+                "description": "Path to file containing private key",
+                "default": "~/.ssh/gcloud_id_rsa"
+            },
+            "type": "var"
+        },
+        {
+            "simple_name": "var.public_key_path",
+            "svg_id": "node_9",
+            "resource_name": "public_key_path",
+            "label": "[root] var.public_key_path",
+            "group": 20000,
+            "definition": {
+                "description": "Path to file containing public key",
+                "default": "~/.ssh/gcloud_id_rsa.pub"
+            },
+            "type": "var"
+        },
+        {
+            "simple_name": "var.region_zone",
+            "svg_id": "node_10",
+            "resource_name": "region_zone",
+            "label": "[root] var.region_zone",
+            "group": 20000,
+            "definition": {
+                "default": "us-central1-f"
+            },
+            "type": "var"
+        },
+        {
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_11",
+            "resource_name": "count-boundary",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "group": 20000,
+            "definition": "",
+            "type": "meta"
+        },
+        {
+            "simple_name": "output.instance_ips",
+            "svg_id": "node_12",
+            "resource_name": "instance_ips",
+            "label": "[root] output.instance_ips",
+            "group": 20000,
+            "definition": {
+                "value": "${join(\" \", google_compute_instance.www.*.network_interface.0.access_config.0.assigned_nat_ip)}"
+            },
+            "type": "output"
+        },
+        {
+            "simple_name": "output.pool_public_ip",
+            "svg_id": "node_13",
+            "resource_name": "pool_public_ip",
+            "label": "[root] output.pool_public_ip",
+            "group": 20000,
+            "definition": {
+                "value": "${google_compute_forwarding_rule.default.ip_address}"
+            },
+            "type": "output"
+        },
+        {
+            "simple_name": "provider.google (close)",
+            "svg_id": "node_14",
+            "resource_name": "google",
+            "label": "[root] provider.google (close)",
+            "group": 20000,
+            "definition": {
+                "region": "${var.region}",
+                "project": "${var.project_name}",
+                "credentials": "${file(\"${var.credentials_file_path}\")}"
+            },
+            "type": "provider"
+        },
+        {
+            "simple_name": "var.credentials_file_path",
+            "svg_id": "node_15",
+            "resource_name": "credentials_file_path",
+            "label": "[root] var.credentials_file_path",
+            "group": 20000,
+            "definition": {
+                "description": "Path to the JSON file used to describe your account credentials",
+                "default": "~/.gcloud/Terraform.json"
+            },
+            "type": "var"
+        },
+        {
+            "simple_name": "var.project_name",
+            "svg_id": "node_16",
+            "resource_name": "project_name",
+            "label": "[root] var.project_name",
+            "group": 20000,
+            "definition": {
+                "description": "The ID of the Google Cloud project"
+            },
+            "type": "var"
+        },
+        {
+            "simple_name": "var.region",
+            "svg_id": "node_17",
+            "resource_name": "region",
+            "label": "[root] var.region",
+            "group": 20000,
+            "definition": {
+                "default": "us-central1"
+            },
+            "type": "var"
+        },
+        {
+            "simple_name": "provisioner.file (close)",
+            "svg_id": "node_18",
+            "resource_name": "file",
+            "label": "[root] provisioner.file (close)",
+            "group": 20000,
+            "definition": "",
+            "type": "provisioner"
+        },
+        {
+            "simple_name": "provisioner.remote-exec (close)",
+            "svg_id": "node_19",
+            "resource_name": "remote-exec",
+            "label": "[root] provisioner.remote-exec (close)",
+            "group": 20000,
+            "definition": "",
+            "type": "provisioner"
+        },
+        {
+            "simple_name": "root",
+            "svg_id": "node_20",
+            "resource_name": "",
+            "label": "[root] root",
+            "group": 20000,
+            "definition": "",
+            "type": ""
+        }
+    ],
+    "edges": [
+        {
+            "target": "[root] provider.google",
+            "source": "[root] google_compute_firewall.default",
+            "svg_id": "edge_0"
+        },
+        {
+            "target": "[root] google_compute_target_pool.default",
+            "source": "[root] google_compute_forwarding_rule.default",
+            "svg_id": "edge_1"
+        },
+        {
+            "target": "[root] provider.google",
+            "source": "[root] google_compute_http_health_check.default",
+            "svg_id": "edge_2"
+        },
+        {
+            "target": "[root] provider.google",
+            "source": "[root] google_compute_instance.www",
+            "svg_id": "edge_3"
+        },
+        {
+            "target": "[root] var.install_script_dest_path",
+            "source": "[root] google_compute_instance.www",
+            "svg_id": "edge_4"
+        },
+        {
+            "target": "[root] var.install_script_src_path",
+            "source": "[root] google_compute_instance.www",
+            "svg_id": "edge_5"
+        },
+        {
+            "target": "[root] var.private_key_path",
+            "source": "[root] google_compute_instance.www",
+            "svg_id": "edge_6"
+        },
+        {
+            "target": "[root] var.public_key_path",
+            "source": "[root] google_compute_instance.www",
+            "svg_id": "edge_7"
+        },
+        {
+            "target": "[root] var.region_zone",
+            "source": "[root] google_compute_instance.www",
+            "svg_id": "edge_8"
+        },
+        {
+            "target": "[root] google_compute_http_health_check.default",
+            "source": "[root] google_compute_target_pool.default",
+            "svg_id": "edge_9"
+        },
+        {
+            "target": "[root] google_compute_instance.www",
+            "source": "[root] google_compute_target_pool.default",
+            "svg_id": "edge_10"
+        },
+        {
+            "target": "[root] google_compute_firewall.default",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_11"
+        },
+        {
+            "target": "[root] output.instance_ips",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_12"
+        },
+        {
+            "target": "[root] output.pool_public_ip",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_13"
+        },
+        {
+            "target": "[root] google_compute_instance.www",
+            "source": "[root] output.instance_ips",
+            "svg_id": "edge_14"
+        },
+        {
+            "target": "[root] google_compute_forwarding_rule.default",
+            "source": "[root] output.pool_public_ip",
+            "svg_id": "edge_15"
+        },
+        {
+            "target": "[root] google_compute_firewall.default",
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_16"
+        },
+        {
+            "target": "[root] google_compute_forwarding_rule.default",
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_17"
+        },
+        {
+            "target": "[root] var.credentials_file_path",
+            "source": "[root] provider.google",
+            "svg_id": "edge_18"
+        },
+        {
+            "target": "[root] var.project_name",
+            "source": "[root] provider.google",
+            "svg_id": "edge_19"
+        },
+        {
+            "target": "[root] var.region",
+            "source": "[root] provider.google",
+            "svg_id": "edge_20"
+        },
+        {
+            "target": "[root] google_compute_instance.www",
+            "source": "[root] provisioner.file (close)",
+            "svg_id": "edge_21"
+        },
+        {
+            "target": "[root] google_compute_instance.www",
+            "source": "[root] provisioner.remote-exec (close)",
+            "svg_id": "edge_22"
+        },
+        {
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "source": "[root] root",
+            "svg_id": "edge_23"
+        },
+        {
+            "target": "[root] provider.google (close)",
+            "source": "[root] root",
+            "svg_id": "edge_24"
+        },
+        {
+            "target": "[root] provisioner.file (close)",
+            "source": "[root] root",
+            "svg_id": "edge_25"
+        },
+        {
+            "target": "[root] provisioner.remote-exec (close)",
+            "source": "[root] root",
+            "svg_id": "edge_26"
+        }
+    ]
+}

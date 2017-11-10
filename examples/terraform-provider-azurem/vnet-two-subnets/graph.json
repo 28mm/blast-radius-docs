@@ -1,0 +1,181 @@
+{
+    "nodes": [
+        {
+            "group": 20000,
+            "svg_id": "node_0",
+            "simple_name": "azurerm_resource_group.rg",
+            "label": "[root] azurerm_resource_group.rg",
+            "resource_name": "rg",
+            "definition": {
+                "name": "${var.resource_group}",
+                "location": "${var.location}"
+            },
+            "type": "azurerm_resource_group"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_1",
+            "simple_name": "azurerm_subnet.subnet1",
+            "label": "[root] azurerm_subnet.subnet1",
+            "resource_name": "subnet1",
+            "definition": {
+                "name": "subnet1",
+                "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "10.0.0.0/24"
+            },
+            "type": "azurerm_subnet"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_2",
+            "simple_name": "azurerm_subnet.subnet2",
+            "label": "[root] azurerm_subnet.subnet2",
+            "resource_name": "subnet2",
+            "definition": {
+                "name": "subnet2",
+                "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "10.0.1.0/24"
+            },
+            "type": "azurerm_subnet"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_3",
+            "simple_name": "azurerm_virtual_network.vnet",
+            "label": "[root] azurerm_virtual_network.vnet",
+            "resource_name": "vnet",
+            "definition": {
+                "name": "${var.resource_group}vnet",
+                "location": "${var.location}",
+                "address_space": [
+                    "10.0.0.0/16"
+                ],
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "type": "azurerm_virtual_network"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_4",
+            "simple_name": "provider.azurerm",
+            "label": "[root] provider.azurerm",
+            "resource_name": "azurerm",
+            "definition": "",
+            "type": "provider"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_5",
+            "simple_name": "var.location",
+            "label": "[root] var.location",
+            "resource_name": "location",
+            "definition": {
+                "description": "The location/region where the virtual network is created. Changing this forces a new resource to be created.",
+                "default": "southcentralus"
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_6",
+            "simple_name": "var.resource_group",
+            "label": "[root] var.resource_group",
+            "resource_name": "resource_group",
+            "definition": {
+                "description": "The name of the resource group in which to create the virtual network."
+            },
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_7",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary",
+            "definition": "",
+            "type": "meta"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_8",
+            "simple_name": "provider.azurerm (close)",
+            "label": "[root] provider.azurerm (close)",
+            "resource_name": "azurerm",
+            "definition": "",
+            "type": "provider"
+        },
+        {
+            "group": 20000,
+            "svg_id": "node_9",
+            "simple_name": "root",
+            "label": "[root] root",
+            "resource_name": "",
+            "definition": "",
+            "type": ""
+        }
+    ],
+    "edges": [
+        {
+            "svg_id": "edge_0",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "svg_id": "edge_1",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.location"
+        },
+        {
+            "svg_id": "edge_2",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "svg_id": "edge_3",
+            "source": "[root] azurerm_subnet.subnet1",
+            "target": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "svg_id": "edge_4",
+            "source": "[root] azurerm_subnet.subnet2",
+            "target": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "svg_id": "edge_5",
+            "source": "[root] azurerm_virtual_network.vnet",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_6",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] azurerm_subnet.subnet1"
+        },
+        {
+            "svg_id": "edge_7",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] azurerm_subnet.subnet2"
+        },
+        {
+            "svg_id": "edge_8",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_subnet.subnet1"
+        },
+        {
+            "svg_id": "edge_9",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_subnet.subnet2"
+        },
+        {
+            "svg_id": "edge_10",
+            "source": "[root] root",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_11",
+            "source": "[root] root",
+            "target": "[root] provider.azurerm (close)"
+        }
+    ]
+}

@@ -1,0 +1,337 @@
+{
+    "nodes": [
+        {
+            "svg_id": "node_0",
+            "group": 20000,
+            "label": "[root] azurerm_container_service.container_service",
+            "definition": {
+                "name": "k8s-containerservice",
+                "resource_group_name": "${azurerm_resource_group.resource_group.name}",
+                "location": "${var.resource_group_location}",
+                "orchestration_platform": "Kubernetes",
+                "master_profile": {
+                    "count": "${var.master_count}",
+                    "dns_prefix": "${var.dns_name_prefix}-master"
+                },
+                "agent_pool_profile": {
+                    "name": "agentpools",
+                    "count": "${var.linux_agent_count}",
+                    "dns_prefix": "${var.dns_name_prefix}-agent",
+                    "vm_size": "${var.linux_agent_vm_size}"
+                },
+                "linux_profile": {
+                    "admin_username": "${var.linux_admin_username}",
+                    "ssh_key": {
+                        "key_data": "${var.linux_admin_ssh_publickey}"
+                    }
+                },
+                "service_principal": {
+                    "client_id": "${var.service_principal_client_id}",
+                    "client_secret": "${var.service_principal_client_secret}"
+                },
+                "diagnostics_profile": {
+                    "enabled": false
+                },
+                "tags": {
+                    "Source": "Azure Quickstarts for Terraform"
+                }
+            },
+            "simple_name": "azurerm_container_service.container_service",
+            "type": "azurerm_container_service",
+            "resource_name": "container_service"
+        },
+        {
+            "svg_id": "node_1",
+            "group": 20000,
+            "label": "[root] azurerm_resource_group.resource_group",
+            "definition": {
+                "name": "${var.resource_group_name}",
+                "location": "${var.resource_group_location}",
+                "tags": {
+                    "Source": "Azure Quickstarts for Terraform"
+                }
+            },
+            "simple_name": "azurerm_resource_group.resource_group",
+            "type": "azurerm_resource_group",
+            "resource_name": "resource_group"
+        },
+        {
+            "svg_id": "node_2",
+            "group": 20000,
+            "label": "[root] provider.azurerm",
+            "definition": {},
+            "simple_name": "provider.azurerm",
+            "type": "provider",
+            "resource_name": "azurerm"
+        },
+        {
+            "svg_id": "node_3",
+            "group": 20000,
+            "label": "[root] var.dns_name_prefix",
+            "definition": {
+                "type": "string",
+                "description": "Sets the domain name prefix for the cluster. The suffix 'master' will be added to address the master agents and the suffix 'agent' will be added to address the linux agents."
+            },
+            "simple_name": "var.dns_name_prefix",
+            "type": "var",
+            "resource_name": "dns_name_prefix"
+        },
+        {
+            "svg_id": "node_4",
+            "group": 20000,
+            "label": "[root] var.linux_admin_ssh_publickey",
+            "definition": {
+                "type": "string",
+                "description": "Configure all the linux virtual machines in the cluster with the SSH RSA public key string. The key should include three parts, for example 'ssh-rsa AAAAB...snip...UcyupgH azureuser@linuxvm'"
+            },
+            "simple_name": "var.linux_admin_ssh_publickey",
+            "type": "var",
+            "resource_name": "linux_admin_ssh_publickey"
+        },
+        {
+            "svg_id": "node_5",
+            "group": 20000,
+            "label": "[root] var.linux_admin_username",
+            "definition": {
+                "type": "string",
+                "description": "User name for authentication to the Kubernetes linux agent virtual machines in the cluster."
+            },
+            "simple_name": "var.linux_admin_username",
+            "type": "var",
+            "resource_name": "linux_admin_username"
+        },
+        {
+            "svg_id": "node_6",
+            "group": 20000,
+            "label": "[root] var.linux_agent_count",
+            "definition": {
+                "type": "string",
+                "default": "1",
+                "description": "The number of Kubernetes linux agents in the cluster. Allowed values are 1-100 (inclusive). The default value is 1."
+            },
+            "simple_name": "var.linux_agent_count",
+            "type": "var",
+            "resource_name": "linux_agent_count"
+        },
+        {
+            "svg_id": "node_7",
+            "group": 20000,
+            "label": "[root] var.linux_agent_vm_size",
+            "definition": {
+                "type": "string",
+                "default": "Standard_D2_v2",
+                "description": "The size of the virtual machine used for the Kubernetes linux agents in the cluster."
+            },
+            "simple_name": "var.linux_agent_vm_size",
+            "type": "var",
+            "resource_name": "linux_agent_vm_size"
+        },
+        {
+            "svg_id": "node_8",
+            "group": 20000,
+            "label": "[root] var.master_count",
+            "definition": {
+                "type": "string",
+                "default": "1",
+                "description": "The number of Kubernetes masters for the cluster. Allowed values are 1, 3, and 5. The default value is 1."
+            },
+            "simple_name": "var.master_count",
+            "type": "var",
+            "resource_name": "master_count"
+        },
+        {
+            "svg_id": "node_9",
+            "group": 20000,
+            "label": "[root] var.service_principal_client_id",
+            "definition": {
+                "type": "string",
+                "description": "The client id of the azure service principal used by Kubernetes to interact with Azure APIs."
+            },
+            "simple_name": "var.service_principal_client_id",
+            "type": "var",
+            "resource_name": "service_principal_client_id"
+        },
+        {
+            "svg_id": "node_10",
+            "group": 20000,
+            "label": "[root] var.service_principal_client_secret",
+            "definition": {
+                "type": "string",
+                "description": "The client secret of the azure service principal used by Kubernetes to interact with Azure APIs."
+            },
+            "simple_name": "var.service_principal_client_secret",
+            "type": "var",
+            "resource_name": "service_principal_client_secret"
+        },
+        {
+            "svg_id": "node_11",
+            "group": 20000,
+            "label": "[root] var.resource_group_location",
+            "definition": {
+                "type": "string",
+                "description": "Location of the azure resource group."
+            },
+            "simple_name": "var.resource_group_location",
+            "type": "var",
+            "resource_name": "resource_group_location"
+        },
+        {
+            "svg_id": "node_12",
+            "group": 20000,
+            "label": "[root] var.resource_group_name",
+            "definition": {
+                "type": "string",
+                "description": "Name of the azure resource group."
+            },
+            "simple_name": "var.resource_group_name",
+            "type": "var",
+            "resource_name": "resource_group_name"
+        },
+        {
+            "svg_id": "node_13",
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "definition": "",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "type": "meta",
+            "resource_name": "count-boundary"
+        },
+        {
+            "svg_id": "node_14",
+            "group": 20000,
+            "label": "[root] output.master_fqdn",
+            "definition": {
+                "value": "${azurerm_container_service.container_service.master_profile.fqdn}"
+            },
+            "simple_name": "output.master_fqdn",
+            "type": "output",
+            "resource_name": "master_fqdn"
+        },
+        {
+            "svg_id": "node_15",
+            "group": 20000,
+            "label": "[root] output.ssh_command_master0",
+            "definition": {
+                "value": "ssh ${var.linux_admin_username}@${azurerm_container_service.container_service.master_profile.fqdn} -A -p 22"
+            },
+            "simple_name": "output.ssh_command_master0",
+            "type": "output",
+            "resource_name": "ssh_command_master0"
+        },
+        {
+            "svg_id": "node_16",
+            "group": 20000,
+            "label": "[root] provider.azurerm (close)",
+            "definition": {},
+            "simple_name": "provider.azurerm (close)",
+            "type": "provider",
+            "resource_name": "azurerm"
+        },
+        {
+            "svg_id": "node_17",
+            "group": 20000,
+            "label": "[root] root",
+            "definition": "",
+            "simple_name": "root",
+            "type": "",
+            "resource_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "source": "[root] azurerm_container_service.container_service",
+            "target": "[root] azurerm_resource_group.resource_group",
+            "svg_id": "edge_0"
+        },
+        {
+            "source": "[root] azurerm_container_service.container_service",
+            "target": "[root] var.dns_name_prefix",
+            "svg_id": "edge_1"
+        },
+        {
+            "source": "[root] azurerm_container_service.container_service",
+            "target": "[root] var.linux_admin_ssh_publickey",
+            "svg_id": "edge_2"
+        },
+        {
+            "source": "[root] azurerm_container_service.container_service",
+            "target": "[root] var.linux_admin_username",
+            "svg_id": "edge_3"
+        },
+        {
+            "source": "[root] azurerm_container_service.container_service",
+            "target": "[root] var.linux_agent_count",
+            "svg_id": "edge_4"
+        },
+        {
+            "source": "[root] azurerm_container_service.container_service",
+            "target": "[root] var.linux_agent_vm_size",
+            "svg_id": "edge_5"
+        },
+        {
+            "source": "[root] azurerm_container_service.container_service",
+            "target": "[root] var.master_count",
+            "svg_id": "edge_6"
+        },
+        {
+            "source": "[root] azurerm_container_service.container_service",
+            "target": "[root] var.service_principal_client_id",
+            "svg_id": "edge_7"
+        },
+        {
+            "source": "[root] azurerm_container_service.container_service",
+            "target": "[root] var.service_principal_client_secret",
+            "svg_id": "edge_8"
+        },
+        {
+            "source": "[root] azurerm_resource_group.resource_group",
+            "target": "[root] provider.azurerm",
+            "svg_id": "edge_9"
+        },
+        {
+            "source": "[root] azurerm_resource_group.resource_group",
+            "target": "[root] var.resource_group_location",
+            "svg_id": "edge_10"
+        },
+        {
+            "source": "[root] azurerm_resource_group.resource_group",
+            "target": "[root] var.resource_group_name",
+            "svg_id": "edge_11"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.master_fqdn",
+            "svg_id": "edge_12"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.ssh_command_master0",
+            "svg_id": "edge_13"
+        },
+        {
+            "source": "[root] output.master_fqdn",
+            "target": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_14"
+        },
+        {
+            "source": "[root] output.ssh_command_master0",
+            "target": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_15"
+        },
+        {
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_16"
+        },
+        {
+            "source": "[root] root",
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_17"
+        },
+        {
+            "source": "[root] root",
+            "target": "[root] provider.azurerm (close)",
+            "svg_id": "edge_18"
+        }
+    ]
+}

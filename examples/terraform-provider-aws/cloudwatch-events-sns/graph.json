@@ -1,0 +1,232 @@
+{
+    "nodes": [
+        {
+            "label": "[root] aws_cloudwatch_event_rule.foo",
+            "svg_id": "node_0",
+            "definition": {
+                "name": "${var.rule_name}",
+                "event_pattern": "{\n  \"detail-type\": [\n    \"AWS API Call via CloudTrail\"\n  ],\n  \"detail\": {\n    \"eventSource\": [\n      \"cloudtrail.amazonaws.com\"\n    ]\n  }\n}"
+            },
+            "type": "aws_cloudwatch_event_rule",
+            "resource_name": "foo",
+            "simple_name": "aws_cloudwatch_event_rule.foo",
+            "group": 20000
+        },
+        {
+            "label": "[root] aws_cloudwatch_event_target.bar",
+            "svg_id": "node_1",
+            "definition": {
+                "rule": "${aws_cloudwatch_event_rule.foo.name}",
+                "target_id": "${var.target_name}",
+                "arn": "${aws_sns_topic.foo.arn}"
+            },
+            "type": "aws_cloudwatch_event_target",
+            "resource_name": "bar",
+            "simple_name": "aws_cloudwatch_event_target.bar",
+            "group": 20000
+        },
+        {
+            "label": "[root] aws_sns_topic.foo",
+            "svg_id": "node_2",
+            "definition": {
+                "name": "${var.sns_topic_name}"
+            },
+            "type": "aws_sns_topic",
+            "resource_name": "foo",
+            "simple_name": "aws_sns_topic.foo",
+            "group": 20000
+        },
+        {
+            "label": "[root] provider.aws",
+            "svg_id": "node_3",
+            "definition": {
+                "region": "${var.aws_region}"
+            },
+            "type": "provider",
+            "resource_name": "aws",
+            "simple_name": "provider.aws",
+            "group": 20000
+        },
+        {
+            "label": "[root] var.rule_name",
+            "svg_id": "node_4",
+            "definition": {
+                "description": "The name of the CloudWatch Event Rule",
+                "default": "tf-example-cloudwatch-event-rule-for-sns"
+            },
+            "type": "var",
+            "resource_name": "rule_name",
+            "simple_name": "var.rule_name",
+            "group": 20000
+        },
+        {
+            "label": "[root] var.target_name",
+            "svg_id": "node_5",
+            "definition": {
+                "description": "The name of the CloudWatch Event Target",
+                "default": "tf-example-cloudwatch-event-target-for-sns"
+            },
+            "type": "var",
+            "resource_name": "target_name",
+            "simple_name": "var.target_name",
+            "group": 20000
+        },
+        {
+            "label": "[root] var.sns_topic_name",
+            "svg_id": "node_6",
+            "definition": {
+                "description": "The name of the SNS Topic to send events to",
+                "default": "tf-example-sns-topic"
+            },
+            "type": "var",
+            "resource_name": "sns_topic_name",
+            "simple_name": "var.sns_topic_name",
+            "group": 20000
+        },
+        {
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_7",
+            "definition": "",
+            "type": "meta",
+            "resource_name": "count-boundary",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "group": 20000
+        },
+        {
+            "label": "[root] output.rule_arn",
+            "svg_id": "node_8",
+            "definition": {
+                "value": "${aws_cloudwatch_event_rule.foo.arn}"
+            },
+            "type": "output",
+            "resource_name": "rule_arn",
+            "simple_name": "output.rule_arn",
+            "group": 20000
+        },
+        {
+            "label": "[root] output.sns_topic_arn",
+            "svg_id": "node_9",
+            "definition": {
+                "value": "${aws_sns_topic.foo.arn}"
+            },
+            "type": "output",
+            "resource_name": "sns_topic_arn",
+            "simple_name": "output.sns_topic_arn",
+            "group": 20000
+        },
+        {
+            "label": "[root] provider.aws (close)",
+            "svg_id": "node_10",
+            "definition": {
+                "region": "${var.aws_region}"
+            },
+            "type": "provider",
+            "resource_name": "aws",
+            "simple_name": "provider.aws (close)",
+            "group": 20000
+        },
+        {
+            "label": "[root] var.aws_region",
+            "svg_id": "node_11",
+            "definition": {
+                "description": "The AWS region to create resources in.",
+                "default": "us-east-1"
+            },
+            "type": "var",
+            "resource_name": "aws_region",
+            "simple_name": "var.aws_region",
+            "group": 20000
+        },
+        {
+            "label": "[root] root",
+            "svg_id": "node_12",
+            "definition": "",
+            "type": "",
+            "resource_name": "",
+            "simple_name": "root",
+            "group": 20000
+        }
+    ],
+    "edges": [
+        {
+            "svg_id": "edge_0",
+            "source": "[root] aws_cloudwatch_event_rule.foo",
+            "target": "[root] provider.aws"
+        },
+        {
+            "svg_id": "edge_1",
+            "source": "[root] aws_cloudwatch_event_rule.foo",
+            "target": "[root] var.rule_name"
+        },
+        {
+            "svg_id": "edge_2",
+            "source": "[root] aws_cloudwatch_event_target.bar",
+            "target": "[root] aws_cloudwatch_event_rule.foo"
+        },
+        {
+            "svg_id": "edge_3",
+            "source": "[root] aws_cloudwatch_event_target.bar",
+            "target": "[root] aws_sns_topic.foo"
+        },
+        {
+            "svg_id": "edge_4",
+            "source": "[root] aws_cloudwatch_event_target.bar",
+            "target": "[root] var.target_name"
+        },
+        {
+            "svg_id": "edge_5",
+            "source": "[root] aws_sns_topic.foo",
+            "target": "[root] provider.aws"
+        },
+        {
+            "svg_id": "edge_6",
+            "source": "[root] aws_sns_topic.foo",
+            "target": "[root] var.sns_topic_name"
+        },
+        {
+            "svg_id": "edge_7",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] aws_cloudwatch_event_target.bar"
+        },
+        {
+            "svg_id": "edge_8",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.rule_arn"
+        },
+        {
+            "svg_id": "edge_9",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.sns_topic_arn"
+        },
+        {
+            "svg_id": "edge_10",
+            "source": "[root] output.rule_arn",
+            "target": "[root] aws_cloudwatch_event_rule.foo"
+        },
+        {
+            "svg_id": "edge_11",
+            "source": "[root] output.sns_topic_arn",
+            "target": "[root] aws_sns_topic.foo"
+        },
+        {
+            "svg_id": "edge_12",
+            "source": "[root] provider.aws (close)",
+            "target": "[root] aws_cloudwatch_event_target.bar"
+        },
+        {
+            "svg_id": "edge_13",
+            "source": "[root] provider.aws",
+            "target": "[root] var.aws_region"
+        },
+        {
+            "svg_id": "edge_14",
+            "source": "[root] root",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_15",
+            "source": "[root] root",
+            "target": "[root] provider.aws (close)"
+        }
+    ]
+}

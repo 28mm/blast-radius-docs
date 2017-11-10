@@ -1,0 +1,1444 @@
+{
+    "nodes": [
+        {
+            "definition": {
+                "name": "${var.dns_name}-set",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "label": "[root] azurerm_availability_set.availability_set",
+            "group": 20000,
+            "type": "azurerm_availability_set",
+            "svg_id": "node_0",
+            "simple_name": "azurerm_availability_set.availability_set",
+            "resource_name": "availability_set"
+        },
+        {
+            "definition": {
+                "name": "${var.dns_name}-lb",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "depends_on": [
+                    "azurerm_public_ip.pip"
+                ],
+                "frontend_ip_configuration": {
+                    "name": "${var.dns_name}-sshIPCfg",
+                    "public_ip_address_id": "${azurerm_public_ip.pip.id}"
+                }
+            },
+            "label": "[root] azurerm_lb.lb",
+            "group": 20000,
+            "type": "azurerm_lb",
+            "svg_id": "node_1",
+            "simple_name": "azurerm_lb.lb",
+            "resource_name": "lb"
+        },
+        {
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.lb.id}",
+                "name": "${var.dns_name}-ilbBackendPool"
+            },
+            "label": "[root] azurerm_lb_backend_address_pool.backend_pool",
+            "group": 20000,
+            "type": "azurerm_lb_backend_address_pool",
+            "svg_id": "node_2",
+            "simple_name": "azurerm_lb_backend_address_pool.backend_pool",
+            "resource_name": "backend_pool"
+        },
+        {
+            "definition": {
+                "name": "${var.dns_name}-MySQLNatRule-${count.index}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.lb.id}",
+                "protocol": "tcp",
+                "frontend_port": "330${count.index + 6}",
+                "backend_port": 3306,
+                "frontend_ip_configuration_name": "${var.dns_name}-sshIPCfg",
+                "count": "${var.node_count}",
+                "depends_on": [
+                    "azurerm_lb.lb"
+                ]
+            },
+            "label": "[root] azurerm_lb_nat_rule.MySQLNatRule0",
+            "group": 20000,
+            "type": "azurerm_lb_nat_rule",
+            "svg_id": "node_3",
+            "simple_name": "azurerm_lb_nat_rule.MySQLNatRule0",
+            "resource_name": "MySQLNatRule0"
+        },
+        {
+            "definition": {
+                "name": "${var.dns_name}-NatRule-${count.index}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.lb.id}",
+                "protocol": "tcp",
+                "frontend_port": "6400${count.index + 1}",
+                "backend_port": 22,
+                "frontend_ip_configuration_name": "${var.dns_name}-sshIPCfg",
+                "count": "${var.node_count}",
+                "depends_on": [
+                    "azurerm_lb.lb"
+                ]
+            },
+            "label": "[root] azurerm_lb_nat_rule.NatRule0",
+            "group": 20000,
+            "type": "azurerm_lb_nat_rule",
+            "svg_id": "node_4",
+            "simple_name": "azurerm_lb_nat_rule.NatRule0",
+            "resource_name": "NatRule0"
+        },
+        {
+            "definition": {
+                "name": "${var.dns_name}-ProbeNatRule-${count.index}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.lb.id}",
+                "protocol": "tcp",
+                "frontend_port": "920${count.index}",
+                "backend_port": 9200,
+                "frontend_ip_configuration_name": "${var.dns_name}-sshIPCfg",
+                "count": "${var.node_count}",
+                "depends_on": [
+                    "azurerm_lb.lb"
+                ]
+            },
+            "label": "[root] azurerm_lb_nat_rule.ProbeNatRule0",
+            "group": 20000,
+            "type": "azurerm_lb_nat_rule",
+            "svg_id": "node_5",
+            "simple_name": "azurerm_lb_nat_rule.ProbeNatRule0",
+            "resource_name": "ProbeNatRule0"
+        },
+        {
+            "definition": {
+                "name": "${var.nic_name}${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_id": "${azurerm_network_security_group.nsg.id}",
+                "count": "${var.node_count}",
+                "depends_on": [
+                    "azurerm_virtual_network.vnet",
+                    "azurerm_public_ip.pip",
+                    "azurerm_lb.lb"
+                ],
+                "ip_configuration": {
+                    "name": "ipconfig${count.index}",
+                    "subnet_id": "${azurerm_subnet.db_subnet.id}",
+                    "private_ip_address_allocation": "Static",
+                    "private_ip_address": "10.0.1.${count.index + 4}",
+                    "load_balancer_backend_address_pools_ids": [
+                        "${azurerm_lb_backend_address_pool.backend_pool.id}"
+                    ],
+                    "load_balancer_inbound_nat_rules_ids": [
+                        "${element(azurerm_lb_nat_rule.NatRule0.*.id, count.index)}",
+                        "${element(azurerm_lb_nat_rule.MySQLNatRule0.*.id, count.index)}",
+                        "${element(azurerm_lb_nat_rule.ProbeNatRule0.*.id, count.index)}"
+                    ]
+                }
+            },
+            "label": "[root] azurerm_network_interface.nic",
+            "group": 20000,
+            "type": "azurerm_network_interface",
+            "svg_id": "node_6",
+            "simple_name": "azurerm_network_interface.nic",
+            "resource_name": "nic"
+        },
+        {
+            "definition": {
+                "name": "${var.unique_prefix}-nsg",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "security_rule": [
+                    {
+                        "name": "allow-ssh",
+                        "description": "Allow SSH",
+                        "priority": 100,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "22",
+                        "source_address_prefix": "Internet",
+                        "destination_address_prefix": "*"
+                    },
+                    {
+                        "name": "MySQL",
+                        "description": "MySQL",
+                        "priority": 110,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "3306",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    }
+                ]
+            },
+            "label": "[root] azurerm_network_security_group.nsg",
+            "group": 20000,
+            "type": "azurerm_network_security_group",
+            "svg_id": "node_7",
+            "simple_name": "azurerm_network_security_group.nsg",
+            "resource_name": "nsg"
+        },
+        {
+            "definition": {
+                "name": "${var.public_ip_name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "public_ip_address_allocation": "Static",
+                "domain_name_label": "${var.dns_name}"
+            },
+            "label": "[root] azurerm_public_ip.pip",
+            "group": 20000,
+            "type": "azurerm_public_ip",
+            "svg_id": "node_8",
+            "simple_name": "azurerm_public_ip.pip",
+            "resource_name": "pip"
+        },
+        {
+            "definition": {
+                "name": "${var.resource_group}",
+                "location": "${var.location}"
+            },
+            "label": "[root] azurerm_resource_group.rg",
+            "group": 20000,
+            "type": "azurerm_resource_group",
+            "svg_id": "node_9",
+            "simple_name": "azurerm_resource_group.rg",
+            "resource_name": "rg"
+        },
+        {
+            "definition": {
+                "name": "${var.unique_prefix}${var.storage_account_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_replication_type}"
+            },
+            "label": "[root] azurerm_storage_account.stor",
+            "group": 20000,
+            "type": "azurerm_storage_account",
+            "svg_id": "node_10",
+            "simple_name": "azurerm_storage_account.stor",
+            "resource_name": "stor"
+        },
+        {
+            "definition": {
+                "name": "${var.db_subnet_name}",
+                "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_id": "${azurerm_network_security_group.nsg.id}",
+                "address_prefix": "${var.db_subnet_address_prefix}",
+                "depends_on": [
+                    "azurerm_virtual_network.vnet"
+                ]
+            },
+            "label": "[root] azurerm_subnet.db_subnet",
+            "group": 20000,
+            "type": "azurerm_subnet",
+            "svg_id": "node_11",
+            "simple_name": "azurerm_subnet.db_subnet",
+            "resource_name": "db_subnet"
+        },
+        {
+            "definition": {
+                "name": "website",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "depends_on": [
+                    "azurerm_virtual_machine_extension.setup_mysql"
+                ],
+                "template_body": "{  \n   \"$schema\":\"http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#\",\n   \"contentVersion\":\"1.0.0.0\",\n   \"parameters\":{  \n      \"siteName\":{  \n         \"type\":\"string\",\n         \"defaultValue\":\"${var.site_name}\"\n      },\n      \"hostingPlanName\":{  \n         \"type\":\"string\",\n         \"defaultValue\":\"${var.hosting_plan_name}\"\n      },\n      \"sku\":{  \n         \"type\":\"string\",\n         \"allowedValues\":[  \n            \"Free\",\n            \"Shared\",\n            \"Basic\",\n            \"Standard\",\n            \"Premium\"\n         ],\n         \"defaultValue\":\"${var.sku}\"\n      },\n      \"workerSize\":{  \n         \"type\":\"string\",\n         \"allowedValues\":[  \n            \"0\",\n            \"1\",\n            \"2\"\n         ],\n         \"defaultValue\":\"${var.worker_size}\"\n      },\n      \"dbServer\":{  \n         \"type\":\"string\",\n         \"defaultValue\":\"${var.dns_name}.${azurerm_resource_group.rg.location}.cloudapp.azure.com:${var.mysql_front_end_port_0}\"\n      },\n      \"dbName\":{  \n         \"type\":\"string\",\n         \"defaultValue\":\"${var.unique_prefix}wordpress\"\n      },\n      \"dbAdminPassword\":{  \n         \"type\":\"string\",\n         \"defaultValue\":\"${var.mysql_root_password}\"\n      }\n   },\n   \"variables\":{  \n      \"connectionString\":\"[concat('Database=', parameters('dbName'), ';Data Source=', parameters('dbServer'), ';User Id=admin;Password=', parameters('dbAdminPassword'))]\",\n      \"repoUrl\":\"https://github.com/azureappserviceoss/wordpress-azure\",\n      \"branch\":\"master\",\n      \"workerSize\":\"[parameters('workerSize')]\",\n      \"sku\":\"[parameters('sku')]\",\n      \"hostingPlanName\":\"[parameters('hostingPlanName')]\"\n   },\n   \"resources\":[  \n      {  \n         \"apiVersion\":\"2014-06-01\",\n         \"name\":\"[variables('hostingPlanName')]\",\n         \"type\":\"Microsoft.Web/serverfarms\",\n         \"location\":\"[resourceGroup().location]\",\n         \"properties\":{  \n            \"name\":\"[variables('hostingPlanName')]\",\n            \"sku\":\"[variables('sku')]\",\n            \"workerSize\":\"[variables('workerSize')]\",\n            \"hostingEnvironment\":\"\",\n            \"numberOfWorkers\":0\n         }\n      },\n      {  \n         \"apiVersion\":\"2015-02-01\",\n         \"name\":\"[parameters('siteName')]\",\n         \"type\":\"Microsoft.Web/sites\",\n         \"location\":\"[resourceGroup().location]\",\n         \"tags\":{  \n            \"[concat('hidden-related:', '/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Web/serverfarms/', variables('hostingPlanName'))]\":\"empty\"\n         },\n         \"dependsOn\":[  \n            \"[concat('Microsoft.Web/serverfarms/', variables('hostingPlanName'))]\"\n         ],\n         \"properties\":{  \n            \"name\":\"[parameters('siteName')]\",\n            \"serverFarmId\":\"[concat('/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Web/serverfarms/', variables('hostingPlanName'))]\",\n            \"hostingEnvironment\":\"\"\n         },\n         \"resources\":[  \n            {  \n               \"apiVersion\":\"2015-04-01\",\n               \"name\":\"connectionstrings\",\n               \"type\":\"config\",\n               \"dependsOn\":[  \n                  \"[concat('Microsoft.Web/Sites/', parameters('siteName'))]\"\n               ],\n               \"properties\":{  \n                  \"defaultConnection\":{  \n                     \"value\":\"[variables('connectionString')]\",\n                     \"type\":\"MySQL\"\n                  }\n               }\n            },\n            {  \n               \"apiVersion\":\"2015-04-01\",\n               \"name\":\"web\",\n               \"type\":\"config\",\n               \"dependsOn\":[  \n                  \"[concat('Microsoft.Web/Sites/', parameters('siteName'))]\"\n               ],\n               \"properties\":{  \n                  \"phpVersion\":\"5.6\"\n               }\n            },\n            {  \n               \"apiVersion\":\"2015-08-01\",\n               \"name\":\"web\",\n               \"type\":\"sourcecontrols\",\n               \"dependsOn\":[  \n                  \"[resourceId('Microsoft.Web/Sites', parameters('siteName'))]\",\n                  \"[concat('Microsoft.Web/Sites/', parameters('siteName'), '/config/connectionstrings')]\",\n                  \"[concat('Microsoft.Web/Sites/', parameters('siteName'), '/config/web')]\"\n               ],\n               \"properties\":{  \n                  \"RepoUrl\":\"[variables('repoUrl')]\",\n                  \"branch\":\"[variables('branch')]\",\n                  \"IsManualIntegration\":true\n               }\n            }\n         ]\n      }      \n   ]\n}",
+                "deployment_mode": "Incremental"
+            },
+            "label": "[root] azurerm_template_deployment.website",
+            "group": 20000,
+            "type": "azurerm_template_deployment",
+            "svg_id": "node_12",
+            "simple_name": "azurerm_template_deployment.website",
+            "resource_name": "website"
+        },
+        {
+            "definition": {
+                "name": "${var.dns_name}${count.index}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "vm_size": "${var.vm_size}",
+                "network_interface_ids": [
+                    "${element(azurerm_network_interface.nic.*.id, count.index)}"
+                ],
+                "count": "${var.node_count}",
+                "availability_set_id": "${azurerm_availability_set.availability_set.id}",
+                "depends_on": [
+                    "azurerm_availability_set.availability_set",
+                    "azurerm_network_interface.nic",
+                    "azurerm_storage_account.stor"
+                ],
+                "storage_image_reference": {
+                    "publisher": "${var.image_publisher}",
+                    "offer": "${var.image_offer}",
+                    "sku": "${var.os_version}",
+                    "version": "latest"
+                },
+                "storage_os_disk": {
+                    "name": "osdisk${count.index}",
+                    "vhd_uri": "https://${azurerm_storage_account.stor.name}.blob.core.windows.net/vhds/${var.dns_name}${count.index}-osdisk.vhd",
+                    "create_option": "FromImage",
+                    "caching": "ReadWrite"
+                },
+                "os_profile": {
+                    "computer_name": "${var.dns_name}${count.index}",
+                    "admin_username": "${var.vm_admin_username}",
+                    "admin_password": "${var.vm_admin_password}"
+                },
+                "storage_data_disk": [
+                    {
+                        "name": "datadisk1",
+                        "vhd_uri": "https://${azurerm_storage_account.stor.name}.blob.core.windows.net/vhds/${var.dns_name}${count.index}-datadisk1.vhd",
+                        "disk_size_gb": "1000",
+                        "create_option": "Empty",
+                        "lun": 0
+                    },
+                    {
+                        "name": "datadisk2",
+                        "vhd_uri": "https://${azurerm_storage_account.stor.name}.blob.core.windows.net/vhds/${var.dns_name}${count.index}-datadisk2.vhd",
+                        "disk_size_gb": "1000",
+                        "create_option": "Empty",
+                        "lun": 1
+                    }
+                ],
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                }
+            },
+            "label": "[root] azurerm_virtual_machine.vm",
+            "group": 20000,
+            "type": "azurerm_virtual_machine",
+            "svg_id": "node_13",
+            "simple_name": "azurerm_virtual_machine.vm",
+            "resource_name": "vm"
+        },
+        {
+            "definition": {
+                "name": "${var.dns_name}-${count.index}-setupMySQL",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "virtual_machine_name": "${element(azurerm_virtual_machine.vm.*.name, count.index)}",
+                "publisher": "Microsoft.Azure.Extensions",
+                "type": "CustomScript",
+                "type_handler_version": "2.0",
+                "auto_upgrade_minor_version": true,
+                "count": "${var.node_count}",
+                "depends_on": [
+                    "azurerm_virtual_machine.vm",
+                    "azurerm_lb_nat_rule.ProbeNatRule0"
+                ],
+                "settings": "{\n  \"fileUris\": [\"${var.artifacts_location}${var.azuremysql_script}\"]\n}",
+                "protected_settings": " {\n   \"commandToExecute\": \"bash azuremysql.sh ${count.index + 1} 10.0.1.${count.index + 4} ${var.artifacts_location}${var.mysql_cfg_file_path} '${var.mysql_replication_password}' '${var.mysql_root_password}' '${var.mysql_probe_password}' 10.0.1.4 ${var.unique_prefix}wordpress\"\n }"
+            },
+            "label": "[root] azurerm_virtual_machine_extension.setup_mysql",
+            "group": 20000,
+            "type": "azurerm_virtual_machine_extension",
+            "svg_id": "node_14",
+            "simple_name": "azurerm_virtual_machine_extension.setup_mysql",
+            "resource_name": "setup_mysql"
+        },
+        {
+            "definition": {
+                "name": "${var.virtual_network_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "address_space": [
+                    "${var.vnet_address_prefix}"
+                ]
+            },
+            "label": "[root] azurerm_virtual_network.vnet",
+            "group": 20000,
+            "type": "azurerm_virtual_network",
+            "svg_id": "node_15",
+            "simple_name": "azurerm_virtual_network.vnet",
+            "resource_name": "vnet"
+        },
+        {
+            "definition": "",
+            "label": "[root] provider.azurerm",
+            "group": 20000,
+            "type": "provider",
+            "svg_id": "node_16",
+            "simple_name": "provider.azurerm",
+            "resource_name": "azurerm"
+        },
+        {
+            "definition": {
+                "description": "Connect to your cluster using dnsName.location.cloudapp.azure.com"
+            },
+            "label": "[root] var.dns_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_17",
+            "simple_name": "var.dns_name",
+            "resource_name": "dns_name"
+        },
+        {
+            "definition": {
+                "default": 2
+            },
+            "label": "[root] var.node_count",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_18",
+            "simple_name": "var.node_count",
+            "resource_name": "node_count"
+        },
+        {
+            "definition": {
+                "description": "Name of the Network Interface",
+                "default": "nic"
+            },
+            "label": "[root] var.nic_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_19",
+            "simple_name": "var.nic_name",
+            "resource_name": "nic_name"
+        },
+        {
+            "definition": {
+                "description": "This prefix is used for names which need to be globally unique."
+            },
+            "label": "[root] var.unique_prefix",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_20",
+            "simple_name": "var.unique_prefix",
+            "resource_name": "unique_prefix"
+        },
+        {
+            "definition": {
+                "description": "public IP name for MySQL loadbalancer",
+                "default": "mysqlIP01"
+            },
+            "label": "[root] var.public_ip_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_21",
+            "simple_name": "var.public_ip_name",
+            "resource_name": "public_ip_name"
+        },
+        {
+            "definition": {
+                "description": "The location/region where the virtual network is created. Changing this forces a new resource to be created.",
+                "default": "southcentralus"
+            },
+            "label": "[root] var.location",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_22",
+            "simple_name": "var.location",
+            "resource_name": "location"
+        },
+        {
+            "definition": {
+                "description": "Resource group name into which your Spark and Cassandra deployment will go."
+            },
+            "label": "[root] var.resource_group",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_23",
+            "simple_name": "var.resource_group",
+            "resource_name": "resource_group"
+        },
+        {
+            "definition": {
+                "description": "Name of the Storage Account",
+                "default": "storagesa"
+            },
+            "label": "[root] var.storage_account_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_24",
+            "simple_name": "var.storage_account_name",
+            "resource_name": "storage_account_name"
+        },
+        {
+            "definition": {
+                "description": "Storage account Tier for the cluster (e.g. Standard or Premium)",
+                "default": "Standard"
+            },
+            "label": "[root] var.storage_account_tier",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_25",
+            "simple_name": "var.storage_account_tier",
+            "resource_name": "storage_account_tier"
+        },
+        {
+            "definition": {
+                "description": "Storage account replication type for the cluster (e.g. LRS, GRS etc)",
+                "default": "LRS"
+            },
+            "label": "[root] var.storage_replication_type",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_26",
+            "simple_name": "var.storage_replication_type",
+            "resource_name": "storage_replication_type"
+        },
+        {
+            "definition": {
+                "description": "IP address in CIDR for db subnet",
+                "default": "10.0.1.0/24"
+            },
+            "label": "[root] var.db_subnet_address_prefix",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_27",
+            "simple_name": "var.db_subnet_address_prefix",
+            "resource_name": "db_subnet_address_prefix"
+        },
+        {
+            "definition": {
+                "description": "subnet name for the MySQL nodes",
+                "default": "default"
+            },
+            "label": "[root] var.db_subnet_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_28",
+            "simple_name": "var.db_subnet_name",
+            "resource_name": "db_subnet_name"
+        },
+        {
+            "definition": {
+                "description": "website host plan"
+            },
+            "label": "[root] var.hosting_plan_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_29",
+            "simple_name": "var.hosting_plan_name",
+            "resource_name": "hosting_plan_name"
+        },
+        {
+            "definition": {
+                "description": "MySQL public port",
+                "default": "3306"
+            },
+            "label": "[root] var.mysql_front_end_port_0",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_30",
+            "simple_name": "var.mysql_front_end_port_0",
+            "resource_name": "mysql_front_end_port_0"
+        },
+        {
+            "definition": {
+                "description": "wordpress site name"
+            },
+            "label": "[root] var.site_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_31",
+            "simple_name": "var.site_name",
+            "resource_name": "site_name"
+        },
+        {
+            "definition": {
+                "description": "Website sku. Allowed values: Basic, Standard, Premium",
+                "default": "Standard"
+            },
+            "label": "[root] var.sku",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_32",
+            "simple_name": "var.sku",
+            "resource_name": "sku"
+        },
+        {
+            "definition": {
+                "description": "Website worker size. Allowed values: 0, 1, 2",
+                "default": "1"
+            },
+            "label": "[root] var.worker_size",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_33",
+            "simple_name": "var.worker_size",
+            "resource_name": "worker_size"
+        },
+        {
+            "definition": {
+                "description": "VM OS name",
+                "default": "CentOS"
+            },
+            "label": "[root] var.image_offer",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_34",
+            "simple_name": "var.image_offer",
+            "resource_name": "image_offer"
+        },
+        {
+            "definition": {
+                "description": "publisher for the VM OS image",
+                "default": "OpenLogic"
+            },
+            "label": "[root] var.image_publisher",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_35",
+            "simple_name": "var.image_publisher",
+            "resource_name": "image_publisher"
+        },
+        {
+            "definition": {
+                "description": "version of the image to apply (az vm image list)",
+                "default": "6.5"
+            },
+            "label": "[root] var.os_version",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_36",
+            "simple_name": "var.os_version",
+            "resource_name": "os_version"
+        },
+        {
+            "definition": {
+                "description": "Specify an admin password that should be used to login to the VM. Must be between 6-72 characters long and must satisfy at least 3 of password complexity requirements from the following: 1) Contains an uppercase character 2) Contains a lowercase character 3) Contains a numeric digit 4) Contains a special character"
+            },
+            "label": "[root] var.vm_admin_password",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_37",
+            "simple_name": "var.vm_admin_password",
+            "resource_name": "vm_admin_password"
+        },
+        {
+            "definition": {
+                "description": "Specify an admin username that should be used to login to the VM. Min length: 1"
+            },
+            "label": "[root] var.vm_admin_username",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_38",
+            "simple_name": "var.vm_admin_username",
+            "resource_name": "vm_admin_username"
+        },
+        {
+            "definition": {
+                "description": "size for the VMs",
+                "default": "Standard_D2"
+            },
+            "label": "[root] var.vm_size",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_39",
+            "simple_name": "var.vm_size",
+            "resource_name": "vm_size"
+        },
+        {
+            "definition": {
+                "description": "The base URI where artifacts required by this template are located.",
+                "default": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/wordpress-mysql-replication/"
+            },
+            "label": "[root] var.artifacts_location",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_40",
+            "simple_name": "var.artifacts_location",
+            "resource_name": "artifacts_location"
+        },
+        {
+            "definition": {
+                "description": "The directory and script which will configure MySQL",
+                "default": "scripts/azuremysql.sh"
+            },
+            "label": "[root] var.azuremysql_script",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_41",
+            "simple_name": "var.azuremysql_script",
+            "resource_name": "azuremysql_script"
+        },
+        {
+            "definition": {
+                "description": "The directory and script which will be called in the extension for the MySQL config",
+                "default": "scripts/my.cnf.template"
+            },
+            "label": "[root] var.mysql_cfg_file_path",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_42",
+            "simple_name": "var.mysql_cfg_file_path",
+            "resource_name": "mysql_cfg_file_path"
+        },
+        {
+            "definition": {
+                "description": "mysql probe password"
+            },
+            "label": "[root] var.mysql_probe_password",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_43",
+            "simple_name": "var.mysql_probe_password",
+            "resource_name": "mysql_probe_password"
+        },
+        {
+            "definition": {
+                "description": "mysql replication user password"
+            },
+            "label": "[root] var.mysql_replication_password",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_44",
+            "simple_name": "var.mysql_replication_password",
+            "resource_name": "mysql_replication_password"
+        },
+        {
+            "definition": {
+                "description": "mysql root user password"
+            },
+            "label": "[root] var.mysql_root_password",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_45",
+            "simple_name": "var.mysql_root_password",
+            "resource_name": "mysql_root_password"
+        },
+        {
+            "definition": {
+                "description": "New or Existing Virtual network name for the cluster",
+                "default": "mysqlvnet"
+            },
+            "label": "[root] var.virtual_network_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_46",
+            "simple_name": "var.virtual_network_name",
+            "resource_name": "virtual_network_name"
+        },
+        {
+            "definition": {
+                "description": "IP address in CIDR for virtual network",
+                "default": "10.0.0.0/16"
+            },
+            "label": "[root] var.vnet_address_prefix",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_47",
+            "simple_name": "var.vnet_address_prefix",
+            "resource_name": "vnet_address_prefix"
+        },
+        {
+            "definition": "",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "group": 20000,
+            "type": "meta",
+            "svg_id": "node_48",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary"
+        },
+        {
+            "definition": {
+                "value": "http://${var.dns_name}.azurewebsites.net"
+            },
+            "label": "[root] output.azure_website",
+            "group": 20000,
+            "type": "output",
+            "svg_id": "node_49",
+            "simple_name": "output.azure_website",
+            "resource_name": "azure_website"
+        },
+        {
+            "definition": {
+                "value": "${azurerm_public_ip.pip.fqdn}"
+            },
+            "label": "[root] output.fqdn",
+            "group": 20000,
+            "type": "output",
+            "svg_id": "node_50",
+            "simple_name": "output.fqdn",
+            "resource_name": "fqdn"
+        },
+        {
+            "definition": {
+                "value": "${azurerm_public_ip.pip.ip_address}"
+            },
+            "label": "[root] output.ip_address",
+            "group": 20000,
+            "type": "output",
+            "svg_id": "node_51",
+            "simple_name": "output.ip_address",
+            "resource_name": "ip_address"
+        },
+        {
+            "definition": {
+                "value": "${var.resource_group}"
+            },
+            "label": "[root] output.resource_group",
+            "group": 20000,
+            "type": "output",
+            "svg_id": "node_52",
+            "simple_name": "output.resource_group",
+            "resource_name": "resource_group"
+        },
+        {
+            "definition": {
+                "value": "ssh ${var.vm_admin_username}@${azurerm_public_ip.pip.ip_address} -p 64001"
+            },
+            "label": "[root] output.ssh_command_master",
+            "group": 20000,
+            "type": "output",
+            "svg_id": "node_53",
+            "simple_name": "output.ssh_command_master",
+            "resource_name": "ssh_command_master"
+        },
+        {
+            "definition": {
+                "value": "ssh ${var.vm_admin_username}@${azurerm_public_ip.pip.ip_address} -p 64002"
+            },
+            "label": "[root] output.ssh_command_slave",
+            "group": 20000,
+            "type": "output",
+            "svg_id": "node_54",
+            "simple_name": "output.ssh_command_slave",
+            "resource_name": "ssh_command_slave"
+        },
+        {
+            "definition": {
+                "default": "2015-06-15"
+            },
+            "label": "[root] var.api_version",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_55",
+            "simple_name": "var.api_version",
+            "resource_name": "api_version"
+        },
+        {
+            "definition": {
+                "description": "Start IP address for the VMs in db subnet",
+                "default": "10.0.1.4"
+            },
+            "label": "[root] var.db_subnet_start_address",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_56",
+            "simple_name": "var.db_subnet_start_address",
+            "resource_name": "db_subnet_start_address"
+        },
+        {
+            "definition": {
+                "description": "VM OS version. Allowed values: 6.5, 6.6",
+                "default": "6.5"
+            },
+            "label": "[root] var.image_sku",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_57",
+            "simple_name": "var.image_sku",
+            "resource_name": "image_sku"
+        },
+        {
+            "definition": {
+                "description": "MySQL public port",
+                "default": "3307"
+            },
+            "label": "[root] var.mysql_front_end_port_1",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_58",
+            "simple_name": "var.mysql_front_end_port_1",
+            "resource_name": "mysql_front_end_port_1"
+        },
+        {
+            "definition": {
+                "description": "MySQL public port master",
+                "default": "9200"
+            },
+            "label": "[root] var.mysql_probe_port_0",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_59",
+            "simple_name": "var.mysql_probe_port_0",
+            "resource_name": "mysql_probe_port_0"
+        },
+        {
+            "definition": {
+                "description": "MySQL public port slave",
+                "default": "9201"
+            },
+            "label": "[root] var.mysql_probe_port_1",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_60",
+            "simple_name": "var.mysql_probe_port_1",
+            "resource_name": "mysql_probe_port_1"
+        },
+        {
+            "definition": {
+                "description": "the name of the offer (az vm image list)",
+                "default": "CentOS"
+            },
+            "label": "[root] var.os_image_offer",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_61",
+            "simple_name": "var.os_image_offer",
+            "resource_name": "os_image_offer"
+        },
+        {
+            "definition": {
+                "description": "name of the publisher of the image (az vm image list)",
+                "default": "OpenLogic"
+            },
+            "label": "[root] var.os_image_publisher",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_62",
+            "simple_name": "var.os_image_publisher",
+            "resource_name": "os_image_publisher"
+        },
+        {
+            "definition": {
+                "description": "public ssh port for VM1",
+                "default": "64001"
+            },
+            "label": "[root] var.ssh_nat_rule_front_end_port_0",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_63",
+            "simple_name": "var.ssh_nat_rule_front_end_port_0",
+            "resource_name": "ssh_nat_rule_front_end_port_0"
+        },
+        {
+            "definition": {
+                "description": "public ssh port for VM2",
+                "default": "64002"
+            },
+            "label": "[root] var.ssh_nat_rule_front_end_port_1",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_64",
+            "simple_name": "var.ssh_nat_rule_front_end_port_1",
+            "resource_name": "ssh_nat_rule_front_end_port_1"
+        },
+        {
+            "definition": {
+                "default": "2015-01-01"
+            },
+            "label": "[root] var.template_api_version",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_65",
+            "simple_name": "var.template_api_version",
+            "resource_name": "template_api_version"
+        },
+        {
+            "definition": {
+                "description": "If using existing VNet, specifies the resource group for the existing VNet",
+                "default": ""
+            },
+            "label": "[root] var.vnet_existing_resource_group_name",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_66",
+            "simple_name": "var.vnet_existing_resource_group_name",
+            "resource_name": "vnet_existing_resource_group_name"
+        },
+        {
+            "definition": {
+                "description": "Identifies whether to use new or existing Virtual Network",
+                "default": "new"
+            },
+            "label": "[root] var.vnet_new_or_existing",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_67",
+            "simple_name": "var.vnet_new_or_existing",
+            "resource_name": "vnet_new_or_existing"
+        },
+        {
+            "definition": {
+                "default": "wordpress"
+            },
+            "label": "[root] var.wpdbname",
+            "group": 20000,
+            "type": "var",
+            "svg_id": "node_68",
+            "simple_name": "var.wpdbname",
+            "resource_name": "wpdbname"
+        },
+        {
+            "definition": "",
+            "label": "[root] provider.azurerm (close)",
+            "group": 20000,
+            "type": "provider",
+            "svg_id": "node_69",
+            "simple_name": "provider.azurerm (close)",
+            "resource_name": "azurerm"
+        },
+        {
+            "definition": "",
+            "label": "[root] root",
+            "group": 20000,
+            "type": "",
+            "svg_id": "node_70",
+            "simple_name": "root",
+            "resource_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "svg_id": "edge_0",
+            "target": "[root] azurerm_resource_group.rg",
+            "source": "[root] azurerm_availability_set.availability_set"
+        },
+        {
+            "svg_id": "edge_1",
+            "target": "[root] var.dns_name",
+            "source": "[root] azurerm_availability_set.availability_set"
+        },
+        {
+            "svg_id": "edge_2",
+            "target": "[root] azurerm_public_ip.pip",
+            "source": "[root] azurerm_lb.lb"
+        },
+        {
+            "svg_id": "edge_3",
+            "target": "[root] azurerm_lb.lb",
+            "source": "[root] azurerm_lb_backend_address_pool.backend_pool"
+        },
+        {
+            "svg_id": "edge_4",
+            "target": "[root] azurerm_lb.lb",
+            "source": "[root] azurerm_lb_nat_rule.MySQLNatRule0"
+        },
+        {
+            "svg_id": "edge_5",
+            "target": "[root] var.node_count",
+            "source": "[root] azurerm_lb_nat_rule.MySQLNatRule0"
+        },
+        {
+            "svg_id": "edge_6",
+            "target": "[root] azurerm_lb.lb",
+            "source": "[root] azurerm_lb_nat_rule.NatRule0"
+        },
+        {
+            "svg_id": "edge_7",
+            "target": "[root] var.node_count",
+            "source": "[root] azurerm_lb_nat_rule.NatRule0"
+        },
+        {
+            "svg_id": "edge_8",
+            "target": "[root] azurerm_lb.lb",
+            "source": "[root] azurerm_lb_nat_rule.ProbeNatRule0"
+        },
+        {
+            "svg_id": "edge_9",
+            "target": "[root] var.node_count",
+            "source": "[root] azurerm_lb_nat_rule.ProbeNatRule0"
+        },
+        {
+            "svg_id": "edge_10",
+            "target": "[root] azurerm_lb_backend_address_pool.backend_pool",
+            "source": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "svg_id": "edge_11",
+            "target": "[root] azurerm_lb_nat_rule.MySQLNatRule0",
+            "source": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "svg_id": "edge_12",
+            "target": "[root] azurerm_lb_nat_rule.NatRule0",
+            "source": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "svg_id": "edge_13",
+            "target": "[root] azurerm_lb_nat_rule.ProbeNatRule0",
+            "source": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "svg_id": "edge_14",
+            "target": "[root] azurerm_subnet.db_subnet",
+            "source": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "svg_id": "edge_15",
+            "target": "[root] var.nic_name",
+            "source": "[root] azurerm_network_interface.nic"
+        },
+        {
+            "svg_id": "edge_16",
+            "target": "[root] azurerm_resource_group.rg",
+            "source": "[root] azurerm_network_security_group.nsg"
+        },
+        {
+            "svg_id": "edge_17",
+            "target": "[root] var.unique_prefix",
+            "source": "[root] azurerm_network_security_group.nsg"
+        },
+        {
+            "svg_id": "edge_18",
+            "target": "[root] azurerm_resource_group.rg",
+            "source": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "svg_id": "edge_19",
+            "target": "[root] var.dns_name",
+            "source": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "svg_id": "edge_20",
+            "target": "[root] var.public_ip_name",
+            "source": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "svg_id": "edge_21",
+            "target": "[root] provider.azurerm",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_22",
+            "target": "[root] var.location",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_23",
+            "target": "[root] var.resource_group",
+            "source": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_24",
+            "target": "[root] azurerm_resource_group.rg",
+            "source": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "svg_id": "edge_25",
+            "target": "[root] var.storage_account_name",
+            "source": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "svg_id": "edge_26",
+            "target": "[root] var.storage_account_tier",
+            "source": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "svg_id": "edge_27",
+            "target": "[root] var.storage_replication_type",
+            "source": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "svg_id": "edge_28",
+            "target": "[root] var.unique_prefix",
+            "source": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "svg_id": "edge_29",
+            "target": "[root] azurerm_network_security_group.nsg",
+            "source": "[root] azurerm_subnet.db_subnet"
+        },
+        {
+            "svg_id": "edge_30",
+            "target": "[root] azurerm_virtual_network.vnet",
+            "source": "[root] azurerm_subnet.db_subnet"
+        },
+        {
+            "svg_id": "edge_31",
+            "target": "[root] var.db_subnet_address_prefix",
+            "source": "[root] azurerm_subnet.db_subnet"
+        },
+        {
+            "svg_id": "edge_32",
+            "target": "[root] var.db_subnet_name",
+            "source": "[root] azurerm_subnet.db_subnet"
+        },
+        {
+            "svg_id": "edge_33",
+            "target": "[root] azurerm_virtual_machine_extension.setup_mysql",
+            "source": "[root] azurerm_template_deployment.website"
+        },
+        {
+            "svg_id": "edge_34",
+            "target": "[root] var.hosting_plan_name",
+            "source": "[root] azurerm_template_deployment.website"
+        },
+        {
+            "svg_id": "edge_35",
+            "target": "[root] var.mysql_front_end_port_0",
+            "source": "[root] azurerm_template_deployment.website"
+        },
+        {
+            "svg_id": "edge_36",
+            "target": "[root] var.site_name",
+            "source": "[root] azurerm_template_deployment.website"
+        },
+        {
+            "svg_id": "edge_37",
+            "target": "[root] var.sku",
+            "source": "[root] azurerm_template_deployment.website"
+        },
+        {
+            "svg_id": "edge_38",
+            "target": "[root] var.worker_size",
+            "source": "[root] azurerm_template_deployment.website"
+        },
+        {
+            "svg_id": "edge_39",
+            "target": "[root] azurerm_availability_set.availability_set",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_40",
+            "target": "[root] azurerm_network_interface.nic",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_41",
+            "target": "[root] azurerm_storage_account.stor",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_42",
+            "target": "[root] var.image_offer",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_43",
+            "target": "[root] var.image_publisher",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_44",
+            "target": "[root] var.os_version",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_45",
+            "target": "[root] var.vm_admin_password",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_46",
+            "target": "[root] var.vm_admin_username",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_47",
+            "target": "[root] var.vm_size",
+            "source": "[root] azurerm_virtual_machine.vm"
+        },
+        {
+            "svg_id": "edge_48",
+            "target": "[root] azurerm_virtual_machine.vm",
+            "source": "[root] azurerm_virtual_machine_extension.setup_mysql"
+        },
+        {
+            "svg_id": "edge_49",
+            "target": "[root] var.artifacts_location",
+            "source": "[root] azurerm_virtual_machine_extension.setup_mysql"
+        },
+        {
+            "svg_id": "edge_50",
+            "target": "[root] var.azuremysql_script",
+            "source": "[root] azurerm_virtual_machine_extension.setup_mysql"
+        },
+        {
+            "svg_id": "edge_51",
+            "target": "[root] var.mysql_cfg_file_path",
+            "source": "[root] azurerm_virtual_machine_extension.setup_mysql"
+        },
+        {
+            "svg_id": "edge_52",
+            "target": "[root] var.mysql_probe_password",
+            "source": "[root] azurerm_virtual_machine_extension.setup_mysql"
+        },
+        {
+            "svg_id": "edge_53",
+            "target": "[root] var.mysql_replication_password",
+            "source": "[root] azurerm_virtual_machine_extension.setup_mysql"
+        },
+        {
+            "svg_id": "edge_54",
+            "target": "[root] var.mysql_root_password",
+            "source": "[root] azurerm_virtual_machine_extension.setup_mysql"
+        },
+        {
+            "svg_id": "edge_55",
+            "target": "[root] azurerm_resource_group.rg",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "svg_id": "edge_56",
+            "target": "[root] var.virtual_network_name",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "svg_id": "edge_57",
+            "target": "[root] var.vnet_address_prefix",
+            "source": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "svg_id": "edge_58",
+            "target": "[root] azurerm_template_deployment.website",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_59",
+            "target": "[root] output.azure_website",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_60",
+            "target": "[root] output.fqdn",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_61",
+            "target": "[root] output.ip_address",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_62",
+            "target": "[root] output.resource_group",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_63",
+            "target": "[root] output.ssh_command_master",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_64",
+            "target": "[root] output.ssh_command_slave",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_65",
+            "target": "[root] var.api_version",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_66",
+            "target": "[root] var.db_subnet_start_address",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_67",
+            "target": "[root] var.image_sku",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_68",
+            "target": "[root] var.mysql_front_end_port_1",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_69",
+            "target": "[root] var.mysql_probe_port_0",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_70",
+            "target": "[root] var.mysql_probe_port_1",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_71",
+            "target": "[root] var.os_image_offer",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_72",
+            "target": "[root] var.os_image_publisher",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_73",
+            "target": "[root] var.ssh_nat_rule_front_end_port_0",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_74",
+            "target": "[root] var.ssh_nat_rule_front_end_port_1",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_75",
+            "target": "[root] var.template_api_version",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_76",
+            "target": "[root] var.vnet_existing_resource_group_name",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_77",
+            "target": "[root] var.vnet_new_or_existing",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_78",
+            "target": "[root] var.wpdbname",
+            "source": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_79",
+            "target": "[root] var.dns_name",
+            "source": "[root] output.azure_website"
+        },
+        {
+            "svg_id": "edge_80",
+            "target": "[root] azurerm_public_ip.pip",
+            "source": "[root] output.fqdn"
+        },
+        {
+            "svg_id": "edge_81",
+            "target": "[root] azurerm_public_ip.pip",
+            "source": "[root] output.ip_address"
+        },
+        {
+            "svg_id": "edge_82",
+            "target": "[root] var.resource_group",
+            "source": "[root] output.resource_group"
+        },
+        {
+            "svg_id": "edge_83",
+            "target": "[root] azurerm_public_ip.pip",
+            "source": "[root] output.ssh_command_master"
+        },
+        {
+            "svg_id": "edge_84",
+            "target": "[root] var.vm_admin_username",
+            "source": "[root] output.ssh_command_master"
+        },
+        {
+            "svg_id": "edge_85",
+            "target": "[root] azurerm_public_ip.pip",
+            "source": "[root] output.ssh_command_slave"
+        },
+        {
+            "svg_id": "edge_86",
+            "target": "[root] var.vm_admin_username",
+            "source": "[root] output.ssh_command_slave"
+        },
+        {
+            "svg_id": "edge_87",
+            "target": "[root] azurerm_template_deployment.website",
+            "source": "[root] provider.azurerm (close)"
+        },
+        {
+            "svg_id": "edge_88",
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "source": "[root] root"
+        },
+        {
+            "svg_id": "edge_89",
+            "target": "[root] provider.azurerm (close)",
+            "source": "[root] root"
+        }
+    ]
+}

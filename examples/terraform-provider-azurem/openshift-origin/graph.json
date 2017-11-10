@@ -1,0 +1,2338 @@
+{
+    "nodes": [
+        {
+            "resource_name": "infra",
+            "label": "[root] azurerm_availability_set.infra",
+            "simple_name": "azurerm_availability_set.infra",
+            "svg_id": "node_0",
+            "group": 20000,
+            "type": "azurerm_availability_set",
+            "definition": {
+                "name": "infraavailabilityset",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}"
+            }
+        },
+        {
+            "resource_name": "master",
+            "label": "[root] azurerm_availability_set.master",
+            "simple_name": "azurerm_availability_set.master",
+            "svg_id": "node_1",
+            "group": 20000,
+            "type": "azurerm_availability_set",
+            "definition": {
+                "name": "masteravailabilityset",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}"
+            }
+        },
+        {
+            "resource_name": "node",
+            "label": "[root] azurerm_availability_set.node",
+            "simple_name": "azurerm_availability_set.node",
+            "svg_id": "node_2",
+            "group": 20000,
+            "type": "azurerm_availability_set",
+            "definition": {
+                "name": "nodeavailabilityset",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}"
+            }
+        },
+        {
+            "resource_name": "infra_lb",
+            "label": "[root] azurerm_lb.infra_lb",
+            "simple_name": "azurerm_lb.infra_lb",
+            "svg_id": "node_3",
+            "group": 20000,
+            "type": "azurerm_lb",
+            "definition": {
+                "name": "infraloadbalancer",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "depends_on": [
+                    "azurerm_public_ip.infra_lb_pip"
+                ],
+                "frontend_ip_configuration": {
+                    "name": "LoadBalancerFrontEnd",
+                    "public_ip_address_id": "${azurerm_public_ip.infra_lb_pip.id}"
+                }
+            }
+        },
+        {
+            "resource_name": "master_lb",
+            "label": "[root] azurerm_lb.master_lb",
+            "simple_name": "azurerm_lb.master_lb",
+            "svg_id": "node_4",
+            "group": 20000,
+            "type": "azurerm_lb",
+            "definition": {
+                "name": "masterloadbalancer",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "depends_on": [
+                    "azurerm_public_ip.openshift_master_pip"
+                ],
+                "frontend_ip_configuration": {
+                    "name": "LoadBalancerFrontEnd",
+                    "public_ip_address_id": "${azurerm_public_ip.openshift_master_pip.id}"
+                }
+            }
+        },
+        {
+            "resource_name": "infra_lb",
+            "label": "[root] azurerm_lb_backend_address_pool.infra_lb",
+            "simple_name": "azurerm_lb_backend_address_pool.infra_lb",
+            "svg_id": "node_5",
+            "group": 20000,
+            "type": "azurerm_lb_backend_address_pool",
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "name": "loadBalancerBackEnd",
+                "loadbalancer_id": "${azurerm_lb.infra_lb.id}",
+                "depends_on": [
+                    "azurerm_lb.infra_lb"
+                ]
+            }
+        },
+        {
+            "resource_name": "master_lb",
+            "label": "[root] azurerm_lb_backend_address_pool.master_lb",
+            "simple_name": "azurerm_lb_backend_address_pool.master_lb",
+            "svg_id": "node_6",
+            "group": 20000,
+            "type": "azurerm_lb_backend_address_pool",
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "name": "loadBalancerBackEnd",
+                "loadbalancer_id": "${azurerm_lb.master_lb.id}",
+                "depends_on": [
+                    "azurerm_lb.master_lb"
+                ]
+            }
+        },
+        {
+            "resource_name": "master_lb",
+            "label": "[root] azurerm_lb_nat_rule.master_lb",
+            "simple_name": "azurerm_lb_nat_rule.master_lb",
+            "svg_id": "node_7",
+            "group": 20000,
+            "type": "azurerm_lb_nat_rule",
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.master_lb.id}",
+                "name": "${azurerm_lb.master_lb.name}-SSH-${count.index}",
+                "protocol": "Tcp",
+                "frontend_port": "${count.index + 2200}",
+                "backend_port": 22,
+                "frontend_ip_configuration_name": "LoadBalancerFrontEnd",
+                "count": "${var.master_instance_count}",
+                "depends_on": [
+                    "azurerm_lb.master_lb"
+                ]
+            }
+        },
+        {
+            "resource_name": "infra_lb_http_probe",
+            "label": "[root] azurerm_lb_probe.infra_lb_http_probe",
+            "simple_name": "azurerm_lb_probe.infra_lb_http_probe",
+            "svg_id": "node_8",
+            "group": 20000,
+            "type": "azurerm_lb_probe",
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.infra_lb.id}",
+                "name": "httpProbe",
+                "port": 80,
+                "interval_in_seconds": 5,
+                "number_of_probes": 2,
+                "protocol": "Tcp",
+                "depends_on": [
+                    "azurerm_lb.infra_lb"
+                ]
+            }
+        },
+        {
+            "resource_name": "infra_lb_https_probe",
+            "label": "[root] azurerm_lb_probe.infra_lb_https_probe",
+            "simple_name": "azurerm_lb_probe.infra_lb_https_probe",
+            "svg_id": "node_9",
+            "group": 20000,
+            "type": "azurerm_lb_probe",
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.infra_lb.id}",
+                "name": "httpsProbe",
+                "port": 443,
+                "interval_in_seconds": 5,
+                "number_of_probes": 2,
+                "protocol": "Tcp"
+            }
+        },
+        {
+            "resource_name": "master_lb",
+            "label": "[root] azurerm_lb_probe.master_lb",
+            "simple_name": "azurerm_lb_probe.master_lb",
+            "svg_id": "node_10",
+            "group": 20000,
+            "type": "azurerm_lb_probe",
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.master_lb.id}",
+                "name": "8443Probe",
+                "port": 8443,
+                "interval_in_seconds": 5,
+                "number_of_probes": 2,
+                "protocol": "Tcp",
+                "depends_on": [
+                    "azurerm_lb.master_lb"
+                ]
+            }
+        },
+        {
+            "resource_name": "infra_lb_http",
+            "label": "[root] azurerm_lb_rule.infra_lb_http",
+            "simple_name": "azurerm_lb_rule.infra_lb_http",
+            "svg_id": "node_11",
+            "group": 20000,
+            "type": "azurerm_lb_rule",
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.infra_lb.id}",
+                "name": "OpenShiftRouterHTTP",
+                "protocol": "Tcp",
+                "frontend_port": 80,
+                "backend_port": 80,
+                "frontend_ip_configuration_name": "LoadBalancerFrontEnd",
+                "backend_address_pool_id": "${azurerm_lb_backend_address_pool.infra_lb.id}",
+                "probe_id": "${azurerm_lb_probe.infra_lb_http_probe.id}",
+                "depends_on": [
+                    "azurerm_lb_probe.infra_lb_http_probe",
+                    "azurerm_lb.infra_lb",
+                    "azurerm_lb_backend_address_pool.infra_lb"
+                ]
+            }
+        },
+        {
+            "resource_name": "infra_lb_https",
+            "label": "[root] azurerm_lb_rule.infra_lb_https",
+            "simple_name": "azurerm_lb_rule.infra_lb_https",
+            "svg_id": "node_12",
+            "group": 20000,
+            "type": "azurerm_lb_rule",
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.infra_lb.id}",
+                "name": "OpenShiftRouterHTTPS",
+                "protocol": "Tcp",
+                "frontend_port": 443,
+                "backend_port": 443,
+                "frontend_ip_configuration_name": "LoadBalancerFrontEnd",
+                "backend_address_pool_id": "${azurerm_lb_backend_address_pool.infra_lb.id}",
+                "probe_id": "${azurerm_lb_probe.infra_lb_https_probe.id}",
+                "depends_on": [
+                    "azurerm_lb_probe.infra_lb_https_probe",
+                    "azurerm_lb_backend_address_pool.infra_lb"
+                ]
+            }
+        },
+        {
+            "resource_name": "master_lb",
+            "label": "[root] azurerm_lb_rule.master_lb",
+            "simple_name": "azurerm_lb_rule.master_lb",
+            "svg_id": "node_13",
+            "group": 20000,
+            "type": "azurerm_lb_rule",
+            "definition": {
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "loadbalancer_id": "${azurerm_lb.master_lb.id}",
+                "name": "OpenShiftAdminConsole",
+                "protocol": "Tcp",
+                "frontend_port": 8443,
+                "backend_port": 8443,
+                "frontend_ip_configuration_name": "LoadBalancerFrontEnd",
+                "backend_address_pool_id": "${azurerm_lb_backend_address_pool.master_lb.id}",
+                "load_distribution": "SourceIP",
+                "idle_timeout_in_minutes": 30,
+                "probe_id": "${azurerm_lb_probe.master_lb.id}",
+                "enable_floating_ip": false,
+                "depends_on": [
+                    "azurerm_lb_probe.master_lb",
+                    "azurerm_lb.master_lb",
+                    "azurerm_lb_backend_address_pool.master_lb"
+                ]
+            }
+        },
+        {
+            "resource_name": "bastion_nic",
+            "label": "[root] azurerm_network_interface.bastion_nic",
+            "simple_name": "azurerm_network_interface.bastion_nic",
+            "svg_id": "node_14",
+            "group": 20000,
+            "type": "azurerm_network_interface",
+            "definition": {
+                "name": "bastionnic${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_id": "${azurerm_network_security_group.master_nsg.id}",
+                "ip_configuration": {
+                    "name": "bastionip${count.index}",
+                    "subnet_id": "${azurerm_subnet.master_subnet.id}",
+                    "private_ip_address_allocation": "Dynamic",
+                    "public_ip_address_id": "${azurerm_public_ip.bastion_pip.id}"
+                }
+            }
+        },
+        {
+            "resource_name": "infra_nic",
+            "label": "[root] azurerm_network_interface.infra_nic",
+            "simple_name": "azurerm_network_interface.infra_nic",
+            "svg_id": "node_15",
+            "group": 20000,
+            "type": "azurerm_network_interface",
+            "definition": {
+                "name": "infra_nic${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_id": "${azurerm_network_security_group.infra_nsg.id}",
+                "count": "${var.infra_instance_count}",
+                "ip_configuration": {
+                    "name": "infraip${count.index}",
+                    "subnet_id": "${azurerm_subnet.master_subnet.id}",
+                    "private_ip_address_allocation": "Dynamic",
+                    "load_balancer_backend_address_pools_ids": [
+                        "${azurerm_lb_backend_address_pool.infra_lb.id}"
+                    ]
+                }
+            }
+        },
+        {
+            "resource_name": "master_nic",
+            "label": "[root] azurerm_network_interface.master_nic",
+            "simple_name": "azurerm_network_interface.master_nic",
+            "svg_id": "node_16",
+            "group": 20000,
+            "type": "azurerm_network_interface",
+            "definition": {
+                "name": "masternic${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_id": "${azurerm_network_security_group.master_nsg.id}",
+                "count": "${var.master_instance_count}",
+                "ip_configuration": {
+                    "name": "masterip${count.index}",
+                    "subnet_id": "${azurerm_subnet.master_subnet.id}",
+                    "private_ip_address_allocation": "Dynamic",
+                    "load_balancer_backend_address_pools_ids": [
+                        "${azurerm_lb_backend_address_pool.master_lb.id}"
+                    ],
+                    "load_balancer_inbound_nat_rules_ids": [
+                        "${element(azurerm_lb_nat_rule.master_lb.*.id, count.index)}"
+                    ]
+                }
+            }
+        },
+        {
+            "resource_name": "node_nic",
+            "label": "[root] azurerm_network_interface.node_nic",
+            "simple_name": "azurerm_network_interface.node_nic",
+            "svg_id": "node_17",
+            "group": 20000,
+            "type": "azurerm_network_interface",
+            "definition": {
+                "name": "node_nic${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_security_group_id": "${azurerm_network_security_group.node_nsg.id}",
+                "count": "${var.node_instance_count}",
+                "ip_configuration": {
+                    "name": "nodeip${count.index}",
+                    "subnet_id": "${azurerm_subnet.node_subnet.id}",
+                    "private_ip_address_allocation": "Dynamic"
+                }
+            }
+        },
+        {
+            "resource_name": "infra_nsg",
+            "label": "[root] azurerm_network_security_group.infra_nsg",
+            "simple_name": "azurerm_network_security_group.infra_nsg",
+            "svg_id": "node_18",
+            "group": 20000,
+            "type": "azurerm_network_security_group",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}-infra-nsg",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "security_rule": [
+                    {
+                        "name": "allow_SSH_in_all",
+                        "description": "Allow SSH in from all locations",
+                        "priority": 100,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "22",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    },
+                    {
+                        "name": "allow_HTTPS_all",
+                        "description": "Allow HTTPS connections from all locations",
+                        "priority": 200,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "443",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    },
+                    {
+                        "name": "allow_HTTP_in_all",
+                        "description": "Allow HTTP connections from all locations",
+                        "priority": 300,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "80",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    }
+                ]
+            }
+        },
+        {
+            "resource_name": "master_nsg",
+            "label": "[root] azurerm_network_security_group.master_nsg",
+            "simple_name": "azurerm_network_security_group.master_nsg",
+            "svg_id": "node_19",
+            "group": 20000,
+            "type": "azurerm_network_security_group",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}-master-nsg",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "security_rule": [
+                    {
+                        "name": "allow_SSH_in_all",
+                        "description": "Allow SSH in from all locations",
+                        "priority": 100,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "22",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    },
+                    {
+                        "name": "allow_HTTPS_all",
+                        "description": "Allow HTTPS connections from all locations",
+                        "priority": 200,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "443",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    },
+                    {
+                        "name": "allow_OpenShift_console_in_all",
+                        "description": "Allow OpenShift Console connections from all locations",
+                        "priority": 300,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "8443",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    }
+                ]
+            }
+        },
+        {
+            "resource_name": "node_nsg",
+            "label": "[root] azurerm_network_security_group.node_nsg",
+            "simple_name": "azurerm_network_security_group.node_nsg",
+            "svg_id": "node_20",
+            "group": 20000,
+            "type": "azurerm_network_security_group",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}-node-nsg",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "security_rule": [
+                    {
+                        "name": "allow_SSH_in_all",
+                        "description": "Allow SSH in from all locations",
+                        "priority": 100,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "22",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    },
+                    {
+                        "name": "allow_HTTPS_all",
+                        "description": "Allow HTTPS connections from all locations",
+                        "priority": 200,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "443",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    },
+                    {
+                        "name": "allow_HTTP_in_all",
+                        "description": "Allow HTTP connections from all locations",
+                        "priority": 300,
+                        "direction": "Inbound",
+                        "access": "Allow",
+                        "protocol": "Tcp",
+                        "source_port_range": "*",
+                        "destination_port_range": "80",
+                        "source_address_prefix": "*",
+                        "destination_address_prefix": "*"
+                    }
+                ]
+            }
+        },
+        {
+            "resource_name": "bastion_pip",
+            "label": "[root] azurerm_public_ip.bastion_pip",
+            "simple_name": "azurerm_public_ip.bastion_pip",
+            "svg_id": "node_21",
+            "group": 20000,
+            "type": "azurerm_public_ip",
+            "definition": {
+                "name": "bastionpip",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "public_ip_address_allocation": "Static",
+                "domain_name_label": "${var.openshift_cluster_prefix}-bastion"
+            }
+        },
+        {
+            "resource_name": "infra_lb_pip",
+            "label": "[root] azurerm_public_ip.infra_lb_pip",
+            "simple_name": "azurerm_public_ip.infra_lb_pip",
+            "svg_id": "node_22",
+            "group": 20000,
+            "type": "azurerm_public_ip",
+            "definition": {
+                "name": "infraip",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "public_ip_address_allocation": "Static",
+                "domain_name_label": "${var.openshift_cluster_prefix}infrapip"
+            }
+        },
+        {
+            "resource_name": "openshift_master_pip",
+            "label": "[root] azurerm_public_ip.openshift_master_pip",
+            "simple_name": "azurerm_public_ip.openshift_master_pip",
+            "svg_id": "node_23",
+            "group": 20000,
+            "type": "azurerm_public_ip",
+            "definition": {
+                "name": "masterpip",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "public_ip_address_allocation": "Static",
+                "domain_name_label": "${var.openshift_cluster_prefix}"
+            }
+        },
+        {
+            "resource_name": "rg",
+            "label": "[root] azurerm_resource_group.rg",
+            "simple_name": "azurerm_resource_group.rg",
+            "svg_id": "node_24",
+            "group": 20000,
+            "type": "azurerm_resource_group",
+            "definition": {
+                "name": "${var.resource_group_name}",
+                "location": "${var.resource_group_location}"
+            }
+        },
+        {
+            "resource_name": "bastion_storage_account",
+            "label": "[root] azurerm_storage_account.bastion_storage_account",
+            "simple_name": "azurerm_storage_account.bastion_storage_account",
+            "svg_id": "node_25",
+            "group": 20000,
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}bsa",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_account_replication_type}"
+            }
+        },
+        {
+            "resource_name": "infra_storage_account",
+            "label": "[root] azurerm_storage_account.infra_storage_account",
+            "simple_name": "azurerm_storage_account.infra_storage_account",
+            "svg_id": "node_26",
+            "group": 20000,
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}infrasa",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_account_replication_type}"
+            }
+        },
+        {
+            "resource_name": "master_storage_account",
+            "label": "[root] azurerm_storage_account.master_storage_account",
+            "simple_name": "azurerm_storage_account.master_storage_account",
+            "svg_id": "node_27",
+            "group": 20000,
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}msa",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_account_replication_type}"
+            }
+        },
+        {
+            "resource_name": "nodedata_storage_account",
+            "label": "[root] azurerm_storage_account.nodedata_storage_account",
+            "simple_name": "azurerm_storage_account.nodedata_storage_account",
+            "svg_id": "node_28",
+            "group": 20000,
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}nodedatasa",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_account_replication_type}"
+            }
+        },
+        {
+            "resource_name": "nodeos_storage_account",
+            "label": "[root] azurerm_storage_account.nodeos_storage_account",
+            "simple_name": "azurerm_storage_account.nodeos_storage_account",
+            "svg_id": "node_29",
+            "group": 20000,
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}nodeossa",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_account_replication_type}"
+            }
+        },
+        {
+            "resource_name": "persistent_volume_storage_account",
+            "label": "[root] azurerm_storage_account.persistent_volume_storage_account",
+            "simple_name": "azurerm_storage_account.persistent_volume_storage_account",
+            "svg_id": "node_30",
+            "group": 20000,
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}pvsa",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_account_replication_type}"
+            }
+        },
+        {
+            "resource_name": "registry_storage_account",
+            "label": "[root] azurerm_storage_account.registry_storage_account",
+            "simple_name": "azurerm_storage_account.registry_storage_account",
+            "svg_id": "node_31",
+            "group": 20000,
+            "type": "azurerm_storage_account",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}regsa",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "account_tier": "${var.storage_account_tier}",
+                "account_replication_type": "${var.storage_account_replication_type}"
+            }
+        },
+        {
+            "resource_name": "master_subnet",
+            "label": "[root] azurerm_subnet.master_subnet",
+            "simple_name": "azurerm_subnet.master_subnet",
+            "svg_id": "node_32",
+            "group": 20000,
+            "type": "azurerm_subnet",
+            "definition": {
+                "name": "mastersubnet",
+                "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "10.1.0.0/16",
+                "depends_on": [
+                    "azurerm_virtual_network.vnet"
+                ]
+            }
+        },
+        {
+            "resource_name": "node_subnet",
+            "label": "[root] azurerm_subnet.node_subnet",
+            "simple_name": "azurerm_subnet.node_subnet",
+            "svg_id": "node_33",
+            "group": 20000,
+            "type": "azurerm_subnet",
+            "definition": {
+                "name": "nodesubnet",
+                "virtual_network_name": "${azurerm_virtual_network.vnet.name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_prefix": "10.2.0.0/16"
+            }
+        },
+        {
+            "resource_name": "bastion",
+            "label": "[root] azurerm_virtual_machine.bastion",
+            "simple_name": "azurerm_virtual_machine.bastion",
+            "svg_id": "node_34",
+            "group": 20000,
+            "type": "azurerm_virtual_machine",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}-bastion-1",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "network_interface_ids": [
+                    "${azurerm_network_interface.bastion_nic.id}"
+                ],
+                "vm_size": "${var.bastion_vm_size}",
+                "delete_os_disk_on_termination": true,
+                "delete_data_disks_on_termination": true,
+                "tags": {
+                    "displayName": "${var.openshift_cluster_prefix}-bastion VM Creation"
+                },
+                "os_profile": {
+                    "computer_name": "${var.openshift_cluster_prefix}-bastion-${count.index}",
+                    "admin_username": "${var.admin_username}",
+                    "admin_password": "${var.openshift_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": true,
+                    "ssh_keys": {
+                        "path": "/home/${var.admin_username}/.ssh/authorized_keys",
+                        "key_data": "${var.ssh_public_key}"
+                    }
+                },
+                "storage_image_reference": {
+                    "publisher": "${lookup(var.os_image_map, join(\"_publisher\", list(var.os_image, \"\")))}",
+                    "offer": "${lookup(var.os_image_map, join(\"_offer\", list(var.os_image, \"\")))}",
+                    "sku": "${lookup(var.os_image_map, join(\"_sku\", list(var.os_image, \"\")))}",
+                    "version": "${lookup(var.os_image_map, join(\"_version\", list(var.os_image, \"\")))}"
+                },
+                "storage_os_disk": {
+                    "name": "${var.openshift_cluster_prefix}-master-osdisk${count.index}",
+                    "vhd_uri": "${azurerm_storage_account.bastion_storage_account.primary_blob_endpoint}vhds/${var.openshift_cluster_prefix}-bastion-osdisk.vhd",
+                    "caching": "ReadWrite",
+                    "create_option": "FromImage",
+                    "disk_size_gb": 60
+                }
+            }
+        },
+        {
+            "resource_name": "infra",
+            "label": "[root] azurerm_virtual_machine.infra",
+            "simple_name": "azurerm_virtual_machine.infra",
+            "svg_id": "node_35",
+            "group": 20000,
+            "type": "azurerm_virtual_machine",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}-infra-${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "availability_set_id": "${azurerm_availability_set.infra.id}",
+                "network_interface_ids": [
+                    "${element(azurerm_network_interface.infra_nic.*.id, count.index)}"
+                ],
+                "vm_size": "${var.infra_vm_size}",
+                "delete_os_disk_on_termination": true,
+                "delete_data_disks_on_termination": true,
+                "count": "${var.infra_instance_count}",
+                "tags": {
+                    "displayName": "${var.openshift_cluster_prefix}-infra VM Creation"
+                },
+                "connection": {
+                    "type": "ssh",
+                    "bastion_host": "${azurerm_public_ip.bastion_pip.fqdn}",
+                    "bastion_user": "${var.admin_username}",
+                    "bastion_private_key": "${file(var.connection_private_ssh_key_path)}",
+                    "host": "${element(azurerm_network_interface.infra_nic.*.private_ip_address, count.index)}",
+                    "user": "${var.admin_username}",
+                    "private_key": "${file(var.connection_private_ssh_key_path)}"
+                },
+                "provisioner": [
+                    {
+                        "file": {
+                            "source": "${var.openshift_script_path}/nodePrep.sh",
+                            "destination": "nodePrep.sh"
+                        }
+                    },
+                    {
+                        "remote-exec": {
+                            "inline": [
+                                "chmod +x nodePrep.sh",
+                                "sudo bash nodePrep.sh"
+                            ]
+                        }
+                    }
+                ],
+                "os_profile": {
+                    "computer_name": "${var.openshift_cluster_prefix}-infra-${count.index}",
+                    "admin_username": "${var.admin_username}",
+                    "admin_password": "${var.openshift_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": true,
+                    "ssh_keys": {
+                        "path": "/home/${var.admin_username}/.ssh/authorized_keys",
+                        "key_data": "${var.ssh_public_key}"
+                    }
+                },
+                "storage_image_reference": {
+                    "publisher": "${lookup(var.os_image_map, join(\"_publisher\", list(var.os_image, \"\")))}",
+                    "offer": "${lookup(var.os_image_map, join(\"_offer\", list(var.os_image, \"\")))}",
+                    "sku": "${lookup(var.os_image_map, join(\"_sku\", list(var.os_image, \"\")))}",
+                    "version": "${lookup(var.os_image_map, join(\"_version\", list(var.os_image, \"\")))}"
+                },
+                "storage_os_disk": {
+                    "name": "${var.openshift_cluster_prefix}-infra-osdisk${count.index}",
+                    "vhd_uri": "${azurerm_storage_account.infra_storage_account.primary_blob_endpoint}vhds/${var.openshift_cluster_prefix}-infra-osdisk${count.index}.vhd",
+                    "caching": "ReadWrite",
+                    "create_option": "FromImage"
+                },
+                "storage_data_disk": {
+                    "name": "${var.openshift_cluster_prefix}-infra-docker-pool",
+                    "vhd_uri": "${azurerm_storage_account.infra_storage_account.primary_blob_endpoint}vhds/${var.openshift_cluster_prefix}-infra-docker-pool${count.index}.vhd",
+                    "disk_size_gb": "${var.data_disk_size}",
+                    "create_option": "Empty",
+                    "lun": 0
+                }
+            }
+        },
+        {
+            "resource_name": "master",
+            "label": "[root] azurerm_virtual_machine.master",
+            "simple_name": "azurerm_virtual_machine.master",
+            "svg_id": "node_36",
+            "group": 20000,
+            "type": "azurerm_virtual_machine",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}-master-${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "availability_set_id": "${azurerm_availability_set.master.id}",
+                "network_interface_ids": [
+                    "${element(azurerm_network_interface.master_nic.*.id, count.index)}"
+                ],
+                "vm_size": "${var.master_vm_size}",
+                "delete_os_disk_on_termination": true,
+                "delete_data_disks_on_termination": true,
+                "count": "${var.master_instance_count}",
+                "depends_on": [
+                    "azurerm_virtual_machine.infra",
+                    "azurerm_virtual_machine.node"
+                ],
+                "tags": {
+                    "displayName": "${var.openshift_cluster_prefix}-master VM Creation"
+                },
+                "connection": {
+                    "host": "${azurerm_public_ip.openshift_master_pip.fqdn}",
+                    "user": "${var.admin_username}",
+                    "port": 2200,
+                    "private_key": "${file(var.connection_private_ssh_key_path)}"
+                },
+                "provisioner": [
+                    {
+                        "file": {
+                            "source": "${var.openshift_script_path}/masterPrep.sh",
+                            "destination": "masterPrep.sh"
+                        }
+                    },
+                    {
+                        "file": {
+                            "source": "${var.openshift_script_path}/deployOpenShift.sh",
+                            "destination": "deployOpenShift.sh"
+                        }
+                    },
+                    {
+                        "remote-exec": {
+                            "inline": [
+                                "chmod +x masterPrep.sh",
+                                "chmod +x deployOpenShift.sh",
+                                "sudo bash masterPrep.sh \"${azurerm_storage_account.persistent_volume_storage_account.name}\" \"${var.admin_username}\" && sudo bash deployOpenShift.sh \"${var.admin_username}\" \"${var.openshift_password}\" \"${var.key_vault_secret}\" \"${var.openshift_cluster_prefix}-master\" \"${azurerm_public_ip.openshift_master_pip.fqdn}\" \"${azurerm_public_ip.openshift_master_pip.ip_address}\" \"${var.openshift_cluster_prefix}-infra\" \"${var.openshift_cluster_prefix}-node\" \"${var.node_instance_count}\" \"${var.infra_instance_count}\" \"${var.master_instance_count}\" \"${var.default_sub_domain_type}\" \"${azurerm_storage_account.registry_storage_account.name}\" \"${azurerm_storage_account.registry_storage_account.primary_access_key}\" \"${var.tenant_id}\" \"${var.subscription_id}\" \"${var.aad_client_id}\" \"${var.aad_client_secret}\" \"${azurerm_resource_group.rg.name}\" \"${azurerm_resource_group.rg.location}\" \"${var.key_vault_name}\""
+                            ]
+                        }
+                    }
+                ],
+                "os_profile": {
+                    "computer_name": "${var.openshift_cluster_prefix}-master-${count.index}",
+                    "admin_username": "${var.admin_username}",
+                    "admin_password": "${var.openshift_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": true,
+                    "ssh_keys": {
+                        "path": "/home/${var.admin_username}/.ssh/authorized_keys",
+                        "key_data": "${var.ssh_public_key}"
+                    }
+                },
+                "storage_image_reference": {
+                    "publisher": "${lookup(var.os_image_map, join(\"_publisher\", list(var.os_image, \"\")))}",
+                    "offer": "${lookup(var.os_image_map, join(\"_offer\", list(var.os_image, \"\")))}",
+                    "sku": "${lookup(var.os_image_map, join(\"_sku\", list(var.os_image, \"\")))}",
+                    "version": "${lookup(var.os_image_map, join(\"_version\", list(var.os_image, \"\")))}"
+                },
+                "storage_os_disk": {
+                    "name": "${var.openshift_cluster_prefix}-master-osdisk${count.index}",
+                    "vhd_uri": "${azurerm_storage_account.master_storage_account.primary_blob_endpoint}vhds/${var.openshift_cluster_prefix}-master-osdisk${count.index}.vhd",
+                    "caching": "ReadWrite",
+                    "create_option": "FromImage",
+                    "disk_size_gb": 60
+                },
+                "storage_data_disk": {
+                    "name": "${var.openshift_cluster_prefix}-master-docker-pool${count.index}",
+                    "vhd_uri": "${azurerm_storage_account.master_storage_account.primary_blob_endpoint}vhds/${var.openshift_cluster_prefix}-master-docker-pool${count.index}.vhd",
+                    "disk_size_gb": "${var.data_disk_size}",
+                    "create_option": "Empty",
+                    "lun": 0
+                }
+            }
+        },
+        {
+            "resource_name": "node",
+            "label": "[root] azurerm_virtual_machine.node",
+            "simple_name": "azurerm_virtual_machine.node",
+            "svg_id": "node_37",
+            "group": 20000,
+            "type": "azurerm_virtual_machine",
+            "definition": {
+                "name": "${var.openshift_cluster_prefix}-node-${count.index}",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "availability_set_id": "${azurerm_availability_set.node.id}",
+                "network_interface_ids": [
+                    "${element(azurerm_network_interface.node_nic.*.id, count.index)}"
+                ],
+                "vm_size": "${var.node_vm_size}",
+                "delete_os_disk_on_termination": true,
+                "delete_data_disks_on_termination": true,
+                "count": "${var.node_instance_count}",
+                "tags": {
+                    "displayName": "${var.openshift_cluster_prefix}-node VM Creation"
+                },
+                "connection": {
+                    "type": "ssh",
+                    "bastion_host": "${azurerm_public_ip.bastion_pip.fqdn}",
+                    "bastion_user": "${var.admin_username}",
+                    "bastion_private_key": "${file(var.connection_private_ssh_key_path)}",
+                    "host": "${element(azurerm_network_interface.node_nic.*.private_ip_address, count.index)}",
+                    "user": "${var.admin_username}",
+                    "private_key": "${file(var.connection_private_ssh_key_path)}"
+                },
+                "provisioner": [
+                    {
+                        "file": {
+                            "source": "${var.openshift_script_path}/nodePrep.sh",
+                            "destination": "nodePrep.sh"
+                        }
+                    },
+                    {
+                        "remote-exec": {
+                            "inline": [
+                                "chmod +x nodePrep.sh",
+                                "sudo bash nodePrep.sh"
+                            ]
+                        }
+                    }
+                ],
+                "os_profile": {
+                    "computer_name": "${var.openshift_cluster_prefix}-node-${count.index}",
+                    "admin_username": "${var.admin_username}",
+                    "admin_password": "${var.openshift_password}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": true,
+                    "ssh_keys": {
+                        "path": "/home/${var.admin_username}/.ssh/authorized_keys",
+                        "key_data": "${var.ssh_public_key}"
+                    }
+                },
+                "storage_image_reference": {
+                    "publisher": "${lookup(var.os_image_map, join(\"_publisher\", list(var.os_image, \"\")))}",
+                    "offer": "${lookup(var.os_image_map, join(\"_offer\", list(var.os_image, \"\")))}",
+                    "sku": "${lookup(var.os_image_map, join(\"_sku\", list(var.os_image, \"\")))}",
+                    "version": "${lookup(var.os_image_map, join(\"_version\", list(var.os_image, \"\")))}"
+                },
+                "storage_os_disk": {
+                    "name": "${var.openshift_cluster_prefix}-node-osdisk",
+                    "vhd_uri": "${azurerm_storage_account.nodeos_storage_account.primary_blob_endpoint}vhds/${var.openshift_cluster_prefix}-node-osdisk${count.index}.vhd",
+                    "caching": "ReadWrite",
+                    "create_option": "FromImage"
+                },
+                "storage_data_disk": {
+                    "name": "${var.openshift_cluster_prefix}-node-docker-pool${count.index}",
+                    "vhd_uri": "${azurerm_storage_account.nodeos_storage_account.primary_blob_endpoint}vhds/${var.openshift_cluster_prefix}-node-docker-pool${count.index}.vhd",
+                    "disk_size_gb": "${var.data_disk_size}",
+                    "create_option": "Empty",
+                    "lun": 0
+                }
+            }
+        },
+        {
+            "resource_name": "vnet",
+            "label": "[root] azurerm_virtual_network.vnet",
+            "simple_name": "azurerm_virtual_network.vnet",
+            "svg_id": "node_38",
+            "group": 20000,
+            "type": "azurerm_virtual_network",
+            "definition": {
+                "name": "openshiftvnet",
+                "location": "${azurerm_resource_group.rg.location}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "address_space": [
+                    "10.0.0.0/8"
+                ],
+                "depends_on": [
+                    "azurerm_virtual_network.vnet"
+                ]
+            }
+        },
+        {
+            "resource_name": "azurerm",
+            "label": "[root] provider.azurerm",
+            "simple_name": "provider.azurerm",
+            "svg_id": "node_39",
+            "group": 20000,
+            "type": "provider",
+            "definition": {
+                "subscription_id": "${var.subscription_id}",
+                "client_id": "${var.aad_client_id}",
+                "client_secret": "${var.aad_client_secret}",
+                "tenant_id": "${var.tenant_id}"
+            }
+        },
+        {
+            "resource_name": "master_instance_count",
+            "label": "[root] var.master_instance_count",
+            "simple_name": "var.master_instance_count",
+            "svg_id": "node_40",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Number of OpenShift Masters nodes to deploy. 1 is non HA and 3 is for HA.",
+                "default": 1
+            }
+        },
+        {
+            "resource_name": "infra_instance_count",
+            "label": "[root] var.infra_instance_count",
+            "simple_name": "var.infra_instance_count",
+            "svg_id": "node_41",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Number of OpenShift infra nodes to deploy. 1 is non HA.  Choose 2 or 3 for HA.",
+                "default": 1
+            }
+        },
+        {
+            "resource_name": "node_instance_count",
+            "label": "[root] var.node_instance_count",
+            "simple_name": "var.node_instance_count",
+            "svg_id": "node_42",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Number of OpenShift nodes to deploy. Allowed values: 1-30",
+                "default": 1
+            }
+        },
+        {
+            "resource_name": "openshift_cluster_prefix",
+            "label": "[root] var.openshift_cluster_prefix",
+            "simple_name": "var.openshift_cluster_prefix",
+            "svg_id": "node_43",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Cluster Prefix used to configure domain name label and hostnames for all nodes - master, infra and nodes. Between 1 and 20 characters"
+            }
+        },
+        {
+            "resource_name": "resource_group_location",
+            "label": "[root] var.resource_group_location",
+            "simple_name": "var.resource_group_location",
+            "svg_id": "node_44",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Location of the azure resource group.",
+                "default": "southcentralus"
+            }
+        },
+        {
+            "resource_name": "resource_group_name",
+            "label": "[root] var.resource_group_name",
+            "simple_name": "var.resource_group_name",
+            "svg_id": "node_45",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Name of the azure resource group in which you will deploy this template."
+            }
+        },
+        {
+            "resource_name": "storage_account_replication_type",
+            "label": "[root] var.storage_account_replication_type",
+            "simple_name": "var.storage_account_replication_type",
+            "svg_id": "node_46",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "This is the storage account Tier that you will need based on the vm size that you choose (value constraints)",
+                "default": "LRS"
+            }
+        },
+        {
+            "resource_name": "storage_account_tier",
+            "label": "[root] var.storage_account_tier",
+            "simple_name": "var.storage_account_tier",
+            "svg_id": "node_47",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "This is the storage account Tier to create. Possible values include Standard and Premium.",
+                "default": "Standard"
+            }
+        },
+        {
+            "resource_name": "admin_username",
+            "label": "[root] var.admin_username",
+            "simple_name": "var.admin_username",
+            "svg_id": "node_48",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Admin username for both OS login and OpenShift login",
+                "default": "ocpadmin"
+            }
+        },
+        {
+            "resource_name": "bastion_vm_size",
+            "label": "[root] var.bastion_vm_size",
+            "simple_name": "var.bastion_vm_size",
+            "svg_id": "node_49",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Size of the Bastion Virtual Machine. Allowed values: Standard_A4, Standard_A5, Standard_A6, Standard_A7, Standard_A8, Standard_A9, Standard_A10, Standard_A11, Standard_D1, Standard_D2, Standard_D3, Standard_D4, Standard_D11, Standard_D12, Standard_D13, Standard_D14, Standard_D1_v2, Standard_D2_v2, Standard_D3_v2, Standard_D4_v2, Standard_D5_v2, Standard_D11_v2, Standard_D12_v2, Standard_D13_v2, Standard_D14_v2, Standard_G1, Standard_G2, Standard_G3, Standard_G4, Standard_G5, Standard_D1_v2, Standard_DS2, Standard_DS3, Standard_DS4, Standard_DS11, Standard_DS12, Standard_DS13, Standard_DS14, Standard_DS1_v2, Standard_DS2_v2, Standard_DS3_v2, Standard_DS4_v2, Standard_DS5_v2, Standard_DS11_v2, Standard_DS12_v2, Standard_DS13_v2, Standard_DS14_v2, Standard_GS1, Standard_GS2, Standard_GS3, Standard_GS4, Standard_GS5",
+                "default": "Standard_D2_v2"
+            }
+        },
+        {
+            "resource_name": "openshift_password",
+            "label": "[root] var.openshift_password",
+            "simple_name": "var.openshift_password",
+            "svg_id": "node_50",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Password for OpenShift login"
+            }
+        },
+        {
+            "resource_name": "os_image",
+            "label": "[root] var.os_image",
+            "simple_name": "var.os_image",
+            "svg_id": "node_51",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Select from CentOS (centos) or RHEL (rhel) for the Operating System",
+                "default": "centos"
+            }
+        },
+        {
+            "resource_name": "os_image_map",
+            "label": "[root] var.os_image_map",
+            "simple_name": "var.os_image_map",
+            "svg_id": "node_52",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "os image map",
+                "type": "map",
+                "default": {
+                    "centos_publisher": "Openlogic",
+                    "centos_offer": "CentOS",
+                    "centos_sku": "7.3",
+                    "centos_version": "latest",
+                    "rhel_publisher": "RedHat",
+                    "rhel_offer": "RHEL",
+                    "rhel_sku": "7.2",
+                    "rhel_version": "latest"
+                }
+            }
+        },
+        {
+            "resource_name": "ssh_public_key",
+            "label": "[root] var.ssh_public_key",
+            "simple_name": "var.ssh_public_key",
+            "svg_id": "node_53",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Path to your SSH Public Key"
+            }
+        },
+        {
+            "resource_name": "connection_private_ssh_key_path",
+            "label": "[root] var.connection_private_ssh_key_path",
+            "simple_name": "var.connection_private_ssh_key_path",
+            "svg_id": "node_54",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Path to the private ssh key used to connect to machines within the OpenShift cluster."
+            }
+        },
+        {
+            "resource_name": "data_disk_size",
+            "label": "[root] var.data_disk_size",
+            "simple_name": "var.data_disk_size",
+            "svg_id": "node_55",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Size of data disk to attach to nodes for Docker volume - valid sizes are 128 GB, 512 GB and 1023 GB",
+                "default": 128
+            }
+        },
+        {
+            "resource_name": "infra_vm_size",
+            "label": "[root] var.infra_vm_size",
+            "simple_name": "var.infra_vm_size",
+            "svg_id": "node_56",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Size of the Infra Virtual Machine. Allowed values: Standard_A4, Standard_A5, Standard_A6, Standard_A7, Standard_A8, Standard_A9, Standard_A10, Standard_A11,Standard_D1, Standard_D2, Standard_D3, Standard_D4,Standard_D11, Standard_D12, Standard_D13, Standard_D14,Standard_D1_v2, Standard_D2_v2, Standard_D3_v2, Standard_D4_v2, Standard_D5_v2,Standard_D11_v2, Standard_D12_v2, Standard_D13_v2, Standard_D14_v2,Standard_G1, Standard_G2, Standard_G3, Standard_G4, Standard_G5,Standard_D1_v2, Standard_DS2, Standard_DS3, Standard_DS4,Standard_DS11, Standard_DS12, Standard_DS13, Standard_DS14,Standard_DS1_v2, Standard_DS2_v2, Standard_DS3_v2, Standard_DS4_v2, Standard_DS5_v2,Standard_DS11_v2, Standard_DS12_v2, Standard_DS13_v2, Standard_DS14_v2,Standard_GS1, Standard_GS2, Standard_GS3, Standard_GS4, Standard_GS5",
+                "default": "Standard_DS3_v2"
+            }
+        },
+        {
+            "resource_name": "openshift_script_path",
+            "label": "[root] var.openshift_script_path",
+            "simple_name": "var.openshift_script_path",
+            "svg_id": "node_57",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Local path to openshift scripts to prep nodes and install openshift origin"
+            }
+        },
+        {
+            "resource_name": "default_sub_domain_type",
+            "label": "[root] var.default_sub_domain_type",
+            "simple_name": "var.default_sub_domain_type",
+            "svg_id": "node_58",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "This will either be 'xipio' (if you don't have your own domain) or 'custom' if you have your own domain that you would like to use for routing",
+                "default": "xipio"
+            }
+        },
+        {
+            "resource_name": "key_vault_name",
+            "label": "[root] var.key_vault_name",
+            "simple_name": "var.key_vault_name",
+            "svg_id": "node_59",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "The name of the Key Vault you will use"
+            }
+        },
+        {
+            "resource_name": "key_vault_secret",
+            "label": "[root] var.key_vault_secret",
+            "simple_name": "var.key_vault_secret",
+            "svg_id": "node_60",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "The Secret Name you used when creating the Secret (that contains the Private Key)"
+            }
+        },
+        {
+            "resource_name": "master_vm_size",
+            "label": "[root] var.master_vm_size",
+            "simple_name": "var.master_vm_size",
+            "svg_id": "node_61",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Size of the Master Virtual Machine. Allowed values: Standard_A4, Standard_A5, Standard_A6, Standard_A7, Standard_A8, Standard_A9, Standard_A10, Standard_A11, Standard_D1, Standard_D2, Standard_D3, Standard_D4, Standard_D11, Standard_D12, Standard_D13, Standard_D14, Standard_D1_v2, Standard_D2_v2, Standard_D3_v2, Standard_D4_v2, Standard_D5_v2, Standard_D11_v2, Standard_D12_v2, Standard_D13_v2, Standard_D14_v2, Standard_G1, Standard_G2, Standard_G3, Standard_G4, Standard_G5, Standard_D1_v2, Standard_DS2, Standard_DS3, Standard_DS4, Standard_DS11, Standard_DS12, Standard_DS13, Standard_DS14, Standard_DS1_v2, Standard_DS2_v2, Standard_DS3_v2, Standard_DS4_v2, Standard_DS5_v2, Standard_DS11_v2, Standard_DS12_v2, Standard_DS13_v2, Standard_DS14_v2, Standard_GS1, Standard_GS2, Standard_GS3, Standard_GS4, Standard_GS5",
+                "default": "Standard_DS4_v2"
+            }
+        },
+        {
+            "resource_name": "node_vm_size",
+            "label": "[root] var.node_vm_size",
+            "simple_name": "var.node_vm_size",
+            "svg_id": "node_62",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Size of the Node Virtual Machine. Allowed values: Standard_A4, Standard_A5, Standard_A6, Standard_A7, Standard_A8, Standard_A9, Standard_A10, Standard_A11, Standard_D1, Standard_D2, Standard_D3, Standard_D4, Standard_D11, Standard_D12, Standard_D13, Standard_D14, Standard_D1_v2, Standard_D2_v2, Standard_D3_v2, Standard_D4_v2, Standard_D5_v2, Standard_D11_v2, Standard_D12_v2, Standard_D13_v2, Standard_D14_v2, Standard_G1, Standard_G2, Standard_G3, Standard_G4, Standard_G5, Standard_D1_v2, Standard_DS2, Standard_DS3, Standard_DS4, Standard_DS11, Standard_DS12, Standard_DS13, Standard_DS14, Standard_DS1_v2, Standard_DS2_v2, Standard_DS3_v2, Standard_DS4_v2, Standard_DS5_v2, Standard_DS11_v2, Standard_DS12_v2, Standard_DS13_v2, Standard_DS14_v2, Standard_GS1, Standard_GS2, Standard_GS3, Standard_GS4, Standard_GS5",
+                "default": "Standard_DS3_v2"
+            }
+        },
+        {
+            "resource_name": "count-boundary",
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_63",
+            "group": 20000,
+            "type": "meta",
+            "definition": ""
+        },
+        {
+            "resource_name": "infra_storage_account_name",
+            "label": "[root] output.infra_storage_account_name",
+            "simple_name": "output.infra_storage_account_name",
+            "svg_id": "node_64",
+            "group": 20000,
+            "type": "output",
+            "definition": {
+                "value": "${azurerm_storage_account.infra_storage_account.name}"
+            }
+        },
+        {
+            "resource_name": "node_data_storage_account_name",
+            "label": "[root] output.node_data_storage_account_name",
+            "simple_name": "output.node_data_storage_account_name",
+            "svg_id": "node_65",
+            "group": 20000,
+            "type": "output",
+            "definition": {
+                "value": "${azurerm_storage_account.nodedata_storage_account.name}"
+            }
+        },
+        {
+            "resource_name": "node_os_storage_account_name",
+            "label": "[root] output.node_os_storage_account_name",
+            "simple_name": "output.node_os_storage_account_name",
+            "svg_id": "node_66",
+            "group": 20000,
+            "type": "output",
+            "definition": {
+                "value": "${azurerm_storage_account.nodeos_storage_account.name}"
+            }
+        },
+        {
+            "resource_name": "openshift_console_url",
+            "label": "[root] output.openshift_console_url",
+            "simple_name": "output.openshift_console_url",
+            "svg_id": "node_67",
+            "group": 20000,
+            "type": "output",
+            "definition": {
+                "value": "https://${azurerm_public_ip.openshift_master_pip.fqdn}:8443/console"
+            }
+        },
+        {
+            "resource_name": "openshift_infra_load_balancer_fqdn",
+            "label": "[root] output.openshift_infra_load_balancer_fqdn",
+            "simple_name": "output.openshift_infra_load_balancer_fqdn",
+            "svg_id": "node_68",
+            "group": 20000,
+            "type": "output",
+            "definition": {
+                "value": "${azurerm_public_ip.infra_lb_pip.fqdn}"
+            }
+        },
+        {
+            "resource_name": "openshift_master_ssh",
+            "label": "[root] output.openshift_master_ssh",
+            "simple_name": "output.openshift_master_ssh",
+            "svg_id": "node_69",
+            "group": 20000,
+            "type": "output",
+            "definition": {
+                "value": "ssh ${var.admin_username}@${azurerm_public_ip.openshift_master_pip.fqdn} -p 2200"
+            }
+        },
+        {
+            "resource_name": "api_version",
+            "label": "[root] var.api_version",
+            "simple_name": "var.api_version",
+            "svg_id": "node_70",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "default": "2015-01-01"
+            }
+        },
+        {
+            "resource_name": "api_version_compute",
+            "label": "[root] var.api_version_compute",
+            "simple_name": "var.api_version_compute",
+            "svg_id": "node_71",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "default": "2015-06-15"
+            }
+        },
+        {
+            "resource_name": "default_sub_domain",
+            "label": "[root] var.default_sub_domain",
+            "simple_name": "var.default_sub_domain",
+            "svg_id": "node_72",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "The wildcard DNS name you would like to use for routing if you selected 'custom' above. If you selected 'xipio' above, then this field will be ignored",
+                "default": "contoso.com"
+            }
+        },
+        {
+            "resource_name": "disk_size_gb",
+            "label": "[root] var.disk_size_gb",
+            "simple_name": "var.disk_size_gb",
+            "svg_id": "node_73",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "storage os disk size",
+                "default": 60
+            }
+        },
+        {
+            "resource_name": "key_vault_resource_group",
+            "label": "[root] var.key_vault_resource_group",
+            "simple_name": "var.key_vault_resource_group",
+            "svg_id": "node_74",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "The name of the Resource Group that contains the Key Vault"
+            }
+        },
+        {
+            "resource_name": "azurerm",
+            "label": "[root] provider.azurerm (close)",
+            "simple_name": "provider.azurerm (close)",
+            "svg_id": "node_75",
+            "group": 20000,
+            "type": "provider",
+            "definition": {
+                "subscription_id": "${var.subscription_id}",
+                "client_id": "${var.aad_client_id}",
+                "client_secret": "${var.aad_client_secret}",
+                "tenant_id": "${var.tenant_id}"
+            }
+        },
+        {
+            "resource_name": "aad_client_id",
+            "label": "[root] var.aad_client_id",
+            "simple_name": "var.aad_client_id",
+            "svg_id": "node_76",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Azure Active Directory Client ID also known as Application ID for Service Principal"
+            }
+        },
+        {
+            "resource_name": "aad_client_secret",
+            "label": "[root] var.aad_client_secret",
+            "simple_name": "var.aad_client_secret",
+            "svg_id": "node_77",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Azure Active Directory Client Secret for Service Principal"
+            }
+        },
+        {
+            "resource_name": "subscription_id",
+            "label": "[root] var.subscription_id",
+            "simple_name": "var.subscription_id",
+            "svg_id": "node_78",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Subscription ID of the key vault"
+            }
+        },
+        {
+            "resource_name": "tenant_id",
+            "label": "[root] var.tenant_id",
+            "simple_name": "var.tenant_id",
+            "svg_id": "node_79",
+            "group": 20000,
+            "type": "var",
+            "definition": {
+                "description": "Tenant ID with access to your key vault and subscription"
+            }
+        },
+        {
+            "resource_name": "file",
+            "label": "[root] provisioner.file (close)",
+            "simple_name": "provisioner.file (close)",
+            "svg_id": "node_80",
+            "group": 20000,
+            "type": "provisioner",
+            "definition": ""
+        },
+        {
+            "resource_name": "remote-exec",
+            "label": "[root] provisioner.remote-exec (close)",
+            "simple_name": "provisioner.remote-exec (close)",
+            "svg_id": "node_81",
+            "group": 20000,
+            "type": "provisioner",
+            "definition": ""
+        },
+        {
+            "resource_name": "",
+            "label": "[root] root",
+            "simple_name": "root",
+            "svg_id": "node_82",
+            "group": 20000,
+            "type": "",
+            "definition": ""
+        }
+    ],
+    "edges": [
+        {
+            "svg_id": "edge_0",
+            "source": "[root] azurerm_availability_set.infra",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_1",
+            "source": "[root] azurerm_availability_set.master",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_2",
+            "source": "[root] azurerm_availability_set.node",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_3",
+            "source": "[root] azurerm_lb.infra_lb",
+            "target": "[root] azurerm_public_ip.infra_lb_pip"
+        },
+        {
+            "svg_id": "edge_4",
+            "source": "[root] azurerm_lb.master_lb",
+            "target": "[root] azurerm_public_ip.openshift_master_pip"
+        },
+        {
+            "svg_id": "edge_5",
+            "source": "[root] azurerm_lb_backend_address_pool.infra_lb",
+            "target": "[root] azurerm_lb.infra_lb"
+        },
+        {
+            "svg_id": "edge_6",
+            "source": "[root] azurerm_lb_backend_address_pool.master_lb",
+            "target": "[root] azurerm_lb.master_lb"
+        },
+        {
+            "svg_id": "edge_7",
+            "source": "[root] azurerm_lb_nat_rule.master_lb",
+            "target": "[root] azurerm_lb.master_lb"
+        },
+        {
+            "svg_id": "edge_8",
+            "source": "[root] azurerm_lb_nat_rule.master_lb",
+            "target": "[root] var.master_instance_count"
+        },
+        {
+            "svg_id": "edge_9",
+            "source": "[root] azurerm_lb_probe.infra_lb_http_probe",
+            "target": "[root] azurerm_lb.infra_lb"
+        },
+        {
+            "svg_id": "edge_10",
+            "source": "[root] azurerm_lb_probe.infra_lb_https_probe",
+            "target": "[root] azurerm_lb.infra_lb"
+        },
+        {
+            "svg_id": "edge_11",
+            "source": "[root] azurerm_lb_probe.master_lb",
+            "target": "[root] azurerm_lb.master_lb"
+        },
+        {
+            "svg_id": "edge_12",
+            "source": "[root] azurerm_lb_rule.infra_lb_http",
+            "target": "[root] azurerm_lb_backend_address_pool.infra_lb"
+        },
+        {
+            "svg_id": "edge_13",
+            "source": "[root] azurerm_lb_rule.infra_lb_http",
+            "target": "[root] azurerm_lb_probe.infra_lb_http_probe"
+        },
+        {
+            "svg_id": "edge_14",
+            "source": "[root] azurerm_lb_rule.infra_lb_https",
+            "target": "[root] azurerm_lb_backend_address_pool.infra_lb"
+        },
+        {
+            "svg_id": "edge_15",
+            "source": "[root] azurerm_lb_rule.infra_lb_https",
+            "target": "[root] azurerm_lb_probe.infra_lb_https_probe"
+        },
+        {
+            "svg_id": "edge_16",
+            "source": "[root] azurerm_lb_rule.master_lb",
+            "target": "[root] azurerm_lb_backend_address_pool.master_lb"
+        },
+        {
+            "svg_id": "edge_17",
+            "source": "[root] azurerm_lb_rule.master_lb",
+            "target": "[root] azurerm_lb_probe.master_lb"
+        },
+        {
+            "svg_id": "edge_18",
+            "source": "[root] azurerm_network_interface.bastion_nic",
+            "target": "[root] azurerm_network_security_group.master_nsg"
+        },
+        {
+            "svg_id": "edge_19",
+            "source": "[root] azurerm_network_interface.bastion_nic",
+            "target": "[root] azurerm_public_ip.bastion_pip"
+        },
+        {
+            "svg_id": "edge_20",
+            "source": "[root] azurerm_network_interface.bastion_nic",
+            "target": "[root] azurerm_subnet.master_subnet"
+        },
+        {
+            "svg_id": "edge_21",
+            "source": "[root] azurerm_network_interface.infra_nic",
+            "target": "[root] azurerm_lb_backend_address_pool.infra_lb"
+        },
+        {
+            "svg_id": "edge_22",
+            "source": "[root] azurerm_network_interface.infra_nic",
+            "target": "[root] azurerm_network_security_group.infra_nsg"
+        },
+        {
+            "svg_id": "edge_23",
+            "source": "[root] azurerm_network_interface.infra_nic",
+            "target": "[root] azurerm_subnet.master_subnet"
+        },
+        {
+            "svg_id": "edge_24",
+            "source": "[root] azurerm_network_interface.infra_nic",
+            "target": "[root] var.infra_instance_count"
+        },
+        {
+            "svg_id": "edge_25",
+            "source": "[root] azurerm_network_interface.master_nic",
+            "target": "[root] azurerm_lb_backend_address_pool.master_lb"
+        },
+        {
+            "svg_id": "edge_26",
+            "source": "[root] azurerm_network_interface.master_nic",
+            "target": "[root] azurerm_lb_nat_rule.master_lb"
+        },
+        {
+            "svg_id": "edge_27",
+            "source": "[root] azurerm_network_interface.master_nic",
+            "target": "[root] azurerm_network_security_group.master_nsg"
+        },
+        {
+            "svg_id": "edge_28",
+            "source": "[root] azurerm_network_interface.master_nic",
+            "target": "[root] azurerm_subnet.master_subnet"
+        },
+        {
+            "svg_id": "edge_29",
+            "source": "[root] azurerm_network_interface.node_nic",
+            "target": "[root] azurerm_network_security_group.node_nsg"
+        },
+        {
+            "svg_id": "edge_30",
+            "source": "[root] azurerm_network_interface.node_nic",
+            "target": "[root] azurerm_subnet.node_subnet"
+        },
+        {
+            "svg_id": "edge_31",
+            "source": "[root] azurerm_network_interface.node_nic",
+            "target": "[root] var.node_instance_count"
+        },
+        {
+            "svg_id": "edge_32",
+            "source": "[root] azurerm_network_security_group.infra_nsg",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_33",
+            "source": "[root] azurerm_network_security_group.infra_nsg",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_34",
+            "source": "[root] azurerm_network_security_group.master_nsg",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_35",
+            "source": "[root] azurerm_network_security_group.master_nsg",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_36",
+            "source": "[root] azurerm_network_security_group.node_nsg",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_37",
+            "source": "[root] azurerm_network_security_group.node_nsg",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_38",
+            "source": "[root] azurerm_public_ip.bastion_pip",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_39",
+            "source": "[root] azurerm_public_ip.bastion_pip",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_40",
+            "source": "[root] azurerm_public_ip.infra_lb_pip",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_41",
+            "source": "[root] azurerm_public_ip.infra_lb_pip",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_42",
+            "source": "[root] azurerm_public_ip.openshift_master_pip",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_43",
+            "source": "[root] azurerm_public_ip.openshift_master_pip",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_44",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "svg_id": "edge_45",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.resource_group_location"
+        },
+        {
+            "svg_id": "edge_46",
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.resource_group_name"
+        },
+        {
+            "svg_id": "edge_47",
+            "source": "[root] azurerm_storage_account.bastion_storage_account",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_48",
+            "source": "[root] azurerm_storage_account.bastion_storage_account",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_49",
+            "source": "[root] azurerm_storage_account.bastion_storage_account",
+            "target": "[root] var.storage_account_replication_type"
+        },
+        {
+            "svg_id": "edge_50",
+            "source": "[root] azurerm_storage_account.bastion_storage_account",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "svg_id": "edge_51",
+            "source": "[root] azurerm_storage_account.infra_storage_account",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_52",
+            "source": "[root] azurerm_storage_account.infra_storage_account",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_53",
+            "source": "[root] azurerm_storage_account.infra_storage_account",
+            "target": "[root] var.storage_account_replication_type"
+        },
+        {
+            "svg_id": "edge_54",
+            "source": "[root] azurerm_storage_account.infra_storage_account",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "svg_id": "edge_55",
+            "source": "[root] azurerm_storage_account.master_storage_account",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_56",
+            "source": "[root] azurerm_storage_account.master_storage_account",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_57",
+            "source": "[root] azurerm_storage_account.master_storage_account",
+            "target": "[root] var.storage_account_replication_type"
+        },
+        {
+            "svg_id": "edge_58",
+            "source": "[root] azurerm_storage_account.master_storage_account",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "svg_id": "edge_59",
+            "source": "[root] azurerm_storage_account.nodedata_storage_account",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_60",
+            "source": "[root] azurerm_storage_account.nodedata_storage_account",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_61",
+            "source": "[root] azurerm_storage_account.nodedata_storage_account",
+            "target": "[root] var.storage_account_replication_type"
+        },
+        {
+            "svg_id": "edge_62",
+            "source": "[root] azurerm_storage_account.nodedata_storage_account",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "svg_id": "edge_63",
+            "source": "[root] azurerm_storage_account.nodeos_storage_account",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_64",
+            "source": "[root] azurerm_storage_account.nodeos_storage_account",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_65",
+            "source": "[root] azurerm_storage_account.nodeos_storage_account",
+            "target": "[root] var.storage_account_replication_type"
+        },
+        {
+            "svg_id": "edge_66",
+            "source": "[root] azurerm_storage_account.nodeos_storage_account",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "svg_id": "edge_67",
+            "source": "[root] azurerm_storage_account.persistent_volume_storage_account",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_68",
+            "source": "[root] azurerm_storage_account.persistent_volume_storage_account",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_69",
+            "source": "[root] azurerm_storage_account.persistent_volume_storage_account",
+            "target": "[root] var.storage_account_replication_type"
+        },
+        {
+            "svg_id": "edge_70",
+            "source": "[root] azurerm_storage_account.persistent_volume_storage_account",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "svg_id": "edge_71",
+            "source": "[root] azurerm_storage_account.registry_storage_account",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_72",
+            "source": "[root] azurerm_storage_account.registry_storage_account",
+            "target": "[root] var.openshift_cluster_prefix"
+        },
+        {
+            "svg_id": "edge_73",
+            "source": "[root] azurerm_storage_account.registry_storage_account",
+            "target": "[root] var.storage_account_replication_type"
+        },
+        {
+            "svg_id": "edge_74",
+            "source": "[root] azurerm_storage_account.registry_storage_account",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "svg_id": "edge_75",
+            "source": "[root] azurerm_subnet.master_subnet",
+            "target": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "svg_id": "edge_76",
+            "source": "[root] azurerm_subnet.node_subnet",
+            "target": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "svg_id": "edge_77",
+            "source": "[root] azurerm_virtual_machine.bastion",
+            "target": "[root] azurerm_network_interface.bastion_nic"
+        },
+        {
+            "svg_id": "edge_78",
+            "source": "[root] azurerm_virtual_machine.bastion",
+            "target": "[root] azurerm_storage_account.bastion_storage_account"
+        },
+        {
+            "svg_id": "edge_79",
+            "source": "[root] azurerm_virtual_machine.bastion",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "svg_id": "edge_80",
+            "source": "[root] azurerm_virtual_machine.bastion",
+            "target": "[root] var.bastion_vm_size"
+        },
+        {
+            "svg_id": "edge_81",
+            "source": "[root] azurerm_virtual_machine.bastion",
+            "target": "[root] var.openshift_password"
+        },
+        {
+            "svg_id": "edge_82",
+            "source": "[root] azurerm_virtual_machine.bastion",
+            "target": "[root] var.os_image"
+        },
+        {
+            "svg_id": "edge_83",
+            "source": "[root] azurerm_virtual_machine.bastion",
+            "target": "[root] var.os_image_map"
+        },
+        {
+            "svg_id": "edge_84",
+            "source": "[root] azurerm_virtual_machine.bastion",
+            "target": "[root] var.ssh_public_key"
+        },
+        {
+            "svg_id": "edge_85",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] azurerm_availability_set.infra"
+        },
+        {
+            "svg_id": "edge_86",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] azurerm_network_interface.infra_nic"
+        },
+        {
+            "svg_id": "edge_87",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] azurerm_public_ip.bastion_pip"
+        },
+        {
+            "svg_id": "edge_88",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] azurerm_storage_account.infra_storage_account"
+        },
+        {
+            "svg_id": "edge_89",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "svg_id": "edge_90",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] var.connection_private_ssh_key_path"
+        },
+        {
+            "svg_id": "edge_91",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] var.data_disk_size"
+        },
+        {
+            "svg_id": "edge_92",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] var.infra_vm_size"
+        },
+        {
+            "svg_id": "edge_93",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] var.openshift_password"
+        },
+        {
+            "svg_id": "edge_94",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] var.openshift_script_path"
+        },
+        {
+            "svg_id": "edge_95",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] var.os_image"
+        },
+        {
+            "svg_id": "edge_96",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] var.os_image_map"
+        },
+        {
+            "svg_id": "edge_97",
+            "source": "[root] azurerm_virtual_machine.infra",
+            "target": "[root] var.ssh_public_key"
+        },
+        {
+            "svg_id": "edge_98",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] azurerm_availability_set.master"
+        },
+        {
+            "svg_id": "edge_99",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] azurerm_network_interface.master_nic"
+        },
+        {
+            "svg_id": "edge_100",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] azurerm_storage_account.master_storage_account"
+        },
+        {
+            "svg_id": "edge_101",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] azurerm_storage_account.persistent_volume_storage_account"
+        },
+        {
+            "svg_id": "edge_102",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] azurerm_storage_account.registry_storage_account"
+        },
+        {
+            "svg_id": "edge_103",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] azurerm_virtual_machine.infra"
+        },
+        {
+            "svg_id": "edge_104",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] azurerm_virtual_machine.node"
+        },
+        {
+            "svg_id": "edge_105",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] var.default_sub_domain_type"
+        },
+        {
+            "svg_id": "edge_106",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] var.key_vault_name"
+        },
+        {
+            "svg_id": "edge_107",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] var.key_vault_secret"
+        },
+        {
+            "svg_id": "edge_108",
+            "source": "[root] azurerm_virtual_machine.master",
+            "target": "[root] var.master_vm_size"
+        },
+        {
+            "svg_id": "edge_109",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] azurerm_availability_set.node"
+        },
+        {
+            "svg_id": "edge_110",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] azurerm_network_interface.node_nic"
+        },
+        {
+            "svg_id": "edge_111",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] azurerm_public_ip.bastion_pip"
+        },
+        {
+            "svg_id": "edge_112",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] azurerm_storage_account.nodeos_storage_account"
+        },
+        {
+            "svg_id": "edge_113",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "svg_id": "edge_114",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] var.connection_private_ssh_key_path"
+        },
+        {
+            "svg_id": "edge_115",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] var.data_disk_size"
+        },
+        {
+            "svg_id": "edge_116",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] var.node_vm_size"
+        },
+        {
+            "svg_id": "edge_117",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] var.openshift_password"
+        },
+        {
+            "svg_id": "edge_118",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] var.openshift_script_path"
+        },
+        {
+            "svg_id": "edge_119",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] var.os_image"
+        },
+        {
+            "svg_id": "edge_120",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] var.os_image_map"
+        },
+        {
+            "svg_id": "edge_121",
+            "source": "[root] azurerm_virtual_machine.node",
+            "target": "[root] var.ssh_public_key"
+        },
+        {
+            "svg_id": "edge_122",
+            "source": "[root] azurerm_virtual_network.vnet",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "svg_id": "edge_123",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] azurerm_lb_rule.infra_lb_http"
+        },
+        {
+            "svg_id": "edge_124",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] azurerm_lb_rule.infra_lb_https"
+        },
+        {
+            "svg_id": "edge_125",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] azurerm_lb_rule.master_lb"
+        },
+        {
+            "svg_id": "edge_126",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] azurerm_virtual_machine.bastion"
+        },
+        {
+            "svg_id": "edge_127",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "svg_id": "edge_128",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.infra_storage_account_name"
+        },
+        {
+            "svg_id": "edge_129",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.node_data_storage_account_name"
+        },
+        {
+            "svg_id": "edge_130",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.node_os_storage_account_name"
+        },
+        {
+            "svg_id": "edge_131",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.openshift_console_url"
+        },
+        {
+            "svg_id": "edge_132",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.openshift_infra_load_balancer_fqdn"
+        },
+        {
+            "svg_id": "edge_133",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.openshift_master_ssh"
+        },
+        {
+            "svg_id": "edge_134",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] var.api_version"
+        },
+        {
+            "svg_id": "edge_135",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] var.api_version_compute"
+        },
+        {
+            "svg_id": "edge_136",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] var.default_sub_domain"
+        },
+        {
+            "svg_id": "edge_137",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] var.disk_size_gb"
+        },
+        {
+            "svg_id": "edge_138",
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] var.key_vault_resource_group"
+        },
+        {
+            "svg_id": "edge_139",
+            "source": "[root] output.infra_storage_account_name",
+            "target": "[root] azurerm_storage_account.infra_storage_account"
+        },
+        {
+            "svg_id": "edge_140",
+            "source": "[root] output.node_data_storage_account_name",
+            "target": "[root] azurerm_storage_account.nodedata_storage_account"
+        },
+        {
+            "svg_id": "edge_141",
+            "source": "[root] output.node_os_storage_account_name",
+            "target": "[root] azurerm_storage_account.nodeos_storage_account"
+        },
+        {
+            "svg_id": "edge_142",
+            "source": "[root] output.openshift_console_url",
+            "target": "[root] azurerm_public_ip.openshift_master_pip"
+        },
+        {
+            "svg_id": "edge_143",
+            "source": "[root] output.openshift_infra_load_balancer_fqdn",
+            "target": "[root] azurerm_public_ip.infra_lb_pip"
+        },
+        {
+            "svg_id": "edge_144",
+            "source": "[root] output.openshift_master_ssh",
+            "target": "[root] azurerm_public_ip.openshift_master_pip"
+        },
+        {
+            "svg_id": "edge_145",
+            "source": "[root] output.openshift_master_ssh",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "svg_id": "edge_146",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_lb_rule.infra_lb_http"
+        },
+        {
+            "svg_id": "edge_147",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_lb_rule.infra_lb_https"
+        },
+        {
+            "svg_id": "edge_148",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_lb_rule.master_lb"
+        },
+        {
+            "svg_id": "edge_149",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_storage_account.nodedata_storage_account"
+        },
+        {
+            "svg_id": "edge_150",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_virtual_machine.bastion"
+        },
+        {
+            "svg_id": "edge_151",
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "svg_id": "edge_152",
+            "source": "[root] provider.azurerm",
+            "target": "[root] var.aad_client_id"
+        },
+        {
+            "svg_id": "edge_153",
+            "source": "[root] provider.azurerm",
+            "target": "[root] var.aad_client_secret"
+        },
+        {
+            "svg_id": "edge_154",
+            "source": "[root] provider.azurerm",
+            "target": "[root] var.subscription_id"
+        },
+        {
+            "svg_id": "edge_155",
+            "source": "[root] provider.azurerm",
+            "target": "[root] var.tenant_id"
+        },
+        {
+            "svg_id": "edge_156",
+            "source": "[root] provisioner.file (close)",
+            "target": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "svg_id": "edge_157",
+            "source": "[root] provisioner.remote-exec (close)",
+            "target": "[root] azurerm_virtual_machine.master"
+        },
+        {
+            "svg_id": "edge_158",
+            "source": "[root] root",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "svg_id": "edge_159",
+            "source": "[root] root",
+            "target": "[root] provider.azurerm (close)"
+        },
+        {
+            "svg_id": "edge_160",
+            "source": "[root] root",
+            "target": "[root] provisioner.file (close)"
+        },
+        {
+            "svg_id": "edge_161",
+            "source": "[root] root",
+            "target": "[root] provisioner.remote-exec (close)"
+        }
+    ]
+}

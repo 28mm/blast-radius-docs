@@ -1,0 +1,171 @@
+{
+    "nodes": [
+        {
+            "simple_name": "aws_elb.web",
+            "definition": {
+                "name": "terraform-example-elb",
+                "availability_zones": [
+                    "${aws_instance.web.*.availability_zone}"
+                ],
+                "listener": {
+                    "instance_port": 80,
+                    "instance_protocol": "http",
+                    "lb_port": 80,
+                    "lb_protocol": "http"
+                },
+                "instances": [
+                    "${aws_instance.web.*.id}"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] aws_elb.web",
+            "type": "aws_elb",
+            "resource_name": "web",
+            "svg_id": "node_0"
+        },
+        {
+            "simple_name": "aws_instance.web",
+            "definition": {
+                "instance_type": "m1.small",
+                "ami": "${lookup(var.aws_amis, var.aws_region)}",
+                "count": 4
+            },
+            "group": 20000,
+            "label": "[root] aws_instance.web",
+            "type": "aws_instance",
+            "resource_name": "web",
+            "svg_id": "node_1"
+        },
+        {
+            "simple_name": "provider.aws",
+            "definition": {
+                "region": "${var.aws_region}"
+            },
+            "group": 20000,
+            "label": "[root] provider.aws",
+            "type": "provider",
+            "resource_name": "aws",
+            "svg_id": "node_2"
+        },
+        {
+            "simple_name": "var.aws_amis",
+            "definition": {
+                "default": {
+                    "eu-west-1": "ami-b1cf19c6",
+                    "us-east-1": "ami-de7ab6b6",
+                    "us-west-1": "ami-3f75767a",
+                    "us-west-2": "ami-21f78e11"
+                }
+            },
+            "group": 20000,
+            "label": "[root] var.aws_amis",
+            "type": "var",
+            "resource_name": "aws_amis",
+            "svg_id": "node_3"
+        },
+        {
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "type": "meta",
+            "resource_name": "count-boundary",
+            "svg_id": "node_4"
+        },
+        {
+            "simple_name": "output.address",
+            "definition": {
+                "value": "Instances: ${element(aws_instance.web.*.id, 0)}"
+            },
+            "group": 20000,
+            "label": "[root] output.address",
+            "type": "output",
+            "resource_name": "address",
+            "svg_id": "node_5"
+        },
+        {
+            "simple_name": "provider.aws (close)",
+            "definition": {
+                "region": "${var.aws_region}"
+            },
+            "group": 20000,
+            "label": "[root] provider.aws (close)",
+            "type": "provider",
+            "resource_name": "aws",
+            "svg_id": "node_6"
+        },
+        {
+            "simple_name": "var.aws_region",
+            "definition": {
+                "description": "The AWS region to create things in.",
+                "default": "us-west-2"
+            },
+            "group": 20000,
+            "label": "[root] var.aws_region",
+            "type": "var",
+            "resource_name": "aws_region",
+            "svg_id": "node_7"
+        },
+        {
+            "simple_name": "root",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] root",
+            "type": "",
+            "resource_name": "",
+            "svg_id": "node_8"
+        }
+    ],
+    "edges": [
+        {
+            "source": "[root] aws_elb.web",
+            "svg_id": "edge_0",
+            "target": "[root] aws_instance.web"
+        },
+        {
+            "source": "[root] aws_instance.web",
+            "svg_id": "edge_1",
+            "target": "[root] provider.aws"
+        },
+        {
+            "source": "[root] aws_instance.web",
+            "svg_id": "edge_2",
+            "target": "[root] var.aws_amis"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_3",
+            "target": "[root] aws_elb.web"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_4",
+            "target": "[root] output.address"
+        },
+        {
+            "source": "[root] output.address",
+            "svg_id": "edge_5",
+            "target": "[root] aws_instance.web"
+        },
+        {
+            "source": "[root] provider.aws (close)",
+            "svg_id": "edge_6",
+            "target": "[root] aws_elb.web"
+        },
+        {
+            "source": "[root] provider.aws",
+            "svg_id": "edge_7",
+            "target": "[root] var.aws_region"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_8",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "source": "[root] root",
+            "svg_id": "edge_9",
+            "target": "[root] provider.aws (close)"
+        }
+    ]
+}

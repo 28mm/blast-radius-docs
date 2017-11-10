@@ -1,0 +1,241 @@
+h2, h3, h4, p {
+  font-family: monospace;
+}
+
+p.explain {
+    font-family: monospace;
+    white-space: pre;
+  }
+  
+  h3.explain {
+    font-family: monospace;
+  }
+  
+  path.link {
+    fill: none;
+    stroke: #666;
+    stroke-width: 1.5px;
+  }
+  
+  circle {
+    stroke: #fff;
+    stroke-width: 1.5px;
+  }
+  
+  text {
+    fill: #000;
+    font: 10px sans-serif;
+    pointer-events: none;
+  }
+  
+  /* tooltip stuff */
+  .d3-tip {
+    line-height: 1;
+    font-weight: normal;
+    font-family: 'consolas', 'monaco', fixed-width;
+    font-size: 10px;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    z-index: 91;
+  }
+  
+  .d3-tip p {
+    font-weight: normal;
+    font-family: 'consolas', 'monaco', fixed-width;
+    font-size: 10px;
+  }
+  
+  span.header {
+          display: block;
+          font-size: 14px;
+          text-align: center;
+          line-height: 17px;
+          color: white;
+          width: 100%;
+          /* background: #888; */ /* set via js */
+  }
+  
+  span.dep {
+       line-height: 14px;
+       font-size: 10px;
+       color: white;
+       display: inline-block;
+       margin: 1px;
+  }
+  
+  /* Creates a small triangle extender for the tooltip */
+  .d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 12px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+    z-index: 91;
+  }
+  
+  /* Style northward tooltips differently */
+  .d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+    z-index: 91;
+  }
+  
+  g.node text {
+         font-family: 'consolas', 'monaco', 'fixed-widht';
+         font-size: 8px;
+  }
+  
+
+/* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+svg {
+  display: block;
+  margin: auto;
+}
+
+ul.examples {
+  padding: 10px 16px;
+  margin: 0px 0px 0px 16px;
+  list-style: none;
+  /*background-color: #eee;*/
+}
+ul.examples li {
+  /*display: inline;*/
+  font-size: 18px;
+  padding: 2px;
+}
+ul.examples li:before {
+  padding: 8px;
+}
+
+/* Add a color to all links inside the list */
+ul.examples li a {
+  /*color: #000000;*/
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.examples li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+h1 {
+  font-family: georgia, serif;
+  font-weight: normal;
+  margin: 30px 0px 10px 0px;
+  padding: 0;
+  font-size: 240%;
+}
+
+h2 {
+  font-family: georgia, serif;
+  font-weight: normal;
+  margin: 30px 0px 10px 0px;
+  font-size: 180%;
+  padding: 0;
+}
+
+/* Add a color to all links inside the list */
+h2.example a {
+  color: #0275d8;
+  text-decoration: none;
+  line-height: 24px;
+}
+
+h2.example {
+  margin: 5px;
+}
+
+/* Add a color on mouse-over */
+h2.example a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+h2.example a {
+  font-family: georgia, serif;
+  font-size: 18px;
+}
+
+p.descr {
+  font-family: georgia, serif;
+  font-size: 17px;
+  line-height: 1.5em;
+  font-style: normal;
+}
+
+ol li {
+  font-family: georgia, serif;
+  font-size: 17px;
+  line-height: 1.5em;
+  font-style: normal;
+}
+
+ol li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ol li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+div.code {
+  background: #eee;
+  padding: 10px 16px;
+  margin: 0px 0px 0px 16px;
+  /*padding-top: 7px;
+  padding-bottom: 7px;*/
+
+}
+
+code {
+  white-space: pre;
+  font-size: 14px;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  line-height: 1.5em;
+  font-style: normal;
+}

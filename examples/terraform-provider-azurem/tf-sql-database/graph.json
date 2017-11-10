@@ -1,0 +1,405 @@
+{
+    "nodes": [
+        {
+            "group": 20000,
+            "label": "[root] azurerm_resource_group.rg",
+            "simple_name": "azurerm_resource_group.rg",
+            "definition": {
+                "name": "${var.resource_group}",
+                "location": "${var.location}"
+            },
+            "svg_id": "node_0",
+            "resource_name": "rg",
+            "type": "azurerm_resource_group"
+        },
+        {
+            "group": 20000,
+            "label": "[root] azurerm_sql_database.db",
+            "simple_name": "azurerm_sql_database.db",
+            "definition": {
+                "name": "${var.db_name}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${var.location}",
+                "edition": "${var.db_edition}",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "server_name": "${azurerm_sql_server.server.name}",
+                "create_mode": "Default",
+                "requested_service_objective_name": "Basic"
+            },
+            "svg_id": "node_1",
+            "resource_name": "db",
+            "type": "azurerm_sql_database"
+        },
+        {
+            "group": 20000,
+            "label": "[root] azurerm_sql_firewall_rule.fw",
+            "simple_name": "azurerm_sql_firewall_rule.fw",
+            "definition": {
+                "name": "firewallrules",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "server_name": "${azurerm_sql_server.server.name}",
+                "start_ip_address": "${var.start_ip_address}",
+                "end_ip_address": "${var.end_ip_address}"
+            },
+            "svg_id": "node_2",
+            "resource_name": "fw",
+            "type": "azurerm_sql_firewall_rule"
+        },
+        {
+            "group": 20000,
+            "label": "[root] azurerm_sql_server.server",
+            "simple_name": "azurerm_sql_server.server",
+            "definition": {
+                "name": "${var.resource_group}-sqlsvr",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "location": "${var.location}",
+                "version": "12.0",
+                "administrator_login": "${var.sql_admin_username}",
+                "administrator_login_password": "${var.sql_password}"
+            },
+            "svg_id": "node_3",
+            "resource_name": "server",
+            "type": "azurerm_sql_server"
+        },
+        {
+            "group": 20000,
+            "label": "[root] provider.azurerm",
+            "simple_name": "provider.azurerm",
+            "definition": "",
+            "svg_id": "node_4",
+            "resource_name": "azurerm",
+            "type": "provider"
+        },
+        {
+            "group": 20000,
+            "label": "[root] var.location",
+            "simple_name": "var.location",
+            "definition": {
+                "description": "The location/region where the database and server are created. Changing this forces a new resource to be created."
+            },
+            "svg_id": "node_5",
+            "resource_name": "location",
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "label": "[root] var.resource_group",
+            "simple_name": "var.resource_group",
+            "definition": {
+                "description": "The name of the resource group in which to create the database."
+            },
+            "svg_id": "node_6",
+            "resource_name": "resource_group",
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "label": "[root] var.db_edition",
+            "simple_name": "var.db_edition",
+            "definition": {
+                "description": "The edition of the database to be created.",
+                "default": "Basic"
+            },
+            "svg_id": "node_7",
+            "resource_name": "db_edition",
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "label": "[root] var.db_name",
+            "simple_name": "var.db_name",
+            "definition": {
+                "description": "The name of the database to be created."
+            },
+            "svg_id": "node_8",
+            "resource_name": "db_name",
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "label": "[root] var.end_ip_address",
+            "simple_name": "var.end_ip_address",
+            "definition": {
+                "description": "Defines the end IP address used in your database firewall rule.",
+                "default": "0.0.0.0"
+            },
+            "svg_id": "node_9",
+            "resource_name": "end_ip_address",
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "label": "[root] var.start_ip_address",
+            "simple_name": "var.start_ip_address",
+            "definition": {
+                "description": "Defines the start IP address used in your database firewall rule.",
+                "default": "0.0.0.0"
+            },
+            "svg_id": "node_10",
+            "resource_name": "start_ip_address",
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "label": "[root] var.sql_admin_username",
+            "simple_name": "var.sql_admin_username",
+            "definition": {
+                "description": "The administrator username of the SQL Server."
+            },
+            "svg_id": "node_11",
+            "resource_name": "sql_admin_username",
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "label": "[root] var.sql_password",
+            "simple_name": "var.sql_password",
+            "definition": {
+                "description": "The administrator password of the SQL Server."
+            },
+            "svg_id": "node_12",
+            "resource_name": "sql_password",
+            "type": "var"
+        },
+        {
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "definition": "",
+            "svg_id": "node_13",
+            "resource_name": "count-boundary",
+            "type": "meta"
+        },
+        {
+            "group": 20000,
+            "label": "[root] output.connection_string",
+            "simple_name": "output.connection_string",
+            "definition": {
+                "value": "Server=tcp:${azurerm_sql_server.server.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_sql_database.db.name};Persist Security Info=False;User ID=${azurerm_sql_server.server.administrator_login};Password=${azurerm_sql_server.server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+            },
+            "svg_id": "node_14",
+            "resource_name": "connection_string",
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "label": "[root] output.database_name",
+            "simple_name": "output.database_name",
+            "definition": {
+                "value": "${azurerm_sql_database.db.name}"
+            },
+            "svg_id": "node_15",
+            "resource_name": "database_name",
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "label": "[root] output.sql_server_fqdn",
+            "simple_name": "output.sql_server_fqdn",
+            "definition": {
+                "value": "${azurerm_sql_server.server.fully_qualified_domain_name}"
+            },
+            "svg_id": "node_16",
+            "resource_name": "sql_server_fqdn",
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "label": "[root] output.sql_server_location",
+            "simple_name": "output.sql_server_location",
+            "definition": {
+                "value": "${azurerm_sql_server.server.location}"
+            },
+            "svg_id": "node_17",
+            "resource_name": "sql_server_location",
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "label": "[root] output.sql_server_name",
+            "simple_name": "output.sql_server_name",
+            "definition": {
+                "value": "${azurerm_sql_server.server.name}"
+            },
+            "svg_id": "node_18",
+            "resource_name": "sql_server_name",
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "label": "[root] output.sql_server_version",
+            "simple_name": "output.sql_server_version",
+            "definition": {
+                "value": "${azurerm_sql_server.server.version}"
+            },
+            "svg_id": "node_19",
+            "resource_name": "sql_server_version",
+            "type": "output"
+        },
+        {
+            "group": 20000,
+            "label": "[root] provider.azurerm (close)",
+            "simple_name": "provider.azurerm (close)",
+            "definition": "",
+            "svg_id": "node_20",
+            "resource_name": "azurerm",
+            "type": "provider"
+        },
+        {
+            "group": 20000,
+            "label": "[root] root",
+            "simple_name": "root",
+            "definition": "",
+            "svg_id": "node_21",
+            "resource_name": "",
+            "type": ""
+        }
+    ],
+    "edges": [
+        {
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] provider.azurerm",
+            "svg_id": "edge_0"
+        },
+        {
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.location",
+            "svg_id": "edge_1"
+        },
+        {
+            "source": "[root] azurerm_resource_group.rg",
+            "target": "[root] var.resource_group",
+            "svg_id": "edge_2"
+        },
+        {
+            "source": "[root] azurerm_sql_database.db",
+            "target": "[root] azurerm_sql_server.server",
+            "svg_id": "edge_3"
+        },
+        {
+            "source": "[root] azurerm_sql_database.db",
+            "target": "[root] var.db_edition",
+            "svg_id": "edge_4"
+        },
+        {
+            "source": "[root] azurerm_sql_database.db",
+            "target": "[root] var.db_name",
+            "svg_id": "edge_5"
+        },
+        {
+            "source": "[root] azurerm_sql_firewall_rule.fw",
+            "target": "[root] azurerm_sql_server.server",
+            "svg_id": "edge_6"
+        },
+        {
+            "source": "[root] azurerm_sql_firewall_rule.fw",
+            "target": "[root] var.end_ip_address",
+            "svg_id": "edge_7"
+        },
+        {
+            "source": "[root] azurerm_sql_firewall_rule.fw",
+            "target": "[root] var.start_ip_address",
+            "svg_id": "edge_8"
+        },
+        {
+            "source": "[root] azurerm_sql_server.server",
+            "target": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_9"
+        },
+        {
+            "source": "[root] azurerm_sql_server.server",
+            "target": "[root] var.sql_admin_username",
+            "svg_id": "edge_10"
+        },
+        {
+            "source": "[root] azurerm_sql_server.server",
+            "target": "[root] var.sql_password",
+            "svg_id": "edge_11"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] azurerm_sql_firewall_rule.fw",
+            "svg_id": "edge_12"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.connection_string",
+            "svg_id": "edge_13"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.database_name",
+            "svg_id": "edge_14"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.sql_server_fqdn",
+            "svg_id": "edge_15"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.sql_server_location",
+            "svg_id": "edge_16"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.sql_server_name",
+            "svg_id": "edge_17"
+        },
+        {
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "target": "[root] output.sql_server_version",
+            "svg_id": "edge_18"
+        },
+        {
+            "source": "[root] output.connection_string",
+            "target": "[root] azurerm_sql_database.db",
+            "svg_id": "edge_19"
+        },
+        {
+            "source": "[root] output.database_name",
+            "target": "[root] azurerm_sql_database.db",
+            "svg_id": "edge_20"
+        },
+        {
+            "source": "[root] output.sql_server_fqdn",
+            "target": "[root] azurerm_sql_server.server",
+            "svg_id": "edge_21"
+        },
+        {
+            "source": "[root] output.sql_server_location",
+            "target": "[root] azurerm_sql_server.server",
+            "svg_id": "edge_22"
+        },
+        {
+            "source": "[root] output.sql_server_name",
+            "target": "[root] azurerm_sql_server.server",
+            "svg_id": "edge_23"
+        },
+        {
+            "source": "[root] output.sql_server_version",
+            "target": "[root] azurerm_sql_server.server",
+            "svg_id": "edge_24"
+        },
+        {
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_sql_database.db",
+            "svg_id": "edge_25"
+        },
+        {
+            "source": "[root] provider.azurerm (close)",
+            "target": "[root] azurerm_sql_firewall_rule.fw",
+            "svg_id": "edge_26"
+        },
+        {
+            "source": "[root] root",
+            "target": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_27"
+        },
+        {
+            "source": "[root] root",
+            "target": "[root] provider.azurerm (close)",
+            "svg_id": "edge_28"
+        }
+    ]
+}
