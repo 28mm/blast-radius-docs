@@ -1,19 +1,179 @@
 {
+    "edges": [
+        {
+            "edge_type": 1,
+            "source": "[root] aws_elb.web",
+            "svg_id": "edge_0",
+            "target": "[root] aws_instance.web"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_elb.web",
+            "svg_id": "edge_1",
+            "target": "[root] aws_security_group.elb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_instance.web",
+            "svg_id": "edge_2",
+            "target": "[root] aws_security_group.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_instance.web",
+            "svg_id": "edge_3",
+            "target": "[root] aws_subnet.tf_test_subnet"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_instance.web",
+            "svg_id": "edge_4",
+            "target": "[root] var.aws_amis"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_instance.web",
+            "svg_id": "edge_5",
+            "target": "[root] var.key_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_internet_gateway.gw",
+            "svg_id": "edge_6",
+            "target": "[root] aws_vpc.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_lb_cookie_stickiness_policy.default",
+            "svg_id": "edge_7",
+            "target": "[root] aws_elb.web"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_route_table.r",
+            "svg_id": "edge_8",
+            "target": "[root] aws_internet_gateway.gw"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_route_table_association.a",
+            "svg_id": "edge_9",
+            "target": "[root] aws_route_table.r"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_route_table_association.a",
+            "svg_id": "edge_10",
+            "target": "[root] aws_subnet.tf_test_subnet"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_security_group.default",
+            "svg_id": "edge_11",
+            "target": "[root] aws_vpc.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_security_group.elb",
+            "svg_id": "edge_12",
+            "target": "[root] aws_internet_gateway.gw"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_subnet.tf_test_subnet",
+            "svg_id": "edge_13",
+            "target": "[root] aws_vpc.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_vpc.default",
+            "svg_id": "edge_14",
+            "target": "[root] provider.aws"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_15",
+            "target": "[root] aws_lb_cookie_stickiness_policy.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_16",
+            "target": "[root] aws_route_table_association.a"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_17",
+            "target": "[root] output.address"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.address",
+            "svg_id": "edge_18",
+            "target": "[root] aws_elb.web"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.aws (close)",
+            "svg_id": "edge_19",
+            "target": "[root] aws_lb_cookie_stickiness_policy.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.aws (close)",
+            "svg_id": "edge_20",
+            "target": "[root] aws_route_table_association.a"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.aws",
+            "svg_id": "edge_21",
+            "target": "[root] var.aws_region"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_22",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_23",
+            "target": "[root] provider.aws (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.aws_amis",
+            "svg_id": "edge_24",
+            "target": "[root] var.key_name"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.aws_amis",
+            "svg_id": "edge_25",
+            "target": "[root] var.key_name"
+        }
+    ],
     "nodes": [
         {
-            "simple_name": "aws_elb.web",
-            "resource_name": "web",
-            "group": 20000,
-            "svg_id": "node_0",
-            "label": "[root] aws_elb.web",
-            "type": "aws_elb",
+            "cluster": "root",
             "definition": {
-                "name": "example-elb",
-                "subnets": [
-                    "${aws_subnet.tf_test_subnet.id}"
-                ],
-                "security_groups": [
-                    "${aws_security_group.elb.id}"
+                "connection_draining": true,
+                "connection_draining_timeout": 400,
+                "cross_zone_load_balancing": true,
+                "health_check": {
+                    "healthy_threshold": 2,
+                    "interval": 30,
+                    "target": "HTTP:80/",
+                    "timeout": 3,
+                    "unhealthy_threshold": 2
+                },
+                "idle_timeout": 400,
+                "instances": [
+                    "${aws_instance.web.id}"
                 ],
                 "listener": {
                     "instance_port": 80,
@@ -21,412 +181,306 @@
                     "lb_port": 80,
                     "lb_protocol": "http"
                 },
-                "health_check": {
-                    "healthy_threshold": 2,
-                    "unhealthy_threshold": 2,
-                    "timeout": 3,
-                    "target": "HTTP:80/",
-                    "interval": 30
-                },
-                "instances": [
-                    "${aws_instance.web.id}"
+                "name": "example-elb",
+                "security_groups": [
+                    "${aws_security_group.elb.id}"
                 ],
-                "cross_zone_load_balancing": true,
-                "idle_timeout": 400,
-                "connection_draining": true,
-                "connection_draining_timeout": 400
-            }
+                "subnets": [
+                    "${aws_subnet.tf_test_subnet.id}"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] aws_elb.web",
+            "resource_name": "web",
+            "simple_name": "aws_elb.web",
+            "svg_id": "node_0",
+            "type": "aws_elb"
         },
         {
-            "simple_name": "aws_instance.web",
-            "resource_name": "web",
-            "group": 20000,
-            "svg_id": "node_1",
-            "label": "[root] aws_instance.web",
-            "type": "aws_instance",
+            "cluster": "root",
             "definition": {
-                "instance_type": "t2.micro",
                 "ami": "${lookup(var.aws_amis, var.aws_region)}",
+                "instance_type": "t2.micro",
                 "key_name": "${var.key_name}",
-                "vpc_security_group_ids": [
-                    "${aws_security_group.default.id}"
-                ],
                 "subnet_id": "${aws_subnet.tf_test_subnet.id}",
-                "user_data": "${file(\"userdata.sh\")}",
                 "tags": {
                     "Name": "elb-example"
-                }
-            }
+                },
+                "user_data": "${file(\"userdata.sh\")}",
+                "vpc_security_group_ids": [
+                    "${aws_security_group.default.id}"
+                ]
+            },
+            "group": 20000,
+            "label": "[root] aws_instance.web",
+            "resource_name": "web",
+            "simple_name": "aws_instance.web",
+            "svg_id": "node_1",
+            "type": "aws_instance"
         },
         {
-            "simple_name": "aws_internet_gateway.gw",
-            "resource_name": "gw",
-            "group": 20000,
-            "svg_id": "node_2",
-            "label": "[root] aws_internet_gateway.gw",
-            "type": "aws_internet_gateway",
+            "cluster": "root",
             "definition": {
-                "vpc_id": "${aws_vpc.default.id}",
                 "tags": {
                     "Name": "tf_test_ig"
-                }
-            }
+                },
+                "vpc_id": "${aws_vpc.default.id}"
+            },
+            "group": 20000,
+            "label": "[root] aws_internet_gateway.gw",
+            "resource_name": "gw",
+            "simple_name": "aws_internet_gateway.gw",
+            "svg_id": "node_2",
+            "type": "aws_internet_gateway"
         },
         {
-            "simple_name": "aws_lb_cookie_stickiness_policy.default",
-            "resource_name": "default",
-            "group": 20000,
-            "svg_id": "node_3",
-            "label": "[root] aws_lb_cookie_stickiness_policy.default",
-            "type": "aws_lb_cookie_stickiness_policy",
+            "cluster": "root",
             "definition": {
-                "name": "lbpolicy",
-                "load_balancer": "${aws_elb.web.id}",
+                "cookie_expiration_period": 600,
                 "lb_port": 80,
-                "cookie_expiration_period": 600
-            }
+                "load_balancer": "${aws_elb.web.id}",
+                "name": "lbpolicy"
+            },
+            "group": 20000,
+            "label": "[root] aws_lb_cookie_stickiness_policy.default",
+            "resource_name": "default",
+            "simple_name": "aws_lb_cookie_stickiness_policy.default",
+            "svg_id": "node_3",
+            "type": "aws_lb_cookie_stickiness_policy"
         },
         {
-            "simple_name": "aws_route_table.r",
-            "resource_name": "r",
-            "group": 20000,
-            "svg_id": "node_4",
-            "label": "[root] aws_route_table.r",
-            "type": "aws_route_table",
+            "cluster": "root",
             "definition": {
-                "vpc_id": "${aws_vpc.default.id}",
                 "route": {
                     "cidr_block": "0.0.0.0/0",
                     "gateway_id": "${aws_internet_gateway.gw.id}"
                 },
                 "tags": {
                     "Name": "aws_route_table"
-                }
-            }
+                },
+                "vpc_id": "${aws_vpc.default.id}"
+            },
+            "group": 20000,
+            "label": "[root] aws_route_table.r",
+            "resource_name": "r",
+            "simple_name": "aws_route_table.r",
+            "svg_id": "node_4",
+            "type": "aws_route_table"
         },
         {
-            "simple_name": "aws_route_table_association.a",
-            "resource_name": "a",
+            "cluster": "root",
+            "definition": {
+                "route_table_id": "${aws_route_table.r.id}",
+                "subnet_id": "${aws_subnet.tf_test_subnet.id}"
+            },
             "group": 20000,
-            "svg_id": "node_5",
             "label": "[root] aws_route_table_association.a",
-            "type": "aws_route_table_association",
-            "definition": {
-                "subnet_id": "${aws_subnet.tf_test_subnet.id}",
-                "route_table_id": "${aws_route_table.r.id}"
-            }
+            "resource_name": "a",
+            "simple_name": "aws_route_table_association.a",
+            "svg_id": "node_5",
+            "type": "aws_route_table_association"
         },
         {
-            "simple_name": "aws_security_group.default",
-            "resource_name": "default",
-            "group": 20000,
-            "svg_id": "node_6",
-            "label": "[root] aws_security_group.default",
-            "type": "aws_security_group",
+            "cluster": "root",
             "definition": {
-                "name": "instance_sg",
                 "description": "Used in the terraform",
-                "vpc_id": "${aws_vpc.default.id}",
+                "egress": {
+                    "cidr_blocks": [
+                        "0.0.0.0/0"
+                    ],
+                    "from_port": 0,
+                    "protocol": "-1",
+                    "to_port": 0
+                },
                 "ingress": [
                     {
-                        "from_port": 22,
-                        "to_port": 22,
-                        "protocol": "tcp",
                         "cidr_blocks": [
                             "0.0.0.0/0"
-                        ]
+                        ],
+                        "from_port": 22,
+                        "protocol": "tcp",
+                        "to_port": 22
                     },
                     {
-                        "from_port": 80,
-                        "to_port": 80,
-                        "protocol": "tcp",
                         "cidr_blocks": [
                             "0.0.0.0/0"
-                        ]
+                        ],
+                        "from_port": 80,
+                        "protocol": "tcp",
+                        "to_port": 80
                     }
                 ],
-                "egress": {
-                    "from_port": 0,
-                    "to_port": 0,
-                    "protocol": "-1",
-                    "cidr_blocks": [
-                        "0.0.0.0/0"
-                    ]
-                }
-            }
+                "name": "instance_sg",
+                "vpc_id": "${aws_vpc.default.id}"
+            },
+            "group": 20000,
+            "label": "[root] aws_security_group.default",
+            "resource_name": "default",
+            "simple_name": "aws_security_group.default",
+            "svg_id": "node_6",
+            "type": "aws_security_group"
         },
         {
-            "simple_name": "aws_security_group.elb",
-            "resource_name": "elb",
-            "group": 20000,
-            "svg_id": "node_7",
-            "label": "[root] aws_security_group.elb",
-            "type": "aws_security_group",
+            "cluster": "root",
             "definition": {
-                "name": "elb_sg",
-                "description": "Used in the terraform",
-                "vpc_id": "${aws_vpc.default.id}",
-                "ingress": {
-                    "from_port": 80,
-                    "to_port": 80,
-                    "protocol": "tcp",
-                    "cidr_blocks": [
-                        "0.0.0.0/0"
-                    ]
-                },
-                "egress": {
-                    "from_port": 0,
-                    "to_port": 0,
-                    "protocol": "-1",
-                    "cidr_blocks": [
-                        "0.0.0.0/0"
-                    ]
-                },
                 "depends_on": [
                     "aws_internet_gateway.gw"
-                ]
-            }
+                ],
+                "description": "Used in the terraform",
+                "egress": {
+                    "cidr_blocks": [
+                        "0.0.0.0/0"
+                    ],
+                    "from_port": 0,
+                    "protocol": "-1",
+                    "to_port": 0
+                },
+                "ingress": {
+                    "cidr_blocks": [
+                        "0.0.0.0/0"
+                    ],
+                    "from_port": 80,
+                    "protocol": "tcp",
+                    "to_port": 80
+                },
+                "name": "elb_sg",
+                "vpc_id": "${aws_vpc.default.id}"
+            },
+            "group": 20000,
+            "label": "[root] aws_security_group.elb",
+            "resource_name": "elb",
+            "simple_name": "aws_security_group.elb",
+            "svg_id": "node_7",
+            "type": "aws_security_group"
         },
         {
-            "simple_name": "aws_subnet.tf_test_subnet",
-            "resource_name": "tf_test_subnet",
-            "group": 20000,
-            "svg_id": "node_8",
-            "label": "[root] aws_subnet.tf_test_subnet",
-            "type": "aws_subnet",
+            "cluster": "root",
             "definition": {
-                "vpc_id": "${aws_vpc.default.id}",
                 "cidr_block": "10.0.0.0/24",
                 "map_public_ip_on_launch": true,
                 "tags": {
                     "Name": "tf_test_subnet"
-                }
-            }
+                },
+                "vpc_id": "${aws_vpc.default.id}"
+            },
+            "group": 20000,
+            "label": "[root] aws_subnet.tf_test_subnet",
+            "resource_name": "tf_test_subnet",
+            "simple_name": "aws_subnet.tf_test_subnet",
+            "svg_id": "node_8",
+            "type": "aws_subnet"
         },
         {
-            "simple_name": "aws_vpc.default",
-            "resource_name": "default",
-            "group": 20000,
-            "svg_id": "node_9",
-            "label": "[root] aws_vpc.default",
-            "type": "aws_vpc",
+            "cluster": "root",
             "definition": {
                 "cidr_block": "10.0.0.0/16",
                 "enable_dns_hostnames": true,
                 "tags": {
                     "Name": "tf_test"
                 }
-            }
+            },
+            "group": 20000,
+            "label": "[root] aws_vpc.default",
+            "resource_name": "default",
+            "simple_name": "aws_vpc.default",
+            "svg_id": "node_9",
+            "type": "aws_vpc"
         },
         {
-            "simple_name": "provider.aws",
-            "resource_name": "aws",
-            "group": 20000,
-            "svg_id": "node_10",
-            "label": "[root] provider.aws",
-            "type": "provider",
+            "cluster": "root",
             "definition": {
                 "region": "${var.aws_region}"
-            }
+            },
+            "group": 20000,
+            "label": "[root] provider.aws",
+            "resource_name": "aws",
+            "simple_name": "provider.aws",
+            "svg_id": "node_10",
+            "type": "provider"
         },
         {
-            "simple_name": "var.aws_amis",
-            "resource_name": "aws_amis",
-            "group": 20000,
-            "svg_id": "node_11",
-            "label": "[root] var.aws_amis",
-            "type": "var",
+            "cluster": "cluster[root] aws_instance.web_var_",
             "definition": {
                 "default": {
                     "us-east-1": "ami-5f709f34",
                     "us-west-2": "ami-7f675e4f"
                 }
-            }
+            },
+            "group": 20000,
+            "label": "[root] var.aws_amis",
+            "resource_name": "aws_amis",
+            "simple_name": "var.aws_amis",
+            "svg_id": "node_11",
+            "type": "var"
         },
         {
-            "simple_name": "var.key_name",
-            "resource_name": "key_name",
-            "group": 20000,
-            "svg_id": "node_12",
-            "label": "[root] var.key_name",
-            "type": "var",
+            "cluster": "cluster[root] aws_instance.web_var_",
             "definition": {
                 "description": "Name of the SSH keypair to use in AWS."
-            }
+            },
+            "group": 20000,
+            "label": "[root] var.key_name",
+            "resource_name": "key_name",
+            "simple_name": "var.key_name",
+            "svg_id": "node_12",
+            "type": "var"
         },
         {
-            "simple_name": "meta.count-boundary (count boundary fixup)",
-            "resource_name": "count-boundary",
+            "cluster": "root",
+            "definition": "",
             "group": 20000,
-            "svg_id": "node_13",
             "label": "[root] meta.count-boundary (count boundary fixup)",
-            "type": "meta",
-            "definition": ""
+            "resource_name": "count-boundary",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_13",
+            "type": "meta"
         },
         {
-            "simple_name": "output.address",
-            "resource_name": "address",
-            "group": 20000,
-            "svg_id": "node_14",
-            "label": "[root] output.address",
-            "type": "output",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_elb.web",
             "definition": {
                 "value": "${aws_elb.web.dns_name}"
-            }
+            },
+            "group": 20000,
+            "label": "[root] output.address",
+            "resource_name": "address",
+            "simple_name": "output.address",
+            "svg_id": "node_14",
+            "type": "output"
         },
         {
-            "simple_name": "provider.aws (close)",
-            "resource_name": "aws",
-            "group": 20000,
-            "svg_id": "node_15",
-            "label": "[root] provider.aws (close)",
-            "type": "provider",
+            "cluster": "root",
             "definition": {
                 "region": "${var.aws_region}"
-            }
+            },
+            "group": 20000,
+            "label": "[root] provider.aws (close)",
+            "resource_name": "aws",
+            "simple_name": "provider.aws (close)",
+            "svg_id": "node_15",
+            "type": "provider"
         },
         {
-            "simple_name": "var.aws_region",
-            "resource_name": "aws_region",
-            "group": 20000,
-            "svg_id": "node_16",
-            "label": "[root] var.aws_region",
-            "type": "var",
+            "cluster": "cluster[root] provider.aws_var_",
             "definition": {
-                "description": "AWS region to launch servers.",
-                "default": "us-east-1"
-            }
-        },
-        {
-            "simple_name": "root",
-            "resource_name": "",
+                "default": "us-east-1",
+                "description": "AWS region to launch servers."
+            },
             "group": 20000,
-            "svg_id": "node_17",
+            "label": "[root] var.aws_region",
+            "resource_name": "aws_region",
+            "simple_name": "var.aws_region",
+            "svg_id": "node_16",
+            "type": "var"
+        },
+        {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
             "label": "[root] root",
-            "type": "",
-            "definition": ""
-        }
-    ],
-    "edges": [
-        {
-            "source": "[root] aws_elb.web",
-            "target": "[root] aws_instance.web",
-            "svg_id": "edge_0"
-        },
-        {
-            "source": "[root] aws_elb.web",
-            "target": "[root] aws_security_group.elb",
-            "svg_id": "edge_1"
-        },
-        {
-            "source": "[root] aws_instance.web",
-            "target": "[root] aws_security_group.default",
-            "svg_id": "edge_2"
-        },
-        {
-            "source": "[root] aws_instance.web",
-            "target": "[root] aws_subnet.tf_test_subnet",
-            "svg_id": "edge_3"
-        },
-        {
-            "source": "[root] aws_instance.web",
-            "target": "[root] var.aws_amis",
-            "svg_id": "edge_4"
-        },
-        {
-            "source": "[root] aws_instance.web",
-            "target": "[root] var.key_name",
-            "svg_id": "edge_5"
-        },
-        {
-            "source": "[root] aws_internet_gateway.gw",
-            "target": "[root] aws_vpc.default",
-            "svg_id": "edge_6"
-        },
-        {
-            "source": "[root] aws_lb_cookie_stickiness_policy.default",
-            "target": "[root] aws_elb.web",
-            "svg_id": "edge_7"
-        },
-        {
-            "source": "[root] aws_route_table.r",
-            "target": "[root] aws_internet_gateway.gw",
-            "svg_id": "edge_8"
-        },
-        {
-            "source": "[root] aws_route_table_association.a",
-            "target": "[root] aws_route_table.r",
-            "svg_id": "edge_9"
-        },
-        {
-            "source": "[root] aws_route_table_association.a",
-            "target": "[root] aws_subnet.tf_test_subnet",
-            "svg_id": "edge_10"
-        },
-        {
-            "source": "[root] aws_security_group.default",
-            "target": "[root] aws_vpc.default",
-            "svg_id": "edge_11"
-        },
-        {
-            "source": "[root] aws_security_group.elb",
-            "target": "[root] aws_internet_gateway.gw",
-            "svg_id": "edge_12"
-        },
-        {
-            "source": "[root] aws_subnet.tf_test_subnet",
-            "target": "[root] aws_vpc.default",
-            "svg_id": "edge_13"
-        },
-        {
-            "source": "[root] aws_vpc.default",
-            "target": "[root] provider.aws",
-            "svg_id": "edge_14"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] aws_lb_cookie_stickiness_policy.default",
-            "svg_id": "edge_15"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] aws_route_table_association.a",
-            "svg_id": "edge_16"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] output.address",
-            "svg_id": "edge_17"
-        },
-        {
-            "source": "[root] output.address",
-            "target": "[root] aws_elb.web",
-            "svg_id": "edge_18"
-        },
-        {
-            "source": "[root] provider.aws (close)",
-            "target": "[root] aws_lb_cookie_stickiness_policy.default",
-            "svg_id": "edge_19"
-        },
-        {
-            "source": "[root] provider.aws (close)",
-            "target": "[root] aws_route_table_association.a",
-            "svg_id": "edge_20"
-        },
-        {
-            "source": "[root] provider.aws",
-            "target": "[root] var.aws_region",
-            "svg_id": "edge_21"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_22"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] provider.aws (close)",
-            "svg_id": "edge_23"
+            "resource_name": "",
+            "simple_name": "root",
+            "svg_id": "node_17",
+            "type": ""
         }
     ]
 }

@@ -1,1350 +1,1608 @@
 {
+    "edges": [
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_resource_group.global_rg",
+            "svg_id": "edge_0",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_resource_group.global_rg",
+            "svg_id": "edge_1",
+            "target": "[root] var.global_location"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01",
+            "svg_id": "edge_2",
+            "target": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01",
+            "svg_id": "edge_3",
+            "target": "[root] module.location01.output.webserverpublic_ip_id"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02",
+            "svg_id": "edge_4",
+            "target": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02",
+            "svg_id": "edge_5",
+            "target": "[root] module.location02.output.webserverpublic_ip_id"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp",
+            "svg_id": "edge_6",
+            "target": "[root] azurerm_resource_group.global_rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp",
+            "svg_id": "edge_7",
+            "target": "[root] var.dns_relative_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_8",
+            "target": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_9",
+            "target": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_10",
+            "target": "[root] module.location01.azurerm_lb_rule.webservers_lb_http"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_11",
+            "target": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_12",
+            "target": "[root] module.location02.azurerm_lb_rule.webservers_lb_http"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_13",
+            "target": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_lb.webservers_lb",
+            "svg_id": "edge_14",
+            "target": "[root] module.location01.azurerm_public_ip.webserverpublic_ip"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend",
+            "svg_id": "edge_15",
+            "target": "[root] module.location01.azurerm_lb.webservers_lb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_lb_probe.httpprobe",
+            "svg_id": "edge_16",
+            "target": "[root] module.location01.azurerm_lb.webservers_lb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_lb_rule.webservers_lb_http",
+            "svg_id": "edge_17",
+            "target": "[root] module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_lb_rule.webservers_lb_http",
+            "svg_id": "edge_18",
+            "target": "[root] module.location01.azurerm_lb_probe.httpprobe"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_public_ip.webserverpublic_ip",
+            "svg_id": "edge_19",
+            "target": "[root] module.location01.azurerm_resource_group.webservers_rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_public_ip.webserverpublic_ip",
+            "svg_id": "edge_20",
+            "target": "[root] module.location01.var.lb_dns_label"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_resource_group.webservers_rg",
+            "svg_id": "edge_21",
+            "target": "[root] module.location01.provider.azurerm"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_resource_group.webservers_rg",
+            "svg_id": "edge_22",
+            "target": "[root] module.location01.var.location"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_resource_group.webservers_rg",
+            "svg_id": "edge_23",
+            "target": "[root] module.location01.var.resource_prefix"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_storage_account.webservers_sa",
+            "svg_id": "edge_24",
+            "target": "[root] module.location01.azurerm_resource_group.webservers_rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_storage_container.webservers_ct",
+            "svg_id": "edge_25",
+            "target": "[root] module.location01.azurerm_storage_account.webservers_sa"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_subnet.webservers_subnet",
+            "svg_id": "edge_26",
+            "target": "[root] module.location01.azurerm_virtual_network.webservers_vnet"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_27",
+            "target": "[root] module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_28",
+            "target": "[root] module.location01.azurerm_storage_container.webservers_ct"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_29",
+            "target": "[root] module.location01.azurerm_subnet.webservers_subnet"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_30",
+            "target": "[root] module.location01.var.image_admin_password"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_31",
+            "target": "[root] module.location01.var.image_admin_username"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_32",
+            "target": "[root] module.location01.var.image_offer"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_33",
+            "target": "[root] module.location01.var.image_publisher"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_34",
+            "target": "[root] module.location01.var.image_sku"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_35",
+            "target": "[root] module.location01.var.image_version"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_36",
+            "target": "[root] module.location01.var.instance_count"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_37",
+            "target": "[root] module.location01.var.instance_vmprofile"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_38",
+            "target": "[root] module.location01.var.webserver_prefix"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.azurerm_virtual_network.webservers_vnet",
+            "svg_id": "edge_39",
+            "target": "[root] module.location01.azurerm_resource_group.webservers_rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.output.webserverpublic_ip_id",
+            "svg_id": "edge_40",
+            "target": "[root] module.location01.azurerm_public_ip.webserverpublic_ip"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.provider.azurerm",
+            "svg_id": "edge_41",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.image_admin_password",
+            "svg_id": "edge_42",
+            "target": "[root] var.image_admin_password"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.image_admin_username",
+            "svg_id": "edge_43",
+            "target": "[root] var.image_admin_username"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.image_offer",
+            "svg_id": "edge_44",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.image_publisher",
+            "svg_id": "edge_45",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.image_sku",
+            "svg_id": "edge_46",
+            "target": "[root] var.image_sku"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.image_version",
+            "svg_id": "edge_47",
+            "target": "[root] var.image_version"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.instance_count",
+            "svg_id": "edge_48",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.instance_vmprofile",
+            "svg_id": "edge_49",
+            "target": "[root] var.instance_vmprofile"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.lb_dns_label",
+            "svg_id": "edge_50",
+            "target": "[root] var.location01_lb_dns_label"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.location",
+            "svg_id": "edge_51",
+            "target": "[root] var.location01_location"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.resource_prefix",
+            "svg_id": "edge_52",
+            "target": "[root] var.location01_resource_prefix"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location01.var.webserver_prefix",
+            "svg_id": "edge_53",
+            "target": "[root] var.location01_webserver_prefix"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_lb.webservers_lb",
+            "svg_id": "edge_54",
+            "target": "[root] module.location02.azurerm_public_ip.webserverpublic_ip"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend",
+            "svg_id": "edge_55",
+            "target": "[root] module.location02.azurerm_lb.webservers_lb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_lb_probe.httpprobe",
+            "svg_id": "edge_56",
+            "target": "[root] module.location02.azurerm_lb.webservers_lb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_lb_rule.webservers_lb_http",
+            "svg_id": "edge_57",
+            "target": "[root] module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_lb_rule.webservers_lb_http",
+            "svg_id": "edge_58",
+            "target": "[root] module.location02.azurerm_lb_probe.httpprobe"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_public_ip.webserverpublic_ip",
+            "svg_id": "edge_59",
+            "target": "[root] module.location02.azurerm_resource_group.webservers_rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_public_ip.webserverpublic_ip",
+            "svg_id": "edge_60",
+            "target": "[root] module.location02.var.lb_dns_label"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_resource_group.webservers_rg",
+            "svg_id": "edge_61",
+            "target": "[root] module.location02.provider.azurerm"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_resource_group.webservers_rg",
+            "svg_id": "edge_62",
+            "target": "[root] module.location02.var.location"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_resource_group.webservers_rg",
+            "svg_id": "edge_63",
+            "target": "[root] module.location02.var.resource_prefix"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_storage_account.webservers_sa",
+            "svg_id": "edge_64",
+            "target": "[root] module.location02.azurerm_resource_group.webservers_rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_storage_container.webservers_ct",
+            "svg_id": "edge_65",
+            "target": "[root] module.location02.azurerm_storage_account.webservers_sa"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_subnet.webservers_subnet",
+            "svg_id": "edge_66",
+            "target": "[root] module.location02.azurerm_virtual_network.webservers_vnet"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_67",
+            "target": "[root] module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_68",
+            "target": "[root] module.location02.azurerm_storage_container.webservers_ct"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_69",
+            "target": "[root] module.location02.azurerm_subnet.webservers_subnet"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_70",
+            "target": "[root] module.location02.var.image_admin_password"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_71",
+            "target": "[root] module.location02.var.image_admin_username"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_72",
+            "target": "[root] module.location02.var.image_offer"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_73",
+            "target": "[root] module.location02.var.image_publisher"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_74",
+            "target": "[root] module.location02.var.image_sku"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_75",
+            "target": "[root] module.location02.var.image_version"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_76",
+            "target": "[root] module.location02.var.instance_count"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_77",
+            "target": "[root] module.location02.var.instance_vmprofile"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
+            "svg_id": "edge_78",
+            "target": "[root] module.location02.var.webserver_prefix"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.azurerm_virtual_network.webservers_vnet",
+            "svg_id": "edge_79",
+            "target": "[root] module.location02.azurerm_resource_group.webservers_rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.output.webserverpublic_ip_id",
+            "svg_id": "edge_80",
+            "target": "[root] module.location02.azurerm_public_ip.webserverpublic_ip"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.provider.azurerm",
+            "svg_id": "edge_81",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.image_admin_password",
+            "svg_id": "edge_82",
+            "target": "[root] var.image_admin_password"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.image_admin_username",
+            "svg_id": "edge_83",
+            "target": "[root] var.image_admin_username"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.image_offer",
+            "svg_id": "edge_84",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.image_publisher",
+            "svg_id": "edge_85",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.image_sku",
+            "svg_id": "edge_86",
+            "target": "[root] var.image_sku"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.image_version",
+            "svg_id": "edge_87",
+            "target": "[root] var.image_version"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.instance_count",
+            "svg_id": "edge_88",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.instance_vmprofile",
+            "svg_id": "edge_89",
+            "target": "[root] var.instance_vmprofile"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.lb_dns_label",
+            "svg_id": "edge_90",
+            "target": "[root] var.location02_lb_dns_label"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.location",
+            "svg_id": "edge_91",
+            "target": "[root] var.location02_location"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.resource_prefix",
+            "svg_id": "edge_92",
+            "target": "[root] var.location02_resource_prefix"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.location02.var.webserver_prefix",
+            "svg_id": "edge_93",
+            "target": "[root] var.location02_webserver_prefix"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_94",
+            "target": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_95",
+            "target": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_96",
+            "target": "[root] module.location01.azurerm_lb_rule.webservers_lb_http"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_97",
+            "target": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_98",
+            "target": "[root] module.location02.azurerm_lb_rule.webservers_lb_http"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_99",
+            "target": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm",
+            "svg_id": "edge_100",
+            "target": "[root] var.client_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] provider.azurerm",
+            "svg_id": "edge_101",
+            "target": "[root] var.client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] provider.azurerm",
+            "svg_id": "edge_102",
+            "target": "[root] var.subscription_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] provider.azurerm",
+            "svg_id": "edge_103",
+            "target": "[root] var.tenant_id"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_104",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_105",
+            "target": "[root] provider.azurerm (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.client_id",
+            "svg_id": "edge_106",
+            "target": "[root] var.client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.client_secret",
+            "svg_id": "edge_107",
+            "target": "[root] var.subscription_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.subscription_id",
+            "svg_id": "edge_108",
+            "target": "[root] var.tenant_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.client_id",
+            "svg_id": "edge_109",
+            "target": "[root] var.client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.client_secret",
+            "svg_id": "edge_110",
+            "target": "[root] var.subscription_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.subscription_id",
+            "svg_id": "edge_111",
+            "target": "[root] var.tenant_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.client_id",
+            "svg_id": "edge_112",
+            "target": "[root] var.client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.client_secret",
+            "svg_id": "edge_113",
+            "target": "[root] var.subscription_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.subscription_id",
+            "svg_id": "edge_114",
+            "target": "[root] var.tenant_id"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.client_id",
+            "svg_id": "edge_115",
+            "target": "[root] var.client_secret"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.client_secret",
+            "svg_id": "edge_116",
+            "target": "[root] var.subscription_id"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.subscription_id",
+            "svg_id": "edge_117",
+            "target": "[root] var.tenant_id"
+        }
+    ],
     "nodes": [
         {
-            "svg_id": "node_0",
+            "cluster": "root",
             "definition": {
-                "name": "global_rg",
-                "location": "${var.global_location}"
+                "location": "${var.global_location}",
+                "name": "global_rg"
             },
+            "group": 20000,
+            "label": "[root] azurerm_resource_group.global_rg",
             "resource_name": "global_rg",
             "simple_name": "azurerm_resource_group.global_rg",
-            "label": "[root] azurerm_resource_group.global_rg",
-            "group": 20000,
+            "svg_id": "node_0",
             "type": "azurerm_resource_group"
         },
         {
-            "svg_id": "node_1",
+            "cluster": "root",
             "definition": {
                 "name": "trafficmanagerhttp_ukw",
-                "resource_group_name": "${azurerm_resource_group.global_rg.name}",
                 "profile_name": "${azurerm_traffic_manager_profile.trafficmanagerhttp.name}",
+                "resource_group_name": "${azurerm_resource_group.global_rg.name}",
                 "target_resource_id": "${module.location01.webserverpublic_ip_id}",
                 "type": "azureEndpoints",
                 "weight": 100
             },
+            "group": 20000,
+            "label": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01",
             "resource_name": "trafficmanagerhttp_01",
             "simple_name": "azurerm_traffic_manager_endpoint.trafficmanagerhttp_01",
-            "label": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01",
-            "group": 20000,
+            "svg_id": "node_1",
             "type": "azurerm_traffic_manager_endpoint"
         },
         {
-            "svg_id": "node_2",
+            "cluster": "root",
             "definition": {
                 "name": "trafficmanagerhttp_wus",
-                "resource_group_name": "${azurerm_resource_group.global_rg.name}",
                 "profile_name": "${azurerm_traffic_manager_profile.trafficmanagerhttp.name}",
+                "resource_group_name": "${azurerm_resource_group.global_rg.name}",
                 "target_resource_id": "${module.location02.webserverpublic_ip_id}",
                 "type": "azureEndpoints",
                 "weight": 100
             },
+            "group": 20000,
+            "label": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02",
             "resource_name": "trafficmanagerhttp_02",
             "simple_name": "azurerm_traffic_manager_endpoint.trafficmanagerhttp_02",
-            "label": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02",
-            "group": 20000,
+            "svg_id": "node_2",
             "type": "azurerm_traffic_manager_endpoint"
         },
         {
-            "svg_id": "node_3",
+            "cluster": "root",
             "definition": {
-                "name": "trafficmanagerhttp",
-                "resource_group_name": "${azurerm_resource_group.global_rg.name}",
-                "traffic_routing_method": "Weighted",
                 "dns_config": {
                     "relative_name": "${var.dns_relative_name}",
                     "ttl": 100
                 },
                 "monitor_config": {
-                    "protocol": "http",
+                    "path": "/",
                     "port": 80,
-                    "path": "/"
-                }
+                    "protocol": "http"
+                },
+                "name": "trafficmanagerhttp",
+                "resource_group_name": "${azurerm_resource_group.global_rg.name}",
+                "traffic_routing_method": "Weighted"
             },
+            "group": 20000,
+            "label": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp",
             "resource_name": "trafficmanagerhttp",
             "simple_name": "azurerm_traffic_manager_profile.trafficmanagerhttp",
-            "label": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp",
-            "group": 20000,
+            "svg_id": "node_3",
             "type": "azurerm_traffic_manager_profile"
         },
         {
-            "svg_id": "node_4",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_lb.webservers_lb",
             "resource_name": "webservers_lb",
             "simple_name": "module.location01.azurerm_lb.webservers_lb",
-            "label": "[root] module.location01.azurerm_lb.webservers_lb",
-            "group": 20000,
+            "svg_id": "node_4",
             "type": "module.location01.azurerm_lb"
         },
         {
-            "svg_id": "node_5",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend",
             "resource_name": "webservers_lb_backend",
             "simple_name": "module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend",
-            "label": "[root] module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend",
-            "group": 20000,
+            "svg_id": "node_5",
             "type": "module.location01.azurerm_lb_backend_address_pool"
         },
         {
-            "svg_id": "node_6",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_lb_probe.httpprobe",
             "resource_name": "httpprobe",
             "simple_name": "module.location01.azurerm_lb_probe.httpprobe",
-            "label": "[root] module.location01.azurerm_lb_probe.httpprobe",
-            "group": 20000,
+            "svg_id": "node_6",
             "type": "module.location01.azurerm_lb_probe"
         },
         {
-            "svg_id": "node_7",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_lb_rule.webservers_lb_http",
             "resource_name": "webservers_lb_http",
             "simple_name": "module.location01.azurerm_lb_rule.webservers_lb_http",
-            "label": "[root] module.location01.azurerm_lb_rule.webservers_lb_http",
-            "group": 20000,
+            "svg_id": "node_7",
             "type": "module.location01.azurerm_lb_rule"
         },
         {
-            "svg_id": "node_8",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_public_ip.webserverpublic_ip",
             "resource_name": "webserverpublic_ip",
             "simple_name": "module.location01.azurerm_public_ip.webserverpublic_ip",
-            "label": "[root] module.location01.azurerm_public_ip.webserverpublic_ip",
-            "group": 20000,
+            "svg_id": "node_8",
             "type": "module.location01.azurerm_public_ip"
         },
         {
-            "svg_id": "node_9",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_resource_group.webservers_rg",
             "resource_name": "webservers_rg",
             "simple_name": "module.location01.azurerm_resource_group.webservers_rg",
-            "label": "[root] module.location01.azurerm_resource_group.webservers_rg",
-            "group": 20000,
+            "svg_id": "node_9",
             "type": "module.location01.azurerm_resource_group"
         },
         {
-            "svg_id": "node_10",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_storage_account.webservers_sa",
             "resource_name": "webservers_sa",
             "simple_name": "module.location01.azurerm_storage_account.webservers_sa",
-            "label": "[root] module.location01.azurerm_storage_account.webservers_sa",
-            "group": 20000,
+            "svg_id": "node_10",
             "type": "module.location01.azurerm_storage_account"
         },
         {
-            "svg_id": "node_11",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_storage_container.webservers_ct",
             "resource_name": "webservers_ct",
             "simple_name": "module.location01.azurerm_storage_container.webservers_ct",
-            "label": "[root] module.location01.azurerm_storage_container.webservers_ct",
-            "group": 20000,
+            "svg_id": "node_11",
             "type": "module.location01.azurerm_storage_container"
         },
         {
-            "svg_id": "node_12",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_subnet.webservers_subnet",
             "resource_name": "webservers_subnet",
             "simple_name": "module.location01.azurerm_subnet.webservers_subnet",
-            "label": "[root] module.location01.azurerm_subnet.webservers_subnet",
-            "group": 20000,
+            "svg_id": "node_12",
             "type": "module.location01.azurerm_subnet"
         },
         {
-            "svg_id": "node_13",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
             "resource_name": "webserver_ss",
             "simple_name": "module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "label": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "group": 20000,
+            "svg_id": "node_13",
             "type": "module.location01.azurerm_virtual_machine_scale_set"
         },
         {
-            "svg_id": "node_14",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.azurerm_virtual_network.webservers_vnet",
             "resource_name": "webservers_vnet",
             "simple_name": "module.location01.azurerm_virtual_network.webservers_vnet",
-            "label": "[root] module.location01.azurerm_virtual_network.webservers_vnet",
-            "group": 20000,
+            "svg_id": "node_14",
             "type": "module.location01.azurerm_virtual_network"
         },
         {
-            "svg_id": "node_15",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.provider.azurerm",
             "resource_name": "azurerm",
             "simple_name": "module.location01.provider.azurerm",
-            "label": "[root] module.location01.provider.azurerm",
-            "group": 20000,
+            "svg_id": "node_15",
             "type": "module.location01.provider"
         },
         {
-            "svg_id": "node_16",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_lb.webservers_lb",
             "resource_name": "webservers_lb",
             "simple_name": "module.location02.azurerm_lb.webservers_lb",
-            "label": "[root] module.location02.azurerm_lb.webservers_lb",
-            "group": 20000,
+            "svg_id": "node_16",
             "type": "module.location02.azurerm_lb"
         },
         {
-            "svg_id": "node_17",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend",
             "resource_name": "webservers_lb_backend",
             "simple_name": "module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend",
-            "label": "[root] module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend",
-            "group": 20000,
+            "svg_id": "node_17",
             "type": "module.location02.azurerm_lb_backend_address_pool"
         },
         {
-            "svg_id": "node_18",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_lb_probe.httpprobe",
             "resource_name": "httpprobe",
             "simple_name": "module.location02.azurerm_lb_probe.httpprobe",
-            "label": "[root] module.location02.azurerm_lb_probe.httpprobe",
-            "group": 20000,
+            "svg_id": "node_18",
             "type": "module.location02.azurerm_lb_probe"
         },
         {
-            "svg_id": "node_19",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_lb_rule.webservers_lb_http",
             "resource_name": "webservers_lb_http",
             "simple_name": "module.location02.azurerm_lb_rule.webservers_lb_http",
-            "label": "[root] module.location02.azurerm_lb_rule.webservers_lb_http",
-            "group": 20000,
+            "svg_id": "node_19",
             "type": "module.location02.azurerm_lb_rule"
         },
         {
-            "svg_id": "node_20",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_public_ip.webserverpublic_ip",
             "resource_name": "webserverpublic_ip",
             "simple_name": "module.location02.azurerm_public_ip.webserverpublic_ip",
-            "label": "[root] module.location02.azurerm_public_ip.webserverpublic_ip",
-            "group": 20000,
+            "svg_id": "node_20",
             "type": "module.location02.azurerm_public_ip"
         },
         {
-            "svg_id": "node_21",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_resource_group.webservers_rg",
             "resource_name": "webservers_rg",
             "simple_name": "module.location02.azurerm_resource_group.webservers_rg",
-            "label": "[root] module.location02.azurerm_resource_group.webservers_rg",
-            "group": 20000,
+            "svg_id": "node_21",
             "type": "module.location02.azurerm_resource_group"
         },
         {
-            "svg_id": "node_22",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_storage_account.webservers_sa",
             "resource_name": "webservers_sa",
             "simple_name": "module.location02.azurerm_storage_account.webservers_sa",
-            "label": "[root] module.location02.azurerm_storage_account.webservers_sa",
-            "group": 20000,
+            "svg_id": "node_22",
             "type": "module.location02.azurerm_storage_account"
         },
         {
-            "svg_id": "node_23",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_storage_container.webservers_ct",
             "resource_name": "webservers_ct",
             "simple_name": "module.location02.azurerm_storage_container.webservers_ct",
-            "label": "[root] module.location02.azurerm_storage_container.webservers_ct",
-            "group": 20000,
+            "svg_id": "node_23",
             "type": "module.location02.azurerm_storage_container"
         },
         {
-            "svg_id": "node_24",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_subnet.webservers_subnet",
             "resource_name": "webservers_subnet",
             "simple_name": "module.location02.azurerm_subnet.webservers_subnet",
-            "label": "[root] module.location02.azurerm_subnet.webservers_subnet",
-            "group": 20000,
+            "svg_id": "node_24",
             "type": "module.location02.azurerm_subnet"
         },
         {
-            "svg_id": "node_25",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
             "resource_name": "webserver_ss",
             "simple_name": "module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "label": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "group": 20000,
+            "svg_id": "node_25",
             "type": "module.location02.azurerm_virtual_machine_scale_set"
         },
         {
-            "svg_id": "node_26",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.azurerm_virtual_network.webservers_vnet",
             "resource_name": "webservers_vnet",
             "simple_name": "module.location02.azurerm_virtual_network.webservers_vnet",
-            "label": "[root] module.location02.azurerm_virtual_network.webservers_vnet",
-            "group": 20000,
+            "svg_id": "node_26",
             "type": "module.location02.azurerm_virtual_network"
         },
         {
-            "svg_id": "node_27",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.provider.azurerm",
             "resource_name": "azurerm",
             "simple_name": "module.location02.provider.azurerm",
-            "label": "[root] module.location02.provider.azurerm",
-            "group": 20000,
+            "svg_id": "node_27",
             "type": "module.location02.provider"
         },
         {
-            "svg_id": "node_28",
+            "cluster": "root",
             "definition": {
-                "subscription_id": "${var.subscription_id}",
                 "client_id": "${var.client_id}",
                 "client_secret": "${var.client_secret}",
+                "subscription_id": "${var.subscription_id}",
                 "tenant_id": "${var.tenant_id}"
             },
+            "group": 20000,
+            "label": "[root] provider.azurerm",
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm",
-            "label": "[root] provider.azurerm",
-            "group": 20000,
+            "svg_id": "node_28",
             "type": "provider"
         },
         {
-            "svg_id": "node_29",
+            "cluster": "cluster[root] azurerm_resource_group.global_rg_var_",
             "definition": {
                 "default": "UK West",
                 "description": "Where any global resources will be placed"
             },
+            "group": 20000,
+            "label": "[root] var.global_location",
             "resource_name": "global_location",
             "simple_name": "var.global_location",
-            "label": "[root] var.global_location",
-            "group": 20000,
+            "svg_id": "node_29",
             "type": "var"
         },
         {
-            "svg_id": "node_30",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.output.webserverpublic_ip_id",
             "resource_name": "webserverpublic_ip_id",
             "simple_name": "module.location01.output.webserverpublic_ip_id",
-            "label": "[root] module.location01.output.webserverpublic_ip_id",
-            "group": 20000,
+            "svg_id": "node_30",
             "type": "module.location01.output"
         },
         {
-            "svg_id": "node_31",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.output.webserverpublic_ip_id",
             "resource_name": "webserverpublic_ip_id",
             "simple_name": "module.location02.output.webserverpublic_ip_id",
-            "label": "[root] module.location02.output.webserverpublic_ip_id",
-            "group": 20000,
+            "svg_id": "node_31",
             "type": "module.location02.output"
         },
         {
-            "svg_id": "node_32",
+            "cluster": "cluster[root] azurerm_traffic_manager_profile.trafficmanagerhttp_var_",
             "definition": {
                 "default": "azuretfexample",
                 "description": "Relative DNS name for traffic manager"
             },
+            "group": 20000,
+            "label": "[root] var.dns_relative_name",
             "resource_name": "dns_relative_name",
             "simple_name": "var.dns_relative_name",
-            "label": "[root] var.dns_relative_name",
-            "group": 20000,
+            "svg_id": "node_32",
             "type": "var"
         },
         {
-            "svg_id": "node_33",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
-            "label": "[root] meta.count-boundary (count boundary fixup)",
-            "group": 20000,
+            "svg_id": "node_33",
             "type": "meta"
         },
         {
-            "svg_id": "node_34",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.lb_dns_label",
             "resource_name": "lb_dns_label",
             "simple_name": "module.location01.var.lb_dns_label",
-            "label": "[root] module.location01.var.lb_dns_label",
-            "group": 20000,
+            "svg_id": "node_34",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_35",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.location",
             "resource_name": "location",
             "simple_name": "module.location01.var.location",
-            "label": "[root] module.location01.var.location",
-            "group": 20000,
+            "svg_id": "node_35",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_36",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.resource_prefix",
             "resource_name": "resource_prefix",
             "simple_name": "module.location01.var.resource_prefix",
-            "label": "[root] module.location01.var.resource_prefix",
-            "group": 20000,
+            "svg_id": "node_36",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_37",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.image_admin_password",
             "resource_name": "image_admin_password",
             "simple_name": "module.location01.var.image_admin_password",
-            "label": "[root] module.location01.var.image_admin_password",
-            "group": 20000,
+            "svg_id": "node_37",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_38",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.image_admin_username",
             "resource_name": "image_admin_username",
             "simple_name": "module.location01.var.image_admin_username",
-            "label": "[root] module.location01.var.image_admin_username",
-            "group": 20000,
+            "svg_id": "node_38",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_39",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.image_offer",
             "resource_name": "image_offer",
             "simple_name": "module.location01.var.image_offer",
-            "label": "[root] module.location01.var.image_offer",
-            "group": 20000,
+            "svg_id": "node_39",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_40",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.image_publisher",
             "resource_name": "image_publisher",
             "simple_name": "module.location01.var.image_publisher",
-            "label": "[root] module.location01.var.image_publisher",
-            "group": 20000,
+            "svg_id": "node_40",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_41",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.image_sku",
             "resource_name": "image_sku",
             "simple_name": "module.location01.var.image_sku",
-            "label": "[root] module.location01.var.image_sku",
-            "group": 20000,
+            "svg_id": "node_41",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_42",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.image_version",
             "resource_name": "image_version",
             "simple_name": "module.location01.var.image_version",
-            "label": "[root] module.location01.var.image_version",
-            "group": 20000,
+            "svg_id": "node_42",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_43",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.instance_count",
             "resource_name": "instance_count",
             "simple_name": "module.location01.var.instance_count",
-            "label": "[root] module.location01.var.instance_count",
-            "group": 20000,
+            "svg_id": "node_43",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_44",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.instance_vmprofile",
             "resource_name": "instance_vmprofile",
             "simple_name": "module.location01.var.instance_vmprofile",
-            "label": "[root] module.location01.var.instance_vmprofile",
-            "group": 20000,
+            "svg_id": "node_44",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_45",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location01.var.webserver_prefix",
             "resource_name": "webserver_prefix",
             "simple_name": "module.location01.var.webserver_prefix",
-            "label": "[root] module.location01.var.webserver_prefix",
-            "group": 20000,
+            "svg_id": "node_45",
             "type": "module.location01.var"
         },
         {
-            "svg_id": "node_46",
+            "cluster": "root",
             "definition": {
                 "default": "2nmn39x#3775hh3x9",
                 "description": "Password"
             },
+            "group": 20000,
+            "label": "[root] var.image_admin_password",
             "resource_name": "image_admin_password",
             "simple_name": "var.image_admin_password",
-            "label": "[root] var.image_admin_password",
-            "group": 20000,
+            "svg_id": "node_46",
             "type": "var"
         },
         {
-            "svg_id": "node_47",
+            "cluster": "root",
             "definition": {
                 "default": "webadmin",
                 "description": "Local admin user name"
             },
+            "group": 20000,
+            "label": "[root] var.image_admin_username",
             "resource_name": "image_admin_username",
             "simple_name": "var.image_admin_username",
-            "label": "[root] var.image_admin_username",
-            "group": 20000,
+            "svg_id": "node_47",
             "type": "var"
         },
         {
-            "svg_id": "node_48",
+            "cluster": "root",
             "definition": {
                 "default": "UbuntuServer",
                 "description": "Market place image name"
             },
+            "group": 20000,
+            "label": "[root] var.image_offer",
             "resource_name": "image_offer",
             "simple_name": "var.image_offer",
-            "label": "[root] var.image_offer",
-            "group": 20000,
+            "svg_id": "node_48",
             "type": "var"
         },
         {
-            "svg_id": "node_49",
+            "cluster": "root",
             "definition": {
                 "default": "Canonical",
                 "description": "Publisher of market place image"
             },
+            "group": 20000,
+            "label": "[root] var.image_publisher",
             "resource_name": "image_publisher",
             "simple_name": "var.image_publisher",
-            "label": "[root] var.image_publisher",
-            "group": 20000,
+            "svg_id": "node_49",
             "type": "var"
         },
         {
-            "svg_id": "node_50",
+            "cluster": "root",
             "definition": {
                 "default": "16.10",
                 "description": "Market place image SKU"
             },
+            "group": 20000,
+            "label": "[root] var.image_sku",
             "resource_name": "image_sku",
             "simple_name": "var.image_sku",
-            "label": "[root] var.image_sku",
-            "group": 20000,
+            "svg_id": "node_50",
             "type": "var"
         },
         {
-            "svg_id": "node_51",
+            "cluster": "root",
             "definition": {
                 "default": "latest",
                 "description": "Market place image version"
             },
+            "group": 20000,
+            "label": "[root] var.image_version",
             "resource_name": "image_version",
             "simple_name": "var.image_version",
-            "label": "[root] var.image_version",
-            "group": 20000,
+            "svg_id": "node_51",
             "type": "var"
         },
         {
-            "svg_id": "node_52",
+            "cluster": "root",
             "definition": {
                 "default": "2",
                 "description": "Number of server instances to create in scale set"
             },
+            "group": 20000,
+            "label": "[root] var.instance_count",
             "resource_name": "instance_count",
             "simple_name": "var.instance_count",
-            "label": "[root] var.instance_count",
-            "group": 20000,
+            "svg_id": "node_52",
             "type": "var"
         },
         {
-            "svg_id": "node_53",
+            "cluster": "root",
             "definition": {
                 "default": "Standard_A1",
                 "description": "VM profile of servers in scale set"
             },
+            "group": 20000,
+            "label": "[root] var.instance_vmprofile",
             "resource_name": "instance_vmprofile",
             "simple_name": "var.instance_vmprofile",
-            "label": "[root] var.instance_vmprofile",
-            "group": 20000,
+            "svg_id": "node_53",
             "type": "var"
         },
         {
-            "svg_id": "node_54",
+            "cluster": "cluster[root] module.location01.var.lb_dns_label_var_",
             "definition": {
                 "default": "ukwestwebexample",
                 "description": "DNS name label for the locations load balancer"
             },
+            "group": 20000,
+            "label": "[root] var.location01_lb_dns_label",
             "resource_name": "location01_lb_dns_label",
             "simple_name": "var.location01_lb_dns_label",
-            "label": "[root] var.location01_lb_dns_label",
-            "group": 20000,
+            "svg_id": "node_54",
             "type": "var"
         },
         {
-            "svg_id": "node_55",
+            "cluster": "cluster[root] module.location01.var.location_var_",
             "definition": {
                 "default": "UK West",
                 "description": "First location to build"
             },
+            "group": 20000,
+            "label": "[root] var.location01_location",
             "resource_name": "location01_location",
             "simple_name": "var.location01_location",
-            "label": "[root] var.location01_location",
-            "group": 20000,
+            "svg_id": "node_55",
             "type": "var"
         },
         {
-            "svg_id": "node_56",
+            "cluster": "cluster[root] module.location01.var.resource_prefix_var_",
             "definition": {
                 "default": "ukwestweb",
                 "description": "Prefix for naming resource group"
             },
+            "group": 20000,
+            "label": "[root] var.location01_resource_prefix",
             "resource_name": "location01_resource_prefix",
             "simple_name": "var.location01_resource_prefix",
-            "label": "[root] var.location01_resource_prefix",
-            "group": 20000,
+            "svg_id": "node_56",
             "type": "var"
         },
         {
-            "svg_id": "node_57",
+            "cluster": "cluster[root] module.location01.var.webserver_prefix_var_",
             "definition": {
                 "default": "ukwwebsvr",
                 "description": "Prefix for naming web servers"
             },
+            "group": 20000,
+            "label": "[root] var.location01_webserver_prefix",
             "resource_name": "location01_webserver_prefix",
             "simple_name": "var.location01_webserver_prefix",
-            "label": "[root] var.location01_webserver_prefix",
-            "group": 20000,
+            "svg_id": "node_57",
             "type": "var"
         },
         {
-            "svg_id": "node_58",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.lb_dns_label",
             "resource_name": "lb_dns_label",
             "simple_name": "module.location02.var.lb_dns_label",
-            "label": "[root] module.location02.var.lb_dns_label",
-            "group": 20000,
+            "svg_id": "node_58",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_59",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.location",
             "resource_name": "location",
             "simple_name": "module.location02.var.location",
-            "label": "[root] module.location02.var.location",
-            "group": 20000,
+            "svg_id": "node_59",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_60",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.resource_prefix",
             "resource_name": "resource_prefix",
             "simple_name": "module.location02.var.resource_prefix",
-            "label": "[root] module.location02.var.resource_prefix",
-            "group": 20000,
+            "svg_id": "node_60",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_61",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.image_admin_password",
             "resource_name": "image_admin_password",
             "simple_name": "module.location02.var.image_admin_password",
-            "label": "[root] module.location02.var.image_admin_password",
-            "group": 20000,
+            "svg_id": "node_61",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_62",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.image_admin_username",
             "resource_name": "image_admin_username",
             "simple_name": "module.location02.var.image_admin_username",
-            "label": "[root] module.location02.var.image_admin_username",
-            "group": 20000,
+            "svg_id": "node_62",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_63",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.image_offer",
             "resource_name": "image_offer",
             "simple_name": "module.location02.var.image_offer",
-            "label": "[root] module.location02.var.image_offer",
-            "group": 20000,
+            "svg_id": "node_63",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_64",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.image_publisher",
             "resource_name": "image_publisher",
             "simple_name": "module.location02.var.image_publisher",
-            "label": "[root] module.location02.var.image_publisher",
-            "group": 20000,
+            "svg_id": "node_64",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_65",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.image_sku",
             "resource_name": "image_sku",
             "simple_name": "module.location02.var.image_sku",
-            "label": "[root] module.location02.var.image_sku",
-            "group": 20000,
+            "svg_id": "node_65",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_66",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.image_version",
             "resource_name": "image_version",
             "simple_name": "module.location02.var.image_version",
-            "label": "[root] module.location02.var.image_version",
-            "group": 20000,
+            "svg_id": "node_66",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_67",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.instance_count",
             "resource_name": "instance_count",
             "simple_name": "module.location02.var.instance_count",
-            "label": "[root] module.location02.var.instance_count",
-            "group": 20000,
+            "svg_id": "node_67",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_68",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.instance_vmprofile",
             "resource_name": "instance_vmprofile",
             "simple_name": "module.location02.var.instance_vmprofile",
-            "label": "[root] module.location02.var.instance_vmprofile",
-            "group": 20000,
+            "svg_id": "node_68",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_69",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] module.location02.var.webserver_prefix",
             "resource_name": "webserver_prefix",
             "simple_name": "module.location02.var.webserver_prefix",
-            "label": "[root] module.location02.var.webserver_prefix",
-            "group": 20000,
+            "svg_id": "node_69",
             "type": "module.location02.var"
         },
         {
-            "svg_id": "node_70",
+            "cluster": "cluster[root] module.location02.var.lb_dns_label_var_",
             "definition": {
                 "default": "uswestwebexample",
                 "description": "DNS name label for the locations load balancer"
             },
+            "group": 20000,
+            "label": "[root] var.location02_lb_dns_label",
             "resource_name": "location02_lb_dns_label",
             "simple_name": "var.location02_lb_dns_label",
-            "label": "[root] var.location02_lb_dns_label",
-            "group": 20000,
+            "svg_id": "node_70",
             "type": "var"
         },
         {
-            "svg_id": "node_71",
+            "cluster": "cluster[root] module.location02.var.location_var_",
             "definition": {
                 "default": "West US",
                 "description": "Second location to build"
             },
+            "group": 20000,
+            "label": "[root] var.location02_location",
             "resource_name": "location02_location",
             "simple_name": "var.location02_location",
-            "label": "[root] var.location02_location",
-            "group": 20000,
+            "svg_id": "node_71",
             "type": "var"
         },
         {
-            "svg_id": "node_72",
+            "cluster": "cluster[root] module.location02.var.resource_prefix_var_",
             "definition": {
                 "default": "uswestweb",
                 "description": "Prefix for naming resource group"
             },
+            "group": 20000,
+            "label": "[root] var.location02_resource_prefix",
             "resource_name": "location02_resource_prefix",
             "simple_name": "var.location02_resource_prefix",
-            "label": "[root] var.location02_resource_prefix",
-            "group": 20000,
+            "svg_id": "node_72",
             "type": "var"
         },
         {
-            "svg_id": "node_73",
+            "cluster": "cluster[root] module.location02.var.webserver_prefix_var_",
             "definition": {
                 "default": "uswwebsvr",
                 "description": "Prefix for naming web servers"
             },
+            "group": 20000,
+            "label": "[root] var.location02_webserver_prefix",
             "resource_name": "location02_webserver_prefix",
             "simple_name": "var.location02_webserver_prefix",
-            "label": "[root] var.location02_webserver_prefix",
-            "group": 20000,
+            "svg_id": "node_73",
             "type": "var"
         },
         {
-            "svg_id": "node_74",
+            "cluster": "root",
             "definition": {
-                "subscription_id": "${var.subscription_id}",
                 "client_id": "${var.client_id}",
                 "client_secret": "${var.client_secret}",
+                "subscription_id": "${var.subscription_id}",
                 "tenant_id": "${var.tenant_id}"
             },
+            "group": 20000,
+            "label": "[root] provider.azurerm (close)",
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm (close)",
-            "label": "[root] provider.azurerm (close)",
-            "group": 20000,
+            "svg_id": "node_74",
             "type": "provider"
         },
         {
-            "svg_id": "node_75",
+            "cluster": "cluster[root] provider.azurerm_var_",
             "definition": {},
+            "group": 20000,
+            "label": "[root] var.client_id",
             "resource_name": "client_id",
             "simple_name": "var.client_id",
-            "label": "[root] var.client_id",
-            "group": 20000,
+            "svg_id": "node_75",
             "type": "var"
         },
         {
-            "svg_id": "node_76",
+            "cluster": "cluster[root] provider.azurerm_var_",
             "definition": {},
+            "group": 20000,
+            "label": "[root] var.client_secret",
             "resource_name": "client_secret",
             "simple_name": "var.client_secret",
-            "label": "[root] var.client_secret",
-            "group": 20000,
+            "svg_id": "node_76",
             "type": "var"
         },
         {
-            "svg_id": "node_77",
+            "cluster": "cluster[root] provider.azurerm_var_",
             "definition": {},
+            "group": 20000,
+            "label": "[root] var.subscription_id",
             "resource_name": "subscription_id",
             "simple_name": "var.subscription_id",
-            "label": "[root] var.subscription_id",
-            "group": 20000,
+            "svg_id": "node_77",
             "type": "var"
         },
         {
-            "svg_id": "node_78",
+            "cluster": "cluster[root] provider.azurerm_var_",
             "definition": {},
+            "group": 20000,
+            "label": "[root] var.tenant_id",
             "resource_name": "tenant_id",
             "simple_name": "var.tenant_id",
-            "label": "[root] var.tenant_id",
-            "group": 20000,
+            "svg_id": "node_78",
             "type": "var"
         },
         {
-            "svg_id": "node_79",
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] root",
             "resource_name": "",
             "simple_name": "root",
-            "label": "[root] root",
-            "group": 20000,
+            "svg_id": "node_79",
             "type": ""
-        }
-    ],
-    "edges": [
-        {
-            "svg_id": "edge_0",
-            "source": "[root] azurerm_resource_group.global_rg",
-            "target": "[root] provider.azurerm"
-        },
-        {
-            "svg_id": "edge_1",
-            "source": "[root] azurerm_resource_group.global_rg",
-            "target": "[root] var.global_location"
-        },
-        {
-            "svg_id": "edge_2",
-            "source": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01",
-            "target": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp"
-        },
-        {
-            "svg_id": "edge_3",
-            "source": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01",
-            "target": "[root] module.location01.output.webserverpublic_ip_id"
-        },
-        {
-            "svg_id": "edge_4",
-            "source": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02",
-            "target": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp"
-        },
-        {
-            "svg_id": "edge_5",
-            "source": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02",
-            "target": "[root] module.location02.output.webserverpublic_ip_id"
-        },
-        {
-            "svg_id": "edge_6",
-            "source": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp",
-            "target": "[root] azurerm_resource_group.global_rg"
-        },
-        {
-            "svg_id": "edge_7",
-            "source": "[root] azurerm_traffic_manager_profile.trafficmanagerhttp",
-            "target": "[root] var.dns_relative_name"
-        },
-        {
-            "svg_id": "edge_8",
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01"
-        },
-        {
-            "svg_id": "edge_9",
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02"
-        },
-        {
-            "svg_id": "edge_10",
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] module.location01.azurerm_lb_rule.webservers_lb_http"
-        },
-        {
-            "svg_id": "edge_11",
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss"
-        },
-        {
-            "svg_id": "edge_12",
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] module.location02.azurerm_lb_rule.webservers_lb_http"
-        },
-        {
-            "svg_id": "edge_13",
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss"
-        },
-        {
-            "svg_id": "edge_14",
-            "source": "[root] module.location01.azurerm_lb.webservers_lb",
-            "target": "[root] module.location01.azurerm_public_ip.webserverpublic_ip"
-        },
-        {
-            "svg_id": "edge_15",
-            "source": "[root] module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend",
-            "target": "[root] module.location01.azurerm_lb.webservers_lb"
-        },
-        {
-            "svg_id": "edge_16",
-            "source": "[root] module.location01.azurerm_lb_probe.httpprobe",
-            "target": "[root] module.location01.azurerm_lb.webservers_lb"
-        },
-        {
-            "svg_id": "edge_17",
-            "source": "[root] module.location01.azurerm_lb_rule.webservers_lb_http",
-            "target": "[root] module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend"
-        },
-        {
-            "svg_id": "edge_18",
-            "source": "[root] module.location01.azurerm_lb_rule.webservers_lb_http",
-            "target": "[root] module.location01.azurerm_lb_probe.httpprobe"
-        },
-        {
-            "svg_id": "edge_19",
-            "source": "[root] module.location01.azurerm_public_ip.webserverpublic_ip",
-            "target": "[root] module.location01.azurerm_resource_group.webservers_rg"
-        },
-        {
-            "svg_id": "edge_20",
-            "source": "[root] module.location01.azurerm_public_ip.webserverpublic_ip",
-            "target": "[root] module.location01.var.lb_dns_label"
-        },
-        {
-            "svg_id": "edge_21",
-            "source": "[root] module.location01.azurerm_resource_group.webservers_rg",
-            "target": "[root] module.location01.provider.azurerm"
-        },
-        {
-            "svg_id": "edge_22",
-            "source": "[root] module.location01.azurerm_resource_group.webservers_rg",
-            "target": "[root] module.location01.var.location"
-        },
-        {
-            "svg_id": "edge_23",
-            "source": "[root] module.location01.azurerm_resource_group.webservers_rg",
-            "target": "[root] module.location01.var.resource_prefix"
-        },
-        {
-            "svg_id": "edge_24",
-            "source": "[root] module.location01.azurerm_storage_account.webservers_sa",
-            "target": "[root] module.location01.azurerm_resource_group.webservers_rg"
-        },
-        {
-            "svg_id": "edge_25",
-            "source": "[root] module.location01.azurerm_storage_container.webservers_ct",
-            "target": "[root] module.location01.azurerm_storage_account.webservers_sa"
-        },
-        {
-            "svg_id": "edge_26",
-            "source": "[root] module.location01.azurerm_subnet.webservers_subnet",
-            "target": "[root] module.location01.azurerm_virtual_network.webservers_vnet"
-        },
-        {
-            "svg_id": "edge_27",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend"
-        },
-        {
-            "svg_id": "edge_28",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.azurerm_storage_container.webservers_ct"
-        },
-        {
-            "svg_id": "edge_29",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.azurerm_subnet.webservers_subnet"
-        },
-        {
-            "svg_id": "edge_30",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.var.image_admin_password"
-        },
-        {
-            "svg_id": "edge_31",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.var.image_admin_username"
-        },
-        {
-            "svg_id": "edge_32",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.var.image_offer"
-        },
-        {
-            "svg_id": "edge_33",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.var.image_publisher"
-        },
-        {
-            "svg_id": "edge_34",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.var.image_sku"
-        },
-        {
-            "svg_id": "edge_35",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.var.image_version"
-        },
-        {
-            "svg_id": "edge_36",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.var.instance_count"
-        },
-        {
-            "svg_id": "edge_37",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.var.instance_vmprofile"
-        },
-        {
-            "svg_id": "edge_38",
-            "source": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location01.var.webserver_prefix"
-        },
-        {
-            "svg_id": "edge_39",
-            "source": "[root] module.location01.azurerm_virtual_network.webservers_vnet",
-            "target": "[root] module.location01.azurerm_resource_group.webservers_rg"
-        },
-        {
-            "svg_id": "edge_40",
-            "source": "[root] module.location01.output.webserverpublic_ip_id",
-            "target": "[root] module.location01.azurerm_public_ip.webserverpublic_ip"
-        },
-        {
-            "svg_id": "edge_41",
-            "source": "[root] module.location01.provider.azurerm",
-            "target": "[root] provider.azurerm"
-        },
-        {
-            "svg_id": "edge_42",
-            "source": "[root] module.location01.var.image_admin_password",
-            "target": "[root] var.image_admin_password"
-        },
-        {
-            "svg_id": "edge_43",
-            "source": "[root] module.location01.var.image_admin_username",
-            "target": "[root] var.image_admin_username"
-        },
-        {
-            "svg_id": "edge_44",
-            "source": "[root] module.location01.var.image_offer",
-            "target": "[root] var.image_offer"
-        },
-        {
-            "svg_id": "edge_45",
-            "source": "[root] module.location01.var.image_publisher",
-            "target": "[root] var.image_publisher"
-        },
-        {
-            "svg_id": "edge_46",
-            "source": "[root] module.location01.var.image_sku",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "svg_id": "edge_47",
-            "source": "[root] module.location01.var.image_version",
-            "target": "[root] var.image_version"
-        },
-        {
-            "svg_id": "edge_48",
-            "source": "[root] module.location01.var.instance_count",
-            "target": "[root] var.instance_count"
-        },
-        {
-            "svg_id": "edge_49",
-            "source": "[root] module.location01.var.instance_vmprofile",
-            "target": "[root] var.instance_vmprofile"
-        },
-        {
-            "svg_id": "edge_50",
-            "source": "[root] module.location01.var.lb_dns_label",
-            "target": "[root] var.location01_lb_dns_label"
-        },
-        {
-            "svg_id": "edge_51",
-            "source": "[root] module.location01.var.location",
-            "target": "[root] var.location01_location"
-        },
-        {
-            "svg_id": "edge_52",
-            "source": "[root] module.location01.var.resource_prefix",
-            "target": "[root] var.location01_resource_prefix"
-        },
-        {
-            "svg_id": "edge_53",
-            "source": "[root] module.location01.var.webserver_prefix",
-            "target": "[root] var.location01_webserver_prefix"
-        },
-        {
-            "svg_id": "edge_54",
-            "source": "[root] module.location02.azurerm_lb.webservers_lb",
-            "target": "[root] module.location02.azurerm_public_ip.webserverpublic_ip"
-        },
-        {
-            "svg_id": "edge_55",
-            "source": "[root] module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend",
-            "target": "[root] module.location02.azurerm_lb.webservers_lb"
-        },
-        {
-            "svg_id": "edge_56",
-            "source": "[root] module.location02.azurerm_lb_probe.httpprobe",
-            "target": "[root] module.location02.azurerm_lb.webservers_lb"
-        },
-        {
-            "svg_id": "edge_57",
-            "source": "[root] module.location02.azurerm_lb_rule.webservers_lb_http",
-            "target": "[root] module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend"
-        },
-        {
-            "svg_id": "edge_58",
-            "source": "[root] module.location02.azurerm_lb_rule.webservers_lb_http",
-            "target": "[root] module.location02.azurerm_lb_probe.httpprobe"
-        },
-        {
-            "svg_id": "edge_59",
-            "source": "[root] module.location02.azurerm_public_ip.webserverpublic_ip",
-            "target": "[root] module.location02.azurerm_resource_group.webservers_rg"
-        },
-        {
-            "svg_id": "edge_60",
-            "source": "[root] module.location02.azurerm_public_ip.webserverpublic_ip",
-            "target": "[root] module.location02.var.lb_dns_label"
-        },
-        {
-            "svg_id": "edge_61",
-            "source": "[root] module.location02.azurerm_resource_group.webservers_rg",
-            "target": "[root] module.location02.provider.azurerm"
-        },
-        {
-            "svg_id": "edge_62",
-            "source": "[root] module.location02.azurerm_resource_group.webservers_rg",
-            "target": "[root] module.location02.var.location"
-        },
-        {
-            "svg_id": "edge_63",
-            "source": "[root] module.location02.azurerm_resource_group.webservers_rg",
-            "target": "[root] module.location02.var.resource_prefix"
-        },
-        {
-            "svg_id": "edge_64",
-            "source": "[root] module.location02.azurerm_storage_account.webservers_sa",
-            "target": "[root] module.location02.azurerm_resource_group.webservers_rg"
-        },
-        {
-            "svg_id": "edge_65",
-            "source": "[root] module.location02.azurerm_storage_container.webservers_ct",
-            "target": "[root] module.location02.azurerm_storage_account.webservers_sa"
-        },
-        {
-            "svg_id": "edge_66",
-            "source": "[root] module.location02.azurerm_subnet.webservers_subnet",
-            "target": "[root] module.location02.azurerm_virtual_network.webservers_vnet"
-        },
-        {
-            "svg_id": "edge_67",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend"
-        },
-        {
-            "svg_id": "edge_68",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.azurerm_storage_container.webservers_ct"
-        },
-        {
-            "svg_id": "edge_69",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.azurerm_subnet.webservers_subnet"
-        },
-        {
-            "svg_id": "edge_70",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.var.image_admin_password"
-        },
-        {
-            "svg_id": "edge_71",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.var.image_admin_username"
-        },
-        {
-            "svg_id": "edge_72",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.var.image_offer"
-        },
-        {
-            "svg_id": "edge_73",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.var.image_publisher"
-        },
-        {
-            "svg_id": "edge_74",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.var.image_sku"
-        },
-        {
-            "svg_id": "edge_75",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.var.image_version"
-        },
-        {
-            "svg_id": "edge_76",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.var.instance_count"
-        },
-        {
-            "svg_id": "edge_77",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.var.instance_vmprofile"
-        },
-        {
-            "svg_id": "edge_78",
-            "source": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
-            "target": "[root] module.location02.var.webserver_prefix"
-        },
-        {
-            "svg_id": "edge_79",
-            "source": "[root] module.location02.azurerm_virtual_network.webservers_vnet",
-            "target": "[root] module.location02.azurerm_resource_group.webservers_rg"
-        },
-        {
-            "svg_id": "edge_80",
-            "source": "[root] module.location02.output.webserverpublic_ip_id",
-            "target": "[root] module.location02.azurerm_public_ip.webserverpublic_ip"
-        },
-        {
-            "svg_id": "edge_81",
-            "source": "[root] module.location02.provider.azurerm",
-            "target": "[root] provider.azurerm"
-        },
-        {
-            "svg_id": "edge_82",
-            "source": "[root] module.location02.var.image_admin_password",
-            "target": "[root] var.image_admin_password"
-        },
-        {
-            "svg_id": "edge_83",
-            "source": "[root] module.location02.var.image_admin_username",
-            "target": "[root] var.image_admin_username"
-        },
-        {
-            "svg_id": "edge_84",
-            "source": "[root] module.location02.var.image_offer",
-            "target": "[root] var.image_offer"
-        },
-        {
-            "svg_id": "edge_85",
-            "source": "[root] module.location02.var.image_publisher",
-            "target": "[root] var.image_publisher"
-        },
-        {
-            "svg_id": "edge_86",
-            "source": "[root] module.location02.var.image_sku",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "svg_id": "edge_87",
-            "source": "[root] module.location02.var.image_version",
-            "target": "[root] var.image_version"
-        },
-        {
-            "svg_id": "edge_88",
-            "source": "[root] module.location02.var.instance_count",
-            "target": "[root] var.instance_count"
-        },
-        {
-            "svg_id": "edge_89",
-            "source": "[root] module.location02.var.instance_vmprofile",
-            "target": "[root] var.instance_vmprofile"
-        },
-        {
-            "svg_id": "edge_90",
-            "source": "[root] module.location02.var.lb_dns_label",
-            "target": "[root] var.location02_lb_dns_label"
-        },
-        {
-            "svg_id": "edge_91",
-            "source": "[root] module.location02.var.location",
-            "target": "[root] var.location02_location"
-        },
-        {
-            "svg_id": "edge_92",
-            "source": "[root] module.location02.var.resource_prefix",
-            "target": "[root] var.location02_resource_prefix"
-        },
-        {
-            "svg_id": "edge_93",
-            "source": "[root] module.location02.var.webserver_prefix",
-            "target": "[root] var.location02_webserver_prefix"
-        },
-        {
-            "svg_id": "edge_94",
-            "source": "[root] provider.azurerm (close)",
-            "target": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01"
-        },
-        {
-            "svg_id": "edge_95",
-            "source": "[root] provider.azurerm (close)",
-            "target": "[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02"
-        },
-        {
-            "svg_id": "edge_96",
-            "source": "[root] provider.azurerm (close)",
-            "target": "[root] module.location01.azurerm_lb_rule.webservers_lb_http"
-        },
-        {
-            "svg_id": "edge_97",
-            "source": "[root] provider.azurerm (close)",
-            "target": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss"
-        },
-        {
-            "svg_id": "edge_98",
-            "source": "[root] provider.azurerm (close)",
-            "target": "[root] module.location02.azurerm_lb_rule.webservers_lb_http"
-        },
-        {
-            "svg_id": "edge_99",
-            "source": "[root] provider.azurerm (close)",
-            "target": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss"
-        },
-        {
-            "svg_id": "edge_100",
-            "source": "[root] provider.azurerm",
-            "target": "[root] var.client_id"
-        },
-        {
-            "svg_id": "edge_101",
-            "source": "[root] provider.azurerm",
-            "target": "[root] var.client_secret"
-        },
-        {
-            "svg_id": "edge_102",
-            "source": "[root] provider.azurerm",
-            "target": "[root] var.subscription_id"
-        },
-        {
-            "svg_id": "edge_103",
-            "source": "[root] provider.azurerm",
-            "target": "[root] var.tenant_id"
-        },
-        {
-            "svg_id": "edge_104",
-            "source": "[root] root",
-            "target": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "svg_id": "edge_105",
-            "source": "[root] root",
-            "target": "[root] provider.azurerm (close)"
         }
     ]
 }

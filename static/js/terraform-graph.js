@@ -2,12 +2,21 @@
 // terraform-graph.js 
 //
 
+//
+var edge_types = {
+    NORMAL        : 1, // what we talk about when we're talking about edges.
+    HIDDEN        : 2, // these are normal edges, but aren't drawn.
+    LAYOUT_SHOWN  : 3, // these edges are drawn, but aren't "real" edges
+    LAYOUT_HIDDEN : 4, // these edges are not drawn, aren't "real" edges, but inform layout.
+}
+
 // Sometimes we have escaped newlines (\n) in
 // json strings. we want <br> instead.
 var replacer = function (key, value) {
     if (typeof value == 'string') {
         return value.replace(/\n/g, '<br>');
     }
+    console.log(value);
     return value;
 }
 
@@ -97,7 +106,6 @@ svg_activate = function (selector, svg_url, json_url, scale) {
                         }
                     }
                 }
-                //console.log(ret_children);
                 return ret_children;
             }
 
@@ -107,7 +115,6 @@ svg_activate = function (selector, svg_url, json_url, scale) {
                 var children  = [];
 
                 for (var i in edges) {
-
                     if (edges[i].source == node.label) {
                         ret_edges.push(edges[i]);
                         children.push(nodes[edges[i].target]);

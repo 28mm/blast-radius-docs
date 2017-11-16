@@ -1,52 +1,260 @@
 {
+    "edges": [
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_backend_service.video-service",
+            "svg_id": "edge_0",
+            "target": "[root] google_compute_health_check.health-check"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_backend_service.video-service",
+            "svg_id": "edge_1",
+            "target": "[root] google_compute_instance_group.video-resources"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_backend_service.www-service",
+            "svg_id": "edge_2",
+            "target": "[root] google_compute_health_check.health-check"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_backend_service.www-service",
+            "svg_id": "edge_3",
+            "target": "[root] google_compute_instance_group.www-resources"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_firewall.default",
+            "svg_id": "edge_4",
+            "target": "[root] provider.google"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_global_address.external-address",
+            "svg_id": "edge_5",
+            "target": "[root] provider.google"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_global_forwarding_rule.default",
+            "svg_id": "edge_6",
+            "target": "[root] google_compute_global_address.external-address"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_global_forwarding_rule.default",
+            "svg_id": "edge_7",
+            "target": "[root] google_compute_target_http_proxy.http-lb-proxy"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_health_check.health-check",
+            "svg_id": "edge_8",
+            "target": "[root] provider.google"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_instance.www",
+            "svg_id": "edge_9",
+            "target": "[root] provider.google"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_instance.www",
+            "svg_id": "edge_10",
+            "target": "[root] var.region_zone"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_instance.www-video",
+            "svg_id": "edge_11",
+            "target": "[root] provider.google"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_instance.www-video",
+            "svg_id": "edge_12",
+            "target": "[root] var.region_zone"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_instance_group.video-resources",
+            "svg_id": "edge_13",
+            "target": "[root] google_compute_instance.www-video"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_instance_group.www-resources",
+            "svg_id": "edge_14",
+            "target": "[root] google_compute_instance.www"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_target_http_proxy.http-lb-proxy",
+            "svg_id": "edge_15",
+            "target": "[root] google_compute_url_map.web-map"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_url_map.web-map",
+            "svg_id": "edge_16",
+            "target": "[root] google_compute_backend_service.video-service"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] google_compute_url_map.web-map",
+            "svg_id": "edge_17",
+            "target": "[root] google_compute_backend_service.www-service"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_18",
+            "target": "[root] google_compute_firewall.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_19",
+            "target": "[root] output.application_public_ip"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.application_public_ip",
+            "svg_id": "edge_20",
+            "target": "[root] google_compute_global_forwarding_rule.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_21",
+            "target": "[root] google_compute_firewall.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.google (close)",
+            "svg_id": "edge_22",
+            "target": "[root] google_compute_global_forwarding_rule.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.google",
+            "svg_id": "edge_23",
+            "target": "[root] var.credentials_file_path"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] provider.google",
+            "svg_id": "edge_24",
+            "target": "[root] var.project_name"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] provider.google",
+            "svg_id": "edge_25",
+            "target": "[root] var.region"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_26",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_27",
+            "target": "[root] provider.google (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.credentials_file_path",
+            "svg_id": "edge_28",
+            "target": "[root] var.project_name"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.project_name",
+            "svg_id": "edge_29",
+            "target": "[root] var.region"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.credentials_file_path",
+            "svg_id": "edge_30",
+            "target": "[root] var.project_name"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.project_name",
+            "svg_id": "edge_31",
+            "target": "[root] var.region"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.credentials_file_path",
+            "svg_id": "edge_32",
+            "target": "[root] var.project_name"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.project_name",
+            "svg_id": "edge_33",
+            "target": "[root] var.region"
+        }
+    ],
     "nodes": [
         {
-            "resource_name": "video-service",
+            "cluster": "root",
             "definition": {
-                "name": "tf-video-service",
-                "protocol": "HTTP",
                 "backend": {
                     "group": "${google_compute_instance_group.video-resources.self_link}"
                 },
                 "health_checks": [
                     "${google_compute_health_check.health-check.self_link}"
-                ]
+                ],
+                "name": "tf-video-service",
+                "protocol": "HTTP"
             },
-            "type": "google_compute_backend_service",
             "group": 20000,
+            "label": "[root] google_compute_backend_service.video-service",
+            "resource_name": "video-service",
             "simple_name": "google_compute_backend_service.video-service",
             "svg_id": "node_0",
-            "label": "[root] google_compute_backend_service.video-service"
+            "type": "google_compute_backend_service"
         },
         {
-            "resource_name": "www-service",
+            "cluster": "root",
             "definition": {
-                "name": "tf-www-service",
-                "protocol": "HTTP",
                 "backend": {
                     "group": "${google_compute_instance_group.www-resources.self_link}"
                 },
                 "health_checks": [
                     "${google_compute_health_check.health-check.self_link}"
-                ]
+                ],
+                "name": "tf-www-service",
+                "protocol": "HTTP"
             },
-            "type": "google_compute_backend_service",
             "group": 20000,
+            "label": "[root] google_compute_backend_service.www-service",
+            "resource_name": "www-service",
             "simple_name": "google_compute_backend_service.www-service",
             "svg_id": "node_1",
-            "label": "[root] google_compute_backend_service.www-service"
+            "type": "google_compute_backend_service"
         },
         {
-            "resource_name": "default",
+            "cluster": "root",
             "definition": {
-                "name": "tf-www-firewall-allow-internal-only",
-                "network": "default",
                 "allow": {
-                    "protocol": "tcp",
                     "ports": [
                         "80"
-                    ]
+                    ],
+                    "protocol": "tcp"
                 },
+                "name": "tf-www-firewall-allow-internal-only",
+                "network": "default",
                 "source_ranges": [
                     "130.211.0.0/22",
                     "35.191.0.0/16"
@@ -55,165 +263,173 @@
                     "http-tag"
                 ]
             },
-            "type": "google_compute_firewall",
             "group": 20000,
+            "label": "[root] google_compute_firewall.default",
+            "resource_name": "default",
             "simple_name": "google_compute_firewall.default",
             "svg_id": "node_2",
-            "label": "[root] google_compute_firewall.default"
+            "type": "google_compute_firewall"
         },
         {
-            "resource_name": "external-address",
+            "cluster": "root",
             "definition": {
                 "name": "tf-external-address"
             },
-            "type": "google_compute_global_address",
             "group": 20000,
+            "label": "[root] google_compute_global_address.external-address",
+            "resource_name": "external-address",
             "simple_name": "google_compute_global_address.external-address",
             "svg_id": "node_3",
-            "label": "[root] google_compute_global_address.external-address"
+            "type": "google_compute_global_address"
         },
         {
-            "resource_name": "default",
+            "cluster": "root",
             "definition": {
-                "name": "tf-http-content-gfr",
-                "target": "${google_compute_target_http_proxy.http-lb-proxy.self_link}",
                 "ip_address": "${google_compute_global_address.external-address.address}",
-                "port_range": "80"
+                "name": "tf-http-content-gfr",
+                "port_range": "80",
+                "target": "${google_compute_target_http_proxy.http-lb-proxy.self_link}"
             },
-            "type": "google_compute_global_forwarding_rule",
             "group": 20000,
+            "label": "[root] google_compute_global_forwarding_rule.default",
+            "resource_name": "default",
             "simple_name": "google_compute_global_forwarding_rule.default",
             "svg_id": "node_4",
-            "label": "[root] google_compute_global_forwarding_rule.default"
+            "type": "google_compute_global_forwarding_rule"
         },
         {
-            "resource_name": "health-check",
+            "cluster": "root",
             "definition": {
-                "name": "tf-health-check",
-                "http_health_check": {}
+                "http_health_check": {},
+                "name": "tf-health-check"
             },
-            "type": "google_compute_health_check",
             "group": 20000,
+            "label": "[root] google_compute_health_check.health-check",
+            "resource_name": "health-check",
             "simple_name": "google_compute_health_check.health-check",
             "svg_id": "node_5",
-            "label": "[root] google_compute_health_check.health-check"
+            "type": "google_compute_health_check"
         },
         {
-            "resource_name": "www",
+            "cluster": "root",
             "definition": {
-                "name": "tf-www-compute",
-                "machine_type": "f1-micro",
-                "zone": "${var.region_zone}",
-                "tags": [
-                    "http-tag"
-                ],
                 "boot_disk": {
                     "initialize_params": {
                         "image": "projects/debian-cloud/global/images/family/debian-8"
                     }
                 },
-                "network_interface": {
-                    "network": "default",
-                    "access_config": {}
-                },
+                "machine_type": "f1-micro",
                 "metadata_startup_script": "${file(\"scripts/install-www.sh\")}",
+                "name": "tf-www-compute",
+                "network_interface": {
+                    "access_config": {},
+                    "network": "default"
+                },
                 "service_account": {
                     "scopes": [
                         "https://www.googleapis.com/auth/compute.readonly"
                     ]
-                }
+                },
+                "tags": [
+                    "http-tag"
+                ],
+                "zone": "${var.region_zone}"
             },
-            "type": "google_compute_instance",
             "group": 20000,
+            "label": "[root] google_compute_instance.www",
+            "resource_name": "www",
             "simple_name": "google_compute_instance.www",
             "svg_id": "node_6",
-            "label": "[root] google_compute_instance.www"
+            "type": "google_compute_instance"
         },
         {
-            "resource_name": "www-video",
+            "cluster": "root",
             "definition": {
-                "name": "tf-www-video-compute",
-                "machine_type": "f1-micro",
-                "zone": "${var.region_zone}",
-                "tags": [
-                    "http-tag"
-                ],
                 "boot_disk": {
                     "initialize_params": {
                         "image": "projects/debian-cloud/global/images/family/debian-8"
                     }
                 },
-                "network_interface": {
-                    "network": "default",
-                    "access_config": {}
-                },
+                "machine_type": "f1-micro",
                 "metadata_startup_script": "${file(\"scripts/install-video.sh\")}",
+                "name": "tf-www-video-compute",
+                "network_interface": {
+                    "access_config": {},
+                    "network": "default"
+                },
                 "service_account": {
                     "scopes": [
                         "https://www.googleapis.com/auth/compute.readonly"
                     ]
-                }
+                },
+                "tags": [
+                    "http-tag"
+                ],
+                "zone": "${var.region_zone}"
             },
-            "type": "google_compute_instance",
             "group": 20000,
+            "label": "[root] google_compute_instance.www-video",
+            "resource_name": "www-video",
             "simple_name": "google_compute_instance.www-video",
             "svg_id": "node_7",
-            "label": "[root] google_compute_instance.www-video"
+            "type": "google_compute_instance"
         },
         {
-            "resource_name": "video-resources",
+            "cluster": "root",
             "definition": {
-                "name": "tf-video-resources",
-                "zone": "${var.region_zone}",
                 "instances": [
                     "${google_compute_instance.www-video.self_link}"
                 ],
+                "name": "tf-video-resources",
                 "named_port": {
                     "name": "http",
                     "port": "80"
-                }
+                },
+                "zone": "${var.region_zone}"
             },
-            "type": "google_compute_instance_group",
             "group": 20000,
+            "label": "[root] google_compute_instance_group.video-resources",
+            "resource_name": "video-resources",
             "simple_name": "google_compute_instance_group.video-resources",
             "svg_id": "node_8",
-            "label": "[root] google_compute_instance_group.video-resources"
+            "type": "google_compute_instance_group"
         },
         {
-            "resource_name": "www-resources",
+            "cluster": "root",
             "definition": {
-                "name": "tf-www-resources",
-                "zone": "${var.region_zone}",
                 "instances": [
                     "${google_compute_instance.www.self_link}"
                 ],
+                "name": "tf-www-resources",
                 "named_port": {
                     "name": "http",
                     "port": "80"
-                }
+                },
+                "zone": "${var.region_zone}"
             },
-            "type": "google_compute_instance_group",
             "group": 20000,
+            "label": "[root] google_compute_instance_group.www-resources",
+            "resource_name": "www-resources",
             "simple_name": "google_compute_instance_group.www-resources",
             "svg_id": "node_9",
-            "label": "[root] google_compute_instance_group.www-resources"
+            "type": "google_compute_instance_group"
         },
         {
-            "resource_name": "http-lb-proxy",
+            "cluster": "root",
             "definition": {
                 "name": "tf-http-lb-proxy",
                 "url_map": "${google_compute_url_map.web-map.self_link}"
             },
-            "type": "google_compute_target_http_proxy",
             "group": 20000,
+            "label": "[root] google_compute_target_http_proxy.http-lb-proxy",
+            "resource_name": "http-lb-proxy",
             "simple_name": "google_compute_target_http_proxy.http-lb-proxy",
             "svg_id": "node_10",
-            "label": "[root] google_compute_target_http_proxy.http-lb-proxy"
+            "type": "google_compute_target_http_proxy"
         },
         {
-            "resource_name": "web-map",
+            "cluster": "root",
             "definition": {
-                "name": "tf-web-map",
                 "default_service": "${google_compute_backend_service.www-service.self_link}",
                 "host_rule": {
                     "hosts": [
@@ -221,9 +437,10 @@
                     ],
                     "path_matcher": "tf-allpaths"
                 },
+                "name": "tf-web-map",
                 "path_matcher": {
-                    "name": "tf-allpaths",
                     "default_service": "${google_compute_backend_service.www-service.self_link}",
+                    "name": "tf-allpaths",
                     "path_rule": {
                         "paths": [
                             "/video",
@@ -233,253 +450,121 @@
                     }
                 }
             },
-            "type": "google_compute_url_map",
             "group": 20000,
+            "label": "[root] google_compute_url_map.web-map",
+            "resource_name": "web-map",
             "simple_name": "google_compute_url_map.web-map",
             "svg_id": "node_11",
-            "label": "[root] google_compute_url_map.web-map"
+            "type": "google_compute_url_map"
         },
         {
-            "resource_name": "google",
+            "cluster": "root",
             "definition": {
-                "region": "${var.region}",
+                "credentials": "${file(\"${var.credentials_file_path}\")}",
                 "project": "${var.project_name}",
-                "credentials": "${file(\"${var.credentials_file_path}\")}"
+                "region": "${var.region}"
             },
-            "type": "provider",
             "group": 20000,
+            "label": "[root] provider.google",
+            "resource_name": "google",
             "simple_name": "provider.google",
             "svg_id": "node_12",
-            "label": "[root] provider.google"
+            "type": "provider"
         },
         {
-            "resource_name": "region_zone",
+            "cluster": "root",
             "definition": {
                 "default": "us-central1-f"
             },
-            "type": "var",
             "group": 20000,
+            "label": "[root] var.region_zone",
+            "resource_name": "region_zone",
             "simple_name": "var.region_zone",
             "svg_id": "node_13",
-            "label": "[root] var.region_zone"
+            "type": "var"
         },
         {
-            "resource_name": "count-boundary",
+            "cluster": "root",
             "definition": "",
-            "type": "meta",
             "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_14",
-            "label": "[root] meta.count-boundary (count boundary fixup)"
+            "type": "meta"
         },
         {
-            "resource_name": "application_public_ip",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] google_compute_global_forwarding_rule.default",
             "definition": {
                 "value": "${google_compute_global_forwarding_rule.default.ip_address}"
             },
-            "type": "output",
             "group": 20000,
+            "label": "[root] output.application_public_ip",
+            "resource_name": "application_public_ip",
             "simple_name": "output.application_public_ip",
             "svg_id": "node_15",
-            "label": "[root] output.application_public_ip"
+            "type": "output"
         },
         {
-            "resource_name": "google",
+            "cluster": "root",
             "definition": {
-                "region": "${var.region}",
+                "credentials": "${file(\"${var.credentials_file_path}\")}",
                 "project": "${var.project_name}",
-                "credentials": "${file(\"${var.credentials_file_path}\")}"
+                "region": "${var.region}"
             },
-            "type": "provider",
             "group": 20000,
+            "label": "[root] provider.google (close)",
+            "resource_name": "google",
             "simple_name": "provider.google (close)",
             "svg_id": "node_16",
-            "label": "[root] provider.google (close)"
+            "type": "provider"
         },
         {
-            "resource_name": "credentials_file_path",
+            "cluster": "cluster[root] provider.google_var_",
             "definition": {
-                "description": "Path to the JSON file used to describe your account credentials",
-                "default": "~/.gcloud/Terraform.json"
+                "default": "~/.gcloud/Terraform.json",
+                "description": "Path to the JSON file used to describe your account credentials"
             },
-            "type": "var",
             "group": 20000,
+            "label": "[root] var.credentials_file_path",
+            "resource_name": "credentials_file_path",
             "simple_name": "var.credentials_file_path",
             "svg_id": "node_17",
-            "label": "[root] var.credentials_file_path"
+            "type": "var"
         },
         {
-            "resource_name": "project_name",
+            "cluster": "cluster[root] provider.google_var_",
             "definition": {
                 "description": "The ID of the Google Cloud project"
             },
-            "type": "var",
             "group": 20000,
+            "label": "[root] var.project_name",
+            "resource_name": "project_name",
             "simple_name": "var.project_name",
             "svg_id": "node_18",
-            "label": "[root] var.project_name"
+            "type": "var"
         },
         {
-            "resource_name": "region",
+            "cluster": "cluster[root] provider.google_var_",
             "definition": {
                 "default": "us-central1"
             },
-            "type": "var",
             "group": 20000,
+            "label": "[root] var.region",
+            "resource_name": "region",
             "simple_name": "var.region",
             "svg_id": "node_19",
-            "label": "[root] var.region"
+            "type": "var"
         },
         {
-            "resource_name": "",
+            "cluster": "root",
             "definition": "",
-            "type": "",
             "group": 20000,
+            "label": "[root] root",
+            "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_20",
-            "label": "[root] root"
-        }
-    ],
-    "edges": [
-        {
-            "svg_id": "edge_0",
-            "target": "[root] google_compute_health_check.health-check",
-            "source": "[root] google_compute_backend_service.video-service"
-        },
-        {
-            "svg_id": "edge_1",
-            "target": "[root] google_compute_instance_group.video-resources",
-            "source": "[root] google_compute_backend_service.video-service"
-        },
-        {
-            "svg_id": "edge_2",
-            "target": "[root] google_compute_health_check.health-check",
-            "source": "[root] google_compute_backend_service.www-service"
-        },
-        {
-            "svg_id": "edge_3",
-            "target": "[root] google_compute_instance_group.www-resources",
-            "source": "[root] google_compute_backend_service.www-service"
-        },
-        {
-            "svg_id": "edge_4",
-            "target": "[root] provider.google",
-            "source": "[root] google_compute_firewall.default"
-        },
-        {
-            "svg_id": "edge_5",
-            "target": "[root] provider.google",
-            "source": "[root] google_compute_global_address.external-address"
-        },
-        {
-            "svg_id": "edge_6",
-            "target": "[root] google_compute_global_address.external-address",
-            "source": "[root] google_compute_global_forwarding_rule.default"
-        },
-        {
-            "svg_id": "edge_7",
-            "target": "[root] google_compute_target_http_proxy.http-lb-proxy",
-            "source": "[root] google_compute_global_forwarding_rule.default"
-        },
-        {
-            "svg_id": "edge_8",
-            "target": "[root] provider.google",
-            "source": "[root] google_compute_health_check.health-check"
-        },
-        {
-            "svg_id": "edge_9",
-            "target": "[root] provider.google",
-            "source": "[root] google_compute_instance.www"
-        },
-        {
-            "svg_id": "edge_10",
-            "target": "[root] var.region_zone",
-            "source": "[root] google_compute_instance.www"
-        },
-        {
-            "svg_id": "edge_11",
-            "target": "[root] provider.google",
-            "source": "[root] google_compute_instance.www-video"
-        },
-        {
-            "svg_id": "edge_12",
-            "target": "[root] var.region_zone",
-            "source": "[root] google_compute_instance.www-video"
-        },
-        {
-            "svg_id": "edge_13",
-            "target": "[root] google_compute_instance.www-video",
-            "source": "[root] google_compute_instance_group.video-resources"
-        },
-        {
-            "svg_id": "edge_14",
-            "target": "[root] google_compute_instance.www",
-            "source": "[root] google_compute_instance_group.www-resources"
-        },
-        {
-            "svg_id": "edge_15",
-            "target": "[root] google_compute_url_map.web-map",
-            "source": "[root] google_compute_target_http_proxy.http-lb-proxy"
-        },
-        {
-            "svg_id": "edge_16",
-            "target": "[root] google_compute_backend_service.video-service",
-            "source": "[root] google_compute_url_map.web-map"
-        },
-        {
-            "svg_id": "edge_17",
-            "target": "[root] google_compute_backend_service.www-service",
-            "source": "[root] google_compute_url_map.web-map"
-        },
-        {
-            "svg_id": "edge_18",
-            "target": "[root] google_compute_firewall.default",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "svg_id": "edge_19",
-            "target": "[root] output.application_public_ip",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "svg_id": "edge_20",
-            "target": "[root] google_compute_global_forwarding_rule.default",
-            "source": "[root] output.application_public_ip"
-        },
-        {
-            "svg_id": "edge_21",
-            "target": "[root] google_compute_firewall.default",
-            "source": "[root] provider.google (close)"
-        },
-        {
-            "svg_id": "edge_22",
-            "target": "[root] google_compute_global_forwarding_rule.default",
-            "source": "[root] provider.google (close)"
-        },
-        {
-            "svg_id": "edge_23",
-            "target": "[root] var.credentials_file_path",
-            "source": "[root] provider.google"
-        },
-        {
-            "svg_id": "edge_24",
-            "target": "[root] var.project_name",
-            "source": "[root] provider.google"
-        },
-        {
-            "svg_id": "edge_25",
-            "target": "[root] var.region",
-            "source": "[root] provider.google"
-        },
-        {
-            "svg_id": "edge_26",
-            "target": "[root] meta.count-boundary (count boundary fixup)",
-            "source": "[root] root"
-        },
-        {
-            "svg_id": "edge_27",
-            "target": "[root] provider.google (close)",
-            "source": "[root] root"
+            "type": ""
         }
     ]
 }

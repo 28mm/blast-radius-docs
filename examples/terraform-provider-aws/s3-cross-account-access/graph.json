@@ -1,241 +1,309 @@
 {
-    "nodes": [
-        {
-            "definition": {
-                "provider": "aws.prod",
-                "bucket": "${var.bucket_name}",
-                "acl": "private",
-                "policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowTest\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::${var.test_account_id}:root\"\n      },\n      \"Action\": \"s3:*\",\n      \"Resource\": \"arn:aws:s3:::${var.bucket_name}/*\"\n    }\n  ]\n}"
-            },
-            "label": "[root] aws_s3_bucket.prod",
-            "simple_name": "aws_s3_bucket.prod",
-            "type": "aws_s3_bucket",
-            "group": 20000,
-            "svg_id": "node_0",
-            "resource_name": "prod"
-        },
-        {
-            "definition": {
-                "provider": "aws.prod",
-                "bucket": "${aws_s3_bucket.prod.id}",
-                "key": "object-uploaded-via-prod-creds",
-                "source": "${path.module}/prod.txt"
-            },
-            "label": "[root] aws_s3_bucket_object.prod",
-            "simple_name": "aws_s3_bucket_object.prod",
-            "type": "aws_s3_bucket_object",
-            "group": 20000,
-            "svg_id": "node_1",
-            "resource_name": "prod"
-        },
-        {
-            "definition": {
-                "provider": "aws.test",
-                "bucket": "${aws_s3_bucket.prod.id}",
-                "key": "object-uploaded-via-test-creds",
-                "source": "${path.module}/test.txt"
-            },
-            "label": "[root] aws_s3_bucket_object.test",
-            "simple_name": "aws_s3_bucket_object.test",
-            "type": "aws_s3_bucket_object",
-            "group": 20000,
-            "svg_id": "node_2",
-            "resource_name": "test"
-        },
-        {
-            "definition": "",
-            "label": "[root] provider.aws.prod",
-            "simple_name": "provider.aws.prod",
-            "type": "provider.aws",
-            "group": 20000,
-            "svg_id": "node_3",
-            "resource_name": "prod"
-        },
-        {
-            "definition": "",
-            "label": "[root] provider.aws.test",
-            "simple_name": "provider.aws.test",
-            "type": "provider.aws",
-            "group": 20000,
-            "svg_id": "node_4",
-            "resource_name": "test"
-        },
-        {
-            "definition": {},
-            "label": "[root] var.bucket_name",
-            "simple_name": "var.bucket_name",
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_5",
-            "resource_name": "bucket_name"
-        },
-        {
-            "definition": {},
-            "label": "[root] var.test_account_id",
-            "simple_name": "var.test_account_id",
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_6",
-            "resource_name": "test_account_id"
-        },
-        {
-            "definition": "",
-            "label": "[root] meta.count-boundary (count boundary fixup)",
-            "simple_name": "meta.count-boundary (count boundary fixup)",
-            "type": "meta",
-            "group": 20000,
-            "svg_id": "node_7",
-            "resource_name": "count-boundary"
-        },
-        {
-            "definition": "",
-            "label": "[root] provider.aws.prod (close)",
-            "simple_name": "provider.aws.prod (close)",
-            "type": "provider.aws",
-            "group": 20000,
-            "svg_id": "node_8",
-            "resource_name": "prod"
-        },
-        {
-            "definition": {},
-            "label": "[root] var.prod_access_key",
-            "simple_name": "var.prod_access_key",
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_9",
-            "resource_name": "prod_access_key"
-        },
-        {
-            "definition": {},
-            "label": "[root] var.prod_secret_key",
-            "simple_name": "var.prod_secret_key",
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_10",
-            "resource_name": "prod_secret_key"
-        },
-        {
-            "definition": "",
-            "label": "[root] provider.aws.test (close)",
-            "simple_name": "provider.aws.test (close)",
-            "type": "provider.aws",
-            "group": 20000,
-            "svg_id": "node_11",
-            "resource_name": "test"
-        },
-        {
-            "definition": {},
-            "label": "[root] var.test_access_key",
-            "simple_name": "var.test_access_key",
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_12",
-            "resource_name": "test_access_key"
-        },
-        {
-            "definition": {},
-            "label": "[root] var.test_secret_key",
-            "simple_name": "var.test_secret_key",
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_13",
-            "resource_name": "test_secret_key"
-        },
-        {
-            "definition": "",
-            "label": "[root] root",
-            "simple_name": "root",
-            "type": "",
-            "group": 20000,
-            "svg_id": "node_14",
-            "resource_name": ""
-        }
-    ],
     "edges": [
         {
-            "svg_id": "edge_0",
+            "edge_type": 1,
             "source": "[root] aws_s3_bucket.prod",
+            "svg_id": "edge_0",
             "target": "[root] provider.aws.prod"
         },
         {
-            "svg_id": "edge_1",
+            "edge_type": 1,
             "source": "[root] aws_s3_bucket.prod",
+            "svg_id": "edge_1",
             "target": "[root] var.bucket_name"
         },
         {
-            "svg_id": "edge_2",
+            "edge_type": 2,
             "source": "[root] aws_s3_bucket.prod",
+            "svg_id": "edge_2",
             "target": "[root] var.test_account_id"
         },
         {
-            "svg_id": "edge_3",
+            "edge_type": 1,
             "source": "[root] aws_s3_bucket_object.prod",
+            "svg_id": "edge_3",
             "target": "[root] aws_s3_bucket.prod"
         },
         {
+            "edge_type": 1,
+            "source": "[root] aws_s3_bucket_object.test",
             "svg_id": "edge_4",
-            "source": "[root] aws_s3_bucket_object.test",
             "target": "[root] aws_s3_bucket.prod"
         },
         {
-            "svg_id": "edge_5",
+            "edge_type": 1,
             "source": "[root] aws_s3_bucket_object.test",
+            "svg_id": "edge_5",
             "target": "[root] provider.aws.test"
         },
         {
-            "svg_id": "edge_6",
+            "edge_type": 1,
             "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_6",
             "target": "[root] aws_s3_bucket_object.prod"
         },
         {
-            "svg_id": "edge_7",
+            "edge_type": 1,
             "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_7",
             "target": "[root] aws_s3_bucket_object.test"
         },
         {
-            "svg_id": "edge_8",
+            "edge_type": 1,
             "source": "[root] provider.aws.prod (close)",
+            "svg_id": "edge_8",
             "target": "[root] aws_s3_bucket_object.prod"
         },
         {
-            "svg_id": "edge_9",
+            "edge_type": 1,
             "source": "[root] provider.aws.prod",
+            "svg_id": "edge_9",
             "target": "[root] var.prod_access_key"
         },
         {
-            "svg_id": "edge_10",
+            "edge_type": 2,
             "source": "[root] provider.aws.prod",
+            "svg_id": "edge_10",
             "target": "[root] var.prod_secret_key"
         },
         {
-            "svg_id": "edge_11",
+            "edge_type": 1,
             "source": "[root] provider.aws.test (close)",
+            "svg_id": "edge_11",
             "target": "[root] aws_s3_bucket_object.test"
         },
         {
-            "svg_id": "edge_12",
+            "edge_type": 1,
             "source": "[root] provider.aws.test",
+            "svg_id": "edge_12",
             "target": "[root] var.test_access_key"
         },
         {
-            "svg_id": "edge_13",
+            "edge_type": 2,
             "source": "[root] provider.aws.test",
+            "svg_id": "edge_13",
             "target": "[root] var.test_secret_key"
         },
         {
-            "svg_id": "edge_14",
+            "edge_type": 1,
             "source": "[root] root",
+            "svg_id": "edge_14",
             "target": "[root] meta.count-boundary (count boundary fixup)"
         },
         {
-            "svg_id": "edge_15",
+            "edge_type": 1,
             "source": "[root] root",
+            "svg_id": "edge_15",
             "target": "[root] provider.aws.prod (close)"
         },
         {
-            "svg_id": "edge_16",
+            "edge_type": 1,
             "source": "[root] root",
+            "svg_id": "edge_16",
             "target": "[root] provider.aws.test (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.bucket_name",
+            "svg_id": "edge_17",
+            "target": "[root] var.test_account_id"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.bucket_name",
+            "svg_id": "edge_18",
+            "target": "[root] var.test_account_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.prod_access_key",
+            "svg_id": "edge_19",
+            "target": "[root] var.prod_secret_key"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.prod_access_key",
+            "svg_id": "edge_20",
+            "target": "[root] var.prod_secret_key"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.test_access_key",
+            "svg_id": "edge_21",
+            "target": "[root] var.test_secret_key"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.test_access_key",
+            "svg_id": "edge_22",
+            "target": "[root] var.test_secret_key"
+        }
+    ],
+    "nodes": [
+        {
+            "cluster": "root",
+            "definition": {
+                "acl": "private",
+                "bucket": "${var.bucket_name}",
+                "policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowTest\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::${var.test_account_id}:root\"\n      },\n      \"Action\": \"s3:*\",\n      \"Resource\": \"arn:aws:s3:::${var.bucket_name}/*\"\n    }\n  ]\n}",
+                "provider": "aws.prod"
+            },
+            "group": 20000,
+            "label": "[root] aws_s3_bucket.prod",
+            "resource_name": "prod",
+            "simple_name": "aws_s3_bucket.prod",
+            "svg_id": "node_0",
+            "type": "aws_s3_bucket"
+        },
+        {
+            "cluster": "root",
+            "definition": {
+                "bucket": "${aws_s3_bucket.prod.id}",
+                "key": "object-uploaded-via-prod-creds",
+                "provider": "aws.prod",
+                "source": "${path.module}/prod.txt"
+            },
+            "group": 20000,
+            "label": "[root] aws_s3_bucket_object.prod",
+            "resource_name": "prod",
+            "simple_name": "aws_s3_bucket_object.prod",
+            "svg_id": "node_1",
+            "type": "aws_s3_bucket_object"
+        },
+        {
+            "cluster": "root",
+            "definition": {
+                "bucket": "${aws_s3_bucket.prod.id}",
+                "key": "object-uploaded-via-test-creds",
+                "provider": "aws.test",
+                "source": "${path.module}/test.txt"
+            },
+            "group": 20000,
+            "label": "[root] aws_s3_bucket_object.test",
+            "resource_name": "test",
+            "simple_name": "aws_s3_bucket_object.test",
+            "svg_id": "node_2",
+            "type": "aws_s3_bucket_object"
+        },
+        {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] provider.aws.prod",
+            "resource_name": "prod",
+            "simple_name": "provider.aws.prod",
+            "svg_id": "node_3",
+            "type": "provider.aws"
+        },
+        {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] provider.aws.test",
+            "resource_name": "test",
+            "simple_name": "provider.aws.test",
+            "svg_id": "node_4",
+            "type": "provider.aws"
+        },
+        {
+            "cluster": "cluster[root] aws_s3_bucket.prod_var_",
+            "definition": {},
+            "group": 20000,
+            "label": "[root] var.bucket_name",
+            "resource_name": "bucket_name",
+            "simple_name": "var.bucket_name",
+            "svg_id": "node_5",
+            "type": "var"
+        },
+        {
+            "cluster": "cluster[root] aws_s3_bucket.prod_var_",
+            "definition": {},
+            "group": 20000,
+            "label": "[root] var.test_account_id",
+            "resource_name": "test_account_id",
+            "simple_name": "var.test_account_id",
+            "svg_id": "node_6",
+            "type": "var"
+        },
+        {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_7",
+            "type": "meta"
+        },
+        {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] provider.aws.prod (close)",
+            "resource_name": "prod",
+            "simple_name": "provider.aws.prod (close)",
+            "svg_id": "node_8",
+            "type": "provider.aws"
+        },
+        {
+            "cluster": "cluster[root] provider.aws.prod_var_",
+            "definition": {},
+            "group": 20000,
+            "label": "[root] var.prod_access_key",
+            "resource_name": "prod_access_key",
+            "simple_name": "var.prod_access_key",
+            "svg_id": "node_9",
+            "type": "var"
+        },
+        {
+            "cluster": "cluster[root] provider.aws.prod_var_",
+            "definition": {},
+            "group": 20000,
+            "label": "[root] var.prod_secret_key",
+            "resource_name": "prod_secret_key",
+            "simple_name": "var.prod_secret_key",
+            "svg_id": "node_10",
+            "type": "var"
+        },
+        {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] provider.aws.test (close)",
+            "resource_name": "test",
+            "simple_name": "provider.aws.test (close)",
+            "svg_id": "node_11",
+            "type": "provider.aws"
+        },
+        {
+            "cluster": "cluster[root] provider.aws.test_var_",
+            "definition": {},
+            "group": 20000,
+            "label": "[root] var.test_access_key",
+            "resource_name": "test_access_key",
+            "simple_name": "var.test_access_key",
+            "svg_id": "node_12",
+            "type": "var"
+        },
+        {
+            "cluster": "cluster[root] provider.aws.test_var_",
+            "definition": {},
+            "group": 20000,
+            "label": "[root] var.test_secret_key",
+            "resource_name": "test_secret_key",
+            "simple_name": "var.test_secret_key",
+            "svg_id": "node_13",
+            "type": "var"
+        },
+        {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
+            "label": "[root] root",
+            "resource_name": "",
+            "simple_name": "root",
+            "svg_id": "node_14",
+            "type": ""
         }
     ]
 }

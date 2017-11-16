@@ -1,526 +1,970 @@
 {
+    "edges": [
+        {
+            "edge_type": 1,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_0",
+            "target": "[root] aws_db_subnet_group.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_1",
+            "target": "[root] aws_security_group.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_2",
+            "target": "[root] var.db_name"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_3",
+            "target": "[root] var.engine"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_4",
+            "target": "[root] var.engine_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_5",
+            "target": "[root] var.identifier"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_6",
+            "target": "[root] var.instance_class"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_7",
+            "target": "[root] var.password"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_8",
+            "target": "[root] var.storage"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_db_instance.default",
+            "svg_id": "edge_9",
+            "target": "[root] var.username"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_db_subnet_group.default",
+            "svg_id": "edge_10",
+            "target": "[root] aws_subnet.subnet_1"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_db_subnet_group.default",
+            "svg_id": "edge_11",
+            "target": "[root] aws_subnet.subnet_2"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_security_group.default",
+            "svg_id": "edge_12",
+            "target": "[root] provider.aws"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_security_group.default",
+            "svg_id": "edge_13",
+            "target": "[root] var.cidr_blocks"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_security_group.default",
+            "svg_id": "edge_14",
+            "target": "[root] var.sg_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_security_group.default",
+            "svg_id": "edge_15",
+            "target": "[root] var.vpc_id"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_subnet.subnet_1",
+            "svg_id": "edge_16",
+            "target": "[root] provider.aws"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_subnet.subnet_1",
+            "svg_id": "edge_17",
+            "target": "[root] var.az_1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_subnet.subnet_1",
+            "svg_id": "edge_18",
+            "target": "[root] var.subnet_1_cidr"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_subnet.subnet_1",
+            "svg_id": "edge_19",
+            "target": "[root] var.vpc_id"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_subnet.subnet_2",
+            "svg_id": "edge_20",
+            "target": "[root] provider.aws"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_subnet.subnet_2",
+            "svg_id": "edge_21",
+            "target": "[root] var.az_2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_subnet.subnet_2",
+            "svg_id": "edge_22",
+            "target": "[root] var.subnet_2_cidr"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_subnet.subnet_2",
+            "svg_id": "edge_23",
+            "target": "[root] var.vpc_id"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_24",
+            "target": "[root] output.db_instance_address"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_25",
+            "target": "[root] output.db_instance_id"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_26",
+            "target": "[root] output.subnet_group"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] output.db_instance_address",
+            "svg_id": "edge_27",
+            "target": "[root] aws_db_instance.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.db_instance_id",
+            "svg_id": "edge_28",
+            "target": "[root] aws_db_instance.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.subnet_group",
+            "svg_id": "edge_29",
+            "target": "[root] aws_db_subnet_group.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.aws (close)",
+            "svg_id": "edge_30",
+            "target": "[root] aws_db_instance.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_31",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_32",
+            "target": "[root] provider.aws (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.db_name",
+            "svg_id": "edge_33",
+            "target": "[root] var.engine"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine",
+            "svg_id": "edge_34",
+            "target": "[root] var.engine_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine_version",
+            "svg_id": "edge_35",
+            "target": "[root] var.identifier"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.identifier",
+            "svg_id": "edge_36",
+            "target": "[root] var.instance_class"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_class",
+            "svg_id": "edge_37",
+            "target": "[root] var.password"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.password",
+            "svg_id": "edge_38",
+            "target": "[root] var.storage"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.storage",
+            "svg_id": "edge_39",
+            "target": "[root] var.username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.db_name",
+            "svg_id": "edge_40",
+            "target": "[root] var.engine"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine",
+            "svg_id": "edge_41",
+            "target": "[root] var.engine_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine_version",
+            "svg_id": "edge_42",
+            "target": "[root] var.identifier"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.identifier",
+            "svg_id": "edge_43",
+            "target": "[root] var.instance_class"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_class",
+            "svg_id": "edge_44",
+            "target": "[root] var.password"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.password",
+            "svg_id": "edge_45",
+            "target": "[root] var.storage"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.storage",
+            "svg_id": "edge_46",
+            "target": "[root] var.username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.db_name",
+            "svg_id": "edge_47",
+            "target": "[root] var.engine"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine",
+            "svg_id": "edge_48",
+            "target": "[root] var.engine_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine_version",
+            "svg_id": "edge_49",
+            "target": "[root] var.identifier"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.identifier",
+            "svg_id": "edge_50",
+            "target": "[root] var.instance_class"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_class",
+            "svg_id": "edge_51",
+            "target": "[root] var.password"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.password",
+            "svg_id": "edge_52",
+            "target": "[root] var.storage"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.storage",
+            "svg_id": "edge_53",
+            "target": "[root] var.username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.db_name",
+            "svg_id": "edge_54",
+            "target": "[root] var.engine"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine",
+            "svg_id": "edge_55",
+            "target": "[root] var.engine_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine_version",
+            "svg_id": "edge_56",
+            "target": "[root] var.identifier"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.identifier",
+            "svg_id": "edge_57",
+            "target": "[root] var.instance_class"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_class",
+            "svg_id": "edge_58",
+            "target": "[root] var.password"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.password",
+            "svg_id": "edge_59",
+            "target": "[root] var.storage"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.storage",
+            "svg_id": "edge_60",
+            "target": "[root] var.username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.db_name",
+            "svg_id": "edge_61",
+            "target": "[root] var.engine"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine",
+            "svg_id": "edge_62",
+            "target": "[root] var.engine_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine_version",
+            "svg_id": "edge_63",
+            "target": "[root] var.identifier"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.identifier",
+            "svg_id": "edge_64",
+            "target": "[root] var.instance_class"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_class",
+            "svg_id": "edge_65",
+            "target": "[root] var.password"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.password",
+            "svg_id": "edge_66",
+            "target": "[root] var.storage"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.storage",
+            "svg_id": "edge_67",
+            "target": "[root] var.username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.db_name",
+            "svg_id": "edge_68",
+            "target": "[root] var.engine"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine",
+            "svg_id": "edge_69",
+            "target": "[root] var.engine_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine_version",
+            "svg_id": "edge_70",
+            "target": "[root] var.identifier"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.identifier",
+            "svg_id": "edge_71",
+            "target": "[root] var.instance_class"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_class",
+            "svg_id": "edge_72",
+            "target": "[root] var.password"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.password",
+            "svg_id": "edge_73",
+            "target": "[root] var.storage"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.storage",
+            "svg_id": "edge_74",
+            "target": "[root] var.username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.db_name",
+            "svg_id": "edge_75",
+            "target": "[root] var.engine"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine",
+            "svg_id": "edge_76",
+            "target": "[root] var.engine_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.engine_version",
+            "svg_id": "edge_77",
+            "target": "[root] var.identifier"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.identifier",
+            "svg_id": "edge_78",
+            "target": "[root] var.instance_class"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_class",
+            "svg_id": "edge_79",
+            "target": "[root] var.password"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.password",
+            "svg_id": "edge_80",
+            "target": "[root] var.storage"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.storage",
+            "svg_id": "edge_81",
+            "target": "[root] var.username"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.db_name",
+            "svg_id": "edge_82",
+            "target": "[root] var.engine"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.engine",
+            "svg_id": "edge_83",
+            "target": "[root] var.engine_version"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.engine_version",
+            "svg_id": "edge_84",
+            "target": "[root] var.identifier"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.identifier",
+            "svg_id": "edge_85",
+            "target": "[root] var.instance_class"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.instance_class",
+            "svg_id": "edge_86",
+            "target": "[root] var.password"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.password",
+            "svg_id": "edge_87",
+            "target": "[root] var.storage"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.storage",
+            "svg_id": "edge_88",
+            "target": "[root] var.username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.cidr_blocks",
+            "svg_id": "edge_89",
+            "target": "[root] var.sg_name"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.cidr_blocks",
+            "svg_id": "edge_90",
+            "target": "[root] var.sg_name"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.az_1",
+            "svg_id": "edge_91",
+            "target": "[root] var.subnet_1_cidr"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.az_1",
+            "svg_id": "edge_92",
+            "target": "[root] var.subnet_1_cidr"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.az_2",
+            "svg_id": "edge_93",
+            "target": "[root] var.subnet_2_cidr"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.az_2",
+            "svg_id": "edge_94",
+            "target": "[root] var.subnet_2_cidr"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] output.db_instance_address",
+            "svg_id": "edge_95",
+            "target": "[root] output.db_instance_id"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] output.db_instance_address",
+            "svg_id": "edge_96",
+            "target": "[root] output.db_instance_id"
+        }
+    ],
     "nodes": [
         {
-            "type": "aws_db_instance",
-            "simple_name": "aws_db_instance.default",
+            "cluster": "root",
             "definition": {
+                "allocated_storage": "${var.storage}",
+                "db_subnet_group_name": "${aws_db_subnet_group.default.id}",
                 "depends_on": [
                     "aws_security_group.default"
                 ],
-                "identifier": "${var.identifier}",
-                "allocated_storage": "${var.storage}",
                 "engine": "${var.engine}",
                 "engine_version": "${lookup(var.engine_version, var.engine)}",
+                "identifier": "${var.identifier}",
                 "instance_class": "${var.instance_class}",
                 "name": "${var.db_name}",
-                "username": "${var.username}",
                 "password": "${var.password}",
+                "username": "${var.username}",
                 "vpc_security_group_ids": [
                     "${aws_security_group.default.id}"
-                ],
-                "db_subnet_group_name": "${aws_db_subnet_group.default.id}"
+                ]
             },
-            "resource_name": "default",
             "group": 20000,
             "label": "[root] aws_db_instance.default",
-            "svg_id": "node_0"
+            "resource_name": "default",
+            "simple_name": "aws_db_instance.default",
+            "svg_id": "node_0",
+            "type": "aws_db_instance"
         },
         {
-            "type": "aws_db_subnet_group",
-            "simple_name": "aws_db_subnet_group.default",
+            "cluster": "root",
             "definition": {
-                "name": "main_subnet_group",
                 "description": "Our main group of subnets",
+                "name": "main_subnet_group",
                 "subnet_ids": [
                     "${aws_subnet.subnet_1.id}",
                     "${aws_subnet.subnet_2.id}"
                 ]
             },
-            "resource_name": "default",
             "group": 20000,
             "label": "[root] aws_db_subnet_group.default",
-            "svg_id": "node_1"
+            "resource_name": "default",
+            "simple_name": "aws_db_subnet_group.default",
+            "svg_id": "node_1",
+            "type": "aws_db_subnet_group"
         },
         {
-            "type": "aws_security_group",
-            "simple_name": "aws_security_group.default",
+            "cluster": "root",
             "definition": {
-                "name": "main_rds_sg",
                 "description": "Allow all inbound traffic",
-                "vpc_id": "${var.vpc_id}",
-                "ingress": {
-                    "from_port": 0,
-                    "to_port": 65535,
-                    "protocol": "TCP",
-                    "cidr_blocks": [
-                        "${var.cidr_blocks}"
-                    ]
-                },
                 "egress": {
-                    "from_port": 0,
-                    "to_port": 0,
-                    "protocol": "-1",
                     "cidr_blocks": [
                         "0.0.0.0/0"
-                    ]
+                    ],
+                    "from_port": 0,
+                    "protocol": "-1",
+                    "to_port": 0
                 },
+                "ingress": {
+                    "cidr_blocks": [
+                        "${var.cidr_blocks}"
+                    ],
+                    "from_port": 0,
+                    "protocol": "TCP",
+                    "to_port": 65535
+                },
+                "name": "main_rds_sg",
                 "tags": {
                     "Name": "${var.sg_name}"
-                }
+                },
+                "vpc_id": "${var.vpc_id}"
             },
-            "resource_name": "default",
             "group": 20000,
             "label": "[root] aws_security_group.default",
-            "svg_id": "node_2"
+            "resource_name": "default",
+            "simple_name": "aws_security_group.default",
+            "svg_id": "node_2",
+            "type": "aws_security_group"
         },
         {
-            "type": "aws_subnet",
-            "simple_name": "aws_subnet.subnet_1",
+            "cluster": "root",
             "definition": {
-                "vpc_id": "${var.vpc_id}",
-                "cidr_block": "${var.subnet_1_cidr}",
                 "availability_zone": "${var.az_1}",
+                "cidr_block": "${var.subnet_1_cidr}",
                 "tags": {
                     "Name": "main_subnet1"
-                }
+                },
+                "vpc_id": "${var.vpc_id}"
             },
-            "resource_name": "subnet_1",
             "group": 20000,
             "label": "[root] aws_subnet.subnet_1",
-            "svg_id": "node_3"
+            "resource_name": "subnet_1",
+            "simple_name": "aws_subnet.subnet_1",
+            "svg_id": "node_3",
+            "type": "aws_subnet"
         },
         {
-            "type": "aws_subnet",
-            "simple_name": "aws_subnet.subnet_2",
+            "cluster": "root",
             "definition": {
-                "vpc_id": "${var.vpc_id}",
-                "cidr_block": "${var.subnet_2_cidr}",
                 "availability_zone": "${var.az_2}",
+                "cidr_block": "${var.subnet_2_cidr}",
                 "tags": {
                     "Name": "main_subnet2"
-                }
+                },
+                "vpc_id": "${var.vpc_id}"
             },
-            "resource_name": "subnet_2",
             "group": 20000,
             "label": "[root] aws_subnet.subnet_2",
-            "svg_id": "node_4"
+            "resource_name": "subnet_2",
+            "simple_name": "aws_subnet.subnet_2",
+            "svg_id": "node_4",
+            "type": "aws_subnet"
         },
         {
-            "type": "provider",
-            "simple_name": "provider.aws",
+            "cluster": "root",
             "definition": "",
-            "resource_name": "aws",
             "group": 20000,
             "label": "[root] provider.aws",
-            "svg_id": "node_5"
+            "resource_name": "aws",
+            "simple_name": "provider.aws",
+            "svg_id": "node_5",
+            "type": "provider"
         },
         {
-            "type": "var",
-            "simple_name": "var.db_name",
+            "cluster": "cluster[root] aws_db_instance.default_var_",
             "definition": {
                 "default": "mydb",
                 "description": "db name"
             },
-            "resource_name": "db_name",
             "group": 20000,
             "label": "[root] var.db_name",
-            "svg_id": "node_6"
+            "resource_name": "db_name",
+            "simple_name": "var.db_name",
+            "svg_id": "node_6",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.engine",
+            "cluster": "cluster[root] aws_db_instance.default_var_",
             "definition": {
                 "default": "postgres",
                 "description": "Engine type, example values mysql, postgres"
             },
-            "resource_name": "engine",
             "group": 20000,
             "label": "[root] var.engine",
-            "svg_id": "node_7"
+            "resource_name": "engine",
+            "simple_name": "var.engine",
+            "svg_id": "node_7",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.engine_version",
+            "cluster": "cluster[root] aws_db_instance.default_var_",
             "definition": {
-                "description": "Engine version",
                 "default": {
                     "mysql": "5.6.22",
                     "postgres": "9.4.1"
-                }
+                },
+                "description": "Engine version"
             },
-            "resource_name": "engine_version",
             "group": 20000,
             "label": "[root] var.engine_version",
-            "svg_id": "node_8"
+            "resource_name": "engine_version",
+            "simple_name": "var.engine_version",
+            "svg_id": "node_8",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.identifier",
+            "cluster": "cluster[root] aws_db_instance.default_var_",
             "definition": {
                 "default": "mydb-rds",
                 "description": "Identifier for your DB"
             },
-            "resource_name": "identifier",
             "group": 20000,
             "label": "[root] var.identifier",
-            "svg_id": "node_9"
+            "resource_name": "identifier",
+            "simple_name": "var.identifier",
+            "svg_id": "node_9",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.instance_class",
+            "cluster": "cluster[root] aws_db_instance.default_var_",
             "definition": {
                 "default": "db.t2.micro",
                 "description": "Instance class"
             },
-            "resource_name": "instance_class",
             "group": 20000,
             "label": "[root] var.instance_class",
-            "svg_id": "node_10"
+            "resource_name": "instance_class",
+            "simple_name": "var.instance_class",
+            "svg_id": "node_10",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.password",
+            "cluster": "cluster[root] aws_db_instance.default_var_",
             "definition": {
                 "description": "password, provide through your ENV variables"
             },
-            "resource_name": "password",
             "group": 20000,
             "label": "[root] var.password",
-            "svg_id": "node_11"
+            "resource_name": "password",
+            "simple_name": "var.password",
+            "svg_id": "node_11",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.storage",
+            "cluster": "cluster[root] aws_db_instance.default_var_",
             "definition": {
                 "default": "10",
                 "description": "Storage size in GB"
             },
-            "resource_name": "storage",
             "group": 20000,
             "label": "[root] var.storage",
-            "svg_id": "node_12"
+            "resource_name": "storage",
+            "simple_name": "var.storage",
+            "svg_id": "node_12",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.username",
+            "cluster": "cluster[root] aws_db_instance.default_var_",
             "definition": {
                 "default": "myuser",
                 "description": "User name"
             },
-            "resource_name": "username",
             "group": 20000,
             "label": "[root] var.username",
-            "svg_id": "node_13"
+            "resource_name": "username",
+            "simple_name": "var.username",
+            "svg_id": "node_13",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.cidr_blocks",
+            "cluster": "cluster[root] aws_security_group.default_var_",
             "definition": {
                 "default": "0.0.0.0/0",
                 "description": "CIDR for sg"
             },
-            "resource_name": "cidr_blocks",
             "group": 20000,
             "label": "[root] var.cidr_blocks",
-            "svg_id": "node_14"
+            "resource_name": "cidr_blocks",
+            "simple_name": "var.cidr_blocks",
+            "svg_id": "node_14",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.sg_name",
+            "cluster": "cluster[root] aws_security_group.default_var_",
             "definition": {
                 "default": "rds_sg",
                 "description": "Tag Name for sg"
             },
-            "resource_name": "sg_name",
             "group": 20000,
             "label": "[root] var.sg_name",
-            "svg_id": "node_15"
+            "resource_name": "sg_name",
+            "simple_name": "var.sg_name",
+            "svg_id": "node_15",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.vpc_id",
+            "cluster": "root",
             "definition": {
                 "description": "Your VPC ID"
             },
-            "resource_name": "vpc_id",
             "group": 20000,
             "label": "[root] var.vpc_id",
-            "svg_id": "node_16"
+            "resource_name": "vpc_id",
+            "simple_name": "var.vpc_id",
+            "svg_id": "node_16",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.az_1",
+            "cluster": "cluster[root] aws_subnet.subnet_1_var_",
             "definition": {
                 "default": "us-east-1b",
                 "description": "Your Az1, use AWS CLI to find your account specific"
             },
-            "resource_name": "az_1",
             "group": 20000,
             "label": "[root] var.az_1",
-            "svg_id": "node_17"
+            "resource_name": "az_1",
+            "simple_name": "var.az_1",
+            "svg_id": "node_17",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.subnet_1_cidr",
+            "cluster": "cluster[root] aws_subnet.subnet_1_var_",
             "definition": {
                 "default": "10.0.1.0/24",
                 "description": "Your AZ"
             },
-            "resource_name": "subnet_1_cidr",
             "group": 20000,
             "label": "[root] var.subnet_1_cidr",
-            "svg_id": "node_18"
+            "resource_name": "subnet_1_cidr",
+            "simple_name": "var.subnet_1_cidr",
+            "svg_id": "node_18",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.az_2",
+            "cluster": "cluster[root] aws_subnet.subnet_2_var_",
             "definition": {
                 "default": "us-east-1c",
                 "description": "Your Az2, use AWS CLI to find your account specific"
             },
-            "resource_name": "az_2",
             "group": 20000,
             "label": "[root] var.az_2",
-            "svg_id": "node_19"
+            "resource_name": "az_2",
+            "simple_name": "var.az_2",
+            "svg_id": "node_19",
+            "type": "var"
         },
         {
-            "type": "var",
-            "simple_name": "var.subnet_2_cidr",
+            "cluster": "cluster[root] aws_subnet.subnet_2_var_",
             "definition": {
                 "default": "10.0.2.0/24",
                 "description": "Your AZ"
             },
-            "resource_name": "subnet_2_cidr",
             "group": 20000,
             "label": "[root] var.subnet_2_cidr",
-            "svg_id": "node_20"
+            "resource_name": "subnet_2_cidr",
+            "simple_name": "var.subnet_2_cidr",
+            "svg_id": "node_20",
+            "type": "var"
         },
         {
-            "type": "meta",
-            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "cluster": "root",
             "definition": "",
-            "resource_name": "count-boundary",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "node_21"
+            "resource_name": "count-boundary",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_21",
+            "type": "meta"
         },
         {
-            "type": "output",
-            "simple_name": "output.db_instance_address",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_db_instance.default",
             "definition": {
                 "value": "${aws_db_instance.default.address}"
             },
-            "resource_name": "db_instance_address",
             "group": 20000,
             "label": "[root] output.db_instance_address",
-            "svg_id": "node_22"
+            "resource_name": "db_instance_address",
+            "simple_name": "output.db_instance_address",
+            "svg_id": "node_22",
+            "type": "output"
         },
         {
-            "type": "output",
-            "simple_name": "output.db_instance_id",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_db_instance.default",
             "definition": {
                 "value": "${aws_db_instance.default.id}"
             },
-            "resource_name": "db_instance_id",
             "group": 20000,
             "label": "[root] output.db_instance_id",
-            "svg_id": "node_23"
+            "resource_name": "db_instance_id",
+            "simple_name": "output.db_instance_id",
+            "svg_id": "node_23",
+            "type": "output"
         },
         {
-            "type": "output",
-            "simple_name": "output.subnet_group",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_db_subnet_group.default",
             "definition": {
                 "value": "${aws_db_subnet_group.default.name}"
             },
-            "resource_name": "subnet_group",
             "group": 20000,
             "label": "[root] output.subnet_group",
-            "svg_id": "node_24"
+            "resource_name": "subnet_group",
+            "simple_name": "output.subnet_group",
+            "svg_id": "node_24",
+            "type": "output"
         },
         {
-            "type": "provider",
-            "simple_name": "provider.aws (close)",
+            "cluster": "root",
             "definition": "",
-            "resource_name": "aws",
             "group": 20000,
             "label": "[root] provider.aws (close)",
-            "svg_id": "node_25"
+            "resource_name": "aws",
+            "simple_name": "provider.aws (close)",
+            "svg_id": "node_25",
+            "type": "provider"
         },
         {
-            "type": "",
-            "simple_name": "root",
+            "cluster": "root",
             "definition": "",
-            "resource_name": "",
             "group": 20000,
             "label": "[root] root",
-            "svg_id": "node_26"
-        }
-    ],
-    "edges": [
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] aws_db_subnet_group.default",
-            "svg_id": "edge_0"
-        },
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] aws_security_group.default",
-            "svg_id": "edge_1"
-        },
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] var.db_name",
-            "svg_id": "edge_2"
-        },
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] var.engine",
-            "svg_id": "edge_3"
-        },
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] var.engine_version",
-            "svg_id": "edge_4"
-        },
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] var.identifier",
-            "svg_id": "edge_5"
-        },
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] var.instance_class",
-            "svg_id": "edge_6"
-        },
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] var.password",
-            "svg_id": "edge_7"
-        },
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] var.storage",
-            "svg_id": "edge_8"
-        },
-        {
-            "source": "[root] aws_db_instance.default",
-            "target": "[root] var.username",
-            "svg_id": "edge_9"
-        },
-        {
-            "source": "[root] aws_db_subnet_group.default",
-            "target": "[root] aws_subnet.subnet_1",
-            "svg_id": "edge_10"
-        },
-        {
-            "source": "[root] aws_db_subnet_group.default",
-            "target": "[root] aws_subnet.subnet_2",
-            "svg_id": "edge_11"
-        },
-        {
-            "source": "[root] aws_security_group.default",
-            "target": "[root] provider.aws",
-            "svg_id": "edge_12"
-        },
-        {
-            "source": "[root] aws_security_group.default",
-            "target": "[root] var.cidr_blocks",
-            "svg_id": "edge_13"
-        },
-        {
-            "source": "[root] aws_security_group.default",
-            "target": "[root] var.sg_name",
-            "svg_id": "edge_14"
-        },
-        {
-            "source": "[root] aws_security_group.default",
-            "target": "[root] var.vpc_id",
-            "svg_id": "edge_15"
-        },
-        {
-            "source": "[root] aws_subnet.subnet_1",
-            "target": "[root] provider.aws",
-            "svg_id": "edge_16"
-        },
-        {
-            "source": "[root] aws_subnet.subnet_1",
-            "target": "[root] var.az_1",
-            "svg_id": "edge_17"
-        },
-        {
-            "source": "[root] aws_subnet.subnet_1",
-            "target": "[root] var.subnet_1_cidr",
-            "svg_id": "edge_18"
-        },
-        {
-            "source": "[root] aws_subnet.subnet_1",
-            "target": "[root] var.vpc_id",
-            "svg_id": "edge_19"
-        },
-        {
-            "source": "[root] aws_subnet.subnet_2",
-            "target": "[root] provider.aws",
-            "svg_id": "edge_20"
-        },
-        {
-            "source": "[root] aws_subnet.subnet_2",
-            "target": "[root] var.az_2",
-            "svg_id": "edge_21"
-        },
-        {
-            "source": "[root] aws_subnet.subnet_2",
-            "target": "[root] var.subnet_2_cidr",
-            "svg_id": "edge_22"
-        },
-        {
-            "source": "[root] aws_subnet.subnet_2",
-            "target": "[root] var.vpc_id",
-            "svg_id": "edge_23"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] output.db_instance_address",
-            "svg_id": "edge_24"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] output.db_instance_id",
-            "svg_id": "edge_25"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] output.subnet_group",
-            "svg_id": "edge_26"
-        },
-        {
-            "source": "[root] output.db_instance_address",
-            "target": "[root] aws_db_instance.default",
-            "svg_id": "edge_27"
-        },
-        {
-            "source": "[root] output.db_instance_id",
-            "target": "[root] aws_db_instance.default",
-            "svg_id": "edge_28"
-        },
-        {
-            "source": "[root] output.subnet_group",
-            "target": "[root] aws_db_subnet_group.default",
-            "svg_id": "edge_29"
-        },
-        {
-            "source": "[root] provider.aws (close)",
-            "target": "[root] aws_db_instance.default",
-            "svg_id": "edge_30"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_31"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] provider.aws (close)",
-            "svg_id": "edge_32"
+            "resource_name": "",
+            "simple_name": "root",
+            "svg_id": "node_26",
+            "type": ""
         }
     ]
 }

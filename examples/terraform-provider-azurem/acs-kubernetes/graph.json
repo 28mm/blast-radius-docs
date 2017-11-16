@@ -1,23 +1,492 @@
 {
+    "edges": [
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_0",
+            "target": "[root] azurerm_resource_group.resource_group"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_1",
+            "target": "[root] var.dns_name_prefix"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_2",
+            "target": "[root] var.linux_admin_ssh_publickey"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_3",
+            "target": "[root] var.linux_admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_4",
+            "target": "[root] var.linux_agent_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_5",
+            "target": "[root] var.linux_agent_vm_size"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_6",
+            "target": "[root] var.master_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_7",
+            "target": "[root] var.service_principal_client_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_container_service.container_service",
+            "svg_id": "edge_8",
+            "target": "[root] var.service_principal_client_secret"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_resource_group.resource_group",
+            "svg_id": "edge_9",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_resource_group.resource_group",
+            "svg_id": "edge_10",
+            "target": "[root] var.resource_group_location"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_resource_group.resource_group",
+            "svg_id": "edge_11",
+            "target": "[root] var.resource_group_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_12",
+            "target": "[root] output.master_fqdn"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_13",
+            "target": "[root] output.ssh_command_master0"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] output.master_fqdn",
+            "svg_id": "edge_14",
+            "target": "[root] azurerm_container_service.container_service"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.ssh_command_master0",
+            "svg_id": "edge_15",
+            "target": "[root] azurerm_container_service.container_service"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_16",
+            "target": "[root] azurerm_container_service.container_service"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_17",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_18",
+            "target": "[root] provider.azurerm (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.dns_name_prefix",
+            "svg_id": "edge_19",
+            "target": "[root] var.linux_admin_ssh_publickey"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_ssh_publickey",
+            "svg_id": "edge_20",
+            "target": "[root] var.linux_admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_username",
+            "svg_id": "edge_21",
+            "target": "[root] var.linux_agent_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_count",
+            "svg_id": "edge_22",
+            "target": "[root] var.linux_agent_vm_size"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_vm_size",
+            "svg_id": "edge_23",
+            "target": "[root] var.master_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.master_count",
+            "svg_id": "edge_24",
+            "target": "[root] var.service_principal_client_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.service_principal_client_id",
+            "svg_id": "edge_25",
+            "target": "[root] var.service_principal_client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.dns_name_prefix",
+            "svg_id": "edge_26",
+            "target": "[root] var.linux_admin_ssh_publickey"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_ssh_publickey",
+            "svg_id": "edge_27",
+            "target": "[root] var.linux_admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_username",
+            "svg_id": "edge_28",
+            "target": "[root] var.linux_agent_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_count",
+            "svg_id": "edge_29",
+            "target": "[root] var.linux_agent_vm_size"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_vm_size",
+            "svg_id": "edge_30",
+            "target": "[root] var.master_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.master_count",
+            "svg_id": "edge_31",
+            "target": "[root] var.service_principal_client_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.service_principal_client_id",
+            "svg_id": "edge_32",
+            "target": "[root] var.service_principal_client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.dns_name_prefix",
+            "svg_id": "edge_33",
+            "target": "[root] var.linux_admin_ssh_publickey"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_ssh_publickey",
+            "svg_id": "edge_34",
+            "target": "[root] var.linux_admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_username",
+            "svg_id": "edge_35",
+            "target": "[root] var.linux_agent_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_count",
+            "svg_id": "edge_36",
+            "target": "[root] var.linux_agent_vm_size"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_vm_size",
+            "svg_id": "edge_37",
+            "target": "[root] var.master_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.master_count",
+            "svg_id": "edge_38",
+            "target": "[root] var.service_principal_client_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.service_principal_client_id",
+            "svg_id": "edge_39",
+            "target": "[root] var.service_principal_client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.dns_name_prefix",
+            "svg_id": "edge_40",
+            "target": "[root] var.linux_admin_ssh_publickey"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_ssh_publickey",
+            "svg_id": "edge_41",
+            "target": "[root] var.linux_admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_username",
+            "svg_id": "edge_42",
+            "target": "[root] var.linux_agent_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_count",
+            "svg_id": "edge_43",
+            "target": "[root] var.linux_agent_vm_size"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_vm_size",
+            "svg_id": "edge_44",
+            "target": "[root] var.master_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.master_count",
+            "svg_id": "edge_45",
+            "target": "[root] var.service_principal_client_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.service_principal_client_id",
+            "svg_id": "edge_46",
+            "target": "[root] var.service_principal_client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.dns_name_prefix",
+            "svg_id": "edge_47",
+            "target": "[root] var.linux_admin_ssh_publickey"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_ssh_publickey",
+            "svg_id": "edge_48",
+            "target": "[root] var.linux_admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_username",
+            "svg_id": "edge_49",
+            "target": "[root] var.linux_agent_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_count",
+            "svg_id": "edge_50",
+            "target": "[root] var.linux_agent_vm_size"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_vm_size",
+            "svg_id": "edge_51",
+            "target": "[root] var.master_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.master_count",
+            "svg_id": "edge_52",
+            "target": "[root] var.service_principal_client_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.service_principal_client_id",
+            "svg_id": "edge_53",
+            "target": "[root] var.service_principal_client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.dns_name_prefix",
+            "svg_id": "edge_54",
+            "target": "[root] var.linux_admin_ssh_publickey"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_ssh_publickey",
+            "svg_id": "edge_55",
+            "target": "[root] var.linux_admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_username",
+            "svg_id": "edge_56",
+            "target": "[root] var.linux_agent_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_count",
+            "svg_id": "edge_57",
+            "target": "[root] var.linux_agent_vm_size"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_vm_size",
+            "svg_id": "edge_58",
+            "target": "[root] var.master_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.master_count",
+            "svg_id": "edge_59",
+            "target": "[root] var.service_principal_client_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.service_principal_client_id",
+            "svg_id": "edge_60",
+            "target": "[root] var.service_principal_client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.dns_name_prefix",
+            "svg_id": "edge_61",
+            "target": "[root] var.linux_admin_ssh_publickey"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_ssh_publickey",
+            "svg_id": "edge_62",
+            "target": "[root] var.linux_admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_admin_username",
+            "svg_id": "edge_63",
+            "target": "[root] var.linux_agent_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_count",
+            "svg_id": "edge_64",
+            "target": "[root] var.linux_agent_vm_size"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.linux_agent_vm_size",
+            "svg_id": "edge_65",
+            "target": "[root] var.master_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.master_count",
+            "svg_id": "edge_66",
+            "target": "[root] var.service_principal_client_id"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.service_principal_client_id",
+            "svg_id": "edge_67",
+            "target": "[root] var.service_principal_client_secret"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.dns_name_prefix",
+            "svg_id": "edge_68",
+            "target": "[root] var.linux_admin_ssh_publickey"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.linux_admin_ssh_publickey",
+            "svg_id": "edge_69",
+            "target": "[root] var.linux_admin_username"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.linux_admin_username",
+            "svg_id": "edge_70",
+            "target": "[root] var.linux_agent_count"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.linux_agent_count",
+            "svg_id": "edge_71",
+            "target": "[root] var.linux_agent_vm_size"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.linux_agent_vm_size",
+            "svg_id": "edge_72",
+            "target": "[root] var.master_count"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.master_count",
+            "svg_id": "edge_73",
+            "target": "[root] var.service_principal_client_id"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.service_principal_client_id",
+            "svg_id": "edge_74",
+            "target": "[root] var.service_principal_client_secret"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.resource_group_location",
+            "svg_id": "edge_75",
+            "target": "[root] var.resource_group_name"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.resource_group_location",
+            "svg_id": "edge_76",
+            "target": "[root] var.resource_group_name"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] output.master_fqdn",
+            "svg_id": "edge_77",
+            "target": "[root] output.ssh_command_master0"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] output.master_fqdn",
+            "svg_id": "edge_78",
+            "target": "[root] output.ssh_command_master0"
+        }
+    ],
     "nodes": [
         {
-            "svg_id": "node_0",
-            "group": 20000,
-            "label": "[root] azurerm_container_service.container_service",
+            "cluster": "root",
             "definition": {
-                "name": "k8s-containerservice",
-                "resource_group_name": "${azurerm_resource_group.resource_group.name}",
-                "location": "${var.resource_group_location}",
-                "orchestration_platform": "Kubernetes",
-                "master_profile": {
-                    "count": "${var.master_count}",
-                    "dns_prefix": "${var.dns_name_prefix}-master"
-                },
                 "agent_pool_profile": {
-                    "name": "agentpools",
                     "count": "${var.linux_agent_count}",
                     "dns_prefix": "${var.dns_name_prefix}-agent",
+                    "name": "agentpools",
                     "vm_size": "${var.linux_agent_vm_size}"
+                },
+                "diagnostics_profile": {
+                    "enabled": false
                 },
                 "linux_profile": {
                     "admin_username": "${var.linux_admin_username}",
@@ -25,313 +494,241 @@
                         "key_data": "${var.linux_admin_ssh_publickey}"
                     }
                 },
+                "location": "${var.resource_group_location}",
+                "master_profile": {
+                    "count": "${var.master_count}",
+                    "dns_prefix": "${var.dns_name_prefix}-master"
+                },
+                "name": "k8s-containerservice",
+                "orchestration_platform": "Kubernetes",
+                "resource_group_name": "${azurerm_resource_group.resource_group.name}",
                 "service_principal": {
                     "client_id": "${var.service_principal_client_id}",
                     "client_secret": "${var.service_principal_client_secret}"
                 },
-                "diagnostics_profile": {
-                    "enabled": false
-                },
                 "tags": {
                     "Source": "Azure Quickstarts for Terraform"
                 }
             },
+            "group": 20000,
+            "label": "[root] azurerm_container_service.container_service",
+            "resource_name": "container_service",
             "simple_name": "azurerm_container_service.container_service",
-            "type": "azurerm_container_service",
-            "resource_name": "container_service"
+            "svg_id": "node_0",
+            "type": "azurerm_container_service"
         },
         {
-            "svg_id": "node_1",
+            "cluster": "root",
+            "definition": {
+                "location": "${var.resource_group_location}",
+                "name": "${var.resource_group_name}",
+                "tags": {
+                    "Source": "Azure Quickstarts for Terraform"
+                }
+            },
             "group": 20000,
             "label": "[root] azurerm_resource_group.resource_group",
-            "definition": {
-                "name": "${var.resource_group_name}",
-                "location": "${var.resource_group_location}",
-                "tags": {
-                    "Source": "Azure Quickstarts for Terraform"
-                }
-            },
+            "resource_name": "resource_group",
             "simple_name": "azurerm_resource_group.resource_group",
-            "type": "azurerm_resource_group",
-            "resource_name": "resource_group"
+            "svg_id": "node_1",
+            "type": "azurerm_resource_group"
         },
         {
-            "svg_id": "node_2",
+            "cluster": "root",
+            "definition": {},
             "group": 20000,
             "label": "[root] provider.azurerm",
-            "definition": {},
+            "resource_name": "azurerm",
             "simple_name": "provider.azurerm",
-            "type": "provider",
-            "resource_name": "azurerm"
+            "svg_id": "node_2",
+            "type": "provider"
         },
         {
-            "svg_id": "node_3",
+            "cluster": "cluster[root] azurerm_container_service.container_service_var_",
+            "definition": {
+                "description": "Sets the domain name prefix for the cluster. The suffix 'master' will be added to address the master agents and the suffix 'agent' will be added to address the linux agents.",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.dns_name_prefix",
-            "definition": {
-                "type": "string",
-                "description": "Sets the domain name prefix for the cluster. The suffix 'master' will be added to address the master agents and the suffix 'agent' will be added to address the linux agents."
-            },
+            "resource_name": "dns_name_prefix",
             "simple_name": "var.dns_name_prefix",
-            "type": "var",
-            "resource_name": "dns_name_prefix"
+            "svg_id": "node_3",
+            "type": "var"
         },
         {
-            "svg_id": "node_4",
+            "cluster": "cluster[root] azurerm_container_service.container_service_var_",
+            "definition": {
+                "description": "Configure all the linux virtual machines in the cluster with the SSH RSA public key string. The key should include three parts, for example 'ssh-rsa AAAAB...snip...UcyupgH azureuser@linuxvm'",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.linux_admin_ssh_publickey",
-            "definition": {
-                "type": "string",
-                "description": "Configure all the linux virtual machines in the cluster with the SSH RSA public key string. The key should include three parts, for example 'ssh-rsa AAAAB...snip...UcyupgH azureuser@linuxvm'"
-            },
+            "resource_name": "linux_admin_ssh_publickey",
             "simple_name": "var.linux_admin_ssh_publickey",
-            "type": "var",
-            "resource_name": "linux_admin_ssh_publickey"
+            "svg_id": "node_4",
+            "type": "var"
         },
         {
-            "svg_id": "node_5",
+            "cluster": "cluster[root] azurerm_container_service.container_service_var_",
+            "definition": {
+                "description": "User name for authentication to the Kubernetes linux agent virtual machines in the cluster.",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.linux_admin_username",
-            "definition": {
-                "type": "string",
-                "description": "User name for authentication to the Kubernetes linux agent virtual machines in the cluster."
-            },
+            "resource_name": "linux_admin_username",
             "simple_name": "var.linux_admin_username",
-            "type": "var",
-            "resource_name": "linux_admin_username"
+            "svg_id": "node_5",
+            "type": "var"
         },
         {
-            "svg_id": "node_6",
+            "cluster": "cluster[root] azurerm_container_service.container_service_var_",
+            "definition": {
+                "default": "1",
+                "description": "The number of Kubernetes linux agents in the cluster. Allowed values are 1-100 (inclusive). The default value is 1.",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.linux_agent_count",
-            "definition": {
-                "type": "string",
-                "default": "1",
-                "description": "The number of Kubernetes linux agents in the cluster. Allowed values are 1-100 (inclusive). The default value is 1."
-            },
+            "resource_name": "linux_agent_count",
             "simple_name": "var.linux_agent_count",
-            "type": "var",
-            "resource_name": "linux_agent_count"
+            "svg_id": "node_6",
+            "type": "var"
         },
         {
-            "svg_id": "node_7",
+            "cluster": "cluster[root] azurerm_container_service.container_service_var_",
+            "definition": {
+                "default": "Standard_D2_v2",
+                "description": "The size of the virtual machine used for the Kubernetes linux agents in the cluster.",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.linux_agent_vm_size",
-            "definition": {
-                "type": "string",
-                "default": "Standard_D2_v2",
-                "description": "The size of the virtual machine used for the Kubernetes linux agents in the cluster."
-            },
+            "resource_name": "linux_agent_vm_size",
             "simple_name": "var.linux_agent_vm_size",
-            "type": "var",
-            "resource_name": "linux_agent_vm_size"
+            "svg_id": "node_7",
+            "type": "var"
         },
         {
-            "svg_id": "node_8",
+            "cluster": "cluster[root] azurerm_container_service.container_service_var_",
+            "definition": {
+                "default": "1",
+                "description": "The number of Kubernetes masters for the cluster. Allowed values are 1, 3, and 5. The default value is 1.",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.master_count",
-            "definition": {
-                "type": "string",
-                "default": "1",
-                "description": "The number of Kubernetes masters for the cluster. Allowed values are 1, 3, and 5. The default value is 1."
-            },
+            "resource_name": "master_count",
             "simple_name": "var.master_count",
-            "type": "var",
-            "resource_name": "master_count"
+            "svg_id": "node_8",
+            "type": "var"
         },
         {
-            "svg_id": "node_9",
+            "cluster": "cluster[root] azurerm_container_service.container_service_var_",
+            "definition": {
+                "description": "The client id of the azure service principal used by Kubernetes to interact with Azure APIs.",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.service_principal_client_id",
-            "definition": {
-                "type": "string",
-                "description": "The client id of the azure service principal used by Kubernetes to interact with Azure APIs."
-            },
+            "resource_name": "service_principal_client_id",
             "simple_name": "var.service_principal_client_id",
-            "type": "var",
-            "resource_name": "service_principal_client_id"
+            "svg_id": "node_9",
+            "type": "var"
         },
         {
-            "svg_id": "node_10",
+            "cluster": "cluster[root] azurerm_container_service.container_service_var_",
+            "definition": {
+                "description": "The client secret of the azure service principal used by Kubernetes to interact with Azure APIs.",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.service_principal_client_secret",
-            "definition": {
-                "type": "string",
-                "description": "The client secret of the azure service principal used by Kubernetes to interact with Azure APIs."
-            },
+            "resource_name": "service_principal_client_secret",
             "simple_name": "var.service_principal_client_secret",
-            "type": "var",
-            "resource_name": "service_principal_client_secret"
+            "svg_id": "node_10",
+            "type": "var"
         },
         {
-            "svg_id": "node_11",
+            "cluster": "cluster[root] azurerm_resource_group.resource_group_var_",
+            "definition": {
+                "description": "Location of the azure resource group.",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.resource_group_location",
-            "definition": {
-                "type": "string",
-                "description": "Location of the azure resource group."
-            },
+            "resource_name": "resource_group_location",
             "simple_name": "var.resource_group_location",
-            "type": "var",
-            "resource_name": "resource_group_location"
+            "svg_id": "node_11",
+            "type": "var"
         },
         {
-            "svg_id": "node_12",
+            "cluster": "cluster[root] azurerm_resource_group.resource_group_var_",
+            "definition": {
+                "description": "Name of the azure resource group.",
+                "type": "string"
+            },
             "group": 20000,
             "label": "[root] var.resource_group_name",
-            "definition": {
-                "type": "string",
-                "description": "Name of the azure resource group."
-            },
+            "resource_name": "resource_group_name",
             "simple_name": "var.resource_group_name",
-            "type": "var",
-            "resource_name": "resource_group_name"
+            "svg_id": "node_12",
+            "type": "var"
         },
         {
-            "svg_id": "node_13",
+            "cluster": "root",
+            "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
-            "definition": "",
+            "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
-            "type": "meta",
-            "resource_name": "count-boundary"
+            "svg_id": "node_13",
+            "type": "meta"
         },
         {
-            "svg_id": "node_14",
-            "group": 20000,
-            "label": "[root] output.master_fqdn",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] azurerm_container_service.container_service",
             "definition": {
                 "value": "${azurerm_container_service.container_service.master_profile.fqdn}"
             },
+            "group": 20000,
+            "label": "[root] output.master_fqdn",
+            "resource_name": "master_fqdn",
             "simple_name": "output.master_fqdn",
-            "type": "output",
-            "resource_name": "master_fqdn"
+            "svg_id": "node_14",
+            "type": "output"
         },
         {
-            "svg_id": "node_15",
-            "group": 20000,
-            "label": "[root] output.ssh_command_master0",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] azurerm_container_service.container_service",
             "definition": {
                 "value": "ssh ${var.linux_admin_username}@${azurerm_container_service.container_service.master_profile.fqdn} -A -p 22"
             },
+            "group": 20000,
+            "label": "[root] output.ssh_command_master0",
+            "resource_name": "ssh_command_master0",
             "simple_name": "output.ssh_command_master0",
-            "type": "output",
-            "resource_name": "ssh_command_master0"
+            "svg_id": "node_15",
+            "type": "output"
         },
         {
-            "svg_id": "node_16",
+            "cluster": "root",
+            "definition": {},
             "group": 20000,
             "label": "[root] provider.azurerm (close)",
-            "definition": {},
+            "resource_name": "azurerm",
             "simple_name": "provider.azurerm (close)",
-            "type": "provider",
-            "resource_name": "azurerm"
+            "svg_id": "node_16",
+            "type": "provider"
         },
         {
-            "svg_id": "node_17",
+            "cluster": "root",
+            "definition": "",
             "group": 20000,
             "label": "[root] root",
-            "definition": "",
+            "resource_name": "",
             "simple_name": "root",
-            "type": "",
-            "resource_name": ""
-        }
-    ],
-    "edges": [
-        {
-            "source": "[root] azurerm_container_service.container_service",
-            "target": "[root] azurerm_resource_group.resource_group",
-            "svg_id": "edge_0"
-        },
-        {
-            "source": "[root] azurerm_container_service.container_service",
-            "target": "[root] var.dns_name_prefix",
-            "svg_id": "edge_1"
-        },
-        {
-            "source": "[root] azurerm_container_service.container_service",
-            "target": "[root] var.linux_admin_ssh_publickey",
-            "svg_id": "edge_2"
-        },
-        {
-            "source": "[root] azurerm_container_service.container_service",
-            "target": "[root] var.linux_admin_username",
-            "svg_id": "edge_3"
-        },
-        {
-            "source": "[root] azurerm_container_service.container_service",
-            "target": "[root] var.linux_agent_count",
-            "svg_id": "edge_4"
-        },
-        {
-            "source": "[root] azurerm_container_service.container_service",
-            "target": "[root] var.linux_agent_vm_size",
-            "svg_id": "edge_5"
-        },
-        {
-            "source": "[root] azurerm_container_service.container_service",
-            "target": "[root] var.master_count",
-            "svg_id": "edge_6"
-        },
-        {
-            "source": "[root] azurerm_container_service.container_service",
-            "target": "[root] var.service_principal_client_id",
-            "svg_id": "edge_7"
-        },
-        {
-            "source": "[root] azurerm_container_service.container_service",
-            "target": "[root] var.service_principal_client_secret",
-            "svg_id": "edge_8"
-        },
-        {
-            "source": "[root] azurerm_resource_group.resource_group",
-            "target": "[root] provider.azurerm",
-            "svg_id": "edge_9"
-        },
-        {
-            "source": "[root] azurerm_resource_group.resource_group",
-            "target": "[root] var.resource_group_location",
-            "svg_id": "edge_10"
-        },
-        {
-            "source": "[root] azurerm_resource_group.resource_group",
-            "target": "[root] var.resource_group_name",
-            "svg_id": "edge_11"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] output.master_fqdn",
-            "svg_id": "edge_12"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] output.ssh_command_master0",
-            "svg_id": "edge_13"
-        },
-        {
-            "source": "[root] output.master_fqdn",
-            "target": "[root] azurerm_container_service.container_service",
-            "svg_id": "edge_14"
-        },
-        {
-            "source": "[root] output.ssh_command_master0",
-            "target": "[root] azurerm_container_service.container_service",
-            "svg_id": "edge_15"
-        },
-        {
-            "source": "[root] provider.azurerm (close)",
-            "target": "[root] azurerm_container_service.container_service",
-            "svg_id": "edge_16"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_17"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] provider.azurerm (close)",
-            "svg_id": "edge_18"
+            "svg_id": "node_17",
+            "type": ""
         }
     ]
 }

@@ -1,417 +1,533 @@
 {
+    "edges": [
+        {
+            "edge_type": 1,
+            "source": "[root] aws_autoscaling_group.web-asg",
+            "svg_id": "edge_0",
+            "target": "[root] aws_elb.web-elb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_autoscaling_group.web-asg",
+            "svg_id": "edge_1",
+            "target": "[root] aws_launch_configuration.web-lc"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_autoscaling_group.web-asg",
+            "svg_id": "edge_2",
+            "target": "[root] var.asg_desired"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_autoscaling_group.web-asg",
+            "svg_id": "edge_3",
+            "target": "[root] var.asg_max"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_autoscaling_group.web-asg",
+            "svg_id": "edge_4",
+            "target": "[root] var.asg_min"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_elb.web-elb",
+            "svg_id": "edge_5",
+            "target": "[root] provider.aws"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_elb.web-elb",
+            "svg_id": "edge_6",
+            "target": "[root] var.availability_zones"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_launch_configuration.web-lc",
+            "svg_id": "edge_7",
+            "target": "[root] aws_security_group.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_launch_configuration.web-lc",
+            "svg_id": "edge_8",
+            "target": "[root] var.aws_amis"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_launch_configuration.web-lc",
+            "svg_id": "edge_9",
+            "target": "[root] var.instance_type"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_launch_configuration.web-lc",
+            "svg_id": "edge_10",
+            "target": "[root] var.key_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_security_group.default",
+            "svg_id": "edge_11",
+            "target": "[root] provider.aws"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_12",
+            "target": "[root] output.asg_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_13",
+            "target": "[root] output.elb_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_14",
+            "target": "[root] output.launch_configuration"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_15",
+            "target": "[root] output.security_group"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.asg_name",
+            "svg_id": "edge_16",
+            "target": "[root] aws_autoscaling_group.web-asg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.elb_name",
+            "svg_id": "edge_17",
+            "target": "[root] aws_elb.web-elb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.launch_configuration",
+            "svg_id": "edge_18",
+            "target": "[root] aws_launch_configuration.web-lc"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.security_group",
+            "svg_id": "edge_19",
+            "target": "[root] aws_security_group.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.aws (close)",
+            "svg_id": "edge_20",
+            "target": "[root] aws_autoscaling_group.web-asg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.aws",
+            "svg_id": "edge_21",
+            "target": "[root] var.aws_region"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_22",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_23",
+            "target": "[root] provider.aws (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.asg_desired",
+            "svg_id": "edge_24",
+            "target": "[root] var.asg_max"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.asg_max",
+            "svg_id": "edge_25",
+            "target": "[root] var.asg_min"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.asg_desired",
+            "svg_id": "edge_26",
+            "target": "[root] var.asg_max"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.asg_max",
+            "svg_id": "edge_27",
+            "target": "[root] var.asg_min"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.asg_desired",
+            "svg_id": "edge_28",
+            "target": "[root] var.asg_max"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.asg_max",
+            "svg_id": "edge_29",
+            "target": "[root] var.asg_min"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.aws_amis",
+            "svg_id": "edge_30",
+            "target": "[root] var.instance_type"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_type",
+            "svg_id": "edge_31",
+            "target": "[root] var.key_name"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.aws_amis",
+            "svg_id": "edge_32",
+            "target": "[root] var.instance_type"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_type",
+            "svg_id": "edge_33",
+            "target": "[root] var.key_name"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.aws_amis",
+            "svg_id": "edge_34",
+            "target": "[root] var.instance_type"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.instance_type",
+            "svg_id": "edge_35",
+            "target": "[root] var.key_name"
+        }
+    ],
     "nodes": [
         {
-            "type": "aws_autoscaling_group",
-            "group": 20000,
-            "svg_id": "node_0",
-            "simple_name": "aws_autoscaling_group.web-asg",
-            "label": "[root] aws_autoscaling_group.web-asg",
+            "cluster": "root",
             "definition": {
                 "availability_zones": [
                     "${split(\",\", var.availability_zones)}"
                 ],
-                "name": "terraform-example-asg",
-                "max_size": "${var.asg_max}",
-                "min_size": "${var.asg_min}",
                 "desired_capacity": "${var.asg_desired}",
                 "force_delete": true,
                 "launch_configuration": "${aws_launch_configuration.web-lc.name}",
                 "load_balancers": [
                     "${aws_elb.web-elb.name}"
                 ],
+                "max_size": "${var.asg_max}",
+                "min_size": "${var.asg_min}",
+                "name": "terraform-example-asg",
                 "tag": {
                     "key": "Name",
-                    "value": "web-asg",
-                    "propagate_at_launch": "true"
+                    "propagate_at_launch": "true",
+                    "value": "web-asg"
                 }
             },
-            "resource_name": "web-asg"
+            "group": 20000,
+            "label": "[root] aws_autoscaling_group.web-asg",
+            "resource_name": "web-asg",
+            "simple_name": "aws_autoscaling_group.web-asg",
+            "svg_id": "node_0",
+            "type": "aws_autoscaling_group"
         },
         {
-            "type": "aws_elb",
-            "group": 20000,
-            "svg_id": "node_1",
-            "simple_name": "aws_elb.web-elb",
-            "label": "[root] aws_elb.web-elb",
+            "cluster": "root",
             "definition": {
-                "name": "terraform-example-elb",
                 "availability_zones": [
                     "${split(\",\", var.availability_zones)}"
                 ],
+                "health_check": {
+                    "healthy_threshold": 2,
+                    "interval": 30,
+                    "target": "HTTP:80/",
+                    "timeout": 3,
+                    "unhealthy_threshold": 2
+                },
                 "listener": {
                     "instance_port": 80,
                     "instance_protocol": "http",
                     "lb_port": 80,
                     "lb_protocol": "http"
                 },
-                "health_check": {
-                    "healthy_threshold": 2,
-                    "unhealthy_threshold": 2,
-                    "timeout": 3,
-                    "target": "HTTP:80/",
-                    "interval": 30
-                }
+                "name": "terraform-example-elb"
             },
-            "resource_name": "web-elb"
+            "group": 20000,
+            "label": "[root] aws_elb.web-elb",
+            "resource_name": "web-elb",
+            "simple_name": "aws_elb.web-elb",
+            "svg_id": "node_1",
+            "type": "aws_elb"
         },
         {
-            "type": "aws_launch_configuration",
-            "group": 20000,
-            "svg_id": "node_2",
-            "simple_name": "aws_launch_configuration.web-lc",
-            "label": "[root] aws_launch_configuration.web-lc",
+            "cluster": "root",
             "definition": {
-                "name": "terraform-example-lc",
                 "image_id": "${lookup(var.aws_amis, var.aws_region)}",
                 "instance_type": "${var.instance_type}",
+                "key_name": "${var.key_name}",
+                "name": "terraform-example-lc",
                 "security_groups": [
                     "${aws_security_group.default.id}"
                 ],
-                "user_data": "${file(\"userdata.sh\")}",
-                "key_name": "${var.key_name}"
+                "user_data": "${file(\"userdata.sh\")}"
             },
-            "resource_name": "web-lc"
+            "group": 20000,
+            "label": "[root] aws_launch_configuration.web-lc",
+            "resource_name": "web-lc",
+            "simple_name": "aws_launch_configuration.web-lc",
+            "svg_id": "node_2",
+            "type": "aws_launch_configuration"
         },
         {
-            "type": "aws_security_group",
-            "group": 20000,
-            "svg_id": "node_3",
-            "simple_name": "aws_security_group.default",
-            "label": "[root] aws_security_group.default",
+            "cluster": "root",
             "definition": {
-                "name": "terraform_example_sg",
                 "description": "Used in the terraform",
-                "ingress": [
-                    {
-                        "from_port": 22,
-                        "to_port": 22,
-                        "protocol": "tcp",
-                        "cidr_blocks": [
-                            "0.0.0.0/0"
-                        ]
-                    },
-                    {
-                        "from_port": 80,
-                        "to_port": 80,
-                        "protocol": "tcp",
-                        "cidr_blocks": [
-                            "0.0.0.0/0"
-                        ]
-                    }
-                ],
                 "egress": {
-                    "from_port": 0,
-                    "to_port": 0,
-                    "protocol": "-1",
                     "cidr_blocks": [
                         "0.0.0.0/0"
-                    ]
-                }
+                    ],
+                    "from_port": 0,
+                    "protocol": "-1",
+                    "to_port": 0
+                },
+                "ingress": [
+                    {
+                        "cidr_blocks": [
+                            "0.0.0.0/0"
+                        ],
+                        "from_port": 22,
+                        "protocol": "tcp",
+                        "to_port": 22
+                    },
+                    {
+                        "cidr_blocks": [
+                            "0.0.0.0/0"
+                        ],
+                        "from_port": 80,
+                        "protocol": "tcp",
+                        "to_port": 80
+                    }
+                ],
+                "name": "terraform_example_sg"
             },
-            "resource_name": "default"
+            "group": 20000,
+            "label": "[root] aws_security_group.default",
+            "resource_name": "default",
+            "simple_name": "aws_security_group.default",
+            "svg_id": "node_3",
+            "type": "aws_security_group"
         },
         {
-            "type": "provider",
-            "group": 20000,
-            "svg_id": "node_4",
-            "simple_name": "provider.aws",
-            "label": "[root] provider.aws",
+            "cluster": "root",
             "definition": {
                 "region": "${var.aws_region}"
             },
-            "resource_name": "aws"
+            "group": 20000,
+            "label": "[root] provider.aws",
+            "resource_name": "aws",
+            "simple_name": "provider.aws",
+            "svg_id": "node_4",
+            "type": "provider"
         },
         {
-            "type": "var",
+            "cluster": "cluster[root] aws_autoscaling_group.web-asg_var_",
+            "definition": {
+                "default": "1",
+                "description": "Desired numbers of servers in ASG"
+            },
             "group": 20000,
-            "svg_id": "node_5",
-            "simple_name": "var.asg_desired",
             "label": "[root] var.asg_desired",
-            "definition": {
-                "description": "Desired numbers of servers in ASG",
-                "default": "1"
-            },
-            "resource_name": "asg_desired"
+            "resource_name": "asg_desired",
+            "simple_name": "var.asg_desired",
+            "svg_id": "node_5",
+            "type": "var"
         },
         {
-            "type": "var",
+            "cluster": "cluster[root] aws_autoscaling_group.web-asg_var_",
+            "definition": {
+                "default": "2",
+                "description": "Max numbers of servers in ASG"
+            },
             "group": 20000,
-            "svg_id": "node_6",
-            "simple_name": "var.asg_max",
             "label": "[root] var.asg_max",
-            "definition": {
-                "description": "Max numbers of servers in ASG",
-                "default": "2"
-            },
-            "resource_name": "asg_max"
+            "resource_name": "asg_max",
+            "simple_name": "var.asg_max",
+            "svg_id": "node_6",
+            "type": "var"
         },
         {
-            "type": "var",
+            "cluster": "cluster[root] aws_autoscaling_group.web-asg_var_",
+            "definition": {
+                "default": "1",
+                "description": "Min numbers of servers in ASG"
+            },
             "group": 20000,
-            "svg_id": "node_7",
-            "simple_name": "var.asg_min",
             "label": "[root] var.asg_min",
-            "definition": {
-                "description": "Min numbers of servers in ASG",
-                "default": "1"
-            },
-            "resource_name": "asg_min"
+            "resource_name": "asg_min",
+            "simple_name": "var.asg_min",
+            "svg_id": "node_7",
+            "type": "var"
         },
         {
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_8",
-            "simple_name": "var.availability_zones",
-            "label": "[root] var.availability_zones",
+            "cluster": "cluster[root] aws_elb.web-elb_var_",
             "definition": {
                 "default": "us-east-1b,us-east-1c,us-east-1d,us-east-1e",
                 "description": "List of availability zones, use AWS CLI to find your "
             },
-            "resource_name": "availability_zones"
+            "group": 20000,
+            "label": "[root] var.availability_zones",
+            "resource_name": "availability_zones",
+            "simple_name": "var.availability_zones",
+            "svg_id": "node_8",
+            "type": "var"
         },
         {
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_9",
-            "simple_name": "var.aws_amis",
-            "label": "[root] var.aws_amis",
+            "cluster": "cluster[root] aws_launch_configuration.web-lc_var_",
             "definition": {
                 "default": {
                     "us-east-1": "ami-5f709f34",
                     "us-west-2": "ami-7f675e4f"
                 }
             },
-            "resource_name": "aws_amis"
+            "group": 20000,
+            "label": "[root] var.aws_amis",
+            "resource_name": "aws_amis",
+            "simple_name": "var.aws_amis",
+            "svg_id": "node_9",
+            "type": "var"
         },
         {
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_10",
-            "simple_name": "var.instance_type",
-            "label": "[root] var.instance_type",
+            "cluster": "cluster[root] aws_launch_configuration.web-lc_var_",
             "definition": {
                 "default": "t2.micro",
                 "description": "AWS instance type"
             },
-            "resource_name": "instance_type"
+            "group": 20000,
+            "label": "[root] var.instance_type",
+            "resource_name": "instance_type",
+            "simple_name": "var.instance_type",
+            "svg_id": "node_10",
+            "type": "var"
         },
         {
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_11",
-            "simple_name": "var.key_name",
-            "label": "[root] var.key_name",
+            "cluster": "cluster[root] aws_launch_configuration.web-lc_var_",
             "definition": {
                 "description": "Name of AWS key pair"
             },
-            "resource_name": "key_name"
+            "group": 20000,
+            "label": "[root] var.key_name",
+            "resource_name": "key_name",
+            "simple_name": "var.key_name",
+            "svg_id": "node_11",
+            "type": "var"
         },
         {
-            "type": "meta",
-            "group": 20000,
-            "svg_id": "node_12",
-            "simple_name": "meta.count-boundary (count boundary fixup)",
-            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "cluster": "root",
             "definition": "",
-            "resource_name": "count-boundary"
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_12",
+            "type": "meta"
         },
         {
-            "type": "output",
-            "group": 20000,
-            "svg_id": "node_13",
-            "simple_name": "output.asg_name",
-            "label": "[root] output.asg_name",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_autoscaling_group.web-asg",
             "definition": {
                 "value": "${aws_autoscaling_group.web-asg.id}"
             },
-            "resource_name": "asg_name"
+            "group": 20000,
+            "label": "[root] output.asg_name",
+            "resource_name": "asg_name",
+            "simple_name": "output.asg_name",
+            "svg_id": "node_13",
+            "type": "output"
         },
         {
-            "type": "output",
-            "group": 20000,
-            "svg_id": "node_14",
-            "simple_name": "output.elb_name",
-            "label": "[root] output.elb_name",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_elb.web-elb",
             "definition": {
                 "value": "${aws_elb.web-elb.dns_name}"
             },
-            "resource_name": "elb_name"
+            "group": 20000,
+            "label": "[root] output.elb_name",
+            "resource_name": "elb_name",
+            "simple_name": "output.elb_name",
+            "svg_id": "node_14",
+            "type": "output"
         },
         {
-            "type": "output",
-            "group": 20000,
-            "svg_id": "node_15",
-            "simple_name": "output.launch_configuration",
-            "label": "[root] output.launch_configuration",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_launch_configuration.web-lc",
             "definition": {
                 "value": "${aws_launch_configuration.web-lc.id}"
             },
-            "resource_name": "launch_configuration"
+            "group": 20000,
+            "label": "[root] output.launch_configuration",
+            "resource_name": "launch_configuration",
+            "simple_name": "output.launch_configuration",
+            "svg_id": "node_15",
+            "type": "output"
         },
         {
-            "type": "output",
-            "group": 20000,
-            "svg_id": "node_16",
-            "simple_name": "output.security_group",
-            "label": "[root] output.security_group",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_security_group.default",
             "definition": {
                 "value": "${aws_security_group.default.id}"
             },
-            "resource_name": "security_group"
+            "group": 20000,
+            "label": "[root] output.security_group",
+            "resource_name": "security_group",
+            "simple_name": "output.security_group",
+            "svg_id": "node_16",
+            "type": "output"
         },
         {
-            "type": "provider",
-            "group": 20000,
-            "svg_id": "node_17",
-            "simple_name": "provider.aws (close)",
-            "label": "[root] provider.aws (close)",
+            "cluster": "root",
             "definition": {
                 "region": "${var.aws_region}"
             },
-            "resource_name": "aws"
+            "group": 20000,
+            "label": "[root] provider.aws (close)",
+            "resource_name": "aws",
+            "simple_name": "provider.aws (close)",
+            "svg_id": "node_17",
+            "type": "provider"
         },
         {
-            "type": "var",
-            "group": 20000,
-            "svg_id": "node_18",
-            "simple_name": "var.aws_region",
-            "label": "[root] var.aws_region",
+            "cluster": "cluster[root] provider.aws_var_",
             "definition": {
-                "description": "The AWS region to create things in.",
-                "default": "us-east-1"
+                "default": "us-east-1",
+                "description": "The AWS region to create things in."
             },
-            "resource_name": "aws_region"
-        },
-        {
-            "type": "",
             "group": 20000,
-            "svg_id": "node_19",
-            "simple_name": "root",
-            "label": "[root] root",
+            "label": "[root] var.aws_region",
+            "resource_name": "aws_region",
+            "simple_name": "var.aws_region",
+            "svg_id": "node_18",
+            "type": "var"
+        },
+        {
+            "cluster": "root",
             "definition": "",
-            "resource_name": ""
-        }
-    ],
-    "edges": [
-        {
-            "source": "[root] aws_autoscaling_group.web-asg",
-            "svg_id": "edge_0",
-            "target": "[root] aws_elb.web-elb"
-        },
-        {
-            "source": "[root] aws_autoscaling_group.web-asg",
-            "svg_id": "edge_1",
-            "target": "[root] aws_launch_configuration.web-lc"
-        },
-        {
-            "source": "[root] aws_autoscaling_group.web-asg",
-            "svg_id": "edge_2",
-            "target": "[root] var.asg_desired"
-        },
-        {
-            "source": "[root] aws_autoscaling_group.web-asg",
-            "svg_id": "edge_3",
-            "target": "[root] var.asg_max"
-        },
-        {
-            "source": "[root] aws_autoscaling_group.web-asg",
-            "svg_id": "edge_4",
-            "target": "[root] var.asg_min"
-        },
-        {
-            "source": "[root] aws_elb.web-elb",
-            "svg_id": "edge_5",
-            "target": "[root] provider.aws"
-        },
-        {
-            "source": "[root] aws_elb.web-elb",
-            "svg_id": "edge_6",
-            "target": "[root] var.availability_zones"
-        },
-        {
-            "source": "[root] aws_launch_configuration.web-lc",
-            "svg_id": "edge_7",
-            "target": "[root] aws_security_group.default"
-        },
-        {
-            "source": "[root] aws_launch_configuration.web-lc",
-            "svg_id": "edge_8",
-            "target": "[root] var.aws_amis"
-        },
-        {
-            "source": "[root] aws_launch_configuration.web-lc",
-            "svg_id": "edge_9",
-            "target": "[root] var.instance_type"
-        },
-        {
-            "source": "[root] aws_launch_configuration.web-lc",
-            "svg_id": "edge_10",
-            "target": "[root] var.key_name"
-        },
-        {
-            "source": "[root] aws_security_group.default",
-            "svg_id": "edge_11",
-            "target": "[root] provider.aws"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_12",
-            "target": "[root] output.asg_name"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_13",
-            "target": "[root] output.elb_name"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_14",
-            "target": "[root] output.launch_configuration"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_15",
-            "target": "[root] output.security_group"
-        },
-        {
-            "source": "[root] output.asg_name",
-            "svg_id": "edge_16",
-            "target": "[root] aws_autoscaling_group.web-asg"
-        },
-        {
-            "source": "[root] output.elb_name",
-            "svg_id": "edge_17",
-            "target": "[root] aws_elb.web-elb"
-        },
-        {
-            "source": "[root] output.launch_configuration",
-            "svg_id": "edge_18",
-            "target": "[root] aws_launch_configuration.web-lc"
-        },
-        {
-            "source": "[root] output.security_group",
-            "svg_id": "edge_19",
-            "target": "[root] aws_security_group.default"
-        },
-        {
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_20",
-            "target": "[root] aws_autoscaling_group.web-asg"
-        },
-        {
-            "source": "[root] provider.aws",
-            "svg_id": "edge_21",
-            "target": "[root] var.aws_region"
-        },
-        {
-            "source": "[root] root",
-            "svg_id": "edge_22",
-            "target": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "source": "[root] root",
-            "svg_id": "edge_23",
-            "target": "[root] provider.aws (close)"
+            "group": 20000,
+            "label": "[root] root",
+            "resource_name": "",
+            "simple_name": "root",
+            "svg_id": "node_19",
+            "type": ""
         }
     ]
 }

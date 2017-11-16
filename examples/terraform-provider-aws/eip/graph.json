@@ -1,238 +1,275 @@
 {
+    "edges": [
+        {
+            "edge_type": 1,
+            "source": "[root] aws_eip.default",
+            "svg_id": "edge_0",
+            "target": "[root] aws_instance.web"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_instance.web",
+            "svg_id": "edge_1",
+            "target": "[root] aws_security_group.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_instance.web",
+            "svg_id": "edge_2",
+            "target": "[root] var.aws_amis"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] aws_instance.web",
+            "svg_id": "edge_3",
+            "target": "[root] var.key_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] aws_security_group.default",
+            "svg_id": "edge_4",
+            "target": "[root] provider.aws"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_5",
+            "target": "[root] output.address"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_6",
+            "target": "[root] output.elastic ip"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.address",
+            "svg_id": "edge_7",
+            "target": "[root] aws_instance.web"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.elastic ip",
+            "svg_id": "edge_8",
+            "target": "[root] aws_eip.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.aws (close)",
+            "svg_id": "edge_9",
+            "target": "[root] aws_eip.default"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.aws",
+            "svg_id": "edge_10",
+            "target": "[root] var.aws_region"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_11",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_12",
+            "target": "[root] provider.aws (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.aws_amis",
+            "svg_id": "edge_13",
+            "target": "[root] var.key_name"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.aws_amis",
+            "svg_id": "edge_14",
+            "target": "[root] var.key_name"
+        }
+    ],
     "nodes": [
         {
-            "simple_name": "aws_eip.default",
-            "resource_name": "default",
-            "type": "aws_eip",
+            "cluster": "root",
             "definition": {
                 "instance": "${aws_instance.web.id}",
                 "vpc": true
             },
-            "svg_id": "node_0",
             "group": 20000,
-            "label": "[root] aws_eip.default"
+            "label": "[root] aws_eip.default",
+            "resource_name": "default",
+            "simple_name": "aws_eip.default",
+            "svg_id": "node_0",
+            "type": "aws_eip"
         },
         {
-            "simple_name": "aws_instance.web",
-            "resource_name": "web",
-            "type": "aws_instance",
+            "cluster": "root",
             "definition": {
-                "instance_type": "t2.micro",
                 "ami": "${lookup(var.aws_amis, var.aws_region)}",
+                "instance_type": "t2.micro",
                 "key_name": "${var.key_name}",
                 "security_groups": [
                     "${aws_security_group.default.name}"
                 ],
-                "user_data": "${file(\"userdata.sh\")}",
                 "tags": {
                     "Name": "eip-example"
-                }
+                },
+                "user_data": "${file(\"userdata.sh\")}"
             },
-            "svg_id": "node_1",
             "group": 20000,
-            "label": "[root] aws_instance.web"
+            "label": "[root] aws_instance.web",
+            "resource_name": "web",
+            "simple_name": "aws_instance.web",
+            "svg_id": "node_1",
+            "type": "aws_instance"
         },
         {
-            "simple_name": "aws_security_group.default",
-            "resource_name": "default",
-            "type": "aws_security_group",
+            "cluster": "root",
             "definition": {
-                "name": "eip_example",
                 "description": "Used in the terraform",
-                "ingress": [
-                    {
-                        "from_port": 22,
-                        "to_port": 22,
-                        "protocol": "tcp",
-                        "cidr_blocks": [
-                            "0.0.0.0/0"
-                        ]
-                    },
-                    {
-                        "from_port": 80,
-                        "to_port": 80,
-                        "protocol": "tcp",
-                        "cidr_blocks": [
-                            "0.0.0.0/0"
-                        ]
-                    }
-                ],
                 "egress": {
-                    "from_port": 0,
-                    "to_port": 0,
-                    "protocol": "-1",
                     "cidr_blocks": [
                         "0.0.0.0/0"
-                    ]
-                }
+                    ],
+                    "from_port": 0,
+                    "protocol": "-1",
+                    "to_port": 0
+                },
+                "ingress": [
+                    {
+                        "cidr_blocks": [
+                            "0.0.0.0/0"
+                        ],
+                        "from_port": 22,
+                        "protocol": "tcp",
+                        "to_port": 22
+                    },
+                    {
+                        "cidr_blocks": [
+                            "0.0.0.0/0"
+                        ],
+                        "from_port": 80,
+                        "protocol": "tcp",
+                        "to_port": 80
+                    }
+                ],
+                "name": "eip_example"
             },
-            "svg_id": "node_2",
             "group": 20000,
-            "label": "[root] aws_security_group.default"
+            "label": "[root] aws_security_group.default",
+            "resource_name": "default",
+            "simple_name": "aws_security_group.default",
+            "svg_id": "node_2",
+            "type": "aws_security_group"
         },
         {
-            "simple_name": "provider.aws",
-            "resource_name": "aws",
-            "type": "provider",
+            "cluster": "root",
             "definition": {
                 "region": "${var.aws_region}"
             },
-            "svg_id": "node_3",
             "group": 20000,
-            "label": "[root] provider.aws"
+            "label": "[root] provider.aws",
+            "resource_name": "aws",
+            "simple_name": "provider.aws",
+            "svg_id": "node_3",
+            "type": "provider"
         },
         {
-            "simple_name": "var.aws_amis",
-            "resource_name": "aws_amis",
-            "type": "var",
+            "cluster": "cluster[root] aws_instance.web_var_",
             "definition": {
                 "default": {
                     "us-east-1": "ami-5f709f34",
                     "us-west-2": "ami-7f675e4f"
                 }
             },
-            "svg_id": "node_4",
             "group": 20000,
-            "label": "[root] var.aws_amis"
+            "label": "[root] var.aws_amis",
+            "resource_name": "aws_amis",
+            "simple_name": "var.aws_amis",
+            "svg_id": "node_4",
+            "type": "var"
         },
         {
-            "simple_name": "var.key_name",
-            "resource_name": "key_name",
-            "type": "var",
+            "cluster": "cluster[root] aws_instance.web_var_",
             "definition": {
                 "description": "Name of the SSH keypair to use in AWS."
             },
+            "group": 20000,
+            "label": "[root] var.key_name",
+            "resource_name": "key_name",
+            "simple_name": "var.key_name",
             "svg_id": "node_5",
-            "group": 20000,
-            "label": "[root] var.key_name"
+            "type": "var"
         },
         {
-            "simple_name": "meta.count-boundary (count boundary fixup)",
-            "resource_name": "count-boundary",
-            "type": "meta",
+            "cluster": "root",
             "definition": "",
-            "svg_id": "node_6",
             "group": 20000,
-            "label": "[root] meta.count-boundary (count boundary fixup)"
+            "label": "[root] meta.count-boundary (count boundary fixup)",
+            "resource_name": "count-boundary",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
+            "svg_id": "node_6",
+            "type": "meta"
         },
         {
-            "simple_name": "output.address",
-            "resource_name": "address",
-            "type": "output",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_instance.web",
             "definition": {
                 "value": "${aws_instance.web.private_ip}"
             },
+            "group": 20000,
+            "label": "[root] output.address",
+            "resource_name": "address",
+            "simple_name": "output.address",
             "svg_id": "node_7",
-            "group": 20000,
-            "label": "[root] output.address"
+            "type": "output"
         },
         {
-            "simple_name": "output.elastic ip",
-            "resource_name": "elastic",
-            "type": "output",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] aws_eip.default",
             "definition": "",
-            "svg_id": "node_8",
             "group": 20000,
-            "label": "[root] output.elastic ip"
+            "label": "[root] output.elastic ip",
+            "resource_name": "elastic",
+            "simple_name": "output.elastic ip",
+            "svg_id": "node_8",
+            "type": "output"
         },
         {
-            "simple_name": "provider.aws (close)",
-            "resource_name": "aws",
-            "type": "provider",
+            "cluster": "root",
             "definition": {
                 "region": "${var.aws_region}"
             },
+            "group": 20000,
+            "label": "[root] provider.aws (close)",
+            "resource_name": "aws",
+            "simple_name": "provider.aws (close)",
             "svg_id": "node_9",
-            "group": 20000,
-            "label": "[root] provider.aws (close)"
+            "type": "provider"
         },
         {
-            "simple_name": "var.aws_region",
-            "resource_name": "aws_region",
-            "type": "var",
+            "cluster": "cluster[root] provider.aws_var_",
             "definition": {
-                "description": "The AWS region to create things in.",
-                "default": "us-east-1"
+                "default": "us-east-1",
+                "description": "The AWS region to create things in."
             },
+            "group": 20000,
+            "label": "[root] var.aws_region",
+            "resource_name": "aws_region",
+            "simple_name": "var.aws_region",
             "svg_id": "node_10",
-            "group": 20000,
-            "label": "[root] var.aws_region"
+            "type": "var"
         },
         {
-            "simple_name": "root",
-            "resource_name": "",
-            "type": "",
+            "cluster": "root",
             "definition": "",
-            "svg_id": "node_11",
             "group": 20000,
-            "label": "[root] root"
-        }
-    ],
-    "edges": [
-        {
-            "source": "[root] aws_eip.default",
-            "target": "[root] aws_instance.web",
-            "svg_id": "edge_0"
-        },
-        {
-            "source": "[root] aws_instance.web",
-            "target": "[root] aws_security_group.default",
-            "svg_id": "edge_1"
-        },
-        {
-            "source": "[root] aws_instance.web",
-            "target": "[root] var.aws_amis",
-            "svg_id": "edge_2"
-        },
-        {
-            "source": "[root] aws_instance.web",
-            "target": "[root] var.key_name",
-            "svg_id": "edge_3"
-        },
-        {
-            "source": "[root] aws_security_group.default",
-            "target": "[root] provider.aws",
-            "svg_id": "edge_4"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] output.address",
-            "svg_id": "edge_5"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] output.elastic ip",
-            "svg_id": "edge_6"
-        },
-        {
-            "source": "[root] output.address",
-            "target": "[root] aws_instance.web",
-            "svg_id": "edge_7"
-        },
-        {
-            "source": "[root] output.elastic ip",
-            "target": "[root] aws_eip.default",
-            "svg_id": "edge_8"
-        },
-        {
-            "source": "[root] provider.aws (close)",
-            "target": "[root] aws_eip.default",
-            "svg_id": "edge_9"
-        },
-        {
-            "source": "[root] provider.aws",
-            "target": "[root] var.aws_region",
-            "svg_id": "edge_10"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_11"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] provider.aws (close)",
-            "svg_id": "edge_12"
+            "label": "[root] root",
+            "resource_name": "",
+            "simple_name": "root",
+            "svg_id": "node_11",
+            "type": ""
         }
     ]
 }

@@ -1,228 +1,266 @@
 {
-    "nodes": [
+    "edges": [
         {
-            "label": "[root] azurerm_resource_group.rg",
-            "svg_id": "node_0",
-            "resource_name": "rg",
-            "type": "azurerm_resource_group",
-            "simple_name": "azurerm_resource_group.rg",
-            "definition": {
-                "name": "${var.resource_group}",
-                "location": "${var.location}"
-            },
-            "group": 20000
+            "edge_type": 1,
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_0",
+            "target": "[root] provider.azurerm"
         },
         {
-            "label": "[root] azurerm_virtual_network.vnet1",
-            "svg_id": "node_1",
-            "resource_name": "vnet1",
-            "type": "azurerm_virtual_network",
-            "simple_name": "azurerm_virtual_network.vnet1",
+            "edge_type": 1,
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_1",
+            "target": "[root] var.location"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_2",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_network.vnet1",
+            "svg_id": "edge_3",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_network.vnet2",
+            "svg_id": "edge_4",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_network_peering.peer1",
+            "svg_id": "edge_5",
+            "target": "[root] azurerm_virtual_network.vnet1"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_network_peering.peer1",
+            "svg_id": "edge_6",
+            "target": "[root] azurerm_virtual_network.vnet2"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_network_peering.peer2",
+            "svg_id": "edge_7",
+            "target": "[root] azurerm_virtual_network.vnet1"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_network_peering.peer2",
+            "svg_id": "edge_8",
+            "target": "[root] azurerm_virtual_network.vnet2"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_9",
+            "target": "[root] azurerm_virtual_network_peering.peer1"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_10",
+            "target": "[root] azurerm_virtual_network_peering.peer2"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_11",
+            "target": "[root] azurerm_virtual_network_peering.peer1"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_12",
+            "target": "[root] azurerm_virtual_network_peering.peer2"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_13",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_14",
+            "target": "[root] provider.azurerm (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.location",
+            "svg_id": "edge_15",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.location",
+            "svg_id": "edge_16",
+            "target": "[root] var.resource_group"
+        }
+    ],
+    "nodes": [
+        {
+            "cluster": "root",
             "definition": {
-                "name": "${var.resource_group}-vnet1",
                 "location": "${var.location}",
+                "name": "${var.resource_group}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_resource_group.rg",
+            "resource_name": "rg",
+            "simple_name": "azurerm_resource_group.rg",
+            "svg_id": "node_0",
+            "type": "azurerm_resource_group"
+        },
+        {
+            "cluster": "root",
+            "definition": {
                 "address_space": [
                     "10.0.0.0/24"
                 ],
+                "location": "${var.location}",
+                "name": "${var.resource_group}-vnet1",
                 "resource_group_name": "${azurerm_resource_group.rg.name}",
                 "subnet": {
-                    "name": "subnet1",
-                    "address_prefix": "10.0.0.0/24"
+                    "address_prefix": "10.0.0.0/24",
+                    "name": "subnet1"
                 }
             },
-            "group": 20000
+            "group": 20000,
+            "label": "[root] azurerm_virtual_network.vnet1",
+            "resource_name": "vnet1",
+            "simple_name": "azurerm_virtual_network.vnet1",
+            "svg_id": "node_1",
+            "type": "azurerm_virtual_network"
         },
         {
-            "label": "[root] azurerm_virtual_network.vnet2",
-            "svg_id": "node_2",
-            "resource_name": "vnet2",
-            "type": "azurerm_virtual_network",
-            "simple_name": "azurerm_virtual_network.vnet2",
+            "cluster": "root",
             "definition": {
-                "name": "${var.resource_group}-vnet2",
-                "location": "${var.location}",
                 "address_space": [
                     "192.168.0.0/24"
                 ],
+                "location": "${var.location}",
+                "name": "${var.resource_group}-vnet2",
                 "resource_group_name": "${azurerm_resource_group.rg.name}",
                 "subnet": {
-                    "name": "subnet1",
-                    "address_prefix": "192.168.0.0/24"
+                    "address_prefix": "192.168.0.0/24",
+                    "name": "subnet1"
                 }
             },
-            "group": 20000
+            "group": 20000,
+            "label": "[root] azurerm_virtual_network.vnet2",
+            "resource_name": "vnet2",
+            "simple_name": "azurerm_virtual_network.vnet2",
+            "svg_id": "node_2",
+            "type": "azurerm_virtual_network"
         },
         {
-            "label": "[root] azurerm_virtual_network_peering.peer1",
-            "svg_id": "node_3",
-            "resource_name": "peer1",
-            "type": "azurerm_virtual_network_peering",
-            "simple_name": "azurerm_virtual_network_peering.peer1",
+            "cluster": "root",
             "definition": {
-                "name": "vNet1-to-vNet2",
-                "resource_group_name": "${azurerm_resource_group.rg.name}",
-                "virtual_network_name": "${azurerm_virtual_network.vnet1.name}",
-                "remote_virtual_network_id": "${azurerm_virtual_network.vnet2.id}",
-                "allow_virtual_network_access": true,
-                "allow_forwarded_traffic": false,
-                "allow_gateway_transit": false
-            },
-            "group": 20000
-        },
-        {
-            "label": "[root] azurerm_virtual_network_peering.peer2",
-            "svg_id": "node_4",
-            "resource_name": "peer2",
-            "type": "azurerm_virtual_network_peering",
-            "simple_name": "azurerm_virtual_network_peering.peer2",
-            "definition": {
-                "name": "vNet2-to-vNet1",
-                "resource_group_name": "${azurerm_resource_group.rg.name}",
-                "virtual_network_name": "${azurerm_virtual_network.vnet2.name}",
-                "remote_virtual_network_id": "${azurerm_virtual_network.vnet1.id}",
-                "allow_virtual_network_access": true,
                 "allow_forwarded_traffic": false,
                 "allow_gateway_transit": false,
-                "use_remote_gateways": false
+                "allow_virtual_network_access": true,
+                "name": "vNet1-to-vNet2",
+                "remote_virtual_network_id": "${azurerm_virtual_network.vnet2.id}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "virtual_network_name": "${azurerm_virtual_network.vnet1.name}"
             },
-            "group": 20000
+            "group": 20000,
+            "label": "[root] azurerm_virtual_network_peering.peer1",
+            "resource_name": "peer1",
+            "simple_name": "azurerm_virtual_network_peering.peer1",
+            "svg_id": "node_3",
+            "type": "azurerm_virtual_network_peering"
         },
         {
+            "cluster": "root",
+            "definition": {
+                "allow_forwarded_traffic": false,
+                "allow_gateway_transit": false,
+                "allow_virtual_network_access": true,
+                "name": "vNet2-to-vNet1",
+                "remote_virtual_network_id": "${azurerm_virtual_network.vnet1.id}",
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "use_remote_gateways": false,
+                "virtual_network_name": "${azurerm_virtual_network.vnet2.name}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_virtual_network_peering.peer2",
+            "resource_name": "peer2",
+            "simple_name": "azurerm_virtual_network_peering.peer2",
+            "svg_id": "node_4",
+            "type": "azurerm_virtual_network_peering"
+        },
+        {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
             "label": "[root] provider.azurerm",
-            "svg_id": "node_5",
             "resource_name": "azurerm",
-            "type": "provider",
             "simple_name": "provider.azurerm",
-            "definition": "",
-            "group": 20000
+            "svg_id": "node_5",
+            "type": "provider"
         },
         {
+            "cluster": "cluster[root] azurerm_resource_group.rg_var_",
+            "definition": {
+                "default": "southcentralus",
+                "description": "The location/region where the virtual networks are created. Changing this forces a new resource to be created."
+            },
+            "group": 20000,
             "label": "[root] var.location",
-            "svg_id": "node_6",
             "resource_name": "location",
-            "type": "var",
             "simple_name": "var.location",
-            "definition": {
-                "description": "The location/region where the virtual networks are created. Changing this forces a new resource to be created.",
-                "default": "southcentralus"
-            },
-            "group": 20000
+            "svg_id": "node_6",
+            "type": "var"
         },
         {
+            "cluster": "cluster[root] azurerm_resource_group.rg_var_",
+            "definition": {
+                "default": "myrg",
+                "description": "The name of the resource group in which the virtual networks are created"
+            },
+            "group": 20000,
             "label": "[root] var.resource_group",
-            "svg_id": "node_7",
             "resource_name": "resource_group",
-            "type": "var",
             "simple_name": "var.resource_group",
-            "definition": {
-                "description": "The name of the resource group in which the virtual networks are created",
-                "default": "myrg"
-            },
-            "group": 20000
+            "svg_id": "node_7",
+            "type": "var"
         },
         {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "node_8",
             "resource_name": "count-boundary",
-            "type": "meta",
             "simple_name": "meta.count-boundary (count boundary fixup)",
-            "definition": "",
-            "group": 20000
+            "svg_id": "node_8",
+            "type": "meta"
         },
         {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
             "label": "[root] provider.azurerm (close)",
-            "svg_id": "node_9",
             "resource_name": "azurerm",
-            "type": "provider",
             "simple_name": "provider.azurerm (close)",
-            "definition": "",
-            "group": 20000
+            "svg_id": "node_9",
+            "type": "provider"
         },
         {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
             "label": "[root] root",
-            "svg_id": "node_10",
             "resource_name": "",
-            "type": "",
             "simple_name": "root",
-            "definition": "",
-            "group": 20000
-        }
-    ],
-    "edges": [
-        {
-            "source": "[root] azurerm_resource_group.rg",
-            "target": "[root] provider.azurerm",
-            "svg_id": "edge_0"
-        },
-        {
-            "source": "[root] azurerm_resource_group.rg",
-            "target": "[root] var.location",
-            "svg_id": "edge_1"
-        },
-        {
-            "source": "[root] azurerm_resource_group.rg",
-            "target": "[root] var.resource_group",
-            "svg_id": "edge_2"
-        },
-        {
-            "source": "[root] azurerm_virtual_network.vnet1",
-            "target": "[root] azurerm_resource_group.rg",
-            "svg_id": "edge_3"
-        },
-        {
-            "source": "[root] azurerm_virtual_network.vnet2",
-            "target": "[root] azurerm_resource_group.rg",
-            "svg_id": "edge_4"
-        },
-        {
-            "source": "[root] azurerm_virtual_network_peering.peer1",
-            "target": "[root] azurerm_virtual_network.vnet1",
-            "svg_id": "edge_5"
-        },
-        {
-            "source": "[root] azurerm_virtual_network_peering.peer1",
-            "target": "[root] azurerm_virtual_network.vnet2",
-            "svg_id": "edge_6"
-        },
-        {
-            "source": "[root] azurerm_virtual_network_peering.peer2",
-            "target": "[root] azurerm_virtual_network.vnet1",
-            "svg_id": "edge_7"
-        },
-        {
-            "source": "[root] azurerm_virtual_network_peering.peer2",
-            "target": "[root] azurerm_virtual_network.vnet2",
-            "svg_id": "edge_8"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] azurerm_virtual_network_peering.peer1",
-            "svg_id": "edge_9"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "target": "[root] azurerm_virtual_network_peering.peer2",
-            "svg_id": "edge_10"
-        },
-        {
-            "source": "[root] provider.azurerm (close)",
-            "target": "[root] azurerm_virtual_network_peering.peer1",
-            "svg_id": "edge_11"
-        },
-        {
-            "source": "[root] provider.azurerm (close)",
-            "target": "[root] azurerm_virtual_network_peering.peer2",
-            "svg_id": "edge_12"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_13"
-        },
-        {
-            "source": "[root] root",
-            "target": "[root] provider.azurerm (close)",
-            "svg_id": "edge_14"
+            "svg_id": "node_10",
+            "type": ""
         }
     ]
 }

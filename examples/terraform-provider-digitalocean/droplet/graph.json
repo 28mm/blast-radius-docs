@@ -1,435 +1,1302 @@
 {
+    "edges": [
+        {
+            "edge_type": 1,
+            "source": "[root] digitalocean_domain.mywebserver",
+            "svg_id": "edge_0",
+            "target": "[root] digitalocean_droplet.mywebserver"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] digitalocean_droplet.mywebserver",
+            "svg_id": "edge_1",
+            "target": "[root] provider.digitalocean"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] digitalocean_droplet.mywebserver",
+            "svg_id": "edge_2",
+            "target": "[root] var.do_ams3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] digitalocean_droplet.mywebserver",
+            "svg_id": "edge_3",
+            "target": "[root] var.ubuntu"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] digitalocean_record.mywebserver",
+            "svg_id": "edge_4",
+            "target": "[root] digitalocean_domain.mywebserver"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_5",
+            "target": "[root] digitalocean_record.mywebserver"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_6",
+            "target": "[root] output.Name"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_7",
+            "target": "[root] output.Public ip"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_8",
+            "target": "[root] var.centos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_9",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_10",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_11",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_12",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_13",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_14",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_15",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_16",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_17",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_18",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_19",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] output.Name",
+            "svg_id": "edge_20",
+            "target": "[root] digitalocean_droplet.mywebserver"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.Public ip",
+            "svg_id": "edge_21",
+            "target": "[root] digitalocean_droplet.mywebserver"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.digitalocean (close)",
+            "svg_id": "edge_22",
+            "target": "[root] digitalocean_record.mywebserver"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provisioner.remote-exec (close)",
+            "svg_id": "edge_23",
+            "target": "[root] digitalocean_droplet.mywebserver"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_24",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_25",
+            "target": "[root] provider.digitalocean (close)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_26",
+            "target": "[root] provisioner.remote-exec (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams3",
+            "svg_id": "edge_27",
+            "target": "[root] var.ubuntu"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_ams3",
+            "svg_id": "edge_28",
+            "target": "[root] var.ubuntu"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_29",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_30",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_31",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_32",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_33",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_34",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_35",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_36",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_37",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_38",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_39",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_40",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_41",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_42",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_43",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_44",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_45",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_46",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_47",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_48",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_49",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_50",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_51",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_52",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_53",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_54",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_55",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_56",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_57",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_58",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_59",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_60",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_61",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_62",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_63",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_64",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_65",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_66",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_67",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_68",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_69",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_70",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_71",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_72",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_73",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_74",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_75",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_76",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_77",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_78",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_79",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_80",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_81",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_82",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_83",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_84",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_85",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_86",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_87",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_88",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_89",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_90",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_91",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_92",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_93",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_94",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_95",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_96",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_97",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_98",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_99",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_100",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_101",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_102",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_103",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_104",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_105",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_106",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_107",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_108",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_109",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_110",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_111",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_112",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_113",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_114",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_115",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_116",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_117",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_118",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_119",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_120",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_121",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_122",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_123",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_124",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_125",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_126",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_127",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_128",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_129",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_130",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_131",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_132",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_133",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_134",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_135",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_136",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_137",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_138",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.centos",
+            "svg_id": "edge_139",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_140",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_141",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_142",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_143",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_144",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_145",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_146",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_147",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_148",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_149",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.centos",
+            "svg_id": "edge_150",
+            "target": "[root] var.coreos"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.coreos",
+            "svg_id": "edge_151",
+            "target": "[root] var.do_ams2"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_ams2",
+            "svg_id": "edge_152",
+            "target": "[root] var.do_blr1"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_blr1",
+            "svg_id": "edge_153",
+            "target": "[root] var.do_fra1"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_fra1",
+            "svg_id": "edge_154",
+            "target": "[root] var.do_lon1"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_lon1",
+            "svg_id": "edge_155",
+            "target": "[root] var.do_nyc1"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_nyc1",
+            "svg_id": "edge_156",
+            "target": "[root] var.do_nyc2"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_nyc2",
+            "svg_id": "edge_157",
+            "target": "[root] var.do_nyc3"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_nyc3",
+            "svg_id": "edge_158",
+            "target": "[root] var.do_sfo1"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_sfo1",
+            "svg_id": "edge_159",
+            "target": "[root] var.do_sgp1"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.do_sgp1",
+            "svg_id": "edge_160",
+            "target": "[root] var.do_tor1"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] output.Name",
+            "svg_id": "edge_161",
+            "target": "[root] output.Public ip"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] output.Name",
+            "svg_id": "edge_162",
+            "target": "[root] output.Public ip"
+        }
+    ],
     "nodes": [
         {
+            "cluster": "root",
             "definition": {
-                "name": "www.mywebserver.com",
-                "ip_address": "${digitalocean_droplet.mywebserver.ipv4_address}"
+                "ip_address": "${digitalocean_droplet.mywebserver.ipv4_address}",
+                "name": "www.mywebserver.com"
             },
+            "group": 20000,
+            "label": "[root] digitalocean_domain.mywebserver",
             "resource_name": "mywebserver",
             "simple_name": "digitalocean_domain.mywebserver",
-            "group": 20000,
             "svg_id": "node_0",
-            "label": "[root] digitalocean_domain.mywebserver",
             "type": "digitalocean_domain"
         },
         {
+            "cluster": "root",
             "definition": {
-                "ssh_keys": [
-                    12345678
-                ],
-                "image": "${var.ubuntu}",
-                "region": "${var.do_ams3}",
-                "size": "512mb",
-                "private_networking": true,
                 "backups": true,
+                "image": "${var.ubuntu}",
                 "ipv6": true,
                 "name": "mywebserver-ams3",
+                "private_networking": true,
                 "provisioner": {
                     "remote-exec": {
+                        "connection": {
+                            "private_key": "${file(\"~/.ssh/id_rsa\")}",
+                            "timeout": "2m",
+                            "type": "ssh",
+                            "user": "root"
+                        },
                         "inline": [
                             "export PATH=$PATH:/usr/bin",
                             "sudo apt-get update",
                             "sudo apt-get -y install nginx"
-                        ],
-                        "connection": {
-                            "type": "ssh",
-                            "private_key": "${file(\"~/.ssh/id_rsa\")}",
-                            "user": "root",
-                            "timeout": "2m"
-                        }
+                        ]
                     }
-                }
+                },
+                "region": "${var.do_ams3}",
+                "size": "512mb",
+                "ssh_keys": [
+                    12345678
+                ]
             },
+            "group": 20000,
+            "label": "[root] digitalocean_droplet.mywebserver",
             "resource_name": "mywebserver",
             "simple_name": "digitalocean_droplet.mywebserver",
-            "group": 20000,
             "svg_id": "node_1",
-            "label": "[root] digitalocean_droplet.mywebserver",
             "type": "digitalocean_droplet"
         },
         {
+            "cluster": "root",
             "definition": {
                 "domain": "${digitalocean_domain.mywebserver.name}",
-                "type": "A",
                 "name": "mywebserver",
+                "type": "A",
                 "value": "${digitalocean_droplet.mywebserver.ipv4_address}"
             },
+            "group": 20000,
+            "label": "[root] digitalocean_record.mywebserver",
             "resource_name": "mywebserver",
             "simple_name": "digitalocean_record.mywebserver",
-            "group": 20000,
             "svg_id": "node_2",
-            "label": "[root] digitalocean_record.mywebserver",
             "type": "digitalocean_record"
         },
         {
+            "cluster": "root",
             "definition": {},
+            "group": 20000,
+            "label": "[root] provider.digitalocean",
             "resource_name": "digitalocean",
             "simple_name": "provider.digitalocean",
-            "group": 20000,
             "svg_id": "node_3",
-            "label": "[root] provider.digitalocean",
             "type": "provider"
         },
         {
+            "cluster": "cluster[root] digitalocean_droplet.mywebserver_var_",
             "definition": {
-                "description": "Digital Ocean Amsterdam Data Center 3",
-                "default": "ams3"
+                "default": "ams3",
+                "description": "Digital Ocean Amsterdam Data Center 3"
             },
+            "group": 20000,
+            "label": "[root] var.do_ams3",
             "resource_name": "do_ams3",
             "simple_name": "var.do_ams3",
-            "group": 20000,
             "svg_id": "node_4",
-            "label": "[root] var.do_ams3",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] digitalocean_droplet.mywebserver_var_",
             "definition": {
-                "description": "Default LTS",
-                "default": "ubuntu-16-04-x64"
+                "default": "ubuntu-16-04-x64",
+                "description": "Default LTS"
             },
+            "group": 20000,
+            "label": "[root] var.ubuntu",
             "resource_name": "ubuntu",
             "simple_name": "var.ubuntu",
-            "group": 20000,
             "svg_id": "node_5",
-            "label": "[root] var.ubuntu",
             "type": "var"
         },
         {
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] meta.count-boundary (count boundary fixup)",
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
-            "group": 20000,
             "svg_id": "node_6",
-            "label": "[root] meta.count-boundary (count boundary fixup)",
             "type": "meta"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] digitalocean_droplet.mywebserver",
             "definition": {
                 "value": "${digitalocean_droplet.mywebserver.name}"
             },
+            "group": 20000,
+            "label": "[root] output.Name",
             "resource_name": "Name",
             "simple_name": "output.Name",
-            "group": 20000,
             "svg_id": "node_7",
-            "label": "[root] output.Name",
             "type": "output"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] digitalocean_droplet.mywebserver",
             "definition": "",
+            "group": 20000,
+            "label": "[root] output.Public ip",
             "resource_name": "Public",
             "simple_name": "output.Public ip",
-            "group": 20000,
             "svg_id": "node_8",
-            "label": "[root] output.Public ip",
             "type": "output"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Default Centos",
-                "default": "centos-72-x64"
+                "default": "centos-72-x64",
+                "description": "Default Centos"
             },
+            "group": 20000,
+            "label": "[root] var.centos",
             "resource_name": "centos",
             "simple_name": "var.centos",
-            "group": 20000,
             "svg_id": "node_9",
-            "label": "[root] var.centos",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Defaut Coreos",
-                "default": "coreos-899.17.0"
+                "default": "coreos-899.17.0",
+                "description": "Defaut Coreos"
             },
+            "group": 20000,
+            "label": "[root] var.coreos",
             "resource_name": "coreos",
             "simple_name": "var.coreos",
-            "group": 20000,
             "svg_id": "node_10",
-            "label": "[root] var.coreos",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean Amsterdam Data Center 2",
-                "default": "ams2"
+                "default": "ams2",
+                "description": "Digital Ocean Amsterdam Data Center 2"
             },
+            "group": 20000,
+            "label": "[root] var.do_ams2",
             "resource_name": "do_ams2",
             "simple_name": "var.do_ams2",
-            "group": 20000,
             "svg_id": "node_11",
-            "label": "[root] var.do_ams2",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean Bangalore Data Center 1",
-                "default": "blr1"
+                "default": "blr1",
+                "description": "Digital Ocean Bangalore Data Center 1"
             },
+            "group": 20000,
+            "label": "[root] var.do_blr1",
             "resource_name": "do_blr1",
             "simple_name": "var.do_blr1",
-            "group": 20000,
             "svg_id": "node_12",
-            "label": "[root] var.do_blr1",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean Frankfurt Data Center 1",
-                "default": "fra1"
+                "default": "fra1",
+                "description": "Digital Ocean Frankfurt Data Center 1"
             },
+            "group": 20000,
+            "label": "[root] var.do_fra1",
             "resource_name": "do_fra1",
             "simple_name": "var.do_fra1",
-            "group": 20000,
             "svg_id": "node_13",
-            "label": "[root] var.do_fra1",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean London Data Center 1",
-                "default": "lon1"
+                "default": "lon1",
+                "description": "Digital Ocean London Data Center 1"
             },
+            "group": 20000,
+            "label": "[root] var.do_lon1",
             "resource_name": "do_lon1",
             "simple_name": "var.do_lon1",
-            "group": 20000,
             "svg_id": "node_14",
-            "label": "[root] var.do_lon1",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean New York Data Center 1",
-                "default": "nyc1"
+                "default": "nyc1",
+                "description": "Digital Ocean New York Data Center 1"
             },
+            "group": 20000,
+            "label": "[root] var.do_nyc1",
             "resource_name": "do_nyc1",
             "simple_name": "var.do_nyc1",
-            "group": 20000,
             "svg_id": "node_15",
-            "label": "[root] var.do_nyc1",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean New York Data Center 2",
-                "default": "nyc2"
+                "default": "nyc2",
+                "description": "Digital Ocean New York Data Center 2"
             },
+            "group": 20000,
+            "label": "[root] var.do_nyc2",
             "resource_name": "do_nyc2",
             "simple_name": "var.do_nyc2",
-            "group": 20000,
             "svg_id": "node_16",
-            "label": "[root] var.do_nyc2",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean New York Data Center 3",
-                "default": "nyc3"
+                "default": "nyc3",
+                "description": "Digital Ocean New York Data Center 3"
             },
+            "group": 20000,
+            "label": "[root] var.do_nyc3",
             "resource_name": "do_nyc3",
             "simple_name": "var.do_nyc3",
-            "group": 20000,
             "svg_id": "node_17",
-            "label": "[root] var.do_nyc3",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean San Francisco Data Center 1",
-                "default": "sfo1"
+                "default": "sfo1",
+                "description": "Digital Ocean San Francisco Data Center 1"
             },
+            "group": 20000,
+            "label": "[root] var.do_sfo1",
             "resource_name": "do_sfo1",
             "simple_name": "var.do_sfo1",
-            "group": 20000,
             "svg_id": "node_18",
-            "label": "[root] var.do_sfo1",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean Singapore Data Center 1",
-                "default": "sgp1"
+                "default": "sgp1",
+                "description": "Digital Ocean Singapore Data Center 1"
             },
+            "group": 20000,
+            "label": "[root] var.do_sgp1",
             "resource_name": "do_sgp1",
             "simple_name": "var.do_sgp1",
-            "group": 20000,
             "svg_id": "node_19",
-            "label": "[root] var.do_sgp1",
             "type": "var"
         },
         {
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_var_",
             "definition": {
-                "description": "Digital Ocean Toronto Datacenter 1",
-                "default": "tor1"
+                "default": "tor1",
+                "description": "Digital Ocean Toronto Datacenter 1"
             },
+            "group": 20000,
+            "label": "[root] var.do_tor1",
             "resource_name": "do_tor1",
             "simple_name": "var.do_tor1",
-            "group": 20000,
             "svg_id": "node_20",
-            "label": "[root] var.do_tor1",
             "type": "var"
         },
         {
+            "cluster": "root",
             "definition": {},
+            "group": 20000,
+            "label": "[root] provider.digitalocean (close)",
             "resource_name": "digitalocean",
             "simple_name": "provider.digitalocean (close)",
-            "group": 20000,
             "svg_id": "node_21",
-            "label": "[root] provider.digitalocean (close)",
             "type": "provider"
         },
         {
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] provisioner.remote-exec (close)",
             "resource_name": "remote-exec",
             "simple_name": "provisioner.remote-exec (close)",
-            "group": 20000,
             "svg_id": "node_22",
-            "label": "[root] provisioner.remote-exec (close)",
             "type": "provisioner"
         },
         {
+            "cluster": "root",
             "definition": "",
+            "group": 20000,
+            "label": "[root] root",
             "resource_name": "",
             "simple_name": "root",
-            "group": 20000,
             "svg_id": "node_23",
-            "label": "[root] root",
             "type": ""
-        }
-    ],
-    "edges": [
-        {
-            "target": "[root] digitalocean_droplet.mywebserver",
-            "svg_id": "edge_0",
-            "source": "[root] digitalocean_domain.mywebserver"
-        },
-        {
-            "target": "[root] provider.digitalocean",
-            "svg_id": "edge_1",
-            "source": "[root] digitalocean_droplet.mywebserver"
-        },
-        {
-            "target": "[root] var.do_ams3",
-            "svg_id": "edge_2",
-            "source": "[root] digitalocean_droplet.mywebserver"
-        },
-        {
-            "target": "[root] var.ubuntu",
-            "svg_id": "edge_3",
-            "source": "[root] digitalocean_droplet.mywebserver"
-        },
-        {
-            "target": "[root] digitalocean_domain.mywebserver",
-            "svg_id": "edge_4",
-            "source": "[root] digitalocean_record.mywebserver"
-        },
-        {
-            "target": "[root] digitalocean_record.mywebserver",
-            "svg_id": "edge_5",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] output.Name",
-            "svg_id": "edge_6",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] output.Public ip",
-            "svg_id": "edge_7",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.centos",
-            "svg_id": "edge_8",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.coreos",
-            "svg_id": "edge_9",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_ams2",
-            "svg_id": "edge_10",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_blr1",
-            "svg_id": "edge_11",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_fra1",
-            "svg_id": "edge_12",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_lon1",
-            "svg_id": "edge_13",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_nyc1",
-            "svg_id": "edge_14",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_nyc2",
-            "svg_id": "edge_15",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_nyc3",
-            "svg_id": "edge_16",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_sfo1",
-            "svg_id": "edge_17",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_sgp1",
-            "svg_id": "edge_18",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] var.do_tor1",
-            "svg_id": "edge_19",
-            "source": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "target": "[root] digitalocean_droplet.mywebserver",
-            "svg_id": "edge_20",
-            "source": "[root] output.Name"
-        },
-        {
-            "target": "[root] digitalocean_droplet.mywebserver",
-            "svg_id": "edge_21",
-            "source": "[root] output.Public ip"
-        },
-        {
-            "target": "[root] digitalocean_record.mywebserver",
-            "svg_id": "edge_22",
-            "source": "[root] provider.digitalocean (close)"
-        },
-        {
-            "target": "[root] digitalocean_droplet.mywebserver",
-            "svg_id": "edge_23",
-            "source": "[root] provisioner.remote-exec (close)"
-        },
-        {
-            "target": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_24",
-            "source": "[root] root"
-        },
-        {
-            "target": "[root] provider.digitalocean (close)",
-            "svg_id": "edge_25",
-            "source": "[root] root"
-        },
-        {
-            "target": "[root] provisioner.remote-exec (close)",
-            "svg_id": "edge_26",
-            "source": "[root] root"
         }
     ]
 }

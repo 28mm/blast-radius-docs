@@ -1,561 +1,897 @@
 {
+    "edges": [
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_lb.lb",
+            "svg_id": "edge_0",
+            "target": "[root] azurerm_public_ip.pip"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_lb_backend_address_pool.backlb",
+            "svg_id": "edge_1",
+            "target": "[root] azurerm_lb.lb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_lb_nat_pool.np",
+            "svg_id": "edge_2",
+            "target": "[root] azurerm_lb.lb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_public_ip.pip",
+            "svg_id": "edge_3",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_public_ip.pip",
+            "svg_id": "edge_4",
+            "target": "[root] var.hostname"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_5",
+            "target": "[root] provider.azurerm"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_6",
+            "target": "[root] var.location"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_resource_group.rg",
+            "svg_id": "edge_7",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_8",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_9",
+            "target": "[root] var.storage_account_tier"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_storage_account.stor",
+            "svg_id": "edge_10",
+            "target": "[root] var.storage_replication_type"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_storage_container.vhds",
+            "svg_id": "edge_11",
+            "target": "[root] azurerm_storage_account.stor"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_subnet.subnet",
+            "svg_id": "edge_12",
+            "target": "[root] azurerm_virtual_network.vnet"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_13",
+            "target": "[root] azurerm_lb_backend_address_pool.backlb"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_14",
+            "target": "[root] azurerm_lb_nat_pool.np"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_15",
+            "target": "[root] azurerm_storage_container.vhds"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_16",
+            "target": "[root] azurerm_subnet.subnet"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_17",
+            "target": "[root] var.admin_password"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_18",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_19",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_20",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_21",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_22",
+            "target": "[root] var.ubuntu_os_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_23",
+            "target": "[root] var.vm_sku"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "edge_24",
+            "target": "[root] var.vmss_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] azurerm_virtual_network.vnet",
+            "svg_id": "edge_25",
+            "target": "[root] azurerm_resource_group.rg"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_26",
+            "target": "[root] azurerm_virtual_machine_scale_set.scaleset"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] meta.count-boundary (count boundary fixup)",
+            "svg_id": "edge_27",
+            "target": "[root] output.hostname"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] output.hostname",
+            "svg_id": "edge_28",
+            "target": "[root] var.vmss_name"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] provider.azurerm (close)",
+            "svg_id": "edge_29",
+            "target": "[root] azurerm_virtual_machine_scale_set.scaleset"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_30",
+            "target": "[root] meta.count-boundary (count boundary fixup)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_31",
+            "target": "[root] provider.azurerm (close)"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.location",
+            "svg_id": "edge_32",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.location",
+            "svg_id": "edge_33",
+            "target": "[root] var.resource_group"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.storage_account_tier",
+            "svg_id": "edge_34",
+            "target": "[root] var.storage_replication_type"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.storage_account_tier",
+            "svg_id": "edge_35",
+            "target": "[root] var.storage_replication_type"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_password",
+            "svg_id": "edge_36",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_username",
+            "svg_id": "edge_37",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_offer",
+            "svg_id": "edge_38",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_publisher",
+            "svg_id": "edge_39",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_count",
+            "svg_id": "edge_40",
+            "target": "[root] var.ubuntu_os_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.ubuntu_os_version",
+            "svg_id": "edge_41",
+            "target": "[root] var.vm_sku"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_password",
+            "svg_id": "edge_42",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_username",
+            "svg_id": "edge_43",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_offer",
+            "svg_id": "edge_44",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_publisher",
+            "svg_id": "edge_45",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_count",
+            "svg_id": "edge_46",
+            "target": "[root] var.ubuntu_os_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.ubuntu_os_version",
+            "svg_id": "edge_47",
+            "target": "[root] var.vm_sku"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_password",
+            "svg_id": "edge_48",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_username",
+            "svg_id": "edge_49",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_offer",
+            "svg_id": "edge_50",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_publisher",
+            "svg_id": "edge_51",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_count",
+            "svg_id": "edge_52",
+            "target": "[root] var.ubuntu_os_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.ubuntu_os_version",
+            "svg_id": "edge_53",
+            "target": "[root] var.vm_sku"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_password",
+            "svg_id": "edge_54",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_username",
+            "svg_id": "edge_55",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_offer",
+            "svg_id": "edge_56",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_publisher",
+            "svg_id": "edge_57",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_count",
+            "svg_id": "edge_58",
+            "target": "[root] var.ubuntu_os_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.ubuntu_os_version",
+            "svg_id": "edge_59",
+            "target": "[root] var.vm_sku"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_password",
+            "svg_id": "edge_60",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_username",
+            "svg_id": "edge_61",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_offer",
+            "svg_id": "edge_62",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_publisher",
+            "svg_id": "edge_63",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_count",
+            "svg_id": "edge_64",
+            "target": "[root] var.ubuntu_os_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.ubuntu_os_version",
+            "svg_id": "edge_65",
+            "target": "[root] var.vm_sku"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_password",
+            "svg_id": "edge_66",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.admin_username",
+            "svg_id": "edge_67",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_offer",
+            "svg_id": "edge_68",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.image_publisher",
+            "svg_id": "edge_69",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.instance_count",
+            "svg_id": "edge_70",
+            "target": "[root] var.ubuntu_os_version"
+        },
+        {
+            "edge_type": 2,
+            "source": "[root] var.ubuntu_os_version",
+            "svg_id": "edge_71",
+            "target": "[root] var.vm_sku"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.admin_password",
+            "svg_id": "edge_72",
+            "target": "[root] var.admin_username"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.admin_username",
+            "svg_id": "edge_73",
+            "target": "[root] var.image_offer"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.image_offer",
+            "svg_id": "edge_74",
+            "target": "[root] var.image_publisher"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.image_publisher",
+            "svg_id": "edge_75",
+            "target": "[root] var.instance_count"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.instance_count",
+            "svg_id": "edge_76",
+            "target": "[root] var.ubuntu_os_version"
+        },
+        {
+            "edge_type": 3,
+            "source": "[root] var.ubuntu_os_version",
+            "svg_id": "edge_77",
+            "target": "[root] var.vm_sku"
+        }
+    ],
     "nodes": [
         {
-            "label": "[root] azurerm_lb.lb",
-            "simple_name": "azurerm_lb.lb",
-            "resource_name": "lb",
-            "group": 20000,
-            "type": "azurerm_lb",
-            "svg_id": "node_0",
+            "cluster": "root",
             "definition": {
-                "name": "LoadBalancer",
-                "location": "${azurerm_resource_group.rg.location}",
-                "resource_group_name": "${azurerm_resource_group.rg.name}",
                 "depends_on": [
                     "azurerm_public_ip.pip"
                 ],
                 "frontend_ip_configuration": {
                     "name": "LBFrontEnd",
                     "public_ip_address_id": "${azurerm_public_ip.pip.id}"
-                }
-            }
+                },
+                "location": "${azurerm_resource_group.rg.location}",
+                "name": "LoadBalancer",
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_lb.lb",
+            "resource_name": "lb",
+            "simple_name": "azurerm_lb.lb",
+            "svg_id": "node_0",
+            "type": "azurerm_lb"
         },
         {
-            "label": "[root] azurerm_lb_backend_address_pool.backlb",
-            "simple_name": "azurerm_lb_backend_address_pool.backlb",
-            "resource_name": "backlb",
-            "group": 20000,
-            "type": "azurerm_lb_backend_address_pool",
-            "svg_id": "node_1",
+            "cluster": "root",
             "definition": {
+                "loadbalancer_id": "${azurerm_lb.lb.id}",
                 "name": "BackEndAddressPool",
-                "resource_group_name": "${azurerm_resource_group.rg.name}",
-                "loadbalancer_id": "${azurerm_lb.lb.id}"
-            }
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_lb_backend_address_pool.backlb",
+            "resource_name": "backlb",
+            "simple_name": "azurerm_lb_backend_address_pool.backlb",
+            "svg_id": "node_1",
+            "type": "azurerm_lb_backend_address_pool"
         },
         {
-            "label": "[root] azurerm_lb_nat_pool.np",
-            "simple_name": "azurerm_lb_nat_pool.np",
-            "resource_name": "np",
-            "group": 20000,
-            "type": "azurerm_lb_nat_pool",
-            "svg_id": "node_2",
+            "cluster": "root",
             "definition": {
-                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "backend_port": 22,
+                "frontend_ip_configuration_name": "LBFrontEnd",
+                "frontend_port_end": 50119,
+                "frontend_port_start": 50000,
                 "loadbalancer_id": "${azurerm_lb.lb.id}",
                 "name": "NATPool",
                 "protocol": "Tcp",
-                "frontend_port_start": 50000,
-                "frontend_port_end": 50119,
-                "backend_port": 22,
-                "frontend_ip_configuration_name": "LBFrontEnd"
-            }
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_lb_nat_pool.np",
+            "resource_name": "np",
+            "simple_name": "azurerm_lb_nat_pool.np",
+            "svg_id": "node_2",
+            "type": "azurerm_lb_nat_pool"
         },
         {
-            "label": "[root] azurerm_public_ip.pip",
-            "simple_name": "azurerm_public_ip.pip",
-            "resource_name": "pip",
-            "group": 20000,
-            "type": "azurerm_public_ip",
-            "svg_id": "node_3",
+            "cluster": "root",
             "definition": {
+                "domain_name_label": "${var.hostname}",
+                "location": "${azurerm_resource_group.rg.location}",
                 "name": "${var.hostname}-pip",
-                "location": "${azurerm_resource_group.rg.location}",
-                "resource_group_name": "${azurerm_resource_group.rg.name}",
                 "public_ip_address_allocation": "Dynamic",
-                "domain_name_label": "${var.hostname}"
-            }
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_public_ip.pip",
+            "resource_name": "pip",
+            "simple_name": "azurerm_public_ip.pip",
+            "svg_id": "node_3",
+            "type": "azurerm_public_ip"
         },
         {
+            "cluster": "root",
+            "definition": {
+                "location": "${var.location}",
+                "name": "${var.resource_group}"
+            },
+            "group": 20000,
             "label": "[root] azurerm_resource_group.rg",
-            "simple_name": "azurerm_resource_group.rg",
             "resource_name": "rg",
-            "group": 20000,
-            "type": "azurerm_resource_group",
+            "simple_name": "azurerm_resource_group.rg",
             "svg_id": "node_4",
-            "definition": {
-                "name": "${var.resource_group}",
-                "location": "${var.location}"
-            }
+            "type": "azurerm_resource_group"
         },
         {
-            "label": "[root] azurerm_storage_account.stor",
-            "simple_name": "azurerm_storage_account.stor",
-            "resource_name": "stor",
-            "group": 20000,
-            "type": "azurerm_storage_account",
-            "svg_id": "node_5",
+            "cluster": "root",
             "definition": {
-                "name": "${var.resource_group}stor",
-                "location": "${azurerm_resource_group.rg.location}",
-                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "account_replication_type": "${var.storage_replication_type}",
                 "account_tier": "${var.storage_account_tier}",
-                "account_replication_type": "${var.storage_replication_type}"
-            }
+                "location": "${azurerm_resource_group.rg.location}",
+                "name": "${var.resource_group}stor",
+                "resource_group_name": "${azurerm_resource_group.rg.name}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_storage_account.stor",
+            "resource_name": "stor",
+            "simple_name": "azurerm_storage_account.stor",
+            "svg_id": "node_5",
+            "type": "azurerm_storage_account"
         },
         {
-            "label": "[root] azurerm_storage_container.vhds",
-            "simple_name": "azurerm_storage_container.vhds",
-            "resource_name": "vhds",
-            "group": 20000,
-            "type": "azurerm_storage_container",
-            "svg_id": "node_6",
+            "cluster": "root",
             "definition": {
+                "container_access_type": "blob",
                 "name": "vhds",
                 "resource_group_name": "${azurerm_resource_group.rg.name}",
-                "storage_account_name": "${azurerm_storage_account.stor.name}",
-                "container_access_type": "blob"
-            }
+                "storage_account_name": "${azurerm_storage_account.stor.name}"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_storage_container.vhds",
+            "resource_name": "vhds",
+            "simple_name": "azurerm_storage_container.vhds",
+            "svg_id": "node_6",
+            "type": "azurerm_storage_container"
         },
         {
-            "label": "[root] azurerm_subnet.subnet",
-            "simple_name": "azurerm_subnet.subnet",
-            "resource_name": "subnet",
-            "group": 20000,
-            "type": "azurerm_subnet",
-            "svg_id": "node_7",
+            "cluster": "root",
             "definition": {
-                "name": "subnet",
                 "address_prefix": "10.0.0.0/24",
+                "name": "subnet",
                 "resource_group_name": "${azurerm_resource_group.rg.name}",
                 "virtual_network_name": "${azurerm_virtual_network.vnet.name}"
-            }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_subnet.subnet",
+            "resource_name": "subnet",
+            "simple_name": "azurerm_subnet.subnet",
+            "svg_id": "node_7",
+            "type": "azurerm_subnet"
         },
         {
-            "label": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "simple_name": "azurerm_virtual_machine_scale_set.scaleset",
-            "resource_name": "scaleset",
-            "group": 20000,
-            "type": "azurerm_virtual_machine_scale_set",
-            "svg_id": "node_8",
+            "cluster": "root",
             "definition": {
-                "name": "autoscalewad",
-                "location": "${azurerm_resource_group.rg.location}",
-                "resource_group_name": "${azurerm_resource_group.rg.name}",
-                "upgrade_policy_mode": "Manual",
-                "overprovision": true,
                 "depends_on": [
                     "azurerm_lb.lb",
                     "azurerm_virtual_network.vnet"
                 ],
-                "sku": {
-                    "name": "${var.vm_sku}",
-                    "tier": "Standard",
-                    "capacity": "${var.instance_count}"
-                },
-                "os_profile": {
-                    "computer_name_prefix": "${var.vmss_name}",
-                    "admin_username": "${var.admin_username}",
-                    "admin_password": "${var.admin_password}"
-                },
-                "os_profile_linux_config": {
-                    "disable_password_authentication": false
-                },
+                "location": "${azurerm_resource_group.rg.location}",
+                "name": "autoscalewad",
                 "network_profile": {
-                    "name": "${var.hostname}-nic",
-                    "primary": true,
                     "ip_configuration": {
-                        "name": "${var.hostname}ipconfig",
-                        "subnet_id": "${azurerm_subnet.subnet.id}",
                         "load_balancer_backend_address_pool_ids": [
                             "${azurerm_lb_backend_address_pool.backlb.id}"
                         ],
                         "load_balancer_inbound_nat_rules_ids": [
                             "${element(azurerm_lb_nat_pool.np.*.id, count.index)}"
-                        ]
-                    }
+                        ],
+                        "name": "${var.hostname}ipconfig",
+                        "subnet_id": "${azurerm_subnet.subnet.id}"
+                    },
+                    "name": "${var.hostname}-nic",
+                    "primary": true
+                },
+                "os_profile": {
+                    "admin_password": "${var.admin_password}",
+                    "admin_username": "${var.admin_username}",
+                    "computer_name_prefix": "${var.vmss_name}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                },
+                "overprovision": true,
+                "resource_group_name": "${azurerm_resource_group.rg.name}",
+                "sku": {
+                    "capacity": "${var.instance_count}",
+                    "name": "${var.vm_sku}",
+                    "tier": "Standard"
+                },
+                "storage_profile_image_reference": {
+                    "offer": "${var.image_offer}",
+                    "publisher": "${var.image_publisher}",
+                    "sku": "${var.ubuntu_os_version}",
+                    "version": "latest"
                 },
                 "storage_profile_os_disk": {
-                    "name": "${var.hostname}",
                     "caching": "ReadWrite",
                     "create_option": "FromImage",
+                    "name": "${var.hostname}",
                     "vhd_containers": [
                         "${azurerm_storage_account.stor.primary_blob_endpoint}${azurerm_storage_container.vhds.name}"
                     ]
                 },
-                "storage_profile_image_reference": {
-                    "publisher": "${var.image_publisher}",
-                    "offer": "${var.image_offer}",
-                    "sku": "${var.ubuntu_os_version}",
-                    "version": "latest"
-                }
-            }
+                "upgrade_policy_mode": "Manual"
+            },
+            "group": 20000,
+            "label": "[root] azurerm_virtual_machine_scale_set.scaleset",
+            "resource_name": "scaleset",
+            "simple_name": "azurerm_virtual_machine_scale_set.scaleset",
+            "svg_id": "node_8",
+            "type": "azurerm_virtual_machine_scale_set"
         },
         {
-            "label": "[root] azurerm_virtual_network.vnet",
-            "simple_name": "azurerm_virtual_network.vnet",
-            "resource_name": "vnet",
-            "group": 20000,
-            "type": "azurerm_virtual_network",
-            "svg_id": "node_9",
+            "cluster": "root",
             "definition": {
-                "name": "${var.resource_group}vnet",
-                "location": "${azurerm_resource_group.rg.location}",
                 "address_space": [
                     "10.0.0.0/16"
                 ],
+                "location": "${azurerm_resource_group.rg.location}",
+                "name": "${var.resource_group}vnet",
                 "resource_group_name": "${azurerm_resource_group.rg.name}"
-            }
+            },
+            "group": 20000,
+            "label": "[root] azurerm_virtual_network.vnet",
+            "resource_name": "vnet",
+            "simple_name": "azurerm_virtual_network.vnet",
+            "svg_id": "node_9",
+            "type": "azurerm_virtual_network"
         },
         {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
             "label": "[root] provider.azurerm",
-            "simple_name": "provider.azurerm",
             "resource_name": "azurerm",
-            "group": 20000,
-            "type": "provider",
+            "simple_name": "provider.azurerm",
             "svg_id": "node_10",
-            "definition": ""
+            "type": "provider"
         },
         {
-            "label": "[root] var.hostname",
-            "simple_name": "var.hostname",
-            "resource_name": "hostname",
-            "group": 20000,
-            "type": "var",
-            "svg_id": "node_11",
+            "cluster": "cluster[root] azurerm_public_ip.pip_var_",
             "definition": {
                 "description": "A string that determines the hostname/IP address of the origin server. This string could be a domain name, IPv4 address or IPv6 address."
-            }
+            },
+            "group": 20000,
+            "label": "[root] var.hostname",
+            "resource_name": "hostname",
+            "simple_name": "var.hostname",
+            "svg_id": "node_11",
+            "type": "var"
         },
         {
-            "label": "[root] var.location",
-            "simple_name": "var.location",
-            "resource_name": "location",
-            "group": 20000,
-            "type": "var",
-            "svg_id": "node_12",
+            "cluster": "cluster[root] azurerm_resource_group.rg_var_",
             "definition": {
-                "description": "The location/region where the virtual network is created. Changing this forces a new resource to be created.",
-                "default": "southcentralus"
-            }
+                "default": "southcentralus",
+                "description": "The location/region where the virtual network is created. Changing this forces a new resource to be created."
+            },
+            "group": 20000,
+            "label": "[root] var.location",
+            "resource_name": "location",
+            "simple_name": "var.location",
+            "svg_id": "node_12",
+            "type": "var"
         },
         {
-            "label": "[root] var.resource_group",
-            "simple_name": "var.resource_group",
-            "resource_name": "resource_group",
-            "group": 20000,
-            "type": "var",
-            "svg_id": "node_13",
+            "cluster": "cluster[root] azurerm_resource_group.rg_var_",
             "definition": {
                 "description": "The name of the resource group in which to create the virtual network."
-            }
+            },
+            "group": 20000,
+            "label": "[root] var.resource_group",
+            "resource_name": "resource_group",
+            "simple_name": "var.resource_group",
+            "svg_id": "node_13",
+            "type": "var"
         },
         {
+            "cluster": "cluster[root] azurerm_storage_account.stor_var_",
+            "definition": {
+                "default": "Standard",
+                "description": "Defines the Tier of storage account to be created. Valid options are Standard and Premium."
+            },
+            "group": 20000,
             "label": "[root] var.storage_account_tier",
-            "simple_name": "var.storage_account_tier",
             "resource_name": "storage_account_tier",
-            "group": 20000,
-            "type": "var",
+            "simple_name": "var.storage_account_tier",
             "svg_id": "node_14",
-            "definition": {
-                "description": "Defines the Tier of storage account to be created. Valid options are Standard and Premium.",
-                "default": "Standard"
-            }
+            "type": "var"
         },
         {
+            "cluster": "cluster[root] azurerm_storage_account.stor_var_",
+            "definition": {
+                "default": "LRS",
+                "description": "Defines the Replication Type to use for this storage account. Valid options include LRS, GRS etc."
+            },
+            "group": 20000,
             "label": "[root] var.storage_replication_type",
-            "simple_name": "var.storage_replication_type",
             "resource_name": "storage_replication_type",
-            "group": 20000,
-            "type": "var",
+            "simple_name": "var.storage_replication_type",
             "svg_id": "node_15",
-            "definition": {
-                "description": "Defines the Replication Type to use for this storage account. Valid options include LRS, GRS etc.",
-                "default": "LRS"
-            }
+            "type": "var"
         },
         {
-            "label": "[root] var.admin_password",
-            "simple_name": "var.admin_password",
-            "resource_name": "admin_password",
-            "group": 20000,
-            "type": "var",
-            "svg_id": "node_16",
+            "cluster": "cluster[root] azurerm_virtual_machine_scale_set.scaleset_var_",
             "definition": {
                 "description": "Admin password on all VMs."
-            }
+            },
+            "group": 20000,
+            "label": "[root] var.admin_password",
+            "resource_name": "admin_password",
+            "simple_name": "var.admin_password",
+            "svg_id": "node_16",
+            "type": "var"
         },
         {
-            "label": "[root] var.admin_username",
-            "simple_name": "var.admin_username",
-            "resource_name": "admin_username",
-            "group": 20000,
-            "type": "var",
-            "svg_id": "node_17",
+            "cluster": "cluster[root] azurerm_virtual_machine_scale_set.scaleset_var_",
             "definition": {
                 "description": "Admin username on all VMs."
-            }
+            },
+            "group": 20000,
+            "label": "[root] var.admin_username",
+            "resource_name": "admin_username",
+            "simple_name": "var.admin_username",
+            "svg_id": "node_17",
+            "type": "var"
         },
         {
+            "cluster": "cluster[root] azurerm_virtual_machine_scale_set.scaleset_var_",
+            "definition": {
+                "default": "UbuntuServer",
+                "description": "The name of the offer (az vm image list)"
+            },
+            "group": 20000,
             "label": "[root] var.image_offer",
-            "simple_name": "var.image_offer",
             "resource_name": "image_offer",
-            "group": 20000,
-            "type": "var",
+            "simple_name": "var.image_offer",
             "svg_id": "node_18",
-            "definition": {
-                "description": "The name of the offer (az vm image list)",
-                "default": "UbuntuServer"
-            }
+            "type": "var"
         },
         {
+            "cluster": "cluster[root] azurerm_virtual_machine_scale_set.scaleset_var_",
+            "definition": {
+                "default": "Canonical",
+                "description": "The name of the publisher of the image (az vm image list)"
+            },
+            "group": 20000,
             "label": "[root] var.image_publisher",
-            "simple_name": "var.image_publisher",
             "resource_name": "image_publisher",
-            "group": 20000,
-            "type": "var",
+            "simple_name": "var.image_publisher",
             "svg_id": "node_19",
-            "definition": {
-                "description": "The name of the publisher of the image (az vm image list)",
-                "default": "Canonical"
-            }
+            "type": "var"
         },
         {
+            "cluster": "cluster[root] azurerm_virtual_machine_scale_set.scaleset_var_",
+            "definition": {
+                "default": "5",
+                "description": "Number of VM instances (100 or less)."
+            },
+            "group": 20000,
             "label": "[root] var.instance_count",
-            "simple_name": "var.instance_count",
             "resource_name": "instance_count",
-            "group": 20000,
-            "type": "var",
+            "simple_name": "var.instance_count",
             "svg_id": "node_20",
-            "definition": {
-                "description": "Number of VM instances (100 or less).",
-                "default": "5"
-            }
+            "type": "var"
         },
         {
+            "cluster": "cluster[root] azurerm_virtual_machine_scale_set.scaleset_var_",
+            "definition": {
+                "default": "16.04.0-LTS",
+                "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values are: 15.10, 14.04.4-LTS."
+            },
+            "group": 20000,
             "label": "[root] var.ubuntu_os_version",
-            "simple_name": "var.ubuntu_os_version",
             "resource_name": "ubuntu_os_version",
-            "group": 20000,
-            "type": "var",
+            "simple_name": "var.ubuntu_os_version",
             "svg_id": "node_21",
-            "definition": {
-                "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values are: 15.10, 14.04.4-LTS.",
-                "default": "16.04.0-LTS"
-            }
+            "type": "var"
         },
         {
+            "cluster": "cluster[root] azurerm_virtual_machine_scale_set.scaleset_var_",
+            "definition": {
+                "default": "Standard_A1",
+                "description": "Size of VMs in the VM Scale Set."
+            },
+            "group": 20000,
             "label": "[root] var.vm_sku",
-            "simple_name": "var.vm_sku",
             "resource_name": "vm_sku",
-            "group": 20000,
-            "type": "var",
+            "simple_name": "var.vm_sku",
             "svg_id": "node_22",
-            "definition": {
-                "description": "Size of VMs in the VM Scale Set.",
-                "default": "Standard_A1"
-            }
+            "type": "var"
         },
         {
-            "label": "[root] var.vmss_name",
-            "simple_name": "var.vmss_name",
-            "resource_name": "vmss_name",
-            "group": 20000,
-            "type": "var",
-            "svg_id": "node_23",
+            "cluster": "root",
             "definition": {
                 "description": "String used as a base for naming resources. Must be 3-61 characters in length and globally unique across Azure. A hash is prepended to this string for some resources, and resource-specific information is appended."
-            }
+            },
+            "group": 20000,
+            "label": "[root] var.vmss_name",
+            "resource_name": "vmss_name",
+            "simple_name": "var.vmss_name",
+            "svg_id": "node_23",
+            "type": "var"
         },
         {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
-            "simple_name": "meta.count-boundary (count boundary fixup)",
             "resource_name": "count-boundary",
-            "group": 20000,
-            "type": "meta",
+            "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_24",
-            "definition": ""
+            "type": "meta"
         },
         {
-            "label": "[root] output.hostname",
-            "simple_name": "output.hostname",
-            "resource_name": "hostname",
-            "group": 20000,
-            "type": "output",
-            "svg_id": "node_25",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] var.vmss_name",
             "definition": {
                 "value": "${var.vmss_name}"
-            }
+            },
+            "group": 20000,
+            "label": "[root] output.hostname",
+            "resource_name": "hostname",
+            "simple_name": "output.hostname",
+            "svg_id": "node_25",
+            "type": "output"
         },
         {
+            "cluster": "root",
+            "definition": "",
+            "group": 20000,
             "label": "[root] provider.azurerm (close)",
-            "simple_name": "provider.azurerm (close)",
             "resource_name": "azurerm",
-            "group": 20000,
-            "type": "provider",
+            "simple_name": "provider.azurerm (close)",
             "svg_id": "node_26",
-            "definition": ""
+            "type": "provider"
         },
         {
-            "label": "[root] root",
-            "simple_name": "root",
-            "resource_name": "",
+            "cluster": "root",
+            "definition": "",
             "group": 20000,
-            "type": "",
+            "label": "[root] root",
+            "resource_name": "",
+            "simple_name": "root",
             "svg_id": "node_27",
-            "definition": ""
-        }
-    ],
-    "edges": [
-        {
-            "source": "[root] azurerm_lb.lb",
-            "svg_id": "edge_0",
-            "target": "[root] azurerm_public_ip.pip"
-        },
-        {
-            "source": "[root] azurerm_lb_backend_address_pool.backlb",
-            "svg_id": "edge_1",
-            "target": "[root] azurerm_lb.lb"
-        },
-        {
-            "source": "[root] azurerm_lb_nat_pool.np",
-            "svg_id": "edge_2",
-            "target": "[root] azurerm_lb.lb"
-        },
-        {
-            "source": "[root] azurerm_public_ip.pip",
-            "svg_id": "edge_3",
-            "target": "[root] azurerm_resource_group.rg"
-        },
-        {
-            "source": "[root] azurerm_public_ip.pip",
-            "svg_id": "edge_4",
-            "target": "[root] var.hostname"
-        },
-        {
-            "source": "[root] azurerm_resource_group.rg",
-            "svg_id": "edge_5",
-            "target": "[root] provider.azurerm"
-        },
-        {
-            "source": "[root] azurerm_resource_group.rg",
-            "svg_id": "edge_6",
-            "target": "[root] var.location"
-        },
-        {
-            "source": "[root] azurerm_resource_group.rg",
-            "svg_id": "edge_7",
-            "target": "[root] var.resource_group"
-        },
-        {
-            "source": "[root] azurerm_storage_account.stor",
-            "svg_id": "edge_8",
-            "target": "[root] azurerm_resource_group.rg"
-        },
-        {
-            "source": "[root] azurerm_storage_account.stor",
-            "svg_id": "edge_9",
-            "target": "[root] var.storage_account_tier"
-        },
-        {
-            "source": "[root] azurerm_storage_account.stor",
-            "svg_id": "edge_10",
-            "target": "[root] var.storage_replication_type"
-        },
-        {
-            "source": "[root] azurerm_storage_container.vhds",
-            "svg_id": "edge_11",
-            "target": "[root] azurerm_storage_account.stor"
-        },
-        {
-            "source": "[root] azurerm_subnet.subnet",
-            "svg_id": "edge_12",
-            "target": "[root] azurerm_virtual_network.vnet"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_13",
-            "target": "[root] azurerm_lb_backend_address_pool.backlb"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_14",
-            "target": "[root] azurerm_lb_nat_pool.np"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_15",
-            "target": "[root] azurerm_storage_container.vhds"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_16",
-            "target": "[root] azurerm_subnet.subnet"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_17",
-            "target": "[root] var.admin_password"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_18",
-            "target": "[root] var.admin_username"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_19",
-            "target": "[root] var.image_offer"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_20",
-            "target": "[root] var.image_publisher"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_21",
-            "target": "[root] var.instance_count"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_22",
-            "target": "[root] var.ubuntu_os_version"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_23",
-            "target": "[root] var.vm_sku"
-        },
-        {
-            "source": "[root] azurerm_virtual_machine_scale_set.scaleset",
-            "svg_id": "edge_24",
-            "target": "[root] var.vmss_name"
-        },
-        {
-            "source": "[root] azurerm_virtual_network.vnet",
-            "svg_id": "edge_25",
-            "target": "[root] azurerm_resource_group.rg"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_26",
-            "target": "[root] azurerm_virtual_machine_scale_set.scaleset"
-        },
-        {
-            "source": "[root] meta.count-boundary (count boundary fixup)",
-            "svg_id": "edge_27",
-            "target": "[root] output.hostname"
-        },
-        {
-            "source": "[root] output.hostname",
-            "svg_id": "edge_28",
-            "target": "[root] var.vmss_name"
-        },
-        {
-            "source": "[root] provider.azurerm (close)",
-            "svg_id": "edge_29",
-            "target": "[root] azurerm_virtual_machine_scale_set.scaleset"
-        },
-        {
-            "source": "[root] root",
-            "svg_id": "edge_30",
-            "target": "[root] meta.count-boundary (count boundary fixup)"
-        },
-        {
-            "source": "[root] root",
-            "svg_id": "edge_31",
-            "target": "[root] provider.azurerm (close)"
+            "type": ""
         }
     ]
 }
