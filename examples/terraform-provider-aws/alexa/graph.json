@@ -88,6 +88,10 @@
             },
             "group": 20000,
             "label": "[root] aws_iam_role.default",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "default",
             "simple_name": "aws_iam_role.default",
             "svg_id": "node_0",
@@ -102,6 +106,10 @@
             },
             "group": 20000,
             "label": "[root] aws_iam_role_policy.default",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "default",
             "simple_name": "aws_iam_role_policy.default",
             "svg_id": "node_1",
@@ -119,6 +127,10 @@
             },
             "group": 20000,
             "label": "[root] aws_lambda_function.default",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "default",
             "simple_name": "aws_lambda_function.default",
             "svg_id": "node_2",
@@ -134,6 +146,10 @@
             },
             "group": 20000,
             "label": "[root] aws_lambda_permission.default",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "default",
             "simple_name": "aws_lambda_permission.default",
             "svg_id": "node_3",
@@ -146,6 +162,10 @@
             },
             "group": 20000,
             "label": "[root] provider.aws",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws",
             "simple_name": "provider.aws",
             "svg_id": "node_4",
@@ -156,6 +176,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_5",
@@ -168,6 +192,10 @@
             },
             "group": 20000,
             "label": "[root] output.aws_lambda_function_arn",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws_lambda_function_arn",
             "simple_name": "output.aws_lambda_function_arn",
             "svg_id": "node_6",
@@ -180,6 +208,10 @@
             },
             "group": 20000,
             "label": "[root] provider.aws (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws",
             "simple_name": "provider.aws (close)",
             "svg_id": "node_7",
@@ -193,6 +225,10 @@
             },
             "group": 20000,
             "label": "[root] var.aws_region",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws_region",
             "simple_name": "var.aws_region",
             "svg_id": "node_8",
@@ -203,6 +239,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_9",

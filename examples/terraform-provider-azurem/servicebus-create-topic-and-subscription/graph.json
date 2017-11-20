@@ -124,6 +124,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_resource_group.rg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "rg",
             "simple_name": "azurerm_resource_group.rg",
             "svg_id": "node_0",
@@ -142,6 +146,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_servicebus_namespace.test",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test",
             "simple_name": "azurerm_servicebus_namespace.test",
             "svg_id": "node_1",
@@ -159,6 +167,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_servicebus_subscription.test",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test",
             "simple_name": "azurerm_servicebus_subscription.test",
             "svg_id": "node_2",
@@ -175,6 +187,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_servicebus_topic.test",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test",
             "simple_name": "azurerm_servicebus_topic.test",
             "svg_id": "node_3",
@@ -185,6 +201,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm",
             "svg_id": "node_4",
@@ -198,6 +218,10 @@
             },
             "group": 20000,
             "label": "[root] var.location",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "location",
             "simple_name": "var.location",
             "svg_id": "node_5",
@@ -210,6 +234,10 @@
             },
             "group": 20000,
             "label": "[root] var.resource_group",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "resource_group",
             "simple_name": "var.resource_group",
             "svg_id": "node_6",
@@ -222,6 +250,10 @@
             },
             "group": 20000,
             "label": "[root] var.unique",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "unique",
             "simple_name": "var.unique",
             "svg_id": "node_7",
@@ -232,6 +264,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_8",
@@ -242,6 +278,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] output.Namespace Connection String",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "Namespace",
             "simple_name": "output.Namespace Connection String",
             "svg_id": "node_9",
@@ -252,6 +292,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] output.Shared Access Policy PrimaryKey",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "Shared",
             "simple_name": "output.Shared Access Policy PrimaryKey",
             "svg_id": "node_10",
@@ -262,6 +306,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm (close)",
             "svg_id": "node_11",
@@ -272,6 +320,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_12",

@@ -150,6 +150,10 @@
             },
             "group": 20000,
             "label": "[root] aws_s3_bucket.prod",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "prod",
             "simple_name": "aws_s3_bucket.prod",
             "svg_id": "node_0",
@@ -165,6 +169,10 @@
             },
             "group": 20000,
             "label": "[root] aws_s3_bucket_object.prod",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "prod",
             "simple_name": "aws_s3_bucket_object.prod",
             "svg_id": "node_1",
@@ -180,6 +188,10 @@
             },
             "group": 20000,
             "label": "[root] aws_s3_bucket_object.test",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test",
             "simple_name": "aws_s3_bucket_object.test",
             "svg_id": "node_2",
@@ -190,26 +202,38 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.aws.prod",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "prod",
             "simple_name": "provider.aws.prod",
             "svg_id": "node_3",
-            "type": "provider.aws"
+            "type": "aws"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] provider.aws.test",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test",
             "simple_name": "provider.aws.test",
             "svg_id": "node_4",
-            "type": "provider.aws"
+            "type": "aws"
         },
         {
             "cluster": "cluster[root] aws_s3_bucket.prod_var_",
             "definition": {},
             "group": 20000,
             "label": "[root] var.bucket_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "bucket_name",
             "simple_name": "var.bucket_name",
             "svg_id": "node_5",
@@ -220,6 +244,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.test_account_id",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test_account_id",
             "simple_name": "var.test_account_id",
             "svg_id": "node_6",
@@ -230,6 +258,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_7",
@@ -240,16 +272,24 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.aws.prod (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "prod",
             "simple_name": "provider.aws.prod (close)",
             "svg_id": "node_8",
-            "type": "provider.aws"
+            "type": "aws"
         },
         {
             "cluster": "cluster[root] provider.aws.prod_var_",
             "definition": {},
             "group": 20000,
             "label": "[root] var.prod_access_key",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "prod_access_key",
             "simple_name": "var.prod_access_key",
             "svg_id": "node_9",
@@ -260,6 +300,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.prod_secret_key",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "prod_secret_key",
             "simple_name": "var.prod_secret_key",
             "svg_id": "node_10",
@@ -270,16 +314,24 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.aws.test (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test",
             "simple_name": "provider.aws.test (close)",
             "svg_id": "node_11",
-            "type": "provider.aws"
+            "type": "aws"
         },
         {
             "cluster": "cluster[root] provider.aws.test_var_",
             "definition": {},
             "group": 20000,
             "label": "[root] var.test_access_key",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test_access_key",
             "simple_name": "var.test_access_key",
             "svg_id": "node_12",
@@ -290,6 +342,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.test_secret_key",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test_secret_key",
             "simple_name": "var.test_secret_key",
             "svg_id": "node_13",
@@ -300,6 +356,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_14",

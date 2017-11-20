@@ -319,10 +319,14 @@
             "definition": "",
             "group": 20000,
             "label": "[root] data.google_compute_zones.available",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "available",
             "simple_name": "data.google_compute_zones.available",
             "svg_id": "node_0",
-            "type": "data.google_compute_zones"
+            "type": "google_compute_zones"
         },
         {
             "cluster": "root",
@@ -349,6 +353,10 @@
             },
             "group": 20000,
             "label": "[root] google_container_cluster.primary",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "primary",
             "simple_name": "google_container_cluster.primary",
             "svg_id": "node_1",
@@ -361,6 +369,10 @@
             },
             "group": 20000,
             "label": "[root] provider.google",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "google",
             "simple_name": "provider.google",
             "svg_id": "node_2",
@@ -373,6 +385,10 @@
             },
             "group": 20000,
             "label": "[root] var.cluster_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cluster_name",
             "simple_name": "var.cluster_name",
             "svg_id": "node_3",
@@ -385,6 +401,10 @@
             },
             "group": 20000,
             "label": "[root] var.kubernetes_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "kubernetes_version",
             "simple_name": "var.kubernetes_version",
             "svg_id": "node_4",
@@ -395,6 +415,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.password",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "password",
             "simple_name": "var.password",
             "svg_id": "node_5",
@@ -405,6 +429,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.username",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "username",
             "simple_name": "var.username",
             "svg_id": "node_6",
@@ -415,6 +443,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_7",
@@ -427,6 +459,10 @@
             },
             "group": 20000,
             "label": "[root] output.additional_zones",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "additional_zones",
             "simple_name": "output.additional_zones",
             "svg_id": "node_8",
@@ -439,6 +475,10 @@
             },
             "group": 20000,
             "label": "[root] output.cluster_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cluster_name",
             "simple_name": "output.cluster_name",
             "svg_id": "node_9",
@@ -451,6 +491,10 @@
             },
             "group": 20000,
             "label": "[root] output.endpoint",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "endpoint",
             "simple_name": "output.endpoint",
             "svg_id": "node_10",
@@ -463,6 +507,10 @@
             },
             "group": 20000,
             "label": "[root] output.node_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "node_version",
             "simple_name": "output.node_version",
             "svg_id": "node_11",
@@ -475,6 +523,10 @@
             },
             "group": 20000,
             "label": "[root] output.primary_zone",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "primary_zone",
             "simple_name": "output.primary_zone",
             "svg_id": "node_12",
@@ -487,6 +539,10 @@
             },
             "group": 20000,
             "label": "[root] provider.google (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "google",
             "simple_name": "provider.google (close)",
             "svg_id": "node_13",
@@ -497,6 +553,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.region",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "region",
             "simple_name": "var.region",
             "svg_id": "node_14",
@@ -507,6 +567,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_15",

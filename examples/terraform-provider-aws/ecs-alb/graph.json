@@ -501,6 +501,10 @@
             },
             "group": 20000,
             "label": "[root] aws_alb.main",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "main",
             "simple_name": "aws_alb.main",
             "svg_id": "node_0",
@@ -519,6 +523,10 @@
             },
             "group": 20000,
             "label": "[root] aws_alb_listener.front_end",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "front_end",
             "simple_name": "aws_alb_listener.front_end",
             "svg_id": "node_1",
@@ -534,6 +542,10 @@
             },
             "group": 20000,
             "label": "[root] aws_alb_target_group.test",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test",
             "simple_name": "aws_alb_target_group.test",
             "svg_id": "node_2",
@@ -553,6 +565,10 @@
             },
             "group": 20000,
             "label": "[root] aws_autoscaling_group.app",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "app",
             "simple_name": "aws_autoscaling_group.app",
             "svg_id": "node_3",
@@ -565,6 +581,10 @@
             },
             "group": 20000,
             "label": "[root] aws_cloudwatch_log_group.app",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "app",
             "simple_name": "aws_cloudwatch_log_group.app",
             "svg_id": "node_4",
@@ -577,6 +597,10 @@
             },
             "group": 20000,
             "label": "[root] aws_cloudwatch_log_group.ecs",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ecs",
             "simple_name": "aws_cloudwatch_log_group.ecs",
             "svg_id": "node_5",
@@ -589,6 +613,10 @@
             },
             "group": 20000,
             "label": "[root] aws_ecs_cluster.main",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "main",
             "simple_name": "aws_ecs_cluster.main",
             "svg_id": "node_6",
@@ -614,6 +642,10 @@
             },
             "group": 20000,
             "label": "[root] aws_ecs_service.test",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "test",
             "simple_name": "aws_ecs_service.test",
             "svg_id": "node_7",
@@ -627,6 +659,10 @@
             },
             "group": 20000,
             "label": "[root] aws_ecs_task_definition.ghost",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ghost",
             "simple_name": "aws_ecs_task_definition.ghost",
             "svg_id": "node_8",
@@ -640,6 +676,10 @@
             },
             "group": 20000,
             "label": "[root] aws_iam_instance_profile.app",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "app",
             "simple_name": "aws_iam_instance_profile.app",
             "svg_id": "node_9",
@@ -653,6 +693,10 @@
             },
             "group": 20000,
             "label": "[root] aws_iam_role.app_instance",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "app_instance",
             "simple_name": "aws_iam_role.app_instance",
             "svg_id": "node_10",
@@ -666,6 +710,10 @@
             },
             "group": 20000,
             "label": "[root] aws_iam_role.ecs_service",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ecs_service",
             "simple_name": "aws_iam_role.ecs_service",
             "svg_id": "node_11",
@@ -680,6 +728,10 @@
             },
             "group": 20000,
             "label": "[root] aws_iam_role_policy.ecs_service",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ecs_service",
             "simple_name": "aws_iam_role_policy.ecs_service",
             "svg_id": "node_12",
@@ -694,6 +746,10 @@
             },
             "group": 20000,
             "label": "[root] aws_iam_role_policy.instance",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "instance",
             "simple_name": "aws_iam_role_policy.instance",
             "svg_id": "node_13",
@@ -706,6 +762,10 @@
             },
             "group": 20000,
             "label": "[root] aws_internet_gateway.gw",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "gw",
             "simple_name": "aws_internet_gateway.gw",
             "svg_id": "node_14",
@@ -729,6 +789,10 @@
             },
             "group": 20000,
             "label": "[root] aws_launch_configuration.app",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "app",
             "simple_name": "aws_launch_configuration.app",
             "svg_id": "node_15",
@@ -745,6 +809,10 @@
             },
             "group": 20000,
             "label": "[root] aws_route_table.r",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "r",
             "simple_name": "aws_route_table.r",
             "svg_id": "node_16",
@@ -759,6 +827,10 @@
             },
             "group": 20000,
             "label": "[root] aws_route_table_association.a",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "a",
             "simple_name": "aws_route_table_association.a",
             "svg_id": "node_17",
@@ -799,6 +871,10 @@
             },
             "group": 20000,
             "label": "[root] aws_security_group.instance_sg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "instance_sg",
             "simple_name": "aws_security_group.instance_sg",
             "svg_id": "node_18",
@@ -829,6 +905,10 @@
             },
             "group": 20000,
             "label": "[root] aws_security_group.lb_sg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "lb_sg",
             "simple_name": "aws_security_group.lb_sg",
             "svg_id": "node_19",
@@ -844,6 +924,10 @@
             },
             "group": 20000,
             "label": "[root] aws_subnet.main",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "main",
             "simple_name": "aws_subnet.main",
             "svg_id": "node_20",
@@ -856,6 +940,10 @@
             },
             "group": 20000,
             "label": "[root] aws_vpc.main",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "main",
             "simple_name": "aws_vpc.main",
             "svg_id": "node_21",
@@ -866,50 +954,70 @@
             "definition": "",
             "group": 20000,
             "label": "[root] data.aws_ami.stable_coreos",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "stable_coreos",
             "simple_name": "data.aws_ami.stable_coreos",
             "svg_id": "node_22",
-            "type": "data.aws_ami"
+            "type": "aws_ami"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] data.aws_availability_zones.available",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "available",
             "simple_name": "data.aws_availability_zones.available",
             "svg_id": "node_23",
-            "type": "data.aws_availability_zones"
+            "type": "aws_availability_zones"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] data.template_file.cloud_config",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cloud_config",
             "simple_name": "data.template_file.cloud_config",
             "svg_id": "node_24",
-            "type": "data.template_file"
+            "type": "template_file"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] data.template_file.instance_profile",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "instance_profile",
             "simple_name": "data.template_file.instance_profile",
             "svg_id": "node_25",
-            "type": "data.template_file"
+            "type": "template_file"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] data.template_file.task_definition",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "task_definition",
             "simple_name": "data.template_file.task_definition",
             "svg_id": "node_26",
-            "type": "data.template_file"
+            "type": "template_file"
         },
         {
             "cluster": "root",
@@ -918,6 +1026,10 @@
             },
             "group": 20000,
             "label": "[root] provider.aws",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws",
             "simple_name": "provider.aws",
             "svg_id": "node_27",
@@ -928,6 +1040,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.template",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "template",
             "simple_name": "provider.template",
             "svg_id": "node_28",
@@ -941,6 +1057,10 @@
             },
             "group": 20000,
             "label": "[root] var.asg_desired",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "asg_desired",
             "simple_name": "var.asg_desired",
             "svg_id": "node_29",
@@ -954,6 +1074,10 @@
             },
             "group": 20000,
             "label": "[root] var.asg_max",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "asg_max",
             "simple_name": "var.asg_max",
             "svg_id": "node_30",
@@ -967,6 +1091,10 @@
             },
             "group": 20000,
             "label": "[root] var.asg_min",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "asg_min",
             "simple_name": "var.asg_min",
             "svg_id": "node_31",
@@ -980,6 +1108,10 @@
             },
             "group": 20000,
             "label": "[root] var.instance_type",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "instance_type",
             "simple_name": "var.instance_type",
             "svg_id": "node_32",
@@ -992,6 +1124,10 @@
             },
             "group": 20000,
             "label": "[root] var.key_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "key_name",
             "simple_name": "var.key_name",
             "svg_id": "node_33",
@@ -1004,6 +1140,10 @@
             },
             "group": 20000,
             "label": "[root] var.admin_cidr_ingress",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "admin_cidr_ingress",
             "simple_name": "var.admin_cidr_ingress",
             "svg_id": "node_34",
@@ -1017,6 +1157,10 @@
             },
             "group": 20000,
             "label": "[root] var.az_count",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "az_count",
             "simple_name": "var.az_count",
             "svg_id": "node_35",
@@ -1027,6 +1171,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_36",
@@ -1039,6 +1187,10 @@
             },
             "group": 20000,
             "label": "[root] output.asg_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "asg_name",
             "simple_name": "output.asg_name",
             "svg_id": "node_37",
@@ -1051,6 +1203,10 @@
             },
             "group": 20000,
             "label": "[root] output.elb_hostname",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "elb_hostname",
             "simple_name": "output.elb_hostname",
             "svg_id": "node_38",
@@ -1063,6 +1219,10 @@
             },
             "group": 20000,
             "label": "[root] output.instance_security_group",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "instance_security_group",
             "simple_name": "output.instance_security_group",
             "svg_id": "node_39",
@@ -1075,6 +1235,10 @@
             },
             "group": 20000,
             "label": "[root] output.launch_configuration",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "launch_configuration",
             "simple_name": "output.launch_configuration",
             "svg_id": "node_40",
@@ -1087,6 +1251,10 @@
             },
             "group": 20000,
             "label": "[root] provider.aws (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws",
             "simple_name": "provider.aws (close)",
             "svg_id": "node_41",
@@ -1100,6 +1268,10 @@
             },
             "group": 20000,
             "label": "[root] var.aws_region",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws_region",
             "simple_name": "var.aws_region",
             "svg_id": "node_42",
@@ -1110,6 +1282,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.template (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "template",
             "simple_name": "provider.template (close)",
             "svg_id": "node_43",
@@ -1120,6 +1296,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_44",

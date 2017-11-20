@@ -198,6 +198,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_disk.mysql",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql",
             "simple_name": "google_compute_disk.mysql",
             "svg_id": "node_0",
@@ -213,6 +217,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_disk.wordpress",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "wordpress",
             "simple_name": "google_compute_disk.wordpress",
             "svg_id": "node_1",
@@ -241,6 +249,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_persistent_volume.mysql",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql",
             "simple_name": "kubernetes_persistent_volume.mysql",
             "svg_id": "node_2",
@@ -269,6 +281,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_persistent_volume.wordpress",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "wordpress",
             "simple_name": "kubernetes_persistent_volume.wordpress",
             "svg_id": "node_3",
@@ -297,6 +313,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_persistent_volume_claim.mysql",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql",
             "simple_name": "kubernetes_persistent_volume_claim.mysql",
             "svg_id": "node_4",
@@ -325,6 +345,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_persistent_volume_claim.wordpress",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "wordpress",
             "simple_name": "kubernetes_persistent_volume_claim.wordpress",
             "svg_id": "node_5",
@@ -377,6 +401,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_replication_controller.mysql",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql",
             "simple_name": "kubernetes_replication_controller.mysql",
             "svg_id": "node_6",
@@ -435,6 +463,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_replication_controller.wordpress",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "wordpress",
             "simple_name": "kubernetes_replication_controller.wordpress",
             "svg_id": "node_7",
@@ -452,6 +484,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_secret.mysql",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql",
             "simple_name": "kubernetes_secret.mysql",
             "svg_id": "node_8",
@@ -480,6 +516,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_service.mysql",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql",
             "simple_name": "kubernetes_service.mysql",
             "svg_id": "node_9",
@@ -508,6 +548,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_service.wordpress",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "wordpress",
             "simple_name": "kubernetes_service.wordpress",
             "svg_id": "node_10",
@@ -520,6 +564,10 @@
             },
             "group": 20000,
             "label": "[root] provider.google",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "google",
             "simple_name": "provider.google",
             "svg_id": "node_11",
@@ -530,6 +578,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.kubernetes",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "kubernetes",
             "simple_name": "provider.kubernetes",
             "svg_id": "node_12",
@@ -540,6 +592,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.gcp_zone",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "gcp_zone",
             "simple_name": "var.gcp_zone",
             "svg_id": "node_13",
@@ -552,6 +608,10 @@
             },
             "group": 20000,
             "label": "[root] var.mysql_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_version",
             "simple_name": "var.mysql_version",
             "svg_id": "node_14",
@@ -564,6 +624,10 @@
             },
             "group": 20000,
             "label": "[root] var.wordpress_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "wordpress_version",
             "simple_name": "var.wordpress_version",
             "svg_id": "node_15",
@@ -574,6 +638,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.mysql_password",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_password",
             "simple_name": "var.mysql_password",
             "svg_id": "node_16",
@@ -584,6 +652,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_17",
@@ -596,6 +668,10 @@
             },
             "group": 20000,
             "label": "[root] output.lb_ip",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "lb_ip",
             "simple_name": "output.lb_ip",
             "svg_id": "node_18",
@@ -608,6 +684,10 @@
             },
             "group": 20000,
             "label": "[root] provider.google (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "google",
             "simple_name": "provider.google (close)",
             "svg_id": "node_19",
@@ -618,6 +698,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.gcp_region",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "gcp_region",
             "simple_name": "var.gcp_region",
             "svg_id": "node_20",
@@ -628,6 +712,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.kubernetes (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "kubernetes",
             "simple_name": "provider.kubernetes (close)",
             "svg_id": "node_21",
@@ -638,6 +726,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_22",

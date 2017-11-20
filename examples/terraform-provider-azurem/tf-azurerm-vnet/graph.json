@@ -384,6 +384,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_security_group.security_group",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "security_group",
             "simple_name": "azurerm_network_security_group.security_group",
             "svg_id": "node_0",
@@ -406,6 +410,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_security_rule.security_rule_rdp",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "security_rule_rdp",
             "simple_name": "azurerm_network_security_rule.security_rule_rdp",
             "svg_id": "node_1",
@@ -428,6 +436,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_security_rule.security_rule_ssh",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "security_rule_ssh",
             "simple_name": "azurerm_network_security_rule.security_rule_ssh",
             "svg_id": "node_2",
@@ -441,6 +453,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_resource_group.rg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "rg",
             "simple_name": "azurerm_resource_group.rg",
             "svg_id": "node_3",
@@ -458,6 +474,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_subnet.subnet",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "subnet",
             "simple_name": "azurerm_subnet.subnet",
             "svg_id": "node_4",
@@ -477,6 +497,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_virtual_network.vnet",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet",
             "simple_name": "azurerm_virtual_network.vnet",
             "svg_id": "node_5",
@@ -487,6 +511,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm",
             "svg_id": "node_6",
@@ -503,6 +531,10 @@
             },
             "group": 20000,
             "label": "[root] var.tags",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "tags",
             "simple_name": "var.tags",
             "svg_id": "node_7",
@@ -515,6 +547,10 @@
             },
             "group": 20000,
             "label": "[root] var.location",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "location",
             "simple_name": "var.location",
             "svg_id": "node_8",
@@ -528,6 +564,10 @@
             },
             "group": 20000,
             "label": "[root] var.prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "prefix",
             "simple_name": "var.prefix",
             "svg_id": "node_9",
@@ -543,6 +583,10 @@
             },
             "group": 20000,
             "label": "[root] var.subnet_names",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "subnet_names",
             "simple_name": "var.subnet_names",
             "svg_id": "node_10",
@@ -558,6 +602,10 @@
             },
             "group": 20000,
             "label": "[root] var.subnet_prefixes",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "subnet_prefixes",
             "simple_name": "var.subnet_prefixes",
             "svg_id": "node_11",
@@ -571,6 +619,10 @@
             },
             "group": 20000,
             "label": "[root] var.address_space",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "address_space",
             "simple_name": "var.address_space",
             "svg_id": "node_12",
@@ -584,6 +636,10 @@
             },
             "group": 20000,
             "label": "[root] var.dns_servers",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "dns_servers",
             "simple_name": "var.dns_servers",
             "svg_id": "node_13",
@@ -594,6 +650,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_14",
@@ -606,6 +666,10 @@
             },
             "group": 20000,
             "label": "[root] output.security_group_id",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "security_group_id",
             "simple_name": "output.security_group_id",
             "svg_id": "node_15",
@@ -618,6 +682,10 @@
             },
             "group": 20000,
             "label": "[root] output.vnet_address_space",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_address_space",
             "simple_name": "output.vnet_address_space",
             "svg_id": "node_16",
@@ -630,6 +698,10 @@
             },
             "group": 20000,
             "label": "[root] output.vnet_dns_servers",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_dns_servers",
             "simple_name": "output.vnet_dns_servers",
             "svg_id": "node_17",
@@ -642,6 +714,10 @@
             },
             "group": 20000,
             "label": "[root] output.vnet_id",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_id",
             "simple_name": "output.vnet_id",
             "svg_id": "node_18",
@@ -654,6 +730,10 @@
             },
             "group": 20000,
             "label": "[root] output.vnet_location",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_location",
             "simple_name": "output.vnet_location",
             "svg_id": "node_19",
@@ -666,6 +746,10 @@
             },
             "group": 20000,
             "label": "[root] output.vnet_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_name",
             "simple_name": "output.vnet_name",
             "svg_id": "node_20",
@@ -678,6 +762,10 @@
             },
             "group": 20000,
             "label": "[root] output.vnet_subnets",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_subnets",
             "simple_name": "output.vnet_subnets",
             "svg_id": "node_21",
@@ -688,6 +776,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm (close)",
             "svg_id": "node_22",
@@ -698,6 +790,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_23",

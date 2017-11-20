@@ -988,6 +988,10 @@
             },
             "group": 20000,
             "label": "[root] digitalocean_domain.mywebserver",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mywebserver",
             "simple_name": "digitalocean_domain.mywebserver",
             "svg_id": "node_0",
@@ -1024,6 +1028,10 @@
             },
             "group": 20000,
             "label": "[root] digitalocean_droplet.mywebserver",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mywebserver",
             "simple_name": "digitalocean_droplet.mywebserver",
             "svg_id": "node_1",
@@ -1039,6 +1047,10 @@
             },
             "group": 20000,
             "label": "[root] digitalocean_record.mywebserver",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mywebserver",
             "simple_name": "digitalocean_record.mywebserver",
             "svg_id": "node_2",
@@ -1049,6 +1061,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] provider.digitalocean",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "digitalocean",
             "simple_name": "provider.digitalocean",
             "svg_id": "node_3",
@@ -1062,6 +1078,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_ams3",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_ams3",
             "simple_name": "var.do_ams3",
             "svg_id": "node_4",
@@ -1075,6 +1095,10 @@
             },
             "group": 20000,
             "label": "[root] var.ubuntu",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ubuntu",
             "simple_name": "var.ubuntu",
             "svg_id": "node_5",
@@ -1085,6 +1109,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_6",
@@ -1097,6 +1125,10 @@
             },
             "group": 20000,
             "label": "[root] output.Name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "Name",
             "simple_name": "output.Name",
             "svg_id": "node_7",
@@ -1107,6 +1139,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] output.Public ip",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "Public",
             "simple_name": "output.Public ip",
             "svg_id": "node_8",
@@ -1120,6 +1156,10 @@
             },
             "group": 20000,
             "label": "[root] var.centos",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "centos",
             "simple_name": "var.centos",
             "svg_id": "node_9",
@@ -1133,6 +1173,10 @@
             },
             "group": 20000,
             "label": "[root] var.coreos",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "coreos",
             "simple_name": "var.coreos",
             "svg_id": "node_10",
@@ -1146,6 +1190,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_ams2",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_ams2",
             "simple_name": "var.do_ams2",
             "svg_id": "node_11",
@@ -1159,6 +1207,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_blr1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_blr1",
             "simple_name": "var.do_blr1",
             "svg_id": "node_12",
@@ -1172,6 +1224,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_fra1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_fra1",
             "simple_name": "var.do_fra1",
             "svg_id": "node_13",
@@ -1185,6 +1241,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_lon1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_lon1",
             "simple_name": "var.do_lon1",
             "svg_id": "node_14",
@@ -1198,6 +1258,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_nyc1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_nyc1",
             "simple_name": "var.do_nyc1",
             "svg_id": "node_15",
@@ -1211,6 +1275,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_nyc2",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_nyc2",
             "simple_name": "var.do_nyc2",
             "svg_id": "node_16",
@@ -1224,6 +1292,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_nyc3",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_nyc3",
             "simple_name": "var.do_nyc3",
             "svg_id": "node_17",
@@ -1237,6 +1309,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_sfo1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_sfo1",
             "simple_name": "var.do_sfo1",
             "svg_id": "node_18",
@@ -1250,6 +1326,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_sgp1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_sgp1",
             "simple_name": "var.do_sgp1",
             "svg_id": "node_19",
@@ -1263,6 +1343,10 @@
             },
             "group": 20000,
             "label": "[root] var.do_tor1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "do_tor1",
             "simple_name": "var.do_tor1",
             "svg_id": "node_20",
@@ -1273,6 +1357,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] provider.digitalocean (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "digitalocean",
             "simple_name": "provider.digitalocean (close)",
             "svg_id": "node_21",
@@ -1283,6 +1371,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provisioner.remote-exec (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "remote-exec",
             "simple_name": "provisioner.remote-exec (close)",
             "svg_id": "node_22",
@@ -1293,6 +1385,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_23",

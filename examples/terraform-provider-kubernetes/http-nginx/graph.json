@@ -94,6 +94,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_replication_controller.example",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "example",
             "simple_name": "kubernetes_replication_controller.example",
             "svg_id": "node_0",
@@ -119,6 +123,10 @@
             },
             "group": 20000,
             "label": "[root] kubernetes_service.example",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "example",
             "simple_name": "kubernetes_service.example",
             "svg_id": "node_1",
@@ -129,6 +137,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.kubernetes",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "kubernetes",
             "simple_name": "provider.kubernetes",
             "svg_id": "node_2",
@@ -141,6 +153,10 @@
             },
             "group": 20000,
             "label": "[root] var.nginx_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nginx_version",
             "simple_name": "var.nginx_version",
             "svg_id": "node_3",
@@ -151,6 +167,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_4",
@@ -163,6 +183,10 @@
             },
             "group": 20000,
             "label": "[root] output.lb_ip",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "lb_ip",
             "simple_name": "output.lb_ip",
             "svg_id": "node_5",
@@ -173,6 +197,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.kubernetes (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "kubernetes",
             "simple_name": "provider.kubernetes (close)",
             "svg_id": "node_6",
@@ -183,6 +211,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_7",

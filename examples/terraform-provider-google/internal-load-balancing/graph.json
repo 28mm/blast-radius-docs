@@ -306,6 +306,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_firewall.allow-all-internal",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "allow-all-internal",
             "simple_name": "google_compute_firewall.allow-all-internal",
             "svg_id": "node_0",
@@ -329,6 +333,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_firewall.allow-health-check",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "allow-health-check",
             "simple_name": "google_compute_firewall.allow-health-check",
             "svg_id": "node_1",
@@ -355,6 +363,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_firewall.allow-internal-lb",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "allow-internal-lb",
             "simple_name": "google_compute_firewall.allow-internal-lb",
             "svg_id": "node_2",
@@ -380,6 +392,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_firewall.allow-ssh-rdp-icmp",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "allow-ssh-rdp-icmp",
             "simple_name": "google_compute_firewall.allow-ssh-rdp-icmp",
             "svg_id": "node_3",
@@ -402,6 +418,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_firewall.allow-ssh-to-standalone",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "allow-ssh-to-standalone",
             "simple_name": "google_compute_firewall.allow-ssh-to-standalone",
             "svg_id": "node_4",
@@ -421,6 +441,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_forwarding_rule.my-int-lb-forwarding-rule",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "my-int-lb-forwarding-rule",
             "simple_name": "google_compute_forwarding_rule.my-int-lb-forwarding-rule",
             "svg_id": "node_5",
@@ -436,6 +460,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_health_check.my-tcp-health-check",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "my-tcp-health-check",
             "simple_name": "google_compute_health_check.my-tcp-health-check",
             "svg_id": "node_6",
@@ -468,6 +496,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance.ilb-instance-1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ilb-instance-1",
             "simple_name": "google_compute_instance.ilb-instance-1",
             "svg_id": "node_7",
@@ -500,6 +532,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance.ilb-instance-2",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ilb-instance-2",
             "simple_name": "google_compute_instance.ilb-instance-2",
             "svg_id": "node_8",
@@ -532,6 +568,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance.ilb-instance-3",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ilb-instance-3",
             "simple_name": "google_compute_instance.ilb-instance-3",
             "svg_id": "node_9",
@@ -564,6 +604,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance.ilb-instance-4",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ilb-instance-4",
             "simple_name": "google_compute_instance.ilb-instance-4",
             "svg_id": "node_10",
@@ -590,6 +634,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance.standalone-instance-1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "standalone-instance-1",
             "simple_name": "google_compute_instance.standalone-instance-1",
             "svg_id": "node_11",
@@ -607,6 +655,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance_group.us-ig1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "us-ig1",
             "simple_name": "google_compute_instance_group.us-ig1",
             "svg_id": "node_12",
@@ -624,6 +676,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance_group.us-ig2",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "us-ig2",
             "simple_name": "google_compute_instance_group.us-ig2",
             "svg_id": "node_13",
@@ -636,6 +692,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_network.my-custom-network",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "my-custom-network",
             "simple_name": "google_compute_network.my-custom-network",
             "svg_id": "node_14",
@@ -660,6 +720,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_region_backend_service.my-int-lb",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "my-int-lb",
             "simple_name": "google_compute_region_backend_service.my-int-lb",
             "svg_id": "node_15",
@@ -675,6 +739,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_subnetwork.my-custom-subnet",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "my-custom-subnet",
             "simple_name": "google_compute_subnetwork.my-custom-subnet",
             "svg_id": "node_16",
@@ -688,6 +756,10 @@
             },
             "group": 20000,
             "label": "[root] provider.google",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "google",
             "simple_name": "provider.google",
             "svg_id": "node_17",
@@ -700,6 +772,10 @@
             },
             "group": 20000,
             "label": "[root] var.region_zone",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "region_zone",
             "simple_name": "var.region_zone",
             "svg_id": "node_18",
@@ -712,6 +788,10 @@
             },
             "group": 20000,
             "label": "[root] var.region_zone_2",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "region_zone_2",
             "simple_name": "var.region_zone_2",
             "svg_id": "node_19",
@@ -722,6 +802,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_20",
@@ -734,6 +818,10 @@
             },
             "group": 20000,
             "label": "[root] output.internal_load_balancer_ip",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "internal_load_balancer_ip",
             "simple_name": "output.internal_load_balancer_ip",
             "svg_id": "node_21",
@@ -747,6 +835,10 @@
             },
             "group": 20000,
             "label": "[root] provider.google (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "google",
             "simple_name": "provider.google (close)",
             "svg_id": "node_22",
@@ -759,6 +851,10 @@
             },
             "group": 20000,
             "label": "[root] var.project_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "project_name",
             "simple_name": "var.project_name",
             "svg_id": "node_23",
@@ -771,6 +867,10 @@
             },
             "group": 20000,
             "label": "[root] var.region",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "region",
             "simple_name": "var.region",
             "svg_id": "node_24",
@@ -781,6 +881,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_25",

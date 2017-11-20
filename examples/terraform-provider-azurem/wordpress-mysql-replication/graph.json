@@ -2135,6 +2135,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_availability_set.availability_set",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "availability_set",
             "simple_name": "azurerm_availability_set.availability_set",
             "svg_id": "node_0",
@@ -2156,6 +2160,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_lb.lb",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "lb",
             "simple_name": "azurerm_lb.lb",
             "svg_id": "node_1",
@@ -2170,6 +2178,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_lb_backend_address_pool.backend_pool",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "backend_pool",
             "simple_name": "azurerm_lb_backend_address_pool.backend_pool",
             "svg_id": "node_2",
@@ -2192,6 +2204,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_lb_nat_rule.MySQLNatRule0",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "MySQLNatRule0",
             "simple_name": "azurerm_lb_nat_rule.MySQLNatRule0",
             "svg_id": "node_3",
@@ -2214,6 +2230,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_lb_nat_rule.NatRule0",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "NatRule0",
             "simple_name": "azurerm_lb_nat_rule.NatRule0",
             "svg_id": "node_4",
@@ -2236,6 +2256,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_lb_nat_rule.ProbeNatRule0",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ProbeNatRule0",
             "simple_name": "azurerm_lb_nat_rule.ProbeNatRule0",
             "svg_id": "node_5",
@@ -2271,6 +2295,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_interface.nic",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nic",
             "simple_name": "azurerm_network_interface.nic",
             "svg_id": "node_6",
@@ -2311,6 +2339,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_security_group.nsg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nsg",
             "simple_name": "azurerm_network_security_group.nsg",
             "svg_id": "node_7",
@@ -2327,6 +2359,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_public_ip.pip",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "pip",
             "simple_name": "azurerm_public_ip.pip",
             "svg_id": "node_8",
@@ -2340,6 +2376,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_resource_group.rg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "rg",
             "simple_name": "azurerm_resource_group.rg",
             "svg_id": "node_9",
@@ -2356,6 +2396,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_account.stor",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "stor",
             "simple_name": "azurerm_storage_account.stor",
             "svg_id": "node_10",
@@ -2375,6 +2419,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_subnet.db_subnet",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "db_subnet",
             "simple_name": "azurerm_subnet.db_subnet",
             "svg_id": "node_11",
@@ -2393,6 +2441,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_template_deployment.website",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "website",
             "simple_name": "azurerm_template_deployment.website",
             "svg_id": "node_12",
@@ -2454,6 +2506,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_virtual_machine.vm",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm",
             "simple_name": "azurerm_virtual_machine.vm",
             "svg_id": "node_13",
@@ -2480,6 +2536,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_virtual_machine_extension.setup_mysql",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "setup_mysql",
             "simple_name": "azurerm_virtual_machine_extension.setup_mysql",
             "svg_id": "node_14",
@@ -2497,6 +2557,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_virtual_network.vnet",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet",
             "simple_name": "azurerm_virtual_network.vnet",
             "svg_id": "node_15",
@@ -2507,6 +2571,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm",
             "svg_id": "node_16",
@@ -2519,6 +2587,10 @@
             },
             "group": 20000,
             "label": "[root] var.dns_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "dns_name",
             "simple_name": "var.dns_name",
             "svg_id": "node_17",
@@ -2531,6 +2603,10 @@
             },
             "group": 20000,
             "label": "[root] var.node_count",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "node_count",
             "simple_name": "var.node_count",
             "svg_id": "node_18",
@@ -2544,6 +2620,10 @@
             },
             "group": 20000,
             "label": "[root] var.nic_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nic_name",
             "simple_name": "var.nic_name",
             "svg_id": "node_19",
@@ -2556,6 +2636,10 @@
             },
             "group": 20000,
             "label": "[root] var.unique_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "unique_prefix",
             "simple_name": "var.unique_prefix",
             "svg_id": "node_20",
@@ -2569,6 +2653,10 @@
             },
             "group": 20000,
             "label": "[root] var.public_ip_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "public_ip_name",
             "simple_name": "var.public_ip_name",
             "svg_id": "node_21",
@@ -2582,6 +2670,10 @@
             },
             "group": 20000,
             "label": "[root] var.location",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "location",
             "simple_name": "var.location",
             "svg_id": "node_22",
@@ -2594,6 +2686,10 @@
             },
             "group": 20000,
             "label": "[root] var.resource_group",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "resource_group",
             "simple_name": "var.resource_group",
             "svg_id": "node_23",
@@ -2607,6 +2703,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_account_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_account_name",
             "simple_name": "var.storage_account_name",
             "svg_id": "node_24",
@@ -2620,6 +2720,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_account_tier",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_account_tier",
             "simple_name": "var.storage_account_tier",
             "svg_id": "node_25",
@@ -2633,6 +2737,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_replication_type",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_replication_type",
             "simple_name": "var.storage_replication_type",
             "svg_id": "node_26",
@@ -2646,6 +2754,10 @@
             },
             "group": 20000,
             "label": "[root] var.db_subnet_address_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "db_subnet_address_prefix",
             "simple_name": "var.db_subnet_address_prefix",
             "svg_id": "node_27",
@@ -2659,6 +2771,10 @@
             },
             "group": 20000,
             "label": "[root] var.db_subnet_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "db_subnet_name",
             "simple_name": "var.db_subnet_name",
             "svg_id": "node_28",
@@ -2671,6 +2787,10 @@
             },
             "group": 20000,
             "label": "[root] var.hosting_plan_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "hosting_plan_name",
             "simple_name": "var.hosting_plan_name",
             "svg_id": "node_29",
@@ -2684,6 +2804,10 @@
             },
             "group": 20000,
             "label": "[root] var.mysql_front_end_port_0",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_front_end_port_0",
             "simple_name": "var.mysql_front_end_port_0",
             "svg_id": "node_30",
@@ -2696,6 +2820,10 @@
             },
             "group": 20000,
             "label": "[root] var.site_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "site_name",
             "simple_name": "var.site_name",
             "svg_id": "node_31",
@@ -2709,6 +2837,10 @@
             },
             "group": 20000,
             "label": "[root] var.sku",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "sku",
             "simple_name": "var.sku",
             "svg_id": "node_32",
@@ -2722,6 +2854,10 @@
             },
             "group": 20000,
             "label": "[root] var.worker_size",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "worker_size",
             "simple_name": "var.worker_size",
             "svg_id": "node_33",
@@ -2735,6 +2871,10 @@
             },
             "group": 20000,
             "label": "[root] var.image_offer",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "image_offer",
             "simple_name": "var.image_offer",
             "svg_id": "node_34",
@@ -2748,6 +2888,10 @@
             },
             "group": 20000,
             "label": "[root] var.image_publisher",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "image_publisher",
             "simple_name": "var.image_publisher",
             "svg_id": "node_35",
@@ -2761,6 +2905,10 @@
             },
             "group": 20000,
             "label": "[root] var.os_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "os_version",
             "simple_name": "var.os_version",
             "svg_id": "node_36",
@@ -2773,6 +2921,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_admin_password",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_admin_password",
             "simple_name": "var.vm_admin_password",
             "svg_id": "node_37",
@@ -2785,6 +2937,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_admin_username",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_admin_username",
             "simple_name": "var.vm_admin_username",
             "svg_id": "node_38",
@@ -2798,6 +2954,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_size",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_size",
             "simple_name": "var.vm_size",
             "svg_id": "node_39",
@@ -2811,6 +2971,10 @@
             },
             "group": 20000,
             "label": "[root] var.artifacts_location",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "artifacts_location",
             "simple_name": "var.artifacts_location",
             "svg_id": "node_40",
@@ -2824,6 +2988,10 @@
             },
             "group": 20000,
             "label": "[root] var.azuremysql_script",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azuremysql_script",
             "simple_name": "var.azuremysql_script",
             "svg_id": "node_41",
@@ -2837,6 +3005,10 @@
             },
             "group": 20000,
             "label": "[root] var.mysql_cfg_file_path",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_cfg_file_path",
             "simple_name": "var.mysql_cfg_file_path",
             "svg_id": "node_42",
@@ -2849,6 +3021,10 @@
             },
             "group": 20000,
             "label": "[root] var.mysql_probe_password",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_probe_password",
             "simple_name": "var.mysql_probe_password",
             "svg_id": "node_43",
@@ -2861,6 +3037,10 @@
             },
             "group": 20000,
             "label": "[root] var.mysql_replication_password",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_replication_password",
             "simple_name": "var.mysql_replication_password",
             "svg_id": "node_44",
@@ -2873,6 +3053,10 @@
             },
             "group": 20000,
             "label": "[root] var.mysql_root_password",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_root_password",
             "simple_name": "var.mysql_root_password",
             "svg_id": "node_45",
@@ -2886,6 +3070,10 @@
             },
             "group": 20000,
             "label": "[root] var.virtual_network_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "virtual_network_name",
             "simple_name": "var.virtual_network_name",
             "svg_id": "node_46",
@@ -2899,6 +3087,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_address_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_address_prefix",
             "simple_name": "var.vnet_address_prefix",
             "svg_id": "node_47",
@@ -2909,6 +3101,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_48",
@@ -2921,6 +3117,10 @@
             },
             "group": 20000,
             "label": "[root] output.azure_website",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azure_website",
             "simple_name": "output.azure_website",
             "svg_id": "node_49",
@@ -2933,6 +3133,10 @@
             },
             "group": 20000,
             "label": "[root] output.fqdn",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "fqdn",
             "simple_name": "output.fqdn",
             "svg_id": "node_50",
@@ -2945,6 +3149,10 @@
             },
             "group": 20000,
             "label": "[root] output.ip_address",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ip_address",
             "simple_name": "output.ip_address",
             "svg_id": "node_51",
@@ -2957,6 +3165,10 @@
             },
             "group": 20000,
             "label": "[root] output.resource_group",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "resource_group",
             "simple_name": "output.resource_group",
             "svg_id": "node_52",
@@ -2969,6 +3181,10 @@
             },
             "group": 20000,
             "label": "[root] output.ssh_command_master",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ssh_command_master",
             "simple_name": "output.ssh_command_master",
             "svg_id": "node_53",
@@ -2981,6 +3197,10 @@
             },
             "group": 20000,
             "label": "[root] output.ssh_command_slave",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ssh_command_slave",
             "simple_name": "output.ssh_command_slave",
             "svg_id": "node_54",
@@ -2993,6 +3213,10 @@
             },
             "group": 20000,
             "label": "[root] var.api_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "api_version",
             "simple_name": "var.api_version",
             "svg_id": "node_55",
@@ -3006,6 +3230,10 @@
             },
             "group": 20000,
             "label": "[root] var.db_subnet_start_address",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "db_subnet_start_address",
             "simple_name": "var.db_subnet_start_address",
             "svg_id": "node_56",
@@ -3019,6 +3247,10 @@
             },
             "group": 20000,
             "label": "[root] var.image_sku",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "image_sku",
             "simple_name": "var.image_sku",
             "svg_id": "node_57",
@@ -3032,6 +3264,10 @@
             },
             "group": 20000,
             "label": "[root] var.mysql_front_end_port_1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_front_end_port_1",
             "simple_name": "var.mysql_front_end_port_1",
             "svg_id": "node_58",
@@ -3045,6 +3281,10 @@
             },
             "group": 20000,
             "label": "[root] var.mysql_probe_port_0",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_probe_port_0",
             "simple_name": "var.mysql_probe_port_0",
             "svg_id": "node_59",
@@ -3058,6 +3298,10 @@
             },
             "group": 20000,
             "label": "[root] var.mysql_probe_port_1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "mysql_probe_port_1",
             "simple_name": "var.mysql_probe_port_1",
             "svg_id": "node_60",
@@ -3071,6 +3315,10 @@
             },
             "group": 20000,
             "label": "[root] var.os_image_offer",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "os_image_offer",
             "simple_name": "var.os_image_offer",
             "svg_id": "node_61",
@@ -3084,6 +3332,10 @@
             },
             "group": 20000,
             "label": "[root] var.os_image_publisher",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "os_image_publisher",
             "simple_name": "var.os_image_publisher",
             "svg_id": "node_62",
@@ -3097,6 +3349,10 @@
             },
             "group": 20000,
             "label": "[root] var.ssh_nat_rule_front_end_port_0",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ssh_nat_rule_front_end_port_0",
             "simple_name": "var.ssh_nat_rule_front_end_port_0",
             "svg_id": "node_63",
@@ -3110,6 +3366,10 @@
             },
             "group": 20000,
             "label": "[root] var.ssh_nat_rule_front_end_port_1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ssh_nat_rule_front_end_port_1",
             "simple_name": "var.ssh_nat_rule_front_end_port_1",
             "svg_id": "node_64",
@@ -3122,6 +3382,10 @@
             },
             "group": 20000,
             "label": "[root] var.template_api_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "template_api_version",
             "simple_name": "var.template_api_version",
             "svg_id": "node_65",
@@ -3135,6 +3399,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_existing_resource_group_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_existing_resource_group_name",
             "simple_name": "var.vnet_existing_resource_group_name",
             "svg_id": "node_66",
@@ -3148,6 +3416,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_new_or_existing",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_new_or_existing",
             "simple_name": "var.vnet_new_or_existing",
             "svg_id": "node_67",
@@ -3160,6 +3432,10 @@
             },
             "group": 20000,
             "label": "[root] var.wpdbname",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "wpdbname",
             "simple_name": "var.wpdbname",
             "svg_id": "node_68",
@@ -3170,6 +3446,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm (close)",
             "svg_id": "node_69",
@@ -3180,6 +3460,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_70",

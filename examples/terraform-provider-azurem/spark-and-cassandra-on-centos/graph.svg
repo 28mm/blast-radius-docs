@@ -72,6 +72,9 @@
 <g id="clust22" class="cluster">
 <title>cluster[root] azurerm_virtual_machine.cassandra_var_</title>
 </g>
+<g id="clust23" class="cluster">
+<title>cluster[root] azurerm_virtual_machine.master_var_</title>
+</g>
 <g id="clust24" class="cluster">
 <title>cluster[root] azurerm_virtual_machine.slave_var_</title>
 </g>
@@ -86,9 +89,6 @@
 </g>
 <g id="clust28" class="cluster">
 <title>cluster[root] meta.count&#45;boundary (count boundary fixup)_output_[root] var.resource_group</title>
-</g>
-<g id="clust23" class="cluster">
-<title>cluster[root] azurerm_virtual_machine.master_var_</title>
 </g>
 <!-- [root] azurerm_availability_set.slave -->
 <g id="node_0" class="node">

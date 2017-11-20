@@ -137,6 +137,10 @@
             },
             "group": 20000,
             "label": "[root] aws_cloudwatch_event_rule.foo",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "foo",
             "simple_name": "aws_cloudwatch_event_rule.foo",
             "svg_id": "node_0",
@@ -151,6 +155,10 @@
             },
             "group": 20000,
             "label": "[root] aws_cloudwatch_event_target.foobar",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "foobar",
             "simple_name": "aws_cloudwatch_event_target.foobar",
             "svg_id": "node_1",
@@ -164,6 +172,10 @@
             },
             "group": 20000,
             "label": "[root] aws_iam_role.role",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "role",
             "simple_name": "aws_iam_role.role",
             "svg_id": "node_2",
@@ -178,6 +190,10 @@
             },
             "group": 20000,
             "label": "[root] aws_iam_role_policy.policy",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "policy",
             "simple_name": "aws_iam_role_policy.policy",
             "svg_id": "node_3",
@@ -191,6 +207,10 @@
             },
             "group": 20000,
             "label": "[root] aws_kinesis_stream.foo",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "foo",
             "simple_name": "aws_kinesis_stream.foo",
             "svg_id": "node_4",
@@ -203,6 +223,10 @@
             },
             "group": 20000,
             "label": "[root] provider.aws",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws",
             "simple_name": "provider.aws",
             "svg_id": "node_5",
@@ -216,6 +240,10 @@
             },
             "group": 20000,
             "label": "[root] var.rule_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "rule_name",
             "simple_name": "var.rule_name",
             "svg_id": "node_6",
@@ -229,6 +257,10 @@
             },
             "group": 20000,
             "label": "[root] var.target_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "target_name",
             "simple_name": "var.target_name",
             "svg_id": "node_7",
@@ -242,6 +274,10 @@
             },
             "group": 20000,
             "label": "[root] var.iam_role_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "iam_role_name",
             "simple_name": "var.iam_role_name",
             "svg_id": "node_8",
@@ -255,6 +291,10 @@
             },
             "group": 20000,
             "label": "[root] var.stream_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "stream_name",
             "simple_name": "var.stream_name",
             "svg_id": "node_9",
@@ -265,6 +305,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_10",
@@ -277,6 +321,10 @@
             },
             "group": 20000,
             "label": "[root] output.kinesis_stream_arn",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "kinesis_stream_arn",
             "simple_name": "output.kinesis_stream_arn",
             "svg_id": "node_11",
@@ -289,6 +337,10 @@
             },
             "group": 20000,
             "label": "[root] output.rule_arn",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "rule_arn",
             "simple_name": "output.rule_arn",
             "svg_id": "node_12",
@@ -301,6 +353,10 @@
             },
             "group": 20000,
             "label": "[root] provider.aws (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws",
             "simple_name": "provider.aws (close)",
             "svg_id": "node_13",
@@ -314,6 +370,10 @@
             },
             "group": 20000,
             "label": "[root] var.aws_region",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws_region",
             "simple_name": "var.aws_region",
             "svg_id": "node_14",
@@ -324,6 +384,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_15",

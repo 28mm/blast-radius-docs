@@ -1003,6 +1003,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_availability_set.slave",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "slave",
             "simple_name": "azurerm_availability_set.slave",
             "svg_id": "node_0",
@@ -1030,6 +1034,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_interface.cassandra",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cassandra",
             "simple_name": "azurerm_network_interface.cassandra",
             "svg_id": "node_1",
@@ -1057,6 +1065,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_interface.master",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "master",
             "simple_name": "azurerm_network_interface.master",
             "svg_id": "node_2",
@@ -1085,6 +1097,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_interface.slave",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "slave",
             "simple_name": "azurerm_network_interface.slave",
             "svg_id": "node_3",
@@ -1111,6 +1127,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_security_group.cassandra",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cassandra",
             "simple_name": "azurerm_network_security_group.cassandra",
             "svg_id": "node_4",
@@ -1163,6 +1183,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_security_group.master",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "master",
             "simple_name": "azurerm_network_security_group.master",
             "svg_id": "node_5",
@@ -1189,6 +1213,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_network_security_group.slave",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "slave",
             "simple_name": "azurerm_network_security_group.slave",
             "svg_id": "node_6",
@@ -1204,6 +1232,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_public_ip.cassandra",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cassandra",
             "simple_name": "azurerm_public_ip.cassandra",
             "svg_id": "node_7",
@@ -1219,6 +1251,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_public_ip.master",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "master",
             "simple_name": "azurerm_public_ip.master",
             "svg_id": "node_8",
@@ -1235,6 +1271,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_public_ip.slave",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "slave",
             "simple_name": "azurerm_public_ip.slave",
             "svg_id": "node_9",
@@ -1248,6 +1288,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_resource_group.rg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "rg",
             "simple_name": "azurerm_resource_group.rg",
             "svg_id": "node_10",
@@ -1264,6 +1308,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_account.cassandra",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cassandra",
             "simple_name": "azurerm_storage_account.cassandra",
             "svg_id": "node_11",
@@ -1280,6 +1328,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_account.master",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "master",
             "simple_name": "azurerm_storage_account.master",
             "svg_id": "node_12",
@@ -1297,6 +1349,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_account.slave",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "slave",
             "simple_name": "azurerm_storage_account.slave",
             "svg_id": "node_13",
@@ -1315,6 +1371,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_container.cassandra",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cassandra",
             "simple_name": "azurerm_storage_container.cassandra",
             "svg_id": "node_14",
@@ -1333,6 +1393,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_container.master",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "master",
             "simple_name": "azurerm_storage_container.master",
             "svg_id": "node_15",
@@ -1351,6 +1415,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_container.slave",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "slave",
             "simple_name": "azurerm_storage_container.slave",
             "svg_id": "node_16",
@@ -1370,6 +1438,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_subnet.subnet1",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "subnet1",
             "simple_name": "azurerm_subnet.subnet1",
             "svg_id": "node_17",
@@ -1385,6 +1457,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_subnet.subnet2",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "subnet2",
             "simple_name": "azurerm_subnet.subnet2",
             "svg_id": "node_18",
@@ -1400,6 +1476,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_subnet.subnet3",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "subnet3",
             "simple_name": "azurerm_subnet.subnet3",
             "svg_id": "node_19",
@@ -1457,6 +1537,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_virtual_machine.cassandra",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cassandra",
             "simple_name": "azurerm_virtual_machine.cassandra",
             "svg_id": "node_20",
@@ -1514,6 +1598,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_virtual_machine.master",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "master",
             "simple_name": "azurerm_virtual_machine.master",
             "svg_id": "node_21",
@@ -1573,6 +1661,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_virtual_machine.slave",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "slave",
             "simple_name": "azurerm_virtual_machine.slave",
             "svg_id": "node_22",
@@ -1590,6 +1682,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_virtual_network.spark",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "spark",
             "simple_name": "azurerm_virtual_network.spark",
             "svg_id": "node_23",
@@ -1600,6 +1696,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm",
             "svg_id": "node_24",
@@ -1613,6 +1713,10 @@
             },
             "group": 20000,
             "label": "[root] var.availability_slave_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "availability_slave_name",
             "simple_name": "var.availability_slave_name",
             "svg_id": "node_25",
@@ -1626,6 +1730,10 @@
             },
             "group": 20000,
             "label": "[root] var.nic_cassandra_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nic_cassandra_name",
             "simple_name": "var.nic_cassandra_name",
             "svg_id": "node_26",
@@ -1639,6 +1747,10 @@
             },
             "group": 20000,
             "label": "[root] var.nic_cassandra_node_ip",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nic_cassandra_node_ip",
             "simple_name": "var.nic_cassandra_node_ip",
             "svg_id": "node_27",
@@ -1652,6 +1764,10 @@
             },
             "group": 20000,
             "label": "[root] var.nic_master_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nic_master_name",
             "simple_name": "var.nic_master_name",
             "svg_id": "node_28",
@@ -1665,6 +1781,10 @@
             },
             "group": 20000,
             "label": "[root] var.nic_master_node_ip",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nic_master_node_ip",
             "simple_name": "var.nic_master_node_ip",
             "svg_id": "node_29",
@@ -1678,6 +1798,10 @@
             },
             "group": 20000,
             "label": "[root] var.nic_slave_name_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nic_slave_name_prefix",
             "simple_name": "var.nic_slave_name_prefix",
             "svg_id": "node_30",
@@ -1691,6 +1815,10 @@
             },
             "group": 20000,
             "label": "[root] var.nic_slave_node_ip_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nic_slave_node_ip_prefix",
             "simple_name": "var.nic_slave_node_ip_prefix",
             "svg_id": "node_31",
@@ -1704,6 +1832,10 @@
             },
             "group": 20000,
             "label": "[root] var.nsg_cassandra_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nsg_cassandra_name",
             "simple_name": "var.nsg_cassandra_name",
             "svg_id": "node_32",
@@ -1717,6 +1849,10 @@
             },
             "group": 20000,
             "label": "[root] var.nsg_spark_master_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nsg_spark_master_name",
             "simple_name": "var.nsg_spark_master_name",
             "svg_id": "node_33",
@@ -1730,6 +1866,10 @@
             },
             "group": 20000,
             "label": "[root] var.nsg_spark_slave_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "nsg_spark_slave_name",
             "simple_name": "var.nsg_spark_slave_name",
             "svg_id": "node_34",
@@ -1743,6 +1883,10 @@
             },
             "group": 20000,
             "label": "[root] var.public_ip_cassandra_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "public_ip_cassandra_name",
             "simple_name": "var.public_ip_cassandra_name",
             "svg_id": "node_35",
@@ -1756,6 +1900,10 @@
             },
             "group": 20000,
             "label": "[root] var.public_ip_master_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "public_ip_master_name",
             "simple_name": "var.public_ip_master_name",
             "svg_id": "node_36",
@@ -1769,6 +1917,10 @@
             },
             "group": 20000,
             "label": "[root] var.public_ip_slave_name_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "public_ip_slave_name_prefix",
             "simple_name": "var.public_ip_slave_name_prefix",
             "svg_id": "node_37",
@@ -1782,6 +1934,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_number_of_slaves",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_number_of_slaves",
             "simple_name": "var.vm_number_of_slaves",
             "svg_id": "node_38",
@@ -1795,6 +1951,10 @@
             },
             "group": 20000,
             "label": "[root] var.location",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "location",
             "simple_name": "var.location",
             "svg_id": "node_39",
@@ -1807,6 +1967,10 @@
             },
             "group": 20000,
             "label": "[root] var.resource_group",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "resource_group",
             "simple_name": "var.resource_group",
             "svg_id": "node_40",
@@ -1820,6 +1984,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_cassandra_account_tier",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_cassandra_account_tier",
             "simple_name": "var.storage_cassandra_account_tier",
             "svg_id": "node_41",
@@ -1833,6 +2001,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_cassandra_replication_type",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_cassandra_replication_type",
             "simple_name": "var.storage_cassandra_replication_type",
             "svg_id": "node_42",
@@ -1845,6 +2017,10 @@
             },
             "group": 20000,
             "label": "[root] var.unique_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "unique_prefix",
             "simple_name": "var.unique_prefix",
             "svg_id": "node_43",
@@ -1858,6 +2034,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_master_account_tier",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_master_account_tier",
             "simple_name": "var.storage_master_account_tier",
             "svg_id": "node_44",
@@ -1871,6 +2051,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_master_replication_type",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_master_replication_type",
             "simple_name": "var.storage_master_replication_type",
             "svg_id": "node_45",
@@ -1884,6 +2068,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_slave_account_tier",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_slave_account_tier",
             "simple_name": "var.storage_slave_account_tier",
             "svg_id": "node_46",
@@ -1897,6 +2085,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_slave_replication_type",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_slave_replication_type",
             "simple_name": "var.storage_slave_replication_type",
             "svg_id": "node_47",
@@ -1910,6 +2102,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_cassandra_storage_account_container_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_cassandra_storage_account_container_name",
             "simple_name": "var.vm_cassandra_storage_account_container_name",
             "svg_id": "node_48",
@@ -1923,6 +2119,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_master_storage_account_container_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_master_storage_account_container_name",
             "simple_name": "var.vm_master_storage_account_container_name",
             "svg_id": "node_49",
@@ -1936,6 +2136,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_slave_storage_account_container_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_slave_storage_account_container_name",
             "simple_name": "var.vm_slave_storage_account_container_name",
             "svg_id": "node_50",
@@ -1949,6 +2153,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_spark_subnet1_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_spark_subnet1_name",
             "simple_name": "var.vnet_spark_subnet1_name",
             "svg_id": "node_51",
@@ -1962,6 +2170,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_spark_subnet1_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_spark_subnet1_prefix",
             "simple_name": "var.vnet_spark_subnet1_prefix",
             "svg_id": "node_52",
@@ -1975,6 +2187,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_spark_subnet2_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_spark_subnet2_name",
             "simple_name": "var.vnet_spark_subnet2_name",
             "svg_id": "node_53",
@@ -1988,6 +2204,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_spark_subnet2_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_spark_subnet2_prefix",
             "simple_name": "var.vnet_spark_subnet2_prefix",
             "svg_id": "node_54",
@@ -2001,6 +2221,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_spark_subnet3_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_spark_subnet3_name",
             "simple_name": "var.vnet_spark_subnet3_name",
             "svg_id": "node_55",
@@ -2014,6 +2238,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_spark_subnet3_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_spark_subnet3_prefix",
             "simple_name": "var.vnet_spark_subnet3_prefix",
             "svg_id": "node_56",
@@ -2027,6 +2255,10 @@
             },
             "group": 20000,
             "label": "[root] var.artifacts_location",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "artifacts_location",
             "simple_name": "var.artifacts_location",
             "svg_id": "node_57",
@@ -2040,6 +2272,10 @@
             },
             "group": 20000,
             "label": "[root] var.os_image_offer",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "os_image_offer",
             "simple_name": "var.os_image_offer",
             "svg_id": "node_58",
@@ -2053,6 +2289,10 @@
             },
             "group": 20000,
             "label": "[root] var.os_image_publisher",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "os_image_publisher",
             "simple_name": "var.os_image_publisher",
             "svg_id": "node_59",
@@ -2066,6 +2306,10 @@
             },
             "group": 20000,
             "label": "[root] var.os_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "os_version",
             "simple_name": "var.os_version",
             "svg_id": "node_60",
@@ -2079,6 +2323,10 @@
             },
             "group": 20000,
             "label": "[root] var.script_cassandra_provisioner_script_file_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "script_cassandra_provisioner_script_file_name",
             "simple_name": "var.script_cassandra_provisioner_script_file_name",
             "svg_id": "node_61",
@@ -2091,6 +2339,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_admin_password",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_admin_password",
             "simple_name": "var.vm_admin_password",
             "svg_id": "node_62",
@@ -2103,6 +2355,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_admin_username",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_admin_username",
             "simple_name": "var.vm_admin_username",
             "svg_id": "node_63",
@@ -2116,6 +2372,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_cassandra_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_cassandra_name",
             "simple_name": "var.vm_cassandra_name",
             "svg_id": "node_64",
@@ -2129,6 +2389,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_cassandra_os_disk_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_cassandra_os_disk_name",
             "simple_name": "var.vm_cassandra_os_disk_name",
             "svg_id": "node_65",
@@ -2142,6 +2406,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_cassandra_vm_size",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_cassandra_vm_size",
             "simple_name": "var.vm_cassandra_vm_size",
             "svg_id": "node_66",
@@ -2155,6 +2423,10 @@
             },
             "group": 20000,
             "label": "[root] var.script_spark_provisioner_script_file_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "script_spark_provisioner_script_file_name",
             "simple_name": "var.script_spark_provisioner_script_file_name",
             "svg_id": "node_67",
@@ -2168,6 +2440,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_master_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_master_name",
             "simple_name": "var.vm_master_name",
             "svg_id": "node_68",
@@ -2181,6 +2457,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_master_os_disk_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_master_os_disk_name",
             "simple_name": "var.vm_master_os_disk_name",
             "svg_id": "node_69",
@@ -2194,6 +2474,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_master_vm_size",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_master_vm_size",
             "simple_name": "var.vm_master_vm_size",
             "svg_id": "node_70",
@@ -2207,6 +2491,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_slave_name_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_slave_name_prefix",
             "simple_name": "var.vm_slave_name_prefix",
             "svg_id": "node_71",
@@ -2220,6 +2508,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_slave_os_disk_name_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_slave_os_disk_name_prefix",
             "simple_name": "var.vm_slave_os_disk_name_prefix",
             "svg_id": "node_72",
@@ -2233,6 +2525,10 @@
             },
             "group": 20000,
             "label": "[root] var.vm_slave_vm_size",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vm_slave_vm_size",
             "simple_name": "var.vm_slave_vm_size",
             "svg_id": "node_73",
@@ -2246,6 +2542,10 @@
             },
             "group": 20000,
             "label": "[root] var.vnet_spark_prefix",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "vnet_spark_prefix",
             "simple_name": "var.vnet_spark_prefix",
             "svg_id": "node_74",
@@ -2256,6 +2556,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_75",
@@ -2268,6 +2572,10 @@
             },
             "group": 20000,
             "label": "[root] output.master_ip_address",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "master_ip_address",
             "simple_name": "output.master_ip_address",
             "svg_id": "node_76",
@@ -2280,6 +2588,10 @@
             },
             "group": 20000,
             "label": "[root] output.master_ssh_command",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "master_ssh_command",
             "simple_name": "output.master_ssh_command",
             "svg_id": "node_77",
@@ -2292,6 +2604,10 @@
             },
             "group": 20000,
             "label": "[root] output.master_web_ui_public_ip",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "master_web_ui_public_ip",
             "simple_name": "output.master_web_ui_public_ip",
             "svg_id": "node_78",
@@ -2304,6 +2620,10 @@
             },
             "group": 20000,
             "label": "[root] output.resource_group",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "resource_group",
             "simple_name": "output.resource_group",
             "svg_id": "node_79",
@@ -2316,6 +2636,10 @@
             },
             "group": 20000,
             "label": "[root] var.api_version",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "api_version",
             "simple_name": "var.api_version",
             "svg_id": "node_80",
@@ -2326,6 +2650,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm (close)",
             "svg_id": "node_81",
@@ -2336,6 +2664,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provisioner.remote-exec (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "remote-exec",
             "simple_name": "provisioner.remote-exec (close)",
             "svg_id": "node_82",
@@ -2346,6 +2678,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_83",

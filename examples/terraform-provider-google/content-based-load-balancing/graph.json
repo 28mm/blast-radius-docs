@@ -220,6 +220,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_backend_service.video-service",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "video-service",
             "simple_name": "google_compute_backend_service.video-service",
             "svg_id": "node_0",
@@ -239,6 +243,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_backend_service.www-service",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "www-service",
             "simple_name": "google_compute_backend_service.www-service",
             "svg_id": "node_1",
@@ -265,6 +273,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_firewall.default",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "default",
             "simple_name": "google_compute_firewall.default",
             "svg_id": "node_2",
@@ -277,6 +289,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_global_address.external-address",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "external-address",
             "simple_name": "google_compute_global_address.external-address",
             "svg_id": "node_3",
@@ -292,6 +308,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_global_forwarding_rule.default",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "default",
             "simple_name": "google_compute_global_forwarding_rule.default",
             "svg_id": "node_4",
@@ -305,6 +325,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_health_check.health-check",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "health-check",
             "simple_name": "google_compute_health_check.health-check",
             "svg_id": "node_5",
@@ -337,6 +361,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance.www",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "www",
             "simple_name": "google_compute_instance.www",
             "svg_id": "node_6",
@@ -369,6 +397,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance.www-video",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "www-video",
             "simple_name": "google_compute_instance.www-video",
             "svg_id": "node_7",
@@ -389,6 +421,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance_group.video-resources",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "video-resources",
             "simple_name": "google_compute_instance_group.video-resources",
             "svg_id": "node_8",
@@ -409,6 +445,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_instance_group.www-resources",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "www-resources",
             "simple_name": "google_compute_instance_group.www-resources",
             "svg_id": "node_9",
@@ -422,6 +462,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_target_http_proxy.http-lb-proxy",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "http-lb-proxy",
             "simple_name": "google_compute_target_http_proxy.http-lb-proxy",
             "svg_id": "node_10",
@@ -452,6 +496,10 @@
             },
             "group": 20000,
             "label": "[root] google_compute_url_map.web-map",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "web-map",
             "simple_name": "google_compute_url_map.web-map",
             "svg_id": "node_11",
@@ -466,6 +514,10 @@
             },
             "group": 20000,
             "label": "[root] provider.google",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "google",
             "simple_name": "provider.google",
             "svg_id": "node_12",
@@ -478,6 +530,10 @@
             },
             "group": 20000,
             "label": "[root] var.region_zone",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "region_zone",
             "simple_name": "var.region_zone",
             "svg_id": "node_13",
@@ -488,6 +544,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_14",
@@ -500,6 +560,10 @@
             },
             "group": 20000,
             "label": "[root] output.application_public_ip",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "application_public_ip",
             "simple_name": "output.application_public_ip",
             "svg_id": "node_15",
@@ -514,6 +578,10 @@
             },
             "group": 20000,
             "label": "[root] provider.google (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "google",
             "simple_name": "provider.google (close)",
             "svg_id": "node_16",
@@ -527,6 +595,10 @@
             },
             "group": 20000,
             "label": "[root] var.credentials_file_path",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "credentials_file_path",
             "simple_name": "var.credentials_file_path",
             "svg_id": "node_17",
@@ -539,6 +611,10 @@
             },
             "group": 20000,
             "label": "[root] var.project_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "project_name",
             "simple_name": "var.project_name",
             "svg_id": "node_18",
@@ -551,6 +627,10 @@
             },
             "group": 20000,
             "label": "[root] var.region",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "region",
             "simple_name": "var.region",
             "svg_id": "node_19",
@@ -561,6 +641,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_20",

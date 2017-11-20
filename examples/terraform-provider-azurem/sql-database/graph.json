@@ -136,6 +136,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_resource_group.rg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "rg",
             "simple_name": "azurerm_resource_group.rg",
             "svg_id": "node_0",
@@ -155,6 +159,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_sql_database.db",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "db",
             "simple_name": "azurerm_sql_database.db",
             "svg_id": "node_1",
@@ -171,6 +179,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_sql_firewall_rule.fw",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "fw",
             "simple_name": "azurerm_sql_firewall_rule.fw",
             "svg_id": "node_2",
@@ -188,6 +200,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_sql_server.server",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "server",
             "simple_name": "azurerm_sql_server.server",
             "svg_id": "node_3",
@@ -198,6 +214,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm",
             "svg_id": "node_4",
@@ -211,6 +231,10 @@
             },
             "group": 20000,
             "label": "[root] var.location",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "location",
             "simple_name": "var.location",
             "svg_id": "node_5",
@@ -223,6 +247,10 @@
             },
             "group": 20000,
             "label": "[root] var.resource_group",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "resource_group",
             "simple_name": "var.resource_group",
             "svg_id": "node_6",
@@ -235,6 +263,10 @@
             },
             "group": 20000,
             "label": "[root] var.sql_admin",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "sql_admin",
             "simple_name": "var.sql_admin",
             "svg_id": "node_7",
@@ -247,6 +279,10 @@
             },
             "group": 20000,
             "label": "[root] var.sql_password",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "sql_password",
             "simple_name": "var.sql_password",
             "svg_id": "node_8",
@@ -257,6 +293,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_9",
@@ -269,6 +309,10 @@
             },
             "group": 20000,
             "label": "[root] output.database_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "database_name",
             "simple_name": "output.database_name",
             "svg_id": "node_10",
@@ -281,6 +325,10 @@
             },
             "group": 20000,
             "label": "[root] output.sql_server_fqdn",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "sql_server_fqdn",
             "simple_name": "output.sql_server_fqdn",
             "svg_id": "node_11",
@@ -291,6 +339,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm (close)",
             "svg_id": "node_12",
@@ -301,6 +353,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_13",

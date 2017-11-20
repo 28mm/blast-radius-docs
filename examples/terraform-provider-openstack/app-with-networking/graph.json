@@ -198,6 +198,10 @@
             },
             "group": 20000,
             "label": "[root] openstack_compute_floatingip_v2.terraform",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "terraform",
             "simple_name": "openstack_compute_floatingip_v2.terraform",
             "svg_id": "node_0",
@@ -233,6 +237,10 @@
             },
             "group": 20000,
             "label": "[root] openstack_compute_instance_v2.terraform",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "terraform",
             "simple_name": "openstack_compute_instance_v2.terraform",
             "svg_id": "node_1",
@@ -246,6 +254,10 @@
             },
             "group": 20000,
             "label": "[root] openstack_compute_keypair_v2.terraform",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "terraform",
             "simple_name": "openstack_compute_keypair_v2.terraform",
             "svg_id": "node_2",
@@ -279,6 +291,10 @@
             },
             "group": 20000,
             "label": "[root] openstack_compute_secgroup_v2.terraform",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "terraform",
             "simple_name": "openstack_compute_secgroup_v2.terraform",
             "svg_id": "node_3",
@@ -292,6 +308,10 @@
             },
             "group": 20000,
             "label": "[root] openstack_networking_network_v2.terraform",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "terraform",
             "simple_name": "openstack_networking_network_v2.terraform",
             "svg_id": "node_4",
@@ -305,6 +325,10 @@
             },
             "group": 20000,
             "label": "[root] openstack_networking_router_interface_v2.terraform",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "terraform",
             "simple_name": "openstack_networking_router_interface_v2.terraform",
             "svg_id": "node_5",
@@ -319,6 +343,10 @@
             },
             "group": 20000,
             "label": "[root] openstack_networking_router_v2.terraform",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "terraform",
             "simple_name": "openstack_networking_router_v2.terraform",
             "svg_id": "node_6",
@@ -338,6 +366,10 @@
             },
             "group": 20000,
             "label": "[root] openstack_networking_subnet_v2.terraform",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "terraform",
             "simple_name": "openstack_networking_subnet_v2.terraform",
             "svg_id": "node_7",
@@ -348,6 +380,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.openstack",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "openstack",
             "simple_name": "provider.openstack",
             "svg_id": "node_8",
@@ -358,6 +394,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_9",
@@ -370,6 +410,10 @@
             },
             "group": 20000,
             "label": "[root] output.address",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "address",
             "simple_name": "output.address",
             "svg_id": "node_10",
@@ -382,6 +426,10 @@
             },
             "group": 20000,
             "label": "[root] var.pool",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "pool",
             "simple_name": "var.pool",
             "svg_id": "node_11",
@@ -394,6 +442,10 @@
             },
             "group": 20000,
             "label": "[root] var.flavor",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "flavor",
             "simple_name": "var.flavor",
             "svg_id": "node_12",
@@ -406,6 +458,10 @@
             },
             "group": 20000,
             "label": "[root] var.image",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "image",
             "simple_name": "var.image",
             "svg_id": "node_13",
@@ -418,6 +474,10 @@
             },
             "group": 20000,
             "label": "[root] var.ssh_user_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ssh_user_name",
             "simple_name": "var.ssh_user_name",
             "svg_id": "node_14",
@@ -430,6 +490,10 @@
             },
             "group": 20000,
             "label": "[root] var.ssh_key_file",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "ssh_key_file",
             "simple_name": "var.ssh_key_file",
             "svg_id": "node_15",
@@ -440,6 +504,10 @@
             "definition": {},
             "group": 20000,
             "label": "[root] var.external_gateway",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "external_gateway",
             "simple_name": "var.external_gateway",
             "svg_id": "node_16",
@@ -450,6 +518,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.openstack (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "openstack",
             "simple_name": "provider.openstack (close)",
             "svg_id": "node_17",
@@ -460,6 +532,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provisioner.remote-exec (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "remote-exec",
             "simple_name": "provisioner.remote-exec (close)",
             "svg_id": "node_18",
@@ -470,6 +546,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_19",

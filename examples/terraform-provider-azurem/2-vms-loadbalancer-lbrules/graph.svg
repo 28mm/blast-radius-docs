@@ -9,6 +9,12 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 704)">
 <title>%3</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-704 973,-704 973,4 -4,4"/>
+<g id="clust5" class="cluster">
+<title>cluster[root] azurerm_subnet.subnet_var_</title>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster[root] azurerm_virtual_machine.vm_var_</title>
+</g>
 <g id="clust2" class="cluster">
 <title>cluster[root] azurerm_public_ip.lbpip_var_</title>
 </g>
@@ -17,12 +23,6 @@
 </g>
 <g id="clust4" class="cluster">
 <title>cluster[root] azurerm_storage_account.stor_var_</title>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster[root] azurerm_subnet.subnet_var_</title>
-</g>
-<g id="clust6" class="cluster">
-<title>cluster[root] azurerm_virtual_machine.vm_var_</title>
 </g>
 <g id="clust7" class="cluster">
 <title>cluster[root] azurerm_virtual_network.vnet_var_</title>

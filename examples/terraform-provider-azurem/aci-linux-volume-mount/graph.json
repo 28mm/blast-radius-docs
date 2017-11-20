@@ -80,6 +80,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_container_group.myhw",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "myhw",
             "simple_name": "azurerm_container_group.myhw",
             "svg_id": "node_0",
@@ -93,6 +97,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_resource_group.aci-rg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aci-rg",
             "simple_name": "azurerm_resource_group.aci-rg",
             "svg_id": "node_1",
@@ -109,6 +117,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_account.aci-sa",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aci-sa",
             "simple_name": "azurerm_storage_account.aci-sa",
             "svg_id": "node_2",
@@ -124,6 +136,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_share.aci-share",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aci-share",
             "simple_name": "azurerm_storage_share.aci-share",
             "svg_id": "node_3",
@@ -134,6 +150,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm",
             "svg_id": "node_4",
@@ -144,6 +164,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_5",
@@ -154,6 +178,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm (close)",
             "svg_id": "node_6",
@@ -164,6 +192,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_7",

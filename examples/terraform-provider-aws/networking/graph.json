@@ -763,406 +763,608 @@
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.aws_internet_gateway.main",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-east-1.aws_internet_gateway.main",
             "svg_id": "node_0",
-            "type": "module.us-east-1.aws_internet_gateway"
+            "type": "aws_internet_gateway"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.aws_security_group.internal-all",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "internal-all",
             "simple_name": "module.us-east-1.aws_security_group.internal-all",
             "svg_id": "node_1",
-            "type": "module.us-east-1.aws_security_group"
+            "type": "aws_security_group"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.aws_security_group.region",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "region",
             "simple_name": "module.us-east-1.aws_security_group.region",
             "svg_id": "node_2",
-            "type": "module.us-east-1.aws_security_group"
+            "type": "aws_security_group"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.aws_vpc.main",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-east-1.aws_vpc.main",
             "svg_id": "node_3",
-            "type": "module.us-east-1.aws_vpc"
+            "type": "aws_vpc"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.data.aws_availability_zones.all",
+            "module": "module.us-east-1.data",
+            "modules": [
+                "us-east-1",
+                "data"
+            ],
             "resource_name": "all",
             "simple_name": "module.us-east-1.data.aws_availability_zones.all",
             "svg_id": "node_4",
-            "type": "module.us-east-1.data.aws_availability_zones"
+            "type": "aws_availability_zones"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.aws_route_table.main",
+            "module": "module.us-east-1.module.primary_subnet",
+            "modules": [
+                "us-east-1",
+                "primary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-east-1.module.primary_subnet.aws_route_table.main",
             "svg_id": "node_5",
-            "type": "module.us-east-1.module.primary_subnet.aws_route_table"
+            "type": "aws_route_table"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.aws_route_table_association.main",
+            "module": "module.us-east-1.module.primary_subnet",
+            "modules": [
+                "us-east-1",
+                "primary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-east-1.module.primary_subnet.aws_route_table_association.main",
             "svg_id": "node_6",
-            "type": "module.us-east-1.module.primary_subnet.aws_route_table_association"
+            "type": "aws_route_table_association"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.aws_security_group.az",
+            "module": "module.us-east-1.module.primary_subnet",
+            "modules": [
+                "us-east-1",
+                "primary_subnet"
+            ],
             "resource_name": "az",
             "simple_name": "module.us-east-1.module.primary_subnet.aws_security_group.az",
             "svg_id": "node_7",
-            "type": "module.us-east-1.module.primary_subnet.aws_security_group"
+            "type": "aws_security_group"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.aws_subnet.main",
+            "module": "module.us-east-1.module.primary_subnet",
+            "modules": [
+                "us-east-1",
+                "primary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-east-1.module.primary_subnet.aws_subnet.main",
             "svg_id": "node_8",
-            "type": "module.us-east-1.module.primary_subnet.aws_subnet"
+            "type": "aws_subnet"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.data.aws_availability_zone.target",
+            "module": "module.us-east-1.module.primary_subnet.data",
+            "modules": [
+                "us-east-1",
+                "primary_subnet",
+                "data"
+            ],
             "resource_name": "target",
             "simple_name": "module.us-east-1.module.primary_subnet.data.aws_availability_zone.target",
             "svg_id": "node_9",
-            "type": "module.us-east-1.module.primary_subnet.data.aws_availability_zone"
+            "type": "aws_availability_zone"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.data.aws_vpc.target",
+            "module": "module.us-east-1.module.primary_subnet.data",
+            "modules": [
+                "us-east-1",
+                "primary_subnet",
+                "data"
+            ],
             "resource_name": "target",
             "simple_name": "module.us-east-1.module.primary_subnet.data.aws_vpc.target",
             "svg_id": "node_10",
-            "type": "module.us-east-1.module.primary_subnet.data.aws_vpc"
+            "type": "aws_vpc"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.provider.aws",
+            "module": "module.us-east-1.module.primary_subnet",
+            "modules": [
+                "us-east-1",
+                "primary_subnet"
+            ],
             "resource_name": "aws",
             "simple_name": "module.us-east-1.module.primary_subnet.provider.aws",
             "svg_id": "node_11",
-            "type": "module.us-east-1.module.primary_subnet.provider"
+            "type": "provider"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.aws_route_table.main",
+            "module": "module.us-east-1.module.secondary_subnet",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-east-1.module.secondary_subnet.aws_route_table.main",
             "svg_id": "node_12",
-            "type": "module.us-east-1.module.secondary_subnet.aws_route_table"
+            "type": "aws_route_table"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.aws_route_table_association.main",
+            "module": "module.us-east-1.module.secondary_subnet",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-east-1.module.secondary_subnet.aws_route_table_association.main",
             "svg_id": "node_13",
-            "type": "module.us-east-1.module.secondary_subnet.aws_route_table_association"
+            "type": "aws_route_table_association"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.aws_security_group.az",
+            "module": "module.us-east-1.module.secondary_subnet",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet"
+            ],
             "resource_name": "az",
             "simple_name": "module.us-east-1.module.secondary_subnet.aws_security_group.az",
             "svg_id": "node_14",
-            "type": "module.us-east-1.module.secondary_subnet.aws_security_group"
+            "type": "aws_security_group"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.aws_subnet.main",
+            "module": "module.us-east-1.module.secondary_subnet",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-east-1.module.secondary_subnet.aws_subnet.main",
             "svg_id": "node_15",
-            "type": "module.us-east-1.module.secondary_subnet.aws_subnet"
+            "type": "aws_subnet"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.data.aws_availability_zone.target",
+            "module": "module.us-east-1.module.secondary_subnet.data",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet",
+                "data"
+            ],
             "resource_name": "target",
             "simple_name": "module.us-east-1.module.secondary_subnet.data.aws_availability_zone.target",
             "svg_id": "node_16",
-            "type": "module.us-east-1.module.secondary_subnet.data.aws_availability_zone"
+            "type": "aws_availability_zone"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.data.aws_vpc.target",
+            "module": "module.us-east-1.module.secondary_subnet.data",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet",
+                "data"
+            ],
             "resource_name": "target",
             "simple_name": "module.us-east-1.module.secondary_subnet.data.aws_vpc.target",
             "svg_id": "node_17",
-            "type": "module.us-east-1.module.secondary_subnet.data.aws_vpc"
+            "type": "aws_vpc"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.provider.aws",
+            "module": "module.us-east-1.module.secondary_subnet",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet"
+            ],
             "resource_name": "aws",
             "simple_name": "module.us-east-1.module.secondary_subnet.provider.aws",
             "svg_id": "node_18",
-            "type": "module.us-east-1.module.secondary_subnet.provider"
+            "type": "provider"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.provider.aws",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "aws",
             "simple_name": "module.us-east-1.provider.aws",
             "svg_id": "node_19",
-            "type": "module.us-east-1.provider"
+            "type": "provider"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.aws_internet_gateway.main",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-west-2.aws_internet_gateway.main",
             "svg_id": "node_20",
-            "type": "module.us-west-2.aws_internet_gateway"
+            "type": "aws_internet_gateway"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.aws_security_group.internal-all",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "internal-all",
             "simple_name": "module.us-west-2.aws_security_group.internal-all",
             "svg_id": "node_21",
-            "type": "module.us-west-2.aws_security_group"
+            "type": "aws_security_group"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.aws_security_group.region",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "region",
             "simple_name": "module.us-west-2.aws_security_group.region",
             "svg_id": "node_22",
-            "type": "module.us-west-2.aws_security_group"
+            "type": "aws_security_group"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.aws_vpc.main",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-west-2.aws_vpc.main",
             "svg_id": "node_23",
-            "type": "module.us-west-2.aws_vpc"
+            "type": "aws_vpc"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.data.aws_availability_zones.all",
+            "module": "module.us-west-2.data",
+            "modules": [
+                "us-west-2",
+                "data"
+            ],
             "resource_name": "all",
             "simple_name": "module.us-west-2.data.aws_availability_zones.all",
             "svg_id": "node_24",
-            "type": "module.us-west-2.data.aws_availability_zones"
+            "type": "aws_availability_zones"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.aws_route_table.main",
+            "module": "module.us-west-2.module.primary_subnet",
+            "modules": [
+                "us-west-2",
+                "primary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-west-2.module.primary_subnet.aws_route_table.main",
             "svg_id": "node_25",
-            "type": "module.us-west-2.module.primary_subnet.aws_route_table"
+            "type": "aws_route_table"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.aws_route_table_association.main",
+            "module": "module.us-west-2.module.primary_subnet",
+            "modules": [
+                "us-west-2",
+                "primary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-west-2.module.primary_subnet.aws_route_table_association.main",
             "svg_id": "node_26",
-            "type": "module.us-west-2.module.primary_subnet.aws_route_table_association"
+            "type": "aws_route_table_association"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.aws_security_group.az",
+            "module": "module.us-west-2.module.primary_subnet",
+            "modules": [
+                "us-west-2",
+                "primary_subnet"
+            ],
             "resource_name": "az",
             "simple_name": "module.us-west-2.module.primary_subnet.aws_security_group.az",
             "svg_id": "node_27",
-            "type": "module.us-west-2.module.primary_subnet.aws_security_group"
+            "type": "aws_security_group"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
+            "module": "module.us-west-2.module.primary_subnet",
+            "modules": [
+                "us-west-2",
+                "primary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-west-2.module.primary_subnet.aws_subnet.main",
             "svg_id": "node_28",
-            "type": "module.us-west-2.module.primary_subnet.aws_subnet"
+            "type": "aws_subnet"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.data.aws_availability_zone.target",
+            "module": "module.us-west-2.module.primary_subnet.data",
+            "modules": [
+                "us-west-2",
+                "primary_subnet",
+                "data"
+            ],
             "resource_name": "target",
             "simple_name": "module.us-west-2.module.primary_subnet.data.aws_availability_zone.target",
             "svg_id": "node_29",
-            "type": "module.us-west-2.module.primary_subnet.data.aws_availability_zone"
+            "type": "aws_availability_zone"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.data.aws_vpc.target",
+            "module": "module.us-west-2.module.primary_subnet.data",
+            "modules": [
+                "us-west-2",
+                "primary_subnet",
+                "data"
+            ],
             "resource_name": "target",
             "simple_name": "module.us-west-2.module.primary_subnet.data.aws_vpc.target",
             "svg_id": "node_30",
-            "type": "module.us-west-2.module.primary_subnet.data.aws_vpc"
+            "type": "aws_vpc"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.provider.aws",
+            "module": "module.us-west-2.module.primary_subnet",
+            "modules": [
+                "us-west-2",
+                "primary_subnet"
+            ],
             "resource_name": "aws",
             "simple_name": "module.us-west-2.module.primary_subnet.provider.aws",
             "svg_id": "node_31",
-            "type": "module.us-west-2.module.primary_subnet.provider"
+            "type": "provider"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.aws_route_table.main",
+            "module": "module.us-west-2.module.secondary_subnet",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-west-2.module.secondary_subnet.aws_route_table.main",
             "svg_id": "node_32",
-            "type": "module.us-west-2.module.secondary_subnet.aws_route_table"
+            "type": "aws_route_table"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.aws_route_table_association.main",
+            "module": "module.us-west-2.module.secondary_subnet",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-west-2.module.secondary_subnet.aws_route_table_association.main",
             "svg_id": "node_33",
-            "type": "module.us-west-2.module.secondary_subnet.aws_route_table_association"
+            "type": "aws_route_table_association"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.aws_security_group.az",
+            "module": "module.us-west-2.module.secondary_subnet",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet"
+            ],
             "resource_name": "az",
             "simple_name": "module.us-west-2.module.secondary_subnet.aws_security_group.az",
             "svg_id": "node_34",
-            "type": "module.us-west-2.module.secondary_subnet.aws_security_group"
+            "type": "aws_security_group"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
+            "module": "module.us-west-2.module.secondary_subnet",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet"
+            ],
             "resource_name": "main",
             "simple_name": "module.us-west-2.module.secondary_subnet.aws_subnet.main",
             "svg_id": "node_35",
-            "type": "module.us-west-2.module.secondary_subnet.aws_subnet"
+            "type": "aws_subnet"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.data.aws_availability_zone.target",
+            "module": "module.us-west-2.module.secondary_subnet.data",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet",
+                "data"
+            ],
             "resource_name": "target",
             "simple_name": "module.us-west-2.module.secondary_subnet.data.aws_availability_zone.target",
             "svg_id": "node_36",
-            "type": "module.us-west-2.module.secondary_subnet.data.aws_availability_zone"
+            "type": "aws_availability_zone"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.data.aws_vpc.target",
+            "module": "module.us-west-2.module.secondary_subnet.data",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet",
+                "data"
+            ],
             "resource_name": "target",
             "simple_name": "module.us-west-2.module.secondary_subnet.data.aws_vpc.target",
             "svg_id": "node_37",
-            "type": "module.us-west-2.module.secondary_subnet.data.aws_vpc"
+            "type": "aws_vpc"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.provider.aws",
+            "module": "module.us-west-2.module.secondary_subnet",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet"
+            ],
             "resource_name": "aws",
             "simple_name": "module.us-west-2.module.secondary_subnet.provider.aws",
             "svg_id": "node_38",
-            "type": "module.us-west-2.module.secondary_subnet.provider"
+            "type": "provider"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.provider.aws",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "aws",
             "simple_name": "module.us-west-2.provider.aws",
             "svg_id": "node_39",
-            "type": "module.us-west-2.provider"
+            "type": "provider"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] provider.aws (disabled)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws",
             "simple_name": "provider.aws (disabled)",
             "svg_id": "node_40",
@@ -1173,180 +1375,262 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_41",
             "type": "meta"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-east-1.module.primary_subnet.output.subnet_id",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.output.primary_subnet_id",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "primary_subnet_id",
             "simple_name": "module.us-east-1.output.primary_subnet_id",
             "svg_id": "node_42",
-            "type": "module.us-east-1.output"
+            "type": "output"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-east-1.module.secondary_subnet.output.subnet_id",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.output.secondary_subnet_id",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "secondary_subnet_id",
             "simple_name": "module.us-east-1.output.secondary_subnet_id",
             "svg_id": "node_43",
-            "type": "module.us-east-1.output"
+            "type": "output"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-east-1.aws_vpc.main",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.output.vpc_id",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "vpc_id",
             "simple_name": "module.us-east-1.output.vpc_id",
             "svg_id": "node_44",
-            "type": "module.us-east-1.output"
+            "type": "output"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-west-2.module.primary_subnet.output.subnet_id",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.output.primary_subnet_id",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "primary_subnet_id",
             "simple_name": "module.us-west-2.output.primary_subnet_id",
             "svg_id": "node_45",
-            "type": "module.us-west-2.output"
+            "type": "output"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-west-2.module.secondary_subnet.output.subnet_id",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.output.secondary_subnet_id",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "secondary_subnet_id",
             "simple_name": "module.us-west-2.output.secondary_subnet_id",
             "svg_id": "node_46",
-            "type": "module.us-west-2.output"
+            "type": "output"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-west-2.aws_vpc.main",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.output.vpc_id",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "vpc_id",
             "simple_name": "module.us-west-2.output.vpc_id",
             "svg_id": "node_47",
-            "type": "module.us-west-2.output"
+            "type": "output"
         },
         {
-            "cluster": "root",
-            "definition": "",
+            "cluster": "cluster[root] module.us-east-1.aws_vpc.main_var_[root] var.base_cidr_block",
+            "definition": {
+                "default": "10.0.0.0/12"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.var.base_cidr_block",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "base_cidr_block",
             "simple_name": "module.us-east-1.var.base_cidr_block",
             "svg_id": "node_48",
-            "type": "module.us-east-1.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-east-1.aws_vpc.main_var_",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.var.region_numbers",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "region_numbers",
             "simple_name": "module.us-east-1.var.region_numbers",
             "svg_id": "node_49",
-            "type": "module.us-east-1.var"
+            "type": "var"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.var.vpc_id",
+            "module": "module.us-east-1.module.primary_subnet",
+            "modules": [
+                "us-east-1",
+                "primary_subnet"
+            ],
             "resource_name": "vpc_id",
             "simple_name": "module.us-east-1.module.primary_subnet.var.vpc_id",
             "svg_id": "node_50",
-            "type": "module.us-east-1.module.primary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-east-1.module.primary_subnet.aws_subnet.main_var_",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.var.az_numbers",
+            "module": "module.us-east-1.module.primary_subnet",
+            "modules": [
+                "us-east-1",
+                "primary_subnet"
+            ],
             "resource_name": "az_numbers",
             "simple_name": "module.us-east-1.module.primary_subnet.var.az_numbers",
             "svg_id": "node_51",
-            "type": "module.us-east-1.module.primary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-east-1.module.primary_subnet.data.aws_availability_zone.target_var_[root] module.us-east-1.data.aws_availability_zones.all",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.var.availability_zone",
+            "module": "module.us-east-1.module.primary_subnet",
+            "modules": [
+                "us-east-1",
+                "primary_subnet"
+            ],
             "resource_name": "availability_zone",
             "simple_name": "module.us-east-1.module.primary_subnet.var.availability_zone",
             "svg_id": "node_52",
-            "type": "module.us-east-1.module.primary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-east-1.output.primary_subnet_id_output_[root] module.us-east-1.module.primary_subnet.aws_subnet.main",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.output.subnet_id",
+            "module": "module.us-east-1.module.primary_subnet",
+            "modules": [
+                "us-east-1",
+                "primary_subnet"
+            ],
             "resource_name": "subnet_id",
             "simple_name": "module.us-east-1.module.primary_subnet.output.subnet_id",
             "svg_id": "node_53",
-            "type": "module.us-east-1.module.primary_subnet.output"
+            "type": "output"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.var.vpc_id",
+            "module": "module.us-east-1.module.secondary_subnet",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet"
+            ],
             "resource_name": "vpc_id",
             "simple_name": "module.us-east-1.module.secondary_subnet.var.vpc_id",
             "svg_id": "node_54",
-            "type": "module.us-east-1.module.secondary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-east-1.module.secondary_subnet.aws_subnet.main_var_",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.var.az_numbers",
+            "module": "module.us-east-1.module.secondary_subnet",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet"
+            ],
             "resource_name": "az_numbers",
             "simple_name": "module.us-east-1.module.secondary_subnet.var.az_numbers",
             "svg_id": "node_55",
-            "type": "module.us-east-1.module.secondary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-east-1.module.secondary_subnet.data.aws_availability_zone.target_var_[root] module.us-east-1.data.aws_availability_zones.all",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.var.availability_zone",
+            "module": "module.us-east-1.module.secondary_subnet",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet"
+            ],
             "resource_name": "availability_zone",
             "simple_name": "module.us-east-1.module.secondary_subnet.var.availability_zone",
             "svg_id": "node_56",
-            "type": "module.us-east-1.module.secondary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-east-1.output.secondary_subnet_id_output_[root] module.us-east-1.module.secondary_subnet.aws_subnet.main",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.output.subnet_id",
+            "module": "module.us-east-1.module.secondary_subnet",
+            "modules": [
+                "us-east-1",
+                "secondary_subnet"
+            ],
             "resource_name": "subnet_id",
             "simple_name": "module.us-east-1.module.secondary_subnet.output.subnet_id",
             "svg_id": "node_57",
-            "type": "module.us-east-1.module.secondary_subnet.output"
+            "type": "output"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-east-1.provider.aws_var_",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-east-1.var.region",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
             "resource_name": "region",
             "simple_name": "module.us-east-1.var.region",
             "svg_id": "node_58",
-            "type": "module.us-east-1.var"
+            "type": "var"
         },
         {
             "cluster": "root",
@@ -1355,126 +1639,188 @@
             },
             "group": 20000,
             "label": "[root] var.base_cidr_block",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "base_cidr_block",
             "simple_name": "var.base_cidr_block",
             "svg_id": "node_59",
             "type": "var"
         },
         {
-            "cluster": "root",
-            "definition": "",
+            "cluster": "cluster[root] module.us-west-2.aws_vpc.main_var_[root] var.base_cidr_block",
+            "definition": {
+                "default": "10.0.0.0/12"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.var.base_cidr_block",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "base_cidr_block",
             "simple_name": "module.us-west-2.var.base_cidr_block",
             "svg_id": "node_60",
-            "type": "module.us-west-2.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-west-2.aws_vpc.main_var_",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.var.region_numbers",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "region_numbers",
             "simple_name": "module.us-west-2.var.region_numbers",
             "svg_id": "node_61",
-            "type": "module.us-west-2.var"
+            "type": "var"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.var.vpc_id",
+            "module": "module.us-west-2.module.primary_subnet",
+            "modules": [
+                "us-west-2",
+                "primary_subnet"
+            ],
             "resource_name": "vpc_id",
             "simple_name": "module.us-west-2.module.primary_subnet.var.vpc_id",
             "svg_id": "node_62",
-            "type": "module.us-west-2.module.primary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-west-2.module.primary_subnet.aws_subnet.main_var_",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.var.az_numbers",
+            "module": "module.us-west-2.module.primary_subnet",
+            "modules": [
+                "us-west-2",
+                "primary_subnet"
+            ],
             "resource_name": "az_numbers",
             "simple_name": "module.us-west-2.module.primary_subnet.var.az_numbers",
             "svg_id": "node_63",
-            "type": "module.us-west-2.module.primary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-west-2.module.primary_subnet.data.aws_availability_zone.target_var_[root] module.us-west-2.data.aws_availability_zones.all",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.var.availability_zone",
+            "module": "module.us-west-2.module.primary_subnet",
+            "modules": [
+                "us-west-2",
+                "primary_subnet"
+            ],
             "resource_name": "availability_zone",
             "simple_name": "module.us-west-2.module.primary_subnet.var.availability_zone",
             "svg_id": "node_64",
-            "type": "module.us-west-2.module.primary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-west-2.output.primary_subnet_id_output_[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.output.subnet_id",
+            "module": "module.us-west-2.module.primary_subnet",
+            "modules": [
+                "us-west-2",
+                "primary_subnet"
+            ],
             "resource_name": "subnet_id",
             "simple_name": "module.us-west-2.module.primary_subnet.output.subnet_id",
             "svg_id": "node_65",
-            "type": "module.us-west-2.module.primary_subnet.output"
+            "type": "output"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.var.vpc_id",
+            "module": "module.us-west-2.module.secondary_subnet",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet"
+            ],
             "resource_name": "vpc_id",
             "simple_name": "module.us-west-2.module.secondary_subnet.var.vpc_id",
             "svg_id": "node_66",
-            "type": "module.us-west-2.module.secondary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-west-2.module.secondary_subnet.aws_subnet.main_var_",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.var.az_numbers",
+            "module": "module.us-west-2.module.secondary_subnet",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet"
+            ],
             "resource_name": "az_numbers",
             "simple_name": "module.us-west-2.module.secondary_subnet.var.az_numbers",
             "svg_id": "node_67",
-            "type": "module.us-west-2.module.secondary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-west-2.module.secondary_subnet.data.aws_availability_zone.target_var_[root] module.us-west-2.data.aws_availability_zones.all",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.var.availability_zone",
+            "module": "module.us-west-2.module.secondary_subnet",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet"
+            ],
             "resource_name": "availability_zone",
             "simple_name": "module.us-west-2.module.secondary_subnet.var.availability_zone",
             "svg_id": "node_68",
-            "type": "module.us-west-2.module.secondary_subnet.var"
+            "type": "var"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-west-2.output.secondary_subnet_id_output_[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.output.subnet_id",
+            "module": "module.us-west-2.module.secondary_subnet",
+            "modules": [
+                "us-west-2",
+                "secondary_subnet"
+            ],
             "resource_name": "subnet_id",
             "simple_name": "module.us-west-2.module.secondary_subnet.output.subnet_id",
             "svg_id": "node_69",
-            "type": "module.us-west-2.module.secondary_subnet.output"
+            "type": "output"
         },
         {
-            "cluster": "root",
+            "cluster": "cluster[root] module.us-west-2.provider.aws_var_",
             "definition": "",
             "group": 20000,
             "label": "[root] module.us-west-2.var.region",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
             "resource_name": "region",
             "simple_name": "module.us-west-2.var.region",
             "svg_id": "node_70",
-            "type": "module.us-west-2.var"
+            "type": "var"
         },
         {
             "cluster": "root",
             "definition": "",
             "group": 20000,
             "label": "[root] provider.aws (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "aws",
             "simple_name": "provider.aws (close)",
             "svg_id": "node_71",
@@ -1485,6 +1831,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_72",

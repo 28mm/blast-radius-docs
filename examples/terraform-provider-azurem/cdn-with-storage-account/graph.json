@@ -138,6 +138,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_cdn_endpoint.cdnendpt",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cdnendpt",
             "simple_name": "azurerm_cdn_endpoint.cdnendpt",
             "svg_id": "node_0",
@@ -153,6 +157,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_cdn_profile.cdn",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "cdn",
             "simple_name": "azurerm_cdn_profile.cdn",
             "svg_id": "node_1",
@@ -166,6 +174,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_resource_group.rg",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "rg",
             "simple_name": "azurerm_resource_group.rg",
             "svg_id": "node_2",
@@ -182,6 +194,10 @@
             },
             "group": 20000,
             "label": "[root] azurerm_storage_account.stor",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "stor",
             "simple_name": "azurerm_storage_account.stor",
             "svg_id": "node_3",
@@ -192,6 +208,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm",
             "svg_id": "node_4",
@@ -205,6 +225,10 @@
             },
             "group": 20000,
             "label": "[root] var.host_name",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "host_name",
             "simple_name": "var.host_name",
             "svg_id": "node_5",
@@ -218,6 +242,10 @@
             },
             "group": 20000,
             "label": "[root] var.location",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "location",
             "simple_name": "var.location",
             "svg_id": "node_6",
@@ -230,6 +258,10 @@
             },
             "group": 20000,
             "label": "[root] var.resource_group",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "resource_group",
             "simple_name": "var.resource_group",
             "svg_id": "node_7",
@@ -243,6 +275,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_account_tier",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_account_tier",
             "simple_name": "var.storage_account_tier",
             "svg_id": "node_8",
@@ -256,6 +292,10 @@
             },
             "group": 20000,
             "label": "[root] var.storage_replication_type",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "storage_replication_type",
             "simple_name": "var.storage_replication_type",
             "svg_id": "node_9",
@@ -266,6 +306,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] meta.count-boundary (count boundary fixup)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "count-boundary",
             "simple_name": "meta.count-boundary (count boundary fixup)",
             "svg_id": "node_10",
@@ -276,6 +320,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] output.CDN Endpoint ID",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "CDN",
             "simple_name": "output.CDN Endpoint ID",
             "svg_id": "node_11",
@@ -286,6 +334,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] provider.azurerm (close)",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "azurerm",
             "simple_name": "provider.azurerm (close)",
             "svg_id": "node_12",
@@ -296,6 +348,10 @@
             "definition": "",
             "group": 20000,
             "label": "[root] root",
+            "module": "root",
+            "modules": [
+                "root"
+            ],
             "resource_name": "",
             "simple_name": "root",
             "svg_id": "node_13",
