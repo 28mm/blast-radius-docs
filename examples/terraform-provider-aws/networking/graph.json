@@ -760,7 +760,9 @@
     "nodes": [
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "vpc_id": "${aws_vpc.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.aws_internet_gateway.main",
             "module": "module.us-east-1",
@@ -774,7 +776,19 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "description": "Open access within the full internal network",
+                "ingress": {
+                    "cidr_blocks": [
+                        "${var.base_cidr_block}"
+                    ],
+                    "from_port": 0,
+                    "protocol": -1,
+                    "to_port": 0
+                },
+                "name": "internal-all",
+                "vpc_id": "${aws_vpc.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.aws_security_group.internal-all",
             "module": "module.us-east-1",
@@ -788,7 +802,19 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "description": "Open access within this region",
+                "ingress": {
+                    "cidr_blocks": [
+                        "${aws_vpc.main.cidr_block}"
+                    ],
+                    "from_port": 0,
+                    "protocol": -1,
+                    "to_port": 0
+                },
+                "name": "region",
+                "vpc_id": "${aws_vpc.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.aws_security_group.region",
             "module": "module.us-east-1",
@@ -802,7 +828,9 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "cidr_block": "${cidrsubnet(var.base_cidr_block, 4, lookup(var.region_numbers, var.region))}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.aws_vpc.main",
             "module": "module.us-east-1",
@@ -831,7 +859,9 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.aws_route_table.main",
             "module": "module.us-east-1.module.primary_subnet",
@@ -846,7 +876,10 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "route_table_id": "${aws_route_table.main.id}",
+                "subnet_id": "${aws_subnet.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.aws_route_table_association.main",
             "module": "module.us-east-1.module.primary_subnet",
@@ -861,7 +894,19 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "description": "Open access within the AZ ${data.aws_availability_zone.target.name}",
+                "ingress": {
+                    "cidr_blocks": [
+                        "${aws_subnet.main.cidr_block}"
+                    ],
+                    "from_port": 0,
+                    "protocol": -1,
+                    "to_port": 0
+                },
+                "name": "az-${data.aws_availability_zone.target.name}",
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.aws_security_group.az",
             "module": "module.us-east-1.module.primary_subnet",
@@ -876,7 +921,11 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "availability_zone": "${var.availability_zone}",
+                "cidr_block": "${cidrsubnet(data.aws_vpc.target.cidr_block, 4, lookup(var.az_numbers, data.aws_availability_zone.target.name_suffix))}",
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.aws_subnet.main",
             "module": "module.us-east-1.module.primary_subnet",
@@ -938,7 +987,9 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.aws_route_table.main",
             "module": "module.us-east-1.module.secondary_subnet",
@@ -953,7 +1004,10 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "route_table_id": "${aws_route_table.main.id}",
+                "subnet_id": "${aws_subnet.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.aws_route_table_association.main",
             "module": "module.us-east-1.module.secondary_subnet",
@@ -968,7 +1022,19 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "description": "Open access within the AZ ${data.aws_availability_zone.target.name}",
+                "ingress": {
+                    "cidr_blocks": [
+                        "${aws_subnet.main.cidr_block}"
+                    ],
+                    "from_port": 0,
+                    "protocol": -1,
+                    "to_port": 0
+                },
+                "name": "az-${data.aws_availability_zone.target.name}",
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.aws_security_group.az",
             "module": "module.us-east-1.module.secondary_subnet",
@@ -983,7 +1049,11 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "availability_zone": "${var.availability_zone}",
+                "cidr_block": "${cidrsubnet(data.aws_vpc.target.cidr_block, 4, lookup(var.az_numbers, data.aws_availability_zone.target.name_suffix))}",
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.aws_subnet.main",
             "module": "module.us-east-1.module.secondary_subnet",
@@ -1045,7 +1115,9 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "region": "${var.region}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.provider.aws",
             "module": "module.us-east-1",
@@ -1059,7 +1131,9 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "vpc_id": "${aws_vpc.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.aws_internet_gateway.main",
             "module": "module.us-west-2",
@@ -1073,7 +1147,19 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "description": "Open access within the full internal network",
+                "ingress": {
+                    "cidr_blocks": [
+                        "${var.base_cidr_block}"
+                    ],
+                    "from_port": 0,
+                    "protocol": -1,
+                    "to_port": 0
+                },
+                "name": "internal-all",
+                "vpc_id": "${aws_vpc.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.aws_security_group.internal-all",
             "module": "module.us-west-2",
@@ -1087,7 +1173,19 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "description": "Open access within this region",
+                "ingress": {
+                    "cidr_blocks": [
+                        "${aws_vpc.main.cidr_block}"
+                    ],
+                    "from_port": 0,
+                    "protocol": -1,
+                    "to_port": 0
+                },
+                "name": "region",
+                "vpc_id": "${aws_vpc.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.aws_security_group.region",
             "module": "module.us-west-2",
@@ -1101,7 +1199,9 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "cidr_block": "${cidrsubnet(var.base_cidr_block, 4, lookup(var.region_numbers, var.region))}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.aws_vpc.main",
             "module": "module.us-west-2",
@@ -1130,7 +1230,9 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.aws_route_table.main",
             "module": "module.us-west-2.module.primary_subnet",
@@ -1145,7 +1247,10 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "route_table_id": "${aws_route_table.main.id}",
+                "subnet_id": "${aws_subnet.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.aws_route_table_association.main",
             "module": "module.us-west-2.module.primary_subnet",
@@ -1160,7 +1265,19 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "description": "Open access within the AZ ${data.aws_availability_zone.target.name}",
+                "ingress": {
+                    "cidr_blocks": [
+                        "${aws_subnet.main.cidr_block}"
+                    ],
+                    "from_port": 0,
+                    "protocol": -1,
+                    "to_port": 0
+                },
+                "name": "az-${data.aws_availability_zone.target.name}",
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.aws_security_group.az",
             "module": "module.us-west-2.module.primary_subnet",
@@ -1175,7 +1292,11 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "availability_zone": "${var.availability_zone}",
+                "cidr_block": "${cidrsubnet(data.aws_vpc.target.cidr_block, 4, lookup(var.az_numbers, data.aws_availability_zone.target.name_suffix))}",
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
             "module": "module.us-west-2.module.primary_subnet",
@@ -1237,7 +1358,9 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.aws_route_table.main",
             "module": "module.us-west-2.module.secondary_subnet",
@@ -1252,7 +1375,10 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "route_table_id": "${aws_route_table.main.id}",
+                "subnet_id": "${aws_subnet.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.aws_route_table_association.main",
             "module": "module.us-west-2.module.secondary_subnet",
@@ -1267,7 +1393,19 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "description": "Open access within the AZ ${data.aws_availability_zone.target.name}",
+                "ingress": {
+                    "cidr_blocks": [
+                        "${aws_subnet.main.cidr_block}"
+                    ],
+                    "from_port": 0,
+                    "protocol": -1,
+                    "to_port": 0
+                },
+                "name": "az-${data.aws_availability_zone.target.name}",
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.aws_security_group.az",
             "module": "module.us-west-2.module.secondary_subnet",
@@ -1282,7 +1420,11 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "availability_zone": "${var.availability_zone}",
+                "cidr_block": "${cidrsubnet(data.aws_vpc.target.cidr_block, 4, lookup(var.az_numbers, data.aws_availability_zone.target.name_suffix))}",
+                "vpc_id": "${var.vpc_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
             "module": "module.us-west-2.module.secondary_subnet",
@@ -1344,7 +1486,9 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "region": "${var.region}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.provider.aws",
             "module": "module.us-west-2",
@@ -1386,7 +1530,9 @@
         },
         {
             "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-east-1.module.primary_subnet.output.subnet_id",
-            "definition": "",
+            "definition": {
+                "value": "${module.primary_subnet.subnet_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.output.primary_subnet_id",
             "module": "module.us-east-1",
@@ -1400,7 +1546,9 @@
         },
         {
             "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-east-1.module.secondary_subnet.output.subnet_id",
-            "definition": "",
+            "definition": {
+                "value": "${module.secondary_subnet.subnet_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.output.secondary_subnet_id",
             "module": "module.us-east-1",
@@ -1414,7 +1562,9 @@
         },
         {
             "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-east-1.aws_vpc.main",
-            "definition": "",
+            "definition": {
+                "value": "${aws_vpc.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.output.vpc_id",
             "module": "module.us-east-1",
@@ -1428,7 +1578,9 @@
         },
         {
             "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-west-2.module.primary_subnet.output.subnet_id",
-            "definition": "",
+            "definition": {
+                "value": "${module.primary_subnet.subnet_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.output.primary_subnet_id",
             "module": "module.us-west-2",
@@ -1442,7 +1594,9 @@
         },
         {
             "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-west-2.module.secondary_subnet.output.subnet_id",
-            "definition": "",
+            "definition": {
+                "value": "${module.secondary_subnet.subnet_id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.output.secondary_subnet_id",
             "module": "module.us-west-2",
@@ -1456,7 +1610,9 @@
         },
         {
             "cluster": "cluster[root] meta.count-boundary (count boundary fixup)_output_[root] module.us-west-2.aws_vpc.main",
-            "definition": "",
+            "definition": {
+                "value": "${aws_vpc.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.output.vpc_id",
             "module": "module.us-west-2",
@@ -1470,9 +1626,7 @@
         },
         {
             "cluster": "cluster[root] module.us-east-1.aws_vpc.main_var_[root] var.base_cidr_block",
-            "definition": {
-                "default": "10.0.0.0/12"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-east-1.var.base_cidr_block",
             "module": "module.us-east-1",
@@ -1486,7 +1640,14 @@
         },
         {
             "cluster": "cluster[root] module.us-east-1.aws_vpc.main_var_",
-            "definition": "",
+            "definition": {
+                "default": {
+                    "eu-west-1": 4,
+                    "us-east-1": 1,
+                    "us-west-1": 2,
+                    "us-west-2": 3
+                }
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.var.region_numbers",
             "module": "module.us-east-1",
@@ -1500,7 +1661,7 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.var.vpc_id",
             "module": "module.us-east-1.module.primary_subnet",
@@ -1515,7 +1676,24 @@
         },
         {
             "cluster": "cluster[root] module.us-east-1.module.primary_subnet.aws_subnet.main_var_",
-            "definition": "",
+            "definition": {
+                "default": {
+                    "a": 1,
+                    "b": 2,
+                    "c": 3,
+                    "d": 4,
+                    "e": 5,
+                    "f": 6,
+                    "g": 7,
+                    "h": 8,
+                    "i": 9,
+                    "j": 10,
+                    "k": 11,
+                    "l": 12,
+                    "m": 13,
+                    "n": 14
+                }
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.var.az_numbers",
             "module": "module.us-east-1.module.primary_subnet",
@@ -1530,7 +1708,7 @@
         },
         {
             "cluster": "cluster[root] module.us-east-1.module.primary_subnet.data.aws_availability_zone.target_var_[root] module.us-east-1.data.aws_availability_zones.all",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.var.availability_zone",
             "module": "module.us-east-1.module.primary_subnet",
@@ -1545,7 +1723,9 @@
         },
         {
             "cluster": "cluster[root] module.us-east-1.output.primary_subnet_id_output_[root] module.us-east-1.module.primary_subnet.aws_subnet.main",
-            "definition": "",
+            "definition": {
+                "value": "${aws_subnet.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.primary_subnet.output.subnet_id",
             "module": "module.us-east-1.module.primary_subnet",
@@ -1560,7 +1740,7 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.var.vpc_id",
             "module": "module.us-east-1.module.secondary_subnet",
@@ -1575,7 +1755,24 @@
         },
         {
             "cluster": "cluster[root] module.us-east-1.module.secondary_subnet.aws_subnet.main_var_",
-            "definition": "",
+            "definition": {
+                "default": {
+                    "a": 1,
+                    "b": 2,
+                    "c": 3,
+                    "d": 4,
+                    "e": 5,
+                    "f": 6,
+                    "g": 7,
+                    "h": 8,
+                    "i": 9,
+                    "j": 10,
+                    "k": 11,
+                    "l": 12,
+                    "m": 13,
+                    "n": 14
+                }
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.var.az_numbers",
             "module": "module.us-east-1.module.secondary_subnet",
@@ -1590,7 +1787,7 @@
         },
         {
             "cluster": "cluster[root] module.us-east-1.module.secondary_subnet.data.aws_availability_zone.target_var_[root] module.us-east-1.data.aws_availability_zones.all",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.var.availability_zone",
             "module": "module.us-east-1.module.secondary_subnet",
@@ -1605,7 +1802,9 @@
         },
         {
             "cluster": "cluster[root] module.us-east-1.output.secondary_subnet_id_output_[root] module.us-east-1.module.secondary_subnet.aws_subnet.main",
-            "definition": "",
+            "definition": {
+                "value": "${aws_subnet.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.module.secondary_subnet.output.subnet_id",
             "module": "module.us-east-1.module.secondary_subnet",
@@ -1620,7 +1819,9 @@
         },
         {
             "cluster": "cluster[root] module.us-east-1.provider.aws_var_",
-            "definition": "",
+            "definition": {
+                "description": "The name of the AWS region to set up a network within"
+            },
             "group": 20000,
             "label": "[root] module.us-east-1.var.region",
             "module": "module.us-east-1",
@@ -1650,9 +1851,7 @@
         },
         {
             "cluster": "cluster[root] module.us-west-2.aws_vpc.main_var_[root] var.base_cidr_block",
-            "definition": {
-                "default": "10.0.0.0/12"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-west-2.var.base_cidr_block",
             "module": "module.us-west-2",
@@ -1666,7 +1865,14 @@
         },
         {
             "cluster": "cluster[root] module.us-west-2.aws_vpc.main_var_",
-            "definition": "",
+            "definition": {
+                "default": {
+                    "eu-west-1": 4,
+                    "us-east-1": 1,
+                    "us-west-1": 2,
+                    "us-west-2": 3
+                }
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.var.region_numbers",
             "module": "module.us-west-2",
@@ -1680,7 +1886,7 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.var.vpc_id",
             "module": "module.us-west-2.module.primary_subnet",
@@ -1695,7 +1901,24 @@
         },
         {
             "cluster": "cluster[root] module.us-west-2.module.primary_subnet.aws_subnet.main_var_",
-            "definition": "",
+            "definition": {
+                "default": {
+                    "a": 1,
+                    "b": 2,
+                    "c": 3,
+                    "d": 4,
+                    "e": 5,
+                    "f": 6,
+                    "g": 7,
+                    "h": 8,
+                    "i": 9,
+                    "j": 10,
+                    "k": 11,
+                    "l": 12,
+                    "m": 13,
+                    "n": 14
+                }
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.var.az_numbers",
             "module": "module.us-west-2.module.primary_subnet",
@@ -1710,7 +1933,7 @@
         },
         {
             "cluster": "cluster[root] module.us-west-2.module.primary_subnet.data.aws_availability_zone.target_var_[root] module.us-west-2.data.aws_availability_zones.all",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.var.availability_zone",
             "module": "module.us-west-2.module.primary_subnet",
@@ -1725,7 +1948,9 @@
         },
         {
             "cluster": "cluster[root] module.us-west-2.output.primary_subnet_id_output_[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
-            "definition": "",
+            "definition": {
+                "value": "${aws_subnet.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.primary_subnet.output.subnet_id",
             "module": "module.us-west-2.module.primary_subnet",
@@ -1740,7 +1965,7 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.var.vpc_id",
             "module": "module.us-west-2.module.secondary_subnet",
@@ -1755,7 +1980,24 @@
         },
         {
             "cluster": "cluster[root] module.us-west-2.module.secondary_subnet.aws_subnet.main_var_",
-            "definition": "",
+            "definition": {
+                "default": {
+                    "a": 1,
+                    "b": 2,
+                    "c": 3,
+                    "d": 4,
+                    "e": 5,
+                    "f": 6,
+                    "g": 7,
+                    "h": 8,
+                    "i": 9,
+                    "j": 10,
+                    "k": 11,
+                    "l": 12,
+                    "m": 13,
+                    "n": 14
+                }
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.var.az_numbers",
             "module": "module.us-west-2.module.secondary_subnet",
@@ -1770,7 +2012,7 @@
         },
         {
             "cluster": "cluster[root] module.us-west-2.module.secondary_subnet.data.aws_availability_zone.target_var_[root] module.us-west-2.data.aws_availability_zones.all",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.var.availability_zone",
             "module": "module.us-west-2.module.secondary_subnet",
@@ -1785,7 +2027,9 @@
         },
         {
             "cluster": "cluster[root] module.us-west-2.output.secondary_subnet_id_output_[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
-            "definition": "",
+            "definition": {
+                "value": "${aws_subnet.main.id}"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.module.secondary_subnet.output.subnet_id",
             "module": "module.us-west-2.module.secondary_subnet",
@@ -1800,7 +2044,9 @@
         },
         {
             "cluster": "cluster[root] module.us-west-2.provider.aws_var_",
-            "definition": "",
+            "definition": {
+                "description": "The name of the AWS region to set up a network within"
+            },
             "group": 20000,
             "label": "[root] module.us-west-2.var.region",
             "module": "module.us-west-2",

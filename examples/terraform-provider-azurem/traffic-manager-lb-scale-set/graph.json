@@ -798,7 +798,15 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "frontend_ip_configuration": {
+                    "name": "webserverpublic_ip",
+                    "public_ip_address_id": "${azurerm_public_ip.webserverpublic_ip.id}"
+                },
+                "location": "${var.location}",
+                "name": "webservers_lb",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_lb.webservers_lb",
             "module": "module.location01",
@@ -812,7 +820,11 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "loadbalancer_id": "${azurerm_lb.webservers_lb.id}",
+                "name": "webservers_lb_backend",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_lb_backend_address_pool.webservers_lb_backend",
             "module": "module.location01",
@@ -826,7 +838,13 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "loadbalancer_id": "${azurerm_lb.webservers_lb.id}",
+                "name": "httpprobe",
+                "port": 80,
+                "protocol": "tcp",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_lb_probe.httpprobe",
             "module": "module.location01",
@@ -840,7 +858,17 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "backend_address_pool_id": "${azurerm_lb_backend_address_pool.webservers_lb_backend.id}",
+                "backend_port": "80",
+                "frontend_ip_configuration_name": "webserverpublic_ip",
+                "frontend_port": "80",
+                "loadbalancer_id": "${azurerm_lb.webservers_lb.id}",
+                "name": "webservers_lb_http",
+                "probe_id": "${azurerm_lb_probe.httpprobe.id}",
+                "protocol": "Tcp",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_lb_rule.webservers_lb_http",
             "module": "module.location01",
@@ -854,7 +882,13 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "domain_name_label": "${var.lb_dns_label}",
+                "location": "${var.location}",
+                "name": "${var.resource_prefix}_publicip",
+                "public_ip_address_allocation": "static",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_public_ip.webserverpublic_ip",
             "module": "module.location01",
@@ -868,7 +902,10 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "location": "${var.location}",
+                "name": "${var.resource_prefix}_rg"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_resource_group.webservers_rg",
             "module": "module.location01",
@@ -882,7 +919,13 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "account_replication_type": "LRS",
+                "account_tier": "Standard",
+                "location": "${var.location}",
+                "name": "${var.resource_prefix}storage",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_storage_account.webservers_sa",
             "module": "module.location01",
@@ -896,7 +939,12 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "container_access_type": "private",
+                "name": "vhds",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}",
+                "storage_account_name": "${azurerm_storage_account.webservers_sa.name}"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_storage_container.webservers_ct",
             "module": "module.location01",
@@ -910,7 +958,12 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "address_prefix": "10.1.0.0/24",
+                "name": "webservers_subnet",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}",
+                "virtual_network_name": "${azurerm_virtual_network.webservers_vnet.name}"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_subnet.webservers_subnet",
             "module": "module.location01",
@@ -924,7 +977,57 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "extension": {
+                    "name": "CustomScriptForLinux",
+                    "publisher": "Microsoft.OSTCExtensions",
+                    "settings": "    {\n      \"commandToExecute\" : \"sudo apt-get -y install apache2\"\n    }",
+                    "type": "CustomScriptForLinux",
+                    "type_handler_version": "1.4"
+                },
+                "location": "${var.location}",
+                "name": "webserver_ss",
+                "network_profile": {
+                    "ip_configuration": {
+                        "load_balancer_backend_address_pool_ids": [
+                            "${azurerm_lb_backend_address_pool.webservers_lb_backend.id}"
+                        ],
+                        "name": "web_ss_ip_profile",
+                        "subnet_id": "${azurerm_subnet.webservers_subnet.id}"
+                    },
+                    "name": "web_ss_net_profile",
+                    "primary": true
+                },
+                "os_profile": {
+                    "admin_password": "${var.image_admin_password}",
+                    "admin_username": "${var.image_admin_username}",
+                    "computer_name_prefix": "${var.webserver_prefix}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                },
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}",
+                "sku": {
+                    "capacity": "${var.instance_count}",
+                    "name": "${var.instance_vmprofile}",
+                    "tier": "Standard"
+                },
+                "storage_profile_image_reference": {
+                    "offer": "${var.image_offer}",
+                    "publisher": "${var.image_publisher}",
+                    "sku": "${var.image_sku}",
+                    "version": "${var.image_version}"
+                },
+                "storage_profile_os_disk": {
+                    "caching": "ReadWrite",
+                    "create_option": "FromImage",
+                    "name": "osDiskProfile",
+                    "vhd_containers": [
+                        "${azurerm_storage_account.webservers_sa.primary_blob_endpoint}${azurerm_storage_container.webservers_ct.name}"
+                    ]
+                },
+                "upgrade_policy_mode": "Manual"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss",
             "module": "module.location01",
@@ -938,7 +1041,14 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "address_space": [
+                    "10.1.0.0/24"
+                ],
+                "location": "${var.location}",
+                "name": "webservers_vnet",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location01.azurerm_virtual_network.webservers_vnet",
             "module": "module.location01",
@@ -952,12 +1062,7 @@
         },
         {
             "cluster": "root",
-            "definition": {
-                "client_id": "${var.client_id}",
-                "client_secret": "${var.client_secret}",
-                "subscription_id": "${var.subscription_id}",
-                "tenant_id": "${var.tenant_id}"
-            },
+            "definition": "",
             "group": 20000,
             "label": "[root] module.location01.provider.azurerm",
             "module": "module.location01",
@@ -971,7 +1076,15 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "frontend_ip_configuration": {
+                    "name": "webserverpublic_ip",
+                    "public_ip_address_id": "${azurerm_public_ip.webserverpublic_ip.id}"
+                },
+                "location": "${var.location}",
+                "name": "webservers_lb",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_lb.webservers_lb",
             "module": "module.location02",
@@ -985,7 +1098,11 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "loadbalancer_id": "${azurerm_lb.webservers_lb.id}",
+                "name": "webservers_lb_backend",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_lb_backend_address_pool.webservers_lb_backend",
             "module": "module.location02",
@@ -999,7 +1116,13 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "loadbalancer_id": "${azurerm_lb.webservers_lb.id}",
+                "name": "httpprobe",
+                "port": 80,
+                "protocol": "tcp",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_lb_probe.httpprobe",
             "module": "module.location02",
@@ -1013,7 +1136,17 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "backend_address_pool_id": "${azurerm_lb_backend_address_pool.webservers_lb_backend.id}",
+                "backend_port": "80",
+                "frontend_ip_configuration_name": "webserverpublic_ip",
+                "frontend_port": "80",
+                "loadbalancer_id": "${azurerm_lb.webservers_lb.id}",
+                "name": "webservers_lb_http",
+                "probe_id": "${azurerm_lb_probe.httpprobe.id}",
+                "protocol": "Tcp",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_lb_rule.webservers_lb_http",
             "module": "module.location02",
@@ -1027,7 +1160,13 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "domain_name_label": "${var.lb_dns_label}",
+                "location": "${var.location}",
+                "name": "${var.resource_prefix}_publicip",
+                "public_ip_address_allocation": "static",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_public_ip.webserverpublic_ip",
             "module": "module.location02",
@@ -1041,7 +1180,10 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "location": "${var.location}",
+                "name": "${var.resource_prefix}_rg"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_resource_group.webservers_rg",
             "module": "module.location02",
@@ -1055,7 +1197,13 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "account_replication_type": "LRS",
+                "account_tier": "Standard",
+                "location": "${var.location}",
+                "name": "${var.resource_prefix}storage",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_storage_account.webservers_sa",
             "module": "module.location02",
@@ -1069,7 +1217,12 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "container_access_type": "private",
+                "name": "vhds",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}",
+                "storage_account_name": "${azurerm_storage_account.webservers_sa.name}"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_storage_container.webservers_ct",
             "module": "module.location02",
@@ -1083,7 +1236,12 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "address_prefix": "10.1.0.0/24",
+                "name": "webservers_subnet",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}",
+                "virtual_network_name": "${azurerm_virtual_network.webservers_vnet.name}"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_subnet.webservers_subnet",
             "module": "module.location02",
@@ -1097,7 +1255,57 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "extension": {
+                    "name": "CustomScriptForLinux",
+                    "publisher": "Microsoft.OSTCExtensions",
+                    "settings": "    {\n      \"commandToExecute\" : \"sudo apt-get -y install apache2\"\n    }",
+                    "type": "CustomScriptForLinux",
+                    "type_handler_version": "1.4"
+                },
+                "location": "${var.location}",
+                "name": "webserver_ss",
+                "network_profile": {
+                    "ip_configuration": {
+                        "load_balancer_backend_address_pool_ids": [
+                            "${azurerm_lb_backend_address_pool.webservers_lb_backend.id}"
+                        ],
+                        "name": "web_ss_ip_profile",
+                        "subnet_id": "${azurerm_subnet.webservers_subnet.id}"
+                    },
+                    "name": "web_ss_net_profile",
+                    "primary": true
+                },
+                "os_profile": {
+                    "admin_password": "${var.image_admin_password}",
+                    "admin_username": "${var.image_admin_username}",
+                    "computer_name_prefix": "${var.webserver_prefix}"
+                },
+                "os_profile_linux_config": {
+                    "disable_password_authentication": false
+                },
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}",
+                "sku": {
+                    "capacity": "${var.instance_count}",
+                    "name": "${var.instance_vmprofile}",
+                    "tier": "Standard"
+                },
+                "storage_profile_image_reference": {
+                    "offer": "${var.image_offer}",
+                    "publisher": "${var.image_publisher}",
+                    "sku": "${var.image_sku}",
+                    "version": "${var.image_version}"
+                },
+                "storage_profile_os_disk": {
+                    "caching": "ReadWrite",
+                    "create_option": "FromImage",
+                    "name": "osDiskProfile",
+                    "vhd_containers": [
+                        "${azurerm_storage_account.webservers_sa.primary_blob_endpoint}${azurerm_storage_container.webservers_ct.name}"
+                    ]
+                },
+                "upgrade_policy_mode": "Manual"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss",
             "module": "module.location02",
@@ -1111,7 +1319,14 @@
         },
         {
             "cluster": "root",
-            "definition": "",
+            "definition": {
+                "address_space": [
+                    "10.1.0.0/24"
+                ],
+                "location": "${var.location}",
+                "name": "webservers_vnet",
+                "resource_group_name": "${azurerm_resource_group.webservers_rg.name}"
+            },
             "group": 20000,
             "label": "[root] module.location02.azurerm_virtual_network.webservers_vnet",
             "module": "module.location02",
@@ -1125,12 +1340,7 @@
         },
         {
             "cluster": "root",
-            "definition": {
-                "client_id": "${var.client_id}",
-                "client_secret": "${var.client_secret}",
-                "subscription_id": "${var.subscription_id}",
-                "tenant_id": "${var.tenant_id}"
-            },
+            "definition": "",
             "group": 20000,
             "label": "[root] module.location02.provider.azurerm",
             "module": "module.location02",
@@ -1180,7 +1390,9 @@
         },
         {
             "cluster": "cluster[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_01_output_[root] module.location01.azurerm_public_ip.webserverpublic_ip",
-            "definition": "",
+            "definition": {
+                "value": "${azurerm_public_ip.webserverpublic_ip.id}"
+            },
             "group": 20000,
             "label": "[root] module.location01.output.webserverpublic_ip_id",
             "module": "module.location01",
@@ -1194,7 +1406,9 @@
         },
         {
             "cluster": "cluster[root] azurerm_traffic_manager_endpoint.trafficmanagerhttp_02_output_[root] module.location02.azurerm_public_ip.webserverpublic_ip",
-            "definition": "",
+            "definition": {
+                "value": "${azurerm_public_ip.webserverpublic_ip.id}"
+            },
             "group": 20000,
             "label": "[root] module.location02.output.webserverpublic_ip_id",
             "module": "module.location02",
@@ -1239,7 +1453,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_public_ip.webserverpublic_ip_var_[root] var.location01_lb_dns_label",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.lb_dns_label",
             "module": "module.location01",
@@ -1253,7 +1467,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_resource_group.webservers_rg_var_[root] var.location01_location",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.location",
             "module": "module.location01",
@@ -1267,7 +1481,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_resource_group.webservers_rg_var_[root] var.location01_resource_prefix",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.resource_prefix",
             "module": "module.location01",
@@ -1281,10 +1495,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_admin_password",
-            "definition": {
-                "default": "2nmn39x#3775hh3x9",
-                "description": "Password"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.image_admin_password",
             "module": "module.location01",
@@ -1298,10 +1509,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_admin_username",
-            "definition": {
-                "default": "webadmin",
-                "description": "Local admin user name"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.image_admin_username",
             "module": "module.location01",
@@ -1315,10 +1523,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_offer",
-            "definition": {
-                "default": "UbuntuServer",
-                "description": "Market place image name"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.image_offer",
             "module": "module.location01",
@@ -1332,10 +1537,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_publisher",
-            "definition": {
-                "default": "Canonical",
-                "description": "Publisher of market place image"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.image_publisher",
             "module": "module.location01",
@@ -1349,10 +1551,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_sku",
-            "definition": {
-                "default": "16.10",
-                "description": "Market place image SKU"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.image_sku",
             "module": "module.location01",
@@ -1366,10 +1565,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_version",
-            "definition": {
-                "default": "latest",
-                "description": "Market place image version"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.image_version",
             "module": "module.location01",
@@ -1383,10 +1579,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.instance_count",
-            "definition": {
-                "default": "2",
-                "description": "Number of server instances to create in scale set"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.instance_count",
             "module": "module.location01",
@@ -1400,10 +1593,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.instance_vmprofile",
-            "definition": {
-                "default": "Standard_A1",
-                "description": "VM profile of servers in scale set"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.instance_vmprofile",
             "module": "module.location01",
@@ -1417,7 +1607,7 @@
         },
         {
             "cluster": "cluster[root] module.location01.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.location01_webserver_prefix",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location01.var.webserver_prefix",
             "module": "module.location01",
@@ -1635,7 +1825,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_public_ip.webserverpublic_ip_var_[root] var.location02_lb_dns_label",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.lb_dns_label",
             "module": "module.location02",
@@ -1649,7 +1839,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_resource_group.webservers_rg_var_[root] var.location02_location",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.location",
             "module": "module.location02",
@@ -1663,7 +1853,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_resource_group.webservers_rg_var_[root] var.location02_resource_prefix",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.resource_prefix",
             "module": "module.location02",
@@ -1677,10 +1867,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_admin_password",
-            "definition": {
-                "default": "2nmn39x#3775hh3x9",
-                "description": "Password"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.image_admin_password",
             "module": "module.location02",
@@ -1694,10 +1881,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_admin_username",
-            "definition": {
-                "default": "webadmin",
-                "description": "Local admin user name"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.image_admin_username",
             "module": "module.location02",
@@ -1711,10 +1895,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_offer",
-            "definition": {
-                "default": "UbuntuServer",
-                "description": "Market place image name"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.image_offer",
             "module": "module.location02",
@@ -1728,10 +1909,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_publisher",
-            "definition": {
-                "default": "Canonical",
-                "description": "Publisher of market place image"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.image_publisher",
             "module": "module.location02",
@@ -1745,10 +1923,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_sku",
-            "definition": {
-                "default": "16.10",
-                "description": "Market place image SKU"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.image_sku",
             "module": "module.location02",
@@ -1762,10 +1937,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.image_version",
-            "definition": {
-                "default": "latest",
-                "description": "Market place image version"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.image_version",
             "module": "module.location02",
@@ -1779,10 +1951,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.instance_count",
-            "definition": {
-                "default": "2",
-                "description": "Number of server instances to create in scale set"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.instance_count",
             "module": "module.location02",
@@ -1796,10 +1965,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.instance_vmprofile",
-            "definition": {
-                "default": "Standard_A1",
-                "description": "VM profile of servers in scale set"
-            },
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.instance_vmprofile",
             "module": "module.location02",
@@ -1813,7 +1979,7 @@
         },
         {
             "cluster": "cluster[root] module.location02.azurerm_virtual_machine_scale_set.webserver_ss_var_[root] var.location02_webserver_prefix",
-            "definition": "",
+            "definition": {},
             "group": 20000,
             "label": "[root] module.location02.var.webserver_prefix",
             "module": "module.location02",
