@@ -47,26 +47,24 @@ p.explain {
     font-size: 10px;
   }
   
-  div.title {
-    width: 100%;
-    display: block;
-  }
-
-  span.title {
-          display: inline-block;
+  span.header {
+          display: block;
           font-size: 14px;
+          text-align: center;
           line-height: 17px;
           color: white;
-          margin: 1px;
+          width: 100%;
+          /* background: #888; */ /* set via js */
   }
   
   span.dep {
-       line-height: 15px;
-       font-size: 12px;
+       line-height: 14px;
+       font-size: 10px;
        color: white;
        display: inline-block;
        margin: 1px;
   }
+  
   /* Creates a small triangle extender for the tooltip */
   .d3-tip:after {
     box-sizing: border-box;
