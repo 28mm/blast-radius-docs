@@ -103,27 +103,15 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.location",
             "svg_id": "edge_17",
             "target": "[root] var.resource_group"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.location",
+            "source": "[root] var.sql_admin",
             "svg_id": "edge_18",
-            "target": "[root] var.resource_group"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.sql_admin",
-            "svg_id": "edge_19",
-            "target": "[root] var.sql_password"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.sql_admin",
-            "svg_id": "edge_20",
             "target": "[root] var.sql_password"
         }
     ],

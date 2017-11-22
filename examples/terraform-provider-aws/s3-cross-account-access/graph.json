@@ -103,39 +103,21 @@
             "target": "[root] provider.aws.test (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.bucket_name",
             "svg_id": "edge_17",
             "target": "[root] var.test_account_id"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.bucket_name",
+            "source": "[root] var.prod_access_key",
             "svg_id": "edge_18",
-            "target": "[root] var.test_account_id"
+            "target": "[root] var.prod_secret_key"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.prod_access_key",
+            "edge_type": 3,
+            "source": "[root] var.test_access_key",
             "svg_id": "edge_19",
-            "target": "[root] var.prod_secret_key"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.prod_access_key",
-            "svg_id": "edge_20",
-            "target": "[root] var.prod_secret_key"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.test_access_key",
-            "svg_id": "edge_21",
-            "target": "[root] var.test_secret_key"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.test_access_key",
-            "svg_id": "edge_22",
             "target": "[root] var.test_secret_key"
         }
     ],

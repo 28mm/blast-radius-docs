@@ -162,7 +162,7 @@
 <text text-anchor="start" x="250.8945" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">resource_group</text>
 </g>
 <!-- [root] var.location&#45;&gt;[root] var.resource_group -->
-<g id="edge_15" class="edge">
+<g id="edge_14" class="edge">
 <title>[root] var.location&#45;&gt;[root] var.resource_group</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M281.0094,-159.8314C281.6111,-149 282.3729,-135.2876 282.977,-124.4133"/>
 </g>
@@ -175,7 +175,7 @@
 <text text-anchor="start" x="75.7949" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">replica_count</text>
 </g>
 <!-- [root] var.partition_count&#45;&gt;[root] var.replica_count -->
-<g id="edge_25" class="edge">
+<g id="edge_15" class="edge">
 <title>[root] var.partition_count&#45;&gt;[root] var.replica_count</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M107,-231.8314C107,-221 107,-207.2876 107,-196.4133"/>
 </g>
@@ -188,7 +188,7 @@
 <text text-anchor="start" x="80.5957" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">search_name</text>
 </g>
 <!-- [root] var.replica_count&#45;&gt;[root] var.search_name -->
-<g id="edge_26" class="edge">
+<g id="edge_16" class="edge">
 <title>[root] var.replica_count&#45;&gt;[root] var.search_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M107,-159.8314C107,-149 107,-135.2876 107,-124.4133"/>
 </g>
@@ -201,7 +201,7 @@
 <text text-anchor="start" x="99.7988" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">sku</text>
 </g>
 <!-- [root] var.search_name&#45;&gt;[root] var.sku -->
-<g id="edge_27" class="edge">
+<g id="edge_17" class="edge">
 <title>[root] var.search_name&#45;&gt;[root] var.sku</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M107,-87.8314C107,-77 107,-63.2876 107,-52.4133"/>
 </g>

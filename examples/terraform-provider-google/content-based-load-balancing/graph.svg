@@ -324,7 +324,7 @@
 <text text-anchor="start" x="306.6953" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">project_name</text>
 </g>
 <!-- [root] var.credentials_file_path&#45;&gt;[root] var.project_name -->
-<g id="edge_32" class="edge">
+<g id="edge_28" class="edge">
 <title>[root] var.credentials_file_path&#45;&gt;[root] var.project_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M335,-159.8314C335,-149 335,-135.2876 335,-124.4133"/>
 </g>
@@ -337,7 +337,7 @@
 <text text-anchor="start" x="320.5977" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">region</text>
 </g>
 <!-- [root] var.project_name&#45;&gt;[root] var.region -->
-<g id="edge_33" class="edge">
+<g id="edge_29" class="edge">
 <title>[root] var.project_name&#45;&gt;[root] var.region</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M335,-87.8314C335,-77 335,-63.2876 335,-52.4133"/>
 </g>

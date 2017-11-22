@@ -185,7 +185,7 @@
 <text text-anchor="start" x="238.5977" y="-528.6" font-family="courier new" font-size="8.00" fill="#000000">ubuntu</text>
 </g>
 <!-- [root] var.do_ams3&#45;&gt;[root] var.ubuntu -->
-<g id="edge_28" class="edge">
+<g id="edge_27" class="edge">
 <title>[root] var.do_ams3&#45;&gt;[root] var.ubuntu</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M253,-591.8314C253,-581 253,-567.2876 253,-556.4133"/>
 </g>
@@ -198,7 +198,7 @@
 <text text-anchor="start" x="28.5977" y="-744.6" font-family="courier new" font-size="8.00" fill="#000000">coreos</text>
 </g>
 <!-- [root] var.centos&#45;&gt;[root] var.coreos -->
-<g id="edge_150" class="edge">
+<g id="edge_28" class="edge">
 <title>[root] var.centos&#45;&gt;[root] var.coreos</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-807.8314C43,-797 43,-783.2876 43,-772.4133"/>
 </g>
@@ -211,7 +211,7 @@
 <text text-anchor="start" x="26.6973" y="-672.6" font-family="courier new" font-size="8.00" fill="#000000">do_ams2</text>
 </g>
 <!-- [root] var.coreos&#45;&gt;[root] var.do_ams2 -->
-<g id="edge_151" class="edge">
+<g id="edge_29" class="edge">
 <title>[root] var.coreos&#45;&gt;[root] var.do_ams2</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-735.8314C43,-725 43,-711.2876 43,-700.4133"/>
 </g>
@@ -224,7 +224,7 @@
 <text text-anchor="start" x="26.6973" y="-600.6" font-family="courier new" font-size="8.00" fill="#000000">do_blr1</text>
 </g>
 <!-- [root] var.do_ams2&#45;&gt;[root] var.do_blr1 -->
-<g id="edge_152" class="edge">
+<g id="edge_30" class="edge">
 <title>[root] var.do_ams2&#45;&gt;[root] var.do_blr1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-663.8314C43,-653 43,-639.2876 43,-628.4133"/>
 </g>
@@ -237,7 +237,7 @@
 <text text-anchor="start" x="26.6973" y="-528.6" font-family="courier new" font-size="8.00" fill="#000000">do_fra1</text>
 </g>
 <!-- [root] var.do_blr1&#45;&gt;[root] var.do_fra1 -->
-<g id="edge_153" class="edge">
+<g id="edge_31" class="edge">
 <title>[root] var.do_blr1&#45;&gt;[root] var.do_fra1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-591.8314C43,-581 43,-567.2876 43,-556.4133"/>
 </g>
@@ -250,7 +250,7 @@
 <text text-anchor="start" x="26.6973" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">do_lon1</text>
 </g>
 <!-- [root] var.do_fra1&#45;&gt;[root] var.do_lon1 -->
-<g id="edge_154" class="edge">
+<g id="edge_32" class="edge">
 <title>[root] var.do_fra1&#45;&gt;[root] var.do_lon1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-519.8314C43,-509 43,-495.2876 43,-484.4133"/>
 </g>
@@ -263,7 +263,7 @@
 <text text-anchor="start" x="26.6973" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">do_nyc1</text>
 </g>
 <!-- [root] var.do_lon1&#45;&gt;[root] var.do_nyc1 -->
-<g id="edge_155" class="edge">
+<g id="edge_33" class="edge">
 <title>[root] var.do_lon1&#45;&gt;[root] var.do_nyc1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-447.8314C43,-437 43,-423.2876 43,-412.4133"/>
 </g>
@@ -276,7 +276,7 @@
 <text text-anchor="start" x="26.6973" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">do_nyc2</text>
 </g>
 <!-- [root] var.do_nyc1&#45;&gt;[root] var.do_nyc2 -->
-<g id="edge_156" class="edge">
+<g id="edge_34" class="edge">
 <title>[root] var.do_nyc1&#45;&gt;[root] var.do_nyc2</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-375.8314C43,-365 43,-351.2876 43,-340.4133"/>
 </g>
@@ -289,7 +289,7 @@
 <text text-anchor="start" x="26.6973" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">do_nyc3</text>
 </g>
 <!-- [root] var.do_nyc2&#45;&gt;[root] var.do_nyc3 -->
-<g id="edge_157" class="edge">
+<g id="edge_35" class="edge">
 <title>[root] var.do_nyc2&#45;&gt;[root] var.do_nyc3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-303.8314C43,-293 43,-279.2876 43,-268.4133"/>
 </g>
@@ -302,7 +302,7 @@
 <text text-anchor="start" x="26.6973" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">do_sfo1</text>
 </g>
 <!-- [root] var.do_nyc3&#45;&gt;[root] var.do_sfo1 -->
-<g id="edge_158" class="edge">
+<g id="edge_36" class="edge">
 <title>[root] var.do_nyc3&#45;&gt;[root] var.do_sfo1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-231.8314C43,-221 43,-207.2876 43,-196.4133"/>
 </g>
@@ -315,7 +315,7 @@
 <text text-anchor="start" x="26.6973" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">do_sgp1</text>
 </g>
 <!-- [root] var.do_sfo1&#45;&gt;[root] var.do_sgp1 -->
-<g id="edge_159" class="edge">
+<g id="edge_37" class="edge">
 <title>[root] var.do_sfo1&#45;&gt;[root] var.do_sgp1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-159.8314C43,-149 43,-135.2876 43,-124.4133"/>
 </g>
@@ -328,7 +328,7 @@
 <text text-anchor="start" x="26.6973" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">do_tor1</text>
 </g>
 <!-- [root] var.do_sgp1&#45;&gt;[root] var.do_tor1 -->
-<g id="edge_160" class="edge">
+<g id="edge_38" class="edge">
 <title>[root] var.do_sgp1&#45;&gt;[root] var.do_tor1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-87.8314C43,-77 43,-63.2876 43,-52.4133"/>
 </g>
@@ -341,7 +341,7 @@
 <text text-anchor="start" x="106.5977" y="-744.6" font-family="courier new" font-size="8.00" fill="#000000">Public</text>
 </g>
 <!-- [root] output.Name&#45;&gt;[root] output.Public ip -->
-<g id="edge_162" class="edge">
+<g id="edge_39" class="edge">
 <title>[root] output.Name&#45;&gt;[root] output.Public ip</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121,-807.8314C121,-797 121,-783.2876 121,-772.4133"/>
 </g>

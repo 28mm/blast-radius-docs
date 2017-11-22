@@ -151,39 +151,15 @@
             "target": "[root] provisioner.remote-exec (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.flavor",
             "svg_id": "edge_25",
             "target": "[root] var.image"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.image",
             "svg_id": "edge_26",
-            "target": "[root] var.ssh_user_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.flavor",
-            "svg_id": "edge_27",
-            "target": "[root] var.image"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image",
-            "svg_id": "edge_28",
-            "target": "[root] var.ssh_user_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.flavor",
-            "svg_id": "edge_29",
-            "target": "[root] var.image"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.image",
-            "svg_id": "edge_30",
             "target": "[root] var.ssh_user_name"
         }
     ],

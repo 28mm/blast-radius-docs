@@ -145,7 +145,7 @@
 <text text-anchor="start" x="45.9902" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">linux_admin_ssh_publickey</text>
 </g>
 <!-- [root] var.dns_name_prefix&#45;&gt;[root] var.linux_admin_ssh_publickey -->
-<g id="edge_68" class="edge">
+<g id="edge_19" class="edge">
 <title>[root] var.dns_name_prefix&#45;&gt;[root] var.linux_admin_ssh_publickey</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M114.2242,-519.8314C112.5694,-509 110.4745,-495.2876 108.8131,-484.4133"/>
 </g>
@@ -158,7 +158,7 @@
 <text text-anchor="start" x="50.9922" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">linux_admin_username</text>
 </g>
 <!-- [root] var.linux_admin_ssh_publickey&#45;&gt;[root] var.linux_admin_username -->
-<g id="edge_69" class="edge">
+<g id="edge_20" class="edge">
 <title>[root] var.linux_admin_ssh_publickey&#45;&gt;[root] var.linux_admin_username</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M104.2336,-447.8314C103.1806,-437 101.8474,-423.2876 100.7902,-412.4133"/>
 </g>
@@ -171,7 +171,7 @@
 <text text-anchor="start" x="55.6934" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">linux_agent_count</text>
 </g>
 <!-- [root] var.linux_admin_username&#45;&gt;[root] var.linux_agent_count -->
-<g id="edge_70" class="edge">
+<g id="edge_21" class="edge">
 <title>[root] var.linux_admin_username&#45;&gt;[root] var.linux_agent_count</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M98.243,-375.8314C97.7917,-365 97.2203,-351.2876 96.7672,-340.4133"/>
 </g>
@@ -184,7 +184,7 @@
 <text text-anchor="start" x="50.8926" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">linux_agent_vm_size</text>
 </g>
 <!-- [root] var.linux_agent_count&#45;&gt;[root] var.linux_agent_vm_size -->
-<g id="edge_71" class="edge">
+<g id="edge_22" class="edge">
 <title>[root] var.linux_agent_count&#45;&gt;[root] var.linux_agent_vm_size</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M96,-303.8314C96,-293 96,-279.2876 96,-268.4133"/>
 </g>
@@ -197,7 +197,7 @@
 <text text-anchor="start" x="65.6953" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">master_count</text>
 </g>
 <!-- [root] var.linux_agent_vm_size&#45;&gt;[root] var.master_count -->
-<g id="edge_72" class="edge">
+<g id="edge_23" class="edge">
 <title>[root] var.linux_agent_vm_size&#45;&gt;[root] var.master_count</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M95.4953,-231.8314C95.1944,-221 94.8135,-207.2876 94.5115,-196.4133"/>
 </g>
@@ -210,7 +210,7 @@
 <text text-anchor="start" x="29.6895" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">service_principal_client_id</text>
 </g>
 <!-- [root] var.master_count&#45;&gt;[root] var.service_principal_client_id -->
-<g id="edge_73" class="edge">
+<g id="edge_24" class="edge">
 <title>[root] var.master_count&#45;&gt;[root] var.service_principal_client_id</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94,-159.8314C94,-149 94,-135.2876 94,-124.4133"/>
 </g>
@@ -223,7 +223,7 @@
 <text text-anchor="start" x="18.5879" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">service_principal_client_secret</text>
 </g>
 <!-- [root] var.service_principal_client_id&#45;&gt;[root] var.service_principal_client_secret -->
-<g id="edge_74" class="edge">
+<g id="edge_25" class="edge">
 <title>[root] var.service_principal_client_id&#45;&gt;[root] var.service_principal_client_secret</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M93.7477,-87.8314C93.5972,-77 93.4068,-63.2876 93.2557,-52.4133"/>
 </g>
@@ -236,7 +236,7 @@
 <text text-anchor="start" x="284.8926" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">resource_group_name</text>
 </g>
 <!-- [root] var.resource_group_location&#45;&gt;[root] var.resource_group_name -->
-<g id="edge_76" class="edge">
+<g id="edge_26" class="edge">
 <title>[root] var.resource_group_location&#45;&gt;[root] var.resource_group_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M330,-447.8314C330,-437 330,-423.2876 330,-412.4133"/>
 </g>
@@ -249,7 +249,7 @@
 <text text-anchor="start" x="119.8926" y="-672.6" font-family="courier new" font-size="8.00" fill="#000000">ssh_command_master0</text>
 </g>
 <!-- [root] output.master_fqdn&#45;&gt;[root] output.ssh_command_master0 -->
-<g id="edge_78" class="edge">
+<g id="edge_27" class="edge">
 <title>[root] output.master_fqdn&#45;&gt;[root] output.ssh_command_master0</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M164.2523,-735.8314C164.4028,-725 164.5932,-711.2876 164.7443,-700.4133"/>
 </g>

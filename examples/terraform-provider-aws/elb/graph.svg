@@ -293,7 +293,7 @@
 <text text-anchor="start" x="23.7969" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">key_name</text>
 </g>
 <!-- [root] var.aws_amis&#45;&gt;[root] var.key_name -->
-<g id="edge_25" class="edge">
+<g id="edge_24" class="edge">
 <title>[root] var.aws_amis&#45;&gt;[root] var.key_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M43,-231.8314C43,-221 43,-207.2876 43,-196.4133"/>
 </g>

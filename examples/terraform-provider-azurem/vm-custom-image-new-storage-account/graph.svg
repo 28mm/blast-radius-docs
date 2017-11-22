@@ -514,7 +514,7 @@
 <text text-anchor="start" x="624.8945" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">resource_group</text>
 </g>
 <!-- [root] var.location&#45;&gt;[root] var.resource_group -->
-<g id="edge_57" class="edge">
+<g id="edge_56" class="edge">
 <title>[root] var.location&#45;&gt;[root] var.resource_group</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M655.0094,-87.8314C655.6111,-77 656.3729,-63.2876 656.977,-52.4133"/>
 </g>
@@ -527,7 +527,7 @@
 <text text-anchor="start" x="698.7871" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">storage_existing_replication_type</text>
 </g>
 <!-- [root] var.storage_existing_account_tier&#45;&gt;[root] var.storage_existing_replication_type -->
-<g id="edge_59" class="edge">
+<g id="edge_57" class="edge">
 <title>[root] var.storage_existing_account_tier&#45;&gt;[root] var.storage_existing_replication_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M775.0094,-375.8314C775.6111,-365 776.3729,-351.2876 776.977,-340.4133"/>
 </g>
@@ -540,7 +540,7 @@
 <text text-anchor="start" x="729.6875" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">storage_machine_replication_type</text>
 </g>
 <!-- [root] var.storage_machine_account_tier&#45;&gt;[root] var.storage_machine_replication_type -->
-<g id="edge_61" class="edge">
+<g id="edge_58" class="edge">
 <title>[root] var.storage_machine_account_tier&#45;&gt;[root] var.storage_machine_replication_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M808.9906,-159.8314C808.3889,-149 807.6271,-135.2876 807.023,-124.4133"/>
 </g>
@@ -553,7 +553,7 @@
 <text text-anchor="start" x="314.5957" y="-528.6" font-family="courier new" font-size="8.00" fill="#000000">new_vm_name</text>
 </g>
 <!-- [root] var.custom_image_name&#45;&gt;[root] var.new_vm_name -->
-<g id="edge_63" class="edge">
+<g id="edge_59" class="edge">
 <title>[root] var.custom_image_name&#45;&gt;[root] var.new_vm_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M341,-591.8314C341,-581 341,-567.2876 341,-556.4133"/>
 </g>
@@ -566,7 +566,7 @@
 <text text-anchor="start" x="24.8945" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">admin_username</text>
 </g>
 <!-- [root] var.admin_password&#45;&gt;[root] var.admin_username -->
-<g id="edge_89" class="edge">
+<g id="edge_60" class="edge">
 <title>[root] var.admin_password&#45;&gt;[root] var.admin_username</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M58,-375.8314C58,-365 58,-351.2876 58,-340.4133"/>
 </g>
@@ -579,7 +579,7 @@
 <text text-anchor="start" x="40.6973" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">os_type</text>
 </g>
 <!-- [root] var.admin_username&#45;&gt;[root] var.os_type -->
-<g id="edge_90" class="edge">
+<g id="edge_61" class="edge">
 <title>[root] var.admin_username&#45;&gt;[root] var.os_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M57.7477,-303.8314C57.5972,-293 57.4068,-279.2876 57.2557,-268.4133"/>
 </g>
@@ -592,7 +592,7 @@
 <text text-anchor="start" x="23.8945" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">source_img_uri</text>
 </g>
 <!-- [root] var.os_type&#45;&gt;[root] var.source_img_uri -->
-<g id="edge_91" class="edge">
+<g id="edge_62" class="edge">
 <title>[root] var.os_type&#45;&gt;[root] var.source_img_uri</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M57,-231.8314C57,-221 57,-207.2876 57,-196.4133"/>
 </g>
@@ -605,7 +605,7 @@
 <text text-anchor="start" x="18.5938" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">transfer_vm_name</text>
 </g>
 <!-- [root] var.source_img_uri&#45;&gt;[root] var.transfer_vm_name -->
-<g id="edge_92" class="edge">
+<g id="edge_63" class="edge">
 <title>[root] var.source_img_uri&#45;&gt;[root] var.transfer_vm_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M57,-159.8314C57,-149 57,-135.2876 57,-124.4133"/>
 </g>
@@ -618,7 +618,7 @@
 <text text-anchor="start" x="40.6973" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">vm_size</text>
 </g>
 <!-- [root] var.transfer_vm_name&#45;&gt;[root] var.vm_size -->
-<g id="edge_93" class="edge">
+<g id="edge_64" class="edge">
 <title>[root] var.transfer_vm_name&#45;&gt;[root] var.vm_size</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M57,-87.8314C57,-77 57,-63.2876 57,-52.4133"/>
 </g>
@@ -631,7 +631,7 @@
 <text text-anchor="start" x="780.9941" y="-600.6" font-family="courier new" font-size="8.00" fill="#000000">image_publisher</text>
 </g>
 <!-- [root] var.image_offer&#45;&gt;[root] var.image_publisher -->
-<g id="edge_103" class="edge">
+<g id="edge_65" class="edge">
 <title>[root] var.image_offer&#45;&gt;[root] var.image_publisher</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M813.2617,-663.8314C814.0139,-653 814.9661,-639.2876 815.7213,-628.4133"/>
 </g>
@@ -644,7 +644,7 @@
 <text text-anchor="start" x="795.8965" y="-528.6" font-family="courier new" font-size="8.00" fill="#000000">image_sku</text>
 </g>
 <!-- [root] var.image_publisher&#45;&gt;[root] var.image_sku -->
-<g id="edge_104" class="edge">
+<g id="edge_66" class="edge">
 <title>[root] var.image_publisher&#45;&gt;[root] var.image_sku</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M817,-591.8314C817,-581 817,-567.2876 817,-556.4133"/>
 </g>
@@ -657,7 +657,7 @@
 <text text-anchor="start" x="785.7949" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">image_version</text>
 </g>
 <!-- [root] var.image_sku&#45;&gt;[root] var.image_version -->
-<g id="edge_105" class="edge">
+<g id="edge_67" class="edge">
 <title>[root] var.image_sku&#45;&gt;[root] var.image_version</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M817,-519.8314C817,-509 817,-495.2876 817,-484.4133"/>
 </g>
@@ -670,7 +670,7 @@
 <text text-anchor="start" x="722.1992" y="-600.6" font-family="courier new" font-size="8.00" fill="#000000">id</text>
 </g>
 <!-- [root] output.fqdn&#45;&gt;[root] output.id -->
-<g id="edge_110" class="edge">
+<g id="edge_68" class="edge">
 <title>[root] output.fqdn&#45;&gt;[root] output.id</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M727,-663.8314C727,-653 727,-639.2876 727,-628.4133"/>
 </g>
@@ -683,7 +683,7 @@
 <text text-anchor="start" x="702.9961" y="-528.6" font-family="courier new" font-size="8.00" fill="#000000">ip_address</text>
 </g>
 <!-- [root] output.id&#45;&gt;[root] output.ip_address -->
-<g id="edge_111" class="edge">
+<g id="edge_69" class="edge">
 <title>[root] output.id&#45;&gt;[root] output.ip_address</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M727,-591.8314C727,-581 727,-567.2876 727,-556.4133"/>
 </g>

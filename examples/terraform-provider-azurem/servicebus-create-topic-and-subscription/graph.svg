@@ -179,7 +179,7 @@
 <text text-anchor="start" x="73.8945" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">resource_group</text>
 </g>
 <!-- [root] var.location&#45;&gt;[root] var.resource_group -->
-<g id="edge_16" class="edge">
+<g id="edge_15" class="edge">
 <title>[root] var.location&#45;&gt;[root] var.resource_group</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M104.0094,-87.8314C104.6111,-77 105.3729,-63.2876 105.977,-52.4133"/>
 </g>
@@ -192,7 +192,7 @@
 <text text-anchor="start" x="60.5977" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">Shared</text>
 </g>
 <!-- [root] output.Namespace Connection String&#45;&gt;[root] output.Shared Access Policy PrimaryKey -->
-<g id="edge_18" class="edge">
+<g id="edge_16" class="edge">
 <title>[root] output.Namespace Connection String&#45;&gt;[root] output.Shared Access Policy PrimaryKey</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M75,-375.8314C75,-365 75,-351.2876 75,-340.4133"/>
 </g>

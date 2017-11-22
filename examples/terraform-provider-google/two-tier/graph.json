@@ -163,159 +163,39 @@
             "target": "[root] provisioner.remote-exec (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.install_script_dest_path",
             "svg_id": "edge_27",
             "target": "[root] var.install_script_src_path"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.install_script_src_path",
             "svg_id": "edge_28",
             "target": "[root] var.private_key_path"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.private_key_path",
             "svg_id": "edge_29",
             "target": "[root] var.public_key_path"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.public_key_path",
             "svg_id": "edge_30",
             "target": "[root] var.region_zone"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.install_script_dest_path",
+            "edge_type": 3,
+            "source": "[root] var.credentials_file_path",
             "svg_id": "edge_31",
-            "target": "[root] var.install_script_src_path"
+            "target": "[root] var.project_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.install_script_src_path",
+            "edge_type": 3,
+            "source": "[root] var.project_name",
             "svg_id": "edge_32",
-            "target": "[root] var.private_key_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.private_key_path",
-            "svg_id": "edge_33",
-            "target": "[root] var.public_key_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.public_key_path",
-            "svg_id": "edge_34",
-            "target": "[root] var.region_zone"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.install_script_dest_path",
-            "svg_id": "edge_35",
-            "target": "[root] var.install_script_src_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.install_script_src_path",
-            "svg_id": "edge_36",
-            "target": "[root] var.private_key_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.private_key_path",
-            "svg_id": "edge_37",
-            "target": "[root] var.public_key_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.public_key_path",
-            "svg_id": "edge_38",
-            "target": "[root] var.region_zone"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.install_script_dest_path",
-            "svg_id": "edge_39",
-            "target": "[root] var.install_script_src_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.install_script_src_path",
-            "svg_id": "edge_40",
-            "target": "[root] var.private_key_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.private_key_path",
-            "svg_id": "edge_41",
-            "target": "[root] var.public_key_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.public_key_path",
-            "svg_id": "edge_42",
-            "target": "[root] var.region_zone"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.install_script_dest_path",
-            "svg_id": "edge_43",
-            "target": "[root] var.install_script_src_path"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.install_script_src_path",
-            "svg_id": "edge_44",
-            "target": "[root] var.private_key_path"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.private_key_path",
-            "svg_id": "edge_45",
-            "target": "[root] var.public_key_path"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.public_key_path",
-            "svg_id": "edge_46",
-            "target": "[root] var.region_zone"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.credentials_file_path",
-            "svg_id": "edge_47",
-            "target": "[root] var.project_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.project_name",
-            "svg_id": "edge_48",
-            "target": "[root] var.region"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.credentials_file_path",
-            "svg_id": "edge_49",
-            "target": "[root] var.project_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.project_name",
-            "svg_id": "edge_50",
-            "target": "[root] var.region"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.credentials_file_path",
-            "svg_id": "edge_51",
-            "target": "[root] var.project_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.project_name",
-            "svg_id": "edge_52",
             "target": "[root] var.region"
         }
     ],

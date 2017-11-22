@@ -217,159 +217,45 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.location",
             "svg_id": "edge_36",
             "target": "[root] var.prefix"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.location",
+            "source": "[root] var.subnet_names",
             "svg_id": "edge_37",
-            "target": "[root] var.prefix"
+            "target": "[root] var.subnet_prefixes"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.subnet_names",
+            "edge_type": 3,
+            "source": "[root] var.address_space",
             "svg_id": "edge_38",
-            "target": "[root] var.subnet_prefixes"
+            "target": "[root] var.dns_servers"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.subnet_names",
+            "source": "[root] output.vnet_address_space",
             "svg_id": "edge_39",
-            "target": "[root] var.subnet_prefixes"
+            "target": "[root] output.vnet_dns_servers"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.address_space",
+            "edge_type": 3,
+            "source": "[root] output.vnet_dns_servers",
             "svg_id": "edge_40",
-            "target": "[root] var.dns_servers"
+            "target": "[root] output.vnet_id"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.address_space",
+            "source": "[root] output.vnet_id",
             "svg_id": "edge_41",
-            "target": "[root] var.dns_servers"
+            "target": "[root] output.vnet_location"
         },
         {
-            "edge_type": 2,
-            "source": "[root] output.vnet_address_space",
+            "edge_type": 3,
+            "source": "[root] output.vnet_location",
             "svg_id": "edge_42",
-            "target": "[root] output.vnet_dns_servers"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_dns_servers",
-            "svg_id": "edge_43",
-            "target": "[root] output.vnet_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_id",
-            "svg_id": "edge_44",
-            "target": "[root] output.vnet_location"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_location",
-            "svg_id": "edge_45",
-            "target": "[root] output.vnet_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_address_space",
-            "svg_id": "edge_46",
-            "target": "[root] output.vnet_dns_servers"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_dns_servers",
-            "svg_id": "edge_47",
-            "target": "[root] output.vnet_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_id",
-            "svg_id": "edge_48",
-            "target": "[root] output.vnet_location"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_location",
-            "svg_id": "edge_49",
-            "target": "[root] output.vnet_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_address_space",
-            "svg_id": "edge_50",
-            "target": "[root] output.vnet_dns_servers"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_dns_servers",
-            "svg_id": "edge_51",
-            "target": "[root] output.vnet_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_id",
-            "svg_id": "edge_52",
-            "target": "[root] output.vnet_location"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_location",
-            "svg_id": "edge_53",
-            "target": "[root] output.vnet_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_address_space",
-            "svg_id": "edge_54",
-            "target": "[root] output.vnet_dns_servers"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_dns_servers",
-            "svg_id": "edge_55",
-            "target": "[root] output.vnet_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_id",
-            "svg_id": "edge_56",
-            "target": "[root] output.vnet_location"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.vnet_location",
-            "svg_id": "edge_57",
-            "target": "[root] output.vnet_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.vnet_address_space",
-            "svg_id": "edge_58",
-            "target": "[root] output.vnet_dns_servers"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.vnet_dns_servers",
-            "svg_id": "edge_59",
-            "target": "[root] output.vnet_id"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.vnet_id",
-            "svg_id": "edge_60",
-            "target": "[root] output.vnet_location"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.vnet_location",
-            "svg_id": "edge_61",
             "target": "[root] output.vnet_name"
         }
     ],

@@ -115,363 +115,57 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.dns_name_prefix",
             "svg_id": "edge_19",
             "target": "[root] var.linux_admin_ssh_publickey"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.linux_admin_ssh_publickey",
             "svg_id": "edge_20",
             "target": "[root] var.linux_admin_username"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.linux_admin_username",
             "svg_id": "edge_21",
             "target": "[root] var.linux_agent_count"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.linux_agent_count",
             "svg_id": "edge_22",
             "target": "[root] var.linux_agent_vm_size"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.linux_agent_vm_size",
             "svg_id": "edge_23",
             "target": "[root] var.master_count"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.master_count",
             "svg_id": "edge_24",
             "target": "[root] var.service_principal_client_id"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.service_principal_client_id",
             "svg_id": "edge_25",
             "target": "[root] var.service_principal_client_secret"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.dns_name_prefix",
+            "edge_type": 3,
+            "source": "[root] var.resource_group_location",
             "svg_id": "edge_26",
-            "target": "[root] var.linux_admin_ssh_publickey"
+            "target": "[root] var.resource_group_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_ssh_publickey",
+            "edge_type": 3,
+            "source": "[root] output.master_fqdn",
             "svg_id": "edge_27",
-            "target": "[root] var.linux_admin_username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_username",
-            "svg_id": "edge_28",
-            "target": "[root] var.linux_agent_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_count",
-            "svg_id": "edge_29",
-            "target": "[root] var.linux_agent_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_vm_size",
-            "svg_id": "edge_30",
-            "target": "[root] var.master_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.master_count",
-            "svg_id": "edge_31",
-            "target": "[root] var.service_principal_client_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.service_principal_client_id",
-            "svg_id": "edge_32",
-            "target": "[root] var.service_principal_client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.dns_name_prefix",
-            "svg_id": "edge_33",
-            "target": "[root] var.linux_admin_ssh_publickey"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_ssh_publickey",
-            "svg_id": "edge_34",
-            "target": "[root] var.linux_admin_username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_username",
-            "svg_id": "edge_35",
-            "target": "[root] var.linux_agent_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_count",
-            "svg_id": "edge_36",
-            "target": "[root] var.linux_agent_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_vm_size",
-            "svg_id": "edge_37",
-            "target": "[root] var.master_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.master_count",
-            "svg_id": "edge_38",
-            "target": "[root] var.service_principal_client_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.service_principal_client_id",
-            "svg_id": "edge_39",
-            "target": "[root] var.service_principal_client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.dns_name_prefix",
-            "svg_id": "edge_40",
-            "target": "[root] var.linux_admin_ssh_publickey"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_ssh_publickey",
-            "svg_id": "edge_41",
-            "target": "[root] var.linux_admin_username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_username",
-            "svg_id": "edge_42",
-            "target": "[root] var.linux_agent_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_count",
-            "svg_id": "edge_43",
-            "target": "[root] var.linux_agent_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_vm_size",
-            "svg_id": "edge_44",
-            "target": "[root] var.master_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.master_count",
-            "svg_id": "edge_45",
-            "target": "[root] var.service_principal_client_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.service_principal_client_id",
-            "svg_id": "edge_46",
-            "target": "[root] var.service_principal_client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.dns_name_prefix",
-            "svg_id": "edge_47",
-            "target": "[root] var.linux_admin_ssh_publickey"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_ssh_publickey",
-            "svg_id": "edge_48",
-            "target": "[root] var.linux_admin_username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_username",
-            "svg_id": "edge_49",
-            "target": "[root] var.linux_agent_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_count",
-            "svg_id": "edge_50",
-            "target": "[root] var.linux_agent_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_vm_size",
-            "svg_id": "edge_51",
-            "target": "[root] var.master_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.master_count",
-            "svg_id": "edge_52",
-            "target": "[root] var.service_principal_client_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.service_principal_client_id",
-            "svg_id": "edge_53",
-            "target": "[root] var.service_principal_client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.dns_name_prefix",
-            "svg_id": "edge_54",
-            "target": "[root] var.linux_admin_ssh_publickey"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_ssh_publickey",
-            "svg_id": "edge_55",
-            "target": "[root] var.linux_admin_username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_username",
-            "svg_id": "edge_56",
-            "target": "[root] var.linux_agent_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_count",
-            "svg_id": "edge_57",
-            "target": "[root] var.linux_agent_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_vm_size",
-            "svg_id": "edge_58",
-            "target": "[root] var.master_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.master_count",
-            "svg_id": "edge_59",
-            "target": "[root] var.service_principal_client_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.service_principal_client_id",
-            "svg_id": "edge_60",
-            "target": "[root] var.service_principal_client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.dns_name_prefix",
-            "svg_id": "edge_61",
-            "target": "[root] var.linux_admin_ssh_publickey"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_ssh_publickey",
-            "svg_id": "edge_62",
-            "target": "[root] var.linux_admin_username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_admin_username",
-            "svg_id": "edge_63",
-            "target": "[root] var.linux_agent_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_count",
-            "svg_id": "edge_64",
-            "target": "[root] var.linux_agent_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.linux_agent_vm_size",
-            "svg_id": "edge_65",
-            "target": "[root] var.master_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.master_count",
-            "svg_id": "edge_66",
-            "target": "[root] var.service_principal_client_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.service_principal_client_id",
-            "svg_id": "edge_67",
-            "target": "[root] var.service_principal_client_secret"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.dns_name_prefix",
-            "svg_id": "edge_68",
-            "target": "[root] var.linux_admin_ssh_publickey"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.linux_admin_ssh_publickey",
-            "svg_id": "edge_69",
-            "target": "[root] var.linux_admin_username"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.linux_admin_username",
-            "svg_id": "edge_70",
-            "target": "[root] var.linux_agent_count"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.linux_agent_count",
-            "svg_id": "edge_71",
-            "target": "[root] var.linux_agent_vm_size"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.linux_agent_vm_size",
-            "svg_id": "edge_72",
-            "target": "[root] var.master_count"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.master_count",
-            "svg_id": "edge_73",
-            "target": "[root] var.service_principal_client_id"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.service_principal_client_id",
-            "svg_id": "edge_74",
-            "target": "[root] var.service_principal_client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.resource_group_location",
-            "svg_id": "edge_75",
-            "target": "[root] var.resource_group_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.resource_group_location",
-            "svg_id": "edge_76",
-            "target": "[root] var.resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.master_fqdn",
-            "svg_id": "edge_77",
-            "target": "[root] output.ssh_command_master0"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.master_fqdn",
-            "svg_id": "edge_78",
             "target": "[root] output.ssh_command_master0"
         }
     ],

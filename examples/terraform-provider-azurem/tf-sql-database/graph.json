@@ -175,135 +175,51 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.location",
             "svg_id": "edge_29",
             "target": "[root] var.resource_group"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.location",
+            "source": "[root] var.db_edition",
             "svg_id": "edge_30",
-            "target": "[root] var.resource_group"
+            "target": "[root] var.db_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.db_edition",
+            "edge_type": 3,
+            "source": "[root] var.end_ip_address",
             "svg_id": "edge_31",
-            "target": "[root] var.db_name"
+            "target": "[root] var.start_ip_address"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.db_edition",
+            "source": "[root] var.sql_admin_username",
             "svg_id": "edge_32",
-            "target": "[root] var.db_name"
+            "target": "[root] var.sql_password"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.end_ip_address",
+            "edge_type": 3,
+            "source": "[root] output.connection_string",
             "svg_id": "edge_33",
-            "target": "[root] var.start_ip_address"
+            "target": "[root] output.database_name"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.end_ip_address",
+            "source": "[root] output.sql_server_fqdn",
             "svg_id": "edge_34",
-            "target": "[root] var.start_ip_address"
+            "target": "[root] output.sql_server_location"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.sql_admin_username",
+            "edge_type": 3,
+            "source": "[root] output.sql_server_location",
             "svg_id": "edge_35",
-            "target": "[root] var.sql_password"
+            "target": "[root] output.sql_server_name"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.sql_admin_username",
+            "source": "[root] output.sql_server_name",
             "svg_id": "edge_36",
-            "target": "[root] var.sql_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.connection_string",
-            "svg_id": "edge_37",
-            "target": "[root] output.database_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.connection_string",
-            "svg_id": "edge_38",
-            "target": "[root] output.database_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.sql_server_fqdn",
-            "svg_id": "edge_39",
-            "target": "[root] output.sql_server_location"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.sql_server_location",
-            "svg_id": "edge_40",
-            "target": "[root] output.sql_server_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.sql_server_name",
-            "svg_id": "edge_41",
-            "target": "[root] output.sql_server_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.sql_server_fqdn",
-            "svg_id": "edge_42",
-            "target": "[root] output.sql_server_location"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.sql_server_location",
-            "svg_id": "edge_43",
-            "target": "[root] output.sql_server_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.sql_server_name",
-            "svg_id": "edge_44",
-            "target": "[root] output.sql_server_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.sql_server_fqdn",
-            "svg_id": "edge_45",
-            "target": "[root] output.sql_server_location"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.sql_server_location",
-            "svg_id": "edge_46",
-            "target": "[root] output.sql_server_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.sql_server_name",
-            "svg_id": "edge_47",
-            "target": "[root] output.sql_server_version"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.sql_server_fqdn",
-            "svg_id": "edge_48",
-            "target": "[root] output.sql_server_location"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.sql_server_location",
-            "svg_id": "edge_49",
-            "target": "[root] output.sql_server_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.sql_server_name",
-            "svg_id": "edge_50",
             "target": "[root] output.sql_server_version"
         }
     ],

@@ -310,7 +310,7 @@
 <text text-anchor="start" x="367.9941" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">public_key_path</text>
 </g>
 <!-- [root] var.key_name&#45;&gt;[root] var.public_key_path -->
-<g id="edge_26" class="edge">
+<g id="edge_25" class="edge">
 <title>[root] var.key_name&#45;&gt;[root] var.public_key_path</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M404,-159.8314C404,-149 404,-135.2876 404,-124.4133"/>
 </g>

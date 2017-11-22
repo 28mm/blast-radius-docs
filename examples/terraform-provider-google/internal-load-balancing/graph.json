@@ -271,15 +271,9 @@
             "target": "[root] provider.google (close)"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.project_name",
-            "svg_id": "edge_45",
-            "target": "[root] var.region"
-        },
-        {
             "edge_type": 3,
             "source": "[root] var.project_name",
-            "svg_id": "edge_46",
+            "svg_id": "edge_45",
             "target": "[root] var.region"
         }
     ],

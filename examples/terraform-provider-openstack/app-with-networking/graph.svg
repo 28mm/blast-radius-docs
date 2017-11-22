@@ -307,7 +307,7 @@
 <text text-anchor="start" x="613.998" y="-224.6" font-family="courier new" font-size="8.00" fill="#000000">image</text>
 </g>
 <!-- [root] var.flavor&#45;&gt;[root] var.image -->
-<g id="edge_29" class="edge">
+<g id="edge_25" class="edge">
 <title>[root] var.flavor&#45;&gt;[root] var.image</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M624.5047,-287.8314C624.8056,-277 625.1865,-263.2876 625.4885,-252.4133"/>
 </g>
@@ -320,7 +320,7 @@
 <text text-anchor="start" x="596.7949" y="-152.6" font-family="courier new" font-size="8.00" fill="#000000">ssh_user_name</text>
 </g>
 <!-- [root] var.image&#45;&gt;[root] var.ssh_user_name -->
-<g id="edge_30" class="edge">
+<g id="edge_26" class="edge">
 <title>[root] var.image&#45;&gt;[root] var.ssh_user_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M626.5047,-215.8314C626.8056,-205 627.1865,-191.2876 627.4885,-180.4133"/>
 </g>

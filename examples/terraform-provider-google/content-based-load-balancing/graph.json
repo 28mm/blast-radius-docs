@@ -169,39 +169,15 @@
             "target": "[root] provider.google (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.credentials_file_path",
             "svg_id": "edge_28",
             "target": "[root] var.project_name"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.project_name",
             "svg_id": "edge_29",
-            "target": "[root] var.region"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.credentials_file_path",
-            "svg_id": "edge_30",
-            "target": "[root] var.project_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.project_name",
-            "svg_id": "edge_31",
-            "target": "[root] var.region"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.credentials_file_path",
-            "svg_id": "edge_32",
-            "target": "[root] var.project_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.project_name",
-            "svg_id": "edge_33",
             "target": "[root] var.region"
         }
     ],

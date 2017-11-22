@@ -637,75 +637,21 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.client_id",
             "svg_id": "edge_106",
             "target": "[root] var.client_secret"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.client_secret",
             "svg_id": "edge_107",
             "target": "[root] var.subscription_id"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.subscription_id",
             "svg_id": "edge_108",
-            "target": "[root] var.tenant_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.client_id",
-            "svg_id": "edge_109",
-            "target": "[root] var.client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.client_secret",
-            "svg_id": "edge_110",
-            "target": "[root] var.subscription_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.subscription_id",
-            "svg_id": "edge_111",
-            "target": "[root] var.tenant_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.client_id",
-            "svg_id": "edge_112",
-            "target": "[root] var.client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.client_secret",
-            "svg_id": "edge_113",
-            "target": "[root] var.subscription_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.subscription_id",
-            "svg_id": "edge_114",
-            "target": "[root] var.tenant_id"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.client_id",
-            "svg_id": "edge_115",
-            "target": "[root] var.client_secret"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.client_secret",
-            "svg_id": "edge_116",
-            "target": "[root] var.subscription_id"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.subscription_id",
-            "svg_id": "edge_117",
             "target": "[root] var.tenant_id"
         }
     ],

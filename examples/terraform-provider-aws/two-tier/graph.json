@@ -151,15 +151,9 @@
             "target": "[root] provisioner.remote-exec (close)"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.key_name",
-            "svg_id": "edge_25",
-            "target": "[root] var.public_key_path"
-        },
-        {
             "edge_type": 3,
             "source": "[root] var.key_name",
-            "svg_id": "edge_26",
+            "svg_id": "edge_25",
             "target": "[root] var.public_key_path"
         }
     ],

@@ -264,7 +264,7 @@
 <text text-anchor="start" x="28.6973" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">asg_max</text>
 </g>
 <!-- [root] var.asg_desired&#45;&gt;[root] var.asg_max -->
-<g id="edge_28" class="edge">
+<g id="edge_24" class="edge">
 <title>[root] var.asg_desired&#45;&gt;[root] var.asg_max</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M45,-231.8314C45,-221 45,-207.2876 45,-196.4133"/>
 </g>
@@ -277,7 +277,7 @@
 <text text-anchor="start" x="28.6973" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">asg_min</text>
 </g>
 <!-- [root] var.asg_max&#45;&gt;[root] var.asg_min -->
-<g id="edge_29" class="edge">
+<g id="edge_25" class="edge">
 <title>[root] var.asg_max&#45;&gt;[root] var.asg_min</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M45,-159.8314C45,-149 45,-135.2876 45,-124.4133"/>
 </g>
@@ -290,7 +290,7 @@
 <text text-anchor="start" x="356.7949" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">instance_type</text>
 </g>
 <!-- [root] var.aws_amis&#45;&gt;[root] var.instance_type -->
-<g id="edge_34" class="edge">
+<g id="edge_26" class="edge">
 <title>[root] var.aws_amis&#45;&gt;[root] var.instance_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M385.757,-159.8314C386.2083,-149 386.7797,-135.2876 387.2328,-124.4133"/>
 </g>
@@ -303,7 +303,7 @@
 <text text-anchor="start" x="368.7969" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">key_name</text>
 </g>
 <!-- [root] var.instance_type&#45;&gt;[root] var.key_name -->
-<g id="edge_35" class="edge">
+<g id="edge_27" class="edge">
 <title>[root] var.instance_type&#45;&gt;[root] var.key_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M388,-87.8314C388,-77 388,-63.2876 388,-52.4133"/>
 </g>

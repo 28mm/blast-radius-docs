@@ -199,387 +199,69 @@
             "target": "[root] provider.aws (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.db_name",
             "svg_id": "edge_33",
             "target": "[root] var.engine"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.engine",
             "svg_id": "edge_34",
             "target": "[root] var.engine_version"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.engine_version",
             "svg_id": "edge_35",
             "target": "[root] var.identifier"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.identifier",
             "svg_id": "edge_36",
             "target": "[root] var.instance_class"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.instance_class",
             "svg_id": "edge_37",
             "target": "[root] var.password"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.password",
             "svg_id": "edge_38",
             "target": "[root] var.storage"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.storage",
             "svg_id": "edge_39",
             "target": "[root] var.username"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.db_name",
+            "edge_type": 3,
+            "source": "[root] var.cidr_blocks",
             "svg_id": "edge_40",
-            "target": "[root] var.engine"
+            "target": "[root] var.sg_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.engine",
+            "edge_type": 3,
+            "source": "[root] var.az_1",
             "svg_id": "edge_41",
-            "target": "[root] var.engine_version"
+            "target": "[root] var.subnet_1_cidr"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.engine_version",
+            "edge_type": 3,
+            "source": "[root] var.az_2",
             "svg_id": "edge_42",
-            "target": "[root] var.identifier"
+            "target": "[root] var.subnet_2_cidr"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.identifier",
+            "edge_type": 3,
+            "source": "[root] output.db_instance_address",
             "svg_id": "edge_43",
-            "target": "[root] var.instance_class"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.instance_class",
-            "svg_id": "edge_44",
-            "target": "[root] var.password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.password",
-            "svg_id": "edge_45",
-            "target": "[root] var.storage"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage",
-            "svg_id": "edge_46",
-            "target": "[root] var.username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_name",
-            "svg_id": "edge_47",
-            "target": "[root] var.engine"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine",
-            "svg_id": "edge_48",
-            "target": "[root] var.engine_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine_version",
-            "svg_id": "edge_49",
-            "target": "[root] var.identifier"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.identifier",
-            "svg_id": "edge_50",
-            "target": "[root] var.instance_class"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.instance_class",
-            "svg_id": "edge_51",
-            "target": "[root] var.password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.password",
-            "svg_id": "edge_52",
-            "target": "[root] var.storage"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage",
-            "svg_id": "edge_53",
-            "target": "[root] var.username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_name",
-            "svg_id": "edge_54",
-            "target": "[root] var.engine"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine",
-            "svg_id": "edge_55",
-            "target": "[root] var.engine_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine_version",
-            "svg_id": "edge_56",
-            "target": "[root] var.identifier"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.identifier",
-            "svg_id": "edge_57",
-            "target": "[root] var.instance_class"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.instance_class",
-            "svg_id": "edge_58",
-            "target": "[root] var.password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.password",
-            "svg_id": "edge_59",
-            "target": "[root] var.storage"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage",
-            "svg_id": "edge_60",
-            "target": "[root] var.username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_name",
-            "svg_id": "edge_61",
-            "target": "[root] var.engine"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine",
-            "svg_id": "edge_62",
-            "target": "[root] var.engine_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine_version",
-            "svg_id": "edge_63",
-            "target": "[root] var.identifier"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.identifier",
-            "svg_id": "edge_64",
-            "target": "[root] var.instance_class"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.instance_class",
-            "svg_id": "edge_65",
-            "target": "[root] var.password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.password",
-            "svg_id": "edge_66",
-            "target": "[root] var.storage"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage",
-            "svg_id": "edge_67",
-            "target": "[root] var.username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_name",
-            "svg_id": "edge_68",
-            "target": "[root] var.engine"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine",
-            "svg_id": "edge_69",
-            "target": "[root] var.engine_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine_version",
-            "svg_id": "edge_70",
-            "target": "[root] var.identifier"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.identifier",
-            "svg_id": "edge_71",
-            "target": "[root] var.instance_class"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.instance_class",
-            "svg_id": "edge_72",
-            "target": "[root] var.password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.password",
-            "svg_id": "edge_73",
-            "target": "[root] var.storage"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage",
-            "svg_id": "edge_74",
-            "target": "[root] var.username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_name",
-            "svg_id": "edge_75",
-            "target": "[root] var.engine"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine",
-            "svg_id": "edge_76",
-            "target": "[root] var.engine_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.engine_version",
-            "svg_id": "edge_77",
-            "target": "[root] var.identifier"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.identifier",
-            "svg_id": "edge_78",
-            "target": "[root] var.instance_class"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.instance_class",
-            "svg_id": "edge_79",
-            "target": "[root] var.password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.password",
-            "svg_id": "edge_80",
-            "target": "[root] var.storage"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage",
-            "svg_id": "edge_81",
-            "target": "[root] var.username"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.db_name",
-            "svg_id": "edge_82",
-            "target": "[root] var.engine"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.engine",
-            "svg_id": "edge_83",
-            "target": "[root] var.engine_version"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.engine_version",
-            "svg_id": "edge_84",
-            "target": "[root] var.identifier"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.identifier",
-            "svg_id": "edge_85",
-            "target": "[root] var.instance_class"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.instance_class",
-            "svg_id": "edge_86",
-            "target": "[root] var.password"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.password",
-            "svg_id": "edge_87",
-            "target": "[root] var.storage"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.storage",
-            "svg_id": "edge_88",
-            "target": "[root] var.username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.cidr_blocks",
-            "svg_id": "edge_89",
-            "target": "[root] var.sg_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.cidr_blocks",
-            "svg_id": "edge_90",
-            "target": "[root] var.sg_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.az_1",
-            "svg_id": "edge_91",
-            "target": "[root] var.subnet_1_cidr"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.az_1",
-            "svg_id": "edge_92",
-            "target": "[root] var.subnet_1_cidr"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.az_2",
-            "svg_id": "edge_93",
-            "target": "[root] var.subnet_2_cidr"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.az_2",
-            "svg_id": "edge_94",
-            "target": "[root] var.subnet_2_cidr"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.db_instance_address",
-            "svg_id": "edge_95",
-            "target": "[root] output.db_instance_id"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.db_instance_address",
-            "svg_id": "edge_96",
             "target": "[root] output.db_instance_id"
         }
     ],

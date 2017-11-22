@@ -202,7 +202,7 @@
 <text text-anchor="start" x="75.3945" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">resource_group</text>
 </g>
 <!-- [root] var.location&#45;&gt;[root] var.resource_group -->
-<g id="edge_17" class="edge">
+<g id="edge_16" class="edge">
 <title>[root] var.location&#45;&gt;[root] var.resource_group</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M105.5094,-87.8314C106.1111,-77 106.8729,-63.2876 107.477,-52.4133"/>
 </g>
@@ -215,7 +215,7 @@
 <text text-anchor="start" x="236.3906" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">storage_replication_type</text>
 </g>
 <!-- [root] var.storage_account_tier&#45;&gt;[root] var.storage_replication_type -->
-<g id="edge_19" class="edge">
+<g id="edge_17" class="edge">
 <title>[root] var.storage_account_tier&#45;&gt;[root] var.storage_replication_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M289.7617,-303.8314C290.5139,-293 291.4661,-279.2876 292.2213,-268.4133"/>
 </g>

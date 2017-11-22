@@ -1265,7 +1265,7 @@
 <text text-anchor="start" x="4218.6764" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">nic_cassandra_node_ip</text>
 </g>
 <!-- [root] var.nic_cassandra_name&#45;&gt;[root] var.nic_cassandra_node_ip -->
-<g id="edge_124" class="edge">
+<g id="edge_123" class="edge">
 <title>[root] var.nic_cassandra_name&#45;&gt;[root] var.nic_cassandra_node_ip</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M4266.094,-231.8314C4266.6958,-221 4267.4576,-207.2876 4268.0617,-196.4133"/>
 </g>
@@ -1278,7 +1278,7 @@
 <text text-anchor="start" x="2505.9753" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">nic_slave_node_ip_prefix</text>
 </g>
 <!-- [root] var.nic_slave_name_prefix&#45;&gt;[root] var.nic_slave_node_ip_prefix -->
-<g id="edge_126" class="edge">
+<g id="edge_124" class="edge">
 <title>[root] var.nic_slave_name_prefix&#45;&gt;[root] var.nic_slave_node_ip_prefix</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2560.094,-231.8314C2560.6958,-221 2561.4576,-207.2876 2562.0617,-196.4133"/>
 </g>
@@ -1291,7 +1291,7 @@
 <text text-anchor="start" x="1306.9714" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">storage_cassandra_replication_type</text>
 </g>
 <!-- [root] var.storage_cassandra_account_tier&#45;&gt;[root] var.storage_cassandra_replication_type -->
-<g id="edge_128" class="edge">
+<g id="edge_125" class="edge">
 <title>[root] var.storage_cassandra_account_tier&#45;&gt;[root] var.storage_cassandra_replication_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1391.8229,-159.8314C1391.0708,-149 1390.1185,-135.2876 1389.3634,-124.4133"/>
 </g>
@@ -1304,7 +1304,7 @@
 <text text-anchor="start" x="2176.6725" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">storage_master_replication_type</text>
 </g>
 <!-- [root] var.storage_master_account_tier&#45;&gt;[root] var.storage_master_replication_type -->
-<g id="edge_130" class="edge">
+<g id="edge_126" class="edge">
 <title>[root] var.storage_master_account_tier&#45;&gt;[root] var.storage_master_replication_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2247.3464,-159.8314C2248.0985,-149 2249.0508,-135.2876 2249.806,-124.4133"/>
 </g>
@@ -1317,7 +1317,7 @@
 <text text-anchor="start" x="2003.0729" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">storage_slave_replication_type</text>
 </g>
 <!-- [root] var.storage_slave_account_tier&#45;&gt;[root] var.storage_slave_replication_type -->
-<g id="edge_132" class="edge">
+<g id="edge_127" class="edge">
 <title>[root] var.storage_slave_account_tier&#45;&gt;[root] var.storage_slave_replication_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2071.3464,-159.8314C2072.0985,-149 2073.0508,-135.2876 2073.806,-124.4133"/>
 </g>
@@ -1330,7 +1330,7 @@
 <text text-anchor="start" x="900.0749" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_spark_subnet1_prefix</text>
 </g>
 <!-- [root] var.vnet_spark_subnet1_name&#45;&gt;[root] var.vnet_spark_subnet1_prefix -->
-<g id="edge_134" class="edge">
+<g id="edge_128" class="edge">
 <title>[root] var.vnet_spark_subnet1_name&#45;&gt;[root] var.vnet_spark_subnet1_prefix</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M962.3276,-159.8314C961.8763,-149 961.305,-135.2876 960.8519,-124.4133"/>
 </g>
@@ -1343,7 +1343,7 @@
 <text text-anchor="start" x="1853.0749" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_spark_subnet2_prefix</text>
 </g>
 <!-- [root] var.vnet_spark_subnet2_name&#45;&gt;[root] var.vnet_spark_subnet2_prefix -->
-<g id="edge_136" class="edge">
+<g id="edge_129" class="edge">
 <title>[root] var.vnet_spark_subnet2_name&#45;&gt;[root] var.vnet_spark_subnet2_prefix</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1911.5893,-159.8314C1911.8902,-149 1912.2711,-135.2876 1912.5732,-124.4133"/>
 </g>
@@ -1356,7 +1356,7 @@
 <text text-anchor="start" x="2355.0749" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_spark_subnet3_prefix</text>
 </g>
 <!-- [root] var.vnet_spark_subnet3_name&#45;&gt;[root] var.vnet_spark_subnet3_prefix -->
-<g id="edge_138" class="edge">
+<g id="edge_130" class="edge">
 <title>[root] var.vnet_spark_subnet3_name&#45;&gt;[root] var.vnet_spark_subnet3_prefix</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2412.8417,-159.8314C2413.293,-149 2413.8643,-135.2876 2414.3174,-124.4133"/>
 </g>
@@ -1369,7 +1369,7 @@
 <text text-anchor="start" x="4416.778" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">vm_cassandra_name</text>
 </g>
 <!-- [root] var.script_cassandra_provisioner_script_file_name&#45;&gt;[root] var.vm_cassandra_name -->
-<g id="edge_148" class="edge">
+<g id="edge_131" class="edge">
 <title>[root] var.script_cassandra_provisioner_script_file_name&#45;&gt;[root] var.vm_cassandra_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M4457.0847,-303.8314C4457.0847,-293 4457.0847,-279.2876 4457.0847,-268.4133"/>
 </g>
@@ -1382,7 +1382,7 @@
 <text text-anchor="start" x="4397.0749" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">vm_cassandra_os_disk_name</text>
 </g>
 <!-- [root] var.vm_cassandra_name&#45;&gt;[root] var.vm_cassandra_os_disk_name -->
-<g id="edge_149" class="edge">
+<g id="edge_132" class="edge">
 <title>[root] var.vm_cassandra_name&#45;&gt;[root] var.vm_cassandra_os_disk_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M4457.0847,-231.8314C4457.0847,-221 4457.0847,-207.2876 4457.0847,-196.4133"/>
 </g>
@@ -1395,7 +1395,7 @@
 <text text-anchor="start" x="4409.0768" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">vm_cassandra_vm_size</text>
 </g>
 <!-- [root] var.vm_cassandra_os_disk_name&#45;&gt;[root] var.vm_cassandra_vm_size -->
-<g id="edge_150" class="edge">
+<g id="edge_133" class="edge">
 <title>[root] var.vm_cassandra_os_disk_name&#45;&gt;[root] var.vm_cassandra_vm_size</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M4457.0847,-159.8314C4457.0847,-149 4457.0847,-135.2876 4457.0847,-124.4133"/>
 </g>
@@ -1408,7 +1408,7 @@
 <text text-anchor="start" x="4083.7761" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">vm_master_os_disk_name</text>
 </g>
 <!-- [root] var.vm_master_name&#45;&gt;[root] var.vm_master_os_disk_name -->
-<g id="edge_155" class="edge">
+<g id="edge_134" class="edge">
 <title>[root] var.vm_master_name&#45;&gt;[root] var.vm_master_os_disk_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M4129.3557,-303.8314C4130.7096,-293 4132.4237,-279.2876 4133.783,-268.4133"/>
 </g>
@@ -1421,7 +1421,7 @@
 <text text-anchor="start" x="4095.778" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">vm_master_vm_size</text>
 </g>
 <!-- [root] var.vm_master_os_disk_name&#45;&gt;[root] var.vm_master_vm_size -->
-<g id="edge_156" class="edge">
+<g id="edge_135" class="edge">
 <title>[root] var.vm_master_os_disk_name&#45;&gt;[root] var.vm_master_vm_size</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M4136.0847,-231.8314C4136.0847,-221 4136.0847,-207.2876 4136.0847,-196.4133"/>
 </g>
@@ -1434,7 +1434,7 @@
 <text text-anchor="start" x="3074.8737" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">vm_slave_os_disk_name_prefix</text>
 </g>
 <!-- [root] var.vm_slave_name_prefix&#45;&gt;[root] var.vm_slave_os_disk_name_prefix -->
-<g id="edge_161" class="edge">
+<g id="edge_136" class="edge">
 <title>[root] var.vm_slave_name_prefix&#45;&gt;[root] var.vm_slave_os_disk_name_prefix</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M3148.0659,-303.8314C3146.8624,-293 3145.3388,-279.2876 3144.1306,-268.4133"/>
 </g>
@@ -1447,7 +1447,7 @@
 <text text-anchor="start" x="3103.6784" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">vm_slave_vm_size</text>
 </g>
 <!-- [root] var.vm_slave_os_disk_name_prefix&#45;&gt;[root] var.vm_slave_vm_size -->
-<g id="edge_162" class="edge">
+<g id="edge_137" class="edge">
 <title>[root] var.vm_slave_os_disk_name_prefix&#45;&gt;[root] var.vm_slave_vm_size</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M3142.0847,-231.8314C3142.0847,-221 3142.0847,-207.2876 3142.0847,-196.4133"/>
 </g>
@@ -1460,7 +1460,7 @@
 <text text-anchor="start" x="829.8757" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">master_web_ui_public_ip</text>
 </g>
 <!-- [root] output.master_ip_address&#45;&gt;[root] output.master_web_ui_public_ip -->
-<g id="edge_164" class="edge">
+<g id="edge_138" class="edge">
 <title>[root] output.master_ip_address&#45;&gt;[root] output.master_web_ui_public_ip</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M890.3183,-375.8314C889.2652,-365 887.9321,-351.2876 886.8748,-340.4133"/>
 </g>

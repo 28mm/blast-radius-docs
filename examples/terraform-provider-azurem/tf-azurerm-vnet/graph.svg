@@ -302,7 +302,7 @@
 <text text-anchor="start" x="322.0977" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">prefix</text>
 </g>
 <!-- [root] var.location&#45;&gt;[root] var.prefix -->
-<g id="edge_37" class="edge">
+<g id="edge_36" class="edge">
 <title>[root] var.location&#45;&gt;[root] var.prefix</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M336.5,-87.8314C336.5,-77 336.5,-63.2876 336.5,-52.4133"/>
 </g>
@@ -315,7 +315,7 @@
 <text text-anchor="start" x="369.4941" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">subnet_prefixes</text>
 </g>
 <!-- [root] var.subnet_names&#45;&gt;[root] var.subnet_prefixes -->
-<g id="edge_39" class="edge">
+<g id="edge_37" class="edge">
 <title>[root] var.subnet_names&#45;&gt;[root] var.subnet_prefixes</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M404.0047,-447.8314C404.3056,-437 404.6865,-423.2876 404.9885,-412.4133"/>
 </g>
@@ -328,7 +328,7 @@
 <text text-anchor="start" x="407.0957" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">dns_servers</text>
 </g>
 <!-- [root] var.address_space&#45;&gt;[root] var.dns_servers -->
-<g id="edge_41" class="edge">
+<g id="edge_38" class="edge">
 <title>[root] var.address_space&#45;&gt;[root] var.dns_servers</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M433.5,-159.8314C433.5,-149 433.5,-135.2876 433.5,-124.4133"/>
 </g>
@@ -347,7 +347,7 @@
 <text text-anchor="start" x="473.0938" y="-528.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_dns_servers</text>
 </g>
 <!-- [root] output.vnet_address_space&#45;&gt;[root] output.vnet_dns_servers -->
-<g id="edge_58" class="edge">
+<g id="edge_39" class="edge">
 <title>[root] output.vnet_address_space&#45;&gt;[root] output.vnet_dns_servers</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M513.743,-591.8314C513.2917,-581 512.7203,-567.2876 512.2672,-556.4133"/>
 </g>
@@ -360,7 +360,7 @@
 <text text-anchor="start" x="492.1973" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_id</text>
 </g>
 <!-- [root] output.vnet_dns_servers&#45;&gt;[root] output.vnet_id -->
-<g id="edge_59" class="edge">
+<g id="edge_40" class="edge">
 <title>[root] output.vnet_dns_servers&#45;&gt;[root] output.vnet_id</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M510.743,-519.8314C510.2917,-509 509.7203,-495.2876 509.2672,-484.4133"/>
 </g>
@@ -373,7 +373,7 @@
 <text text-anchor="start" x="475.2949" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_location</text>
 </g>
 <!-- [root] output.vnet_id&#45;&gt;[root] output.vnet_location -->
-<g id="edge_60" class="edge">
+<g id="edge_41" class="edge">
 <title>[root] output.vnet_id&#45;&gt;[root] output.vnet_location</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M507.9953,-447.8314C507.6944,-437 507.3135,-423.2876 507.0115,-412.4133"/>
 </g>
@@ -386,7 +386,7 @@
 <text text-anchor="start" x="479.3965" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_name</text>
 </g>
 <!-- [root] output.vnet_location&#45;&gt;[root] output.vnet_name -->
-<g id="edge_61" class="edge">
+<g id="edge_42" class="edge">
 <title>[root] output.vnet_location&#45;&gt;[root] output.vnet_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M504.9859,-375.8314C504.0833,-365 502.9406,-351.2876 502.0344,-340.4133"/>
 </g>

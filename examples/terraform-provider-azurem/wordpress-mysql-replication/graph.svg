@@ -705,7 +705,7 @@
 <text text-anchor="start" x="638.9922" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">storage_account_tier</text>
 </g>
 <!-- [root] var.storage_account_name&#45;&gt;[root] var.storage_account_tier -->
-<g id="edge_94" class="edge">
+<g id="edge_90" class="edge">
 <title>[root] var.storage_account_name&#45;&gt;[root] var.storage_account_tier</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M685.5047,-447.8314C685.8056,-437 686.1865,-423.2876 686.4885,-412.4133"/>
 </g>
@@ -718,7 +718,7 @@
 <text text-anchor="start" x="631.8906" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">storage_replication_type</text>
 </g>
 <!-- [root] var.storage_account_tier&#45;&gt;[root] var.storage_replication_type -->
-<g id="edge_95" class="edge">
+<g id="edge_91" class="edge">
 <title>[root] var.storage_account_tier&#45;&gt;[root] var.storage_replication_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M687.5047,-375.8314C687.8056,-365 688.1865,-351.2876 688.4885,-340.4133"/>
 </g>
@@ -731,7 +731,7 @@
 <text text-anchor="start" x="509.8945" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">db_subnet_name</text>
 </g>
 <!-- [root] var.db_subnet_address_prefix&#45;&gt;[root] var.db_subnet_name -->
-<g id="edge_97" class="edge">
+<g id="edge_92" class="edge">
 <title>[root] var.db_subnet_address_prefix&#45;&gt;[root] var.db_subnet_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M543,-519.8314C543,-509 543,-495.2876 543,-484.4133"/>
 </g>
@@ -744,7 +744,7 @@
 <text text-anchor="start" x="19.6914" y="-816.6" font-family="courier new" font-size="8.00" fill="#000000">mysql_front_end_port_0</text>
 </g>
 <!-- [root] var.hosting_plan_name&#45;&gt;[root] var.mysql_front_end_port_0 -->
-<g id="edge_114" class="edge">
+<g id="edge_93" class="edge">
 <title>[root] var.hosting_plan_name&#45;&gt;[root] var.mysql_front_end_port_0</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M76.4859,-879.8314C75.5833,-869 74.4406,-855.2876 73.5344,-844.4133"/>
 </g>
@@ -757,7 +757,7 @@
 <text text-anchor="start" x="50.8965" y="-744.6" font-family="courier new" font-size="8.00" fill="#000000">site_name</text>
 </g>
 <!-- [root] var.mysql_front_end_port_0&#45;&gt;[root] var.site_name -->
-<g id="edge_115" class="edge">
+<g id="edge_94" class="edge">
 <title>[root] var.mysql_front_end_port_0&#45;&gt;[root] var.site_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M72,-807.8314C72,-797 72,-783.2876 72,-772.4133"/>
 </g>
@@ -770,7 +770,7 @@
 <text text-anchor="start" x="64.7988" y="-672.6" font-family="courier new" font-size="8.00" fill="#000000">sku</text>
 </g>
 <!-- [root] var.site_name&#45;&gt;[root] var.sku -->
-<g id="edge_116" class="edge">
+<g id="edge_95" class="edge">
 <title>[root] var.site_name&#45;&gt;[root] var.sku</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M72,-735.8314C72,-725 72,-711.2876 72,-700.4133"/>
 </g>
@@ -783,7 +783,7 @@
 <text text-anchor="start" x="45.5957" y="-600.6" font-family="courier new" font-size="8.00" fill="#000000">worker_size</text>
 </g>
 <!-- [root] var.sku&#45;&gt;[root] var.worker_size -->
-<g id="edge_117" class="edge">
+<g id="edge_96" class="edge">
 <title>[root] var.sku&#45;&gt;[root] var.worker_size</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M72,-663.8314C72,-653 72,-639.2876 72,-628.4133"/>
 </g>
@@ -796,7 +796,7 @@
 <text text-anchor="start" x="315.9941" y="-672.6" font-family="courier new" font-size="8.00" fill="#000000">image_publisher</text>
 </g>
 <!-- [root] var.image_offer&#45;&gt;[root] var.image_publisher -->
-<g id="edge_134" class="edge">
+<g id="edge_97" class="edge">
 <title>[root] var.image_offer&#45;&gt;[root] var.image_publisher</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M355.7383,-735.8314C354.9861,-725 354.0339,-711.2876 353.2787,-700.4133"/>
 </g>
@@ -809,7 +809,7 @@
 <text text-anchor="start" x="326.9961" y="-600.6" font-family="courier new" font-size="8.00" fill="#000000">os_version</text>
 </g>
 <!-- [root] var.image_publisher&#45;&gt;[root] var.os_version -->
-<g id="edge_135" class="edge">
+<g id="edge_98" class="edge">
 <title>[root] var.image_publisher&#45;&gt;[root] var.os_version</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M351.7477,-663.8314C351.5972,-653 351.4068,-639.2876 351.2557,-628.4133"/>
 </g>
@@ -822,7 +822,7 @@
 <text text-anchor="start" x="309.6934" y="-528.6" font-family="courier new" font-size="8.00" fill="#000000">vm_admin_password</text>
 </g>
 <!-- [root] var.os_version&#45;&gt;[root] var.vm_admin_password -->
-<g id="edge_136" class="edge">
+<g id="edge_99" class="edge">
 <title>[root] var.os_version&#45;&gt;[root] var.vm_admin_password</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M350.7477,-591.8314C350.5972,-581 350.4068,-567.2876 350.2557,-556.4133"/>
 </g>
@@ -835,7 +835,7 @@
 <text text-anchor="start" x="333.6973" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">vm_size</text>
 </g>
 <!-- [root] var.vm_admin_password&#45;&gt;[root] var.vm_size -->
-<g id="edge_137" class="edge">
+<g id="edge_100" class="edge">
 <title>[root] var.vm_admin_password&#45;&gt;[root] var.vm_size</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M350,-519.8314C350,-509 350,-495.2876 350,-484.4133"/>
 </g>
@@ -848,7 +848,7 @@
 <text text-anchor="start" x="184.6934" y="-744.6" font-family="courier new" font-size="8.00" fill="#000000">azuremysql_script</text>
 </g>
 <!-- [root] var.artifacts_location&#45;&gt;[root] var.azuremysql_script -->
-<g id="edge_163" class="edge">
+<g id="edge_101" class="edge">
 <title>[root] var.artifacts_location&#45;&gt;[root] var.azuremysql_script</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M231.7289,-807.8314C230.375,-797 228.6609,-783.2876 227.3017,-772.4133"/>
 </g>
@@ -861,7 +861,7 @@
 <text text-anchor="start" x="178.8926" y="-672.6" font-family="courier new" font-size="8.00" fill="#000000">mysql_cfg_file_path</text>
 </g>
 <!-- [root] var.azuremysql_script&#45;&gt;[root] var.mysql_cfg_file_path -->
-<g id="edge_164" class="edge">
+<g id="edge_102" class="edge">
 <title>[root] var.azuremysql_script&#45;&gt;[root] var.mysql_cfg_file_path</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M224.7477,-735.8314C224.5972,-725 224.4068,-711.2876 224.2557,-700.4133"/>
 </g>
@@ -874,7 +874,7 @@
 <text text-anchor="start" x="173.9922" y="-600.6" font-family="courier new" font-size="8.00" fill="#000000">mysql_probe_password</text>
 </g>
 <!-- [root] var.mysql_cfg_file_path&#45;&gt;[root] var.mysql_probe_password -->
-<g id="edge_165" class="edge">
+<g id="edge_103" class="edge">
 <title>[root] var.mysql_cfg_file_path&#45;&gt;[root] var.mysql_probe_password</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M223.4953,-663.8314C223.1944,-653 222.8135,-639.2876 222.5115,-628.4133"/>
 </g>
@@ -887,7 +887,7 @@
 <text text-anchor="start" x="154.5898" y="-528.6" font-family="courier new" font-size="8.00" fill="#000000">mysql_replication_password</text>
 </g>
 <!-- [root] var.mysql_probe_password&#45;&gt;[root] var.mysql_replication_password -->
-<g id="edge_166" class="edge">
+<g id="edge_104" class="edge">
 <title>[root] var.mysql_probe_password&#45;&gt;[root] var.mysql_replication_password</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M220.7383,-591.8314C219.9861,-581 219.0339,-567.2876 218.2787,-556.4133"/>
 </g>
@@ -900,7 +900,7 @@
 <text text-anchor="start" x="171.8926" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">mysql_root_password</text>
 </g>
 <!-- [root] var.mysql_replication_password&#45;&gt;[root] var.mysql_root_password -->
-<g id="edge_167" class="edge">
+<g id="edge_105" class="edge">
 <title>[root] var.mysql_replication_password&#45;&gt;[root] var.mysql_root_password</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M217,-519.8314C217,-509 217,-495.2876 217,-484.4133"/>
 </g>
@@ -913,7 +913,7 @@
 <text text-anchor="start" x="877.8926" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_address_prefix</text>
 </g>
 <!-- [root] var.virtual_network_name&#45;&gt;[root] var.vnet_address_prefix -->
-<g id="edge_169" class="edge">
+<g id="edge_106" class="edge">
 <title>[root] var.virtual_network_name&#45;&gt;[root] var.vnet_address_prefix</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M923,-447.8314C923,-437 923,-423.2876 923,-412.4133"/>
 </g>
@@ -926,7 +926,7 @@
 <text text-anchor="start" x="1467.791" y="-888.6" font-family="courier new" font-size="8.00" fill="#000000">db_subnet_start_address</text>
 </g>
 <!-- [root] var.api_version&#45;&gt;[root] var.db_subnet_start_address -->
-<g id="edge_339" class="edge">
+<g id="edge_107" class="edge">
 <title>[root] var.api_version&#45;&gt;[root] var.db_subnet_start_address</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1506.5515,-951.8314C1509.8611,-941 1514.051,-927.2876 1517.3737,-916.4133"/>
 </g>
@@ -939,7 +939,7 @@
 <text text-anchor="start" x="1501.8965" y="-816.6" font-family="courier new" font-size="8.00" fill="#000000">image_sku</text>
 </g>
 <!-- [root] var.db_subnet_start_address&#45;&gt;[root] var.image_sku -->
-<g id="edge_340" class="edge">
+<g id="edge_108" class="edge">
 <title>[root] var.db_subnet_start_address&#45;&gt;[root] var.image_sku</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1523,-879.8314C1523,-869 1523,-855.2876 1523,-844.4133"/>
 </g>
@@ -952,7 +952,7 @@
 <text text-anchor="start" x="1474.6914" y="-744.6" font-family="courier new" font-size="8.00" fill="#000000">mysql_front_end_port_1</text>
 </g>
 <!-- [root] var.image_sku&#45;&gt;[root] var.mysql_front_end_port_1 -->
-<g id="edge_341" class="edge">
+<g id="edge_109" class="edge">
 <title>[root] var.image_sku&#45;&gt;[root] var.mysql_front_end_port_1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1524.0094,-807.8314C1524.6111,-797 1525.3729,-783.2876 1525.977,-772.4133"/>
 </g>
@@ -965,7 +965,7 @@
 <text text-anchor="start" x="1483.793" y="-672.6" font-family="courier new" font-size="8.00" fill="#000000">mysql_probe_port_0</text>
 </g>
 <!-- [root] var.mysql_front_end_port_1&#45;&gt;[root] var.mysql_probe_port_0 -->
-<g id="edge_342" class="edge">
+<g id="edge_110" class="edge">
 <title>[root] var.mysql_front_end_port_1&#45;&gt;[root] var.mysql_probe_port_0</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1527,-735.8314C1527,-725 1527,-711.2876 1527,-700.4133"/>
 </g>
@@ -978,7 +978,7 @@
 <text text-anchor="start" x="1483.793" y="-600.6" font-family="courier new" font-size="8.00" fill="#000000">mysql_probe_port_1</text>
 </g>
 <!-- [root] var.mysql_probe_port_0&#45;&gt;[root] var.mysql_probe_port_1 -->
-<g id="edge_343" class="edge">
+<g id="edge_111" class="edge">
 <title>[root] var.mysql_probe_port_0&#45;&gt;[root] var.mysql_probe_port_1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1527,-663.8314C1527,-653 1527,-639.2876 1527,-628.4133"/>
 </g>
@@ -991,7 +991,7 @@
 <text text-anchor="start" x="1494.8945" y="-528.6" font-family="courier new" font-size="8.00" fill="#000000">os_image_offer</text>
 </g>
 <!-- [root] var.mysql_probe_port_1&#45;&gt;[root] var.os_image_offer -->
-<g id="edge_344" class="edge">
+<g id="edge_112" class="edge">
 <title>[root] var.mysql_probe_port_1&#45;&gt;[root] var.os_image_offer</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1527.2523,-591.8314C1527.4028,-581 1527.5932,-567.2876 1527.7443,-556.4133"/>
 </g>
@@ -1004,7 +1004,7 @@
 <text text-anchor="start" x="1486.793" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">os_image_publisher</text>
 </g>
 <!-- [root] var.os_image_offer&#45;&gt;[root] var.os_image_publisher -->
-<g id="edge_345" class="edge">
+<g id="edge_113" class="edge">
 <title>[root] var.os_image_offer&#45;&gt;[root] var.os_image_publisher</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1528.5047,-519.8314C1528.8056,-509 1529.1865,-495.2876 1529.4885,-484.4133"/>
 </g>
@@ -1017,7 +1017,7 @@
 <text text-anchor="start" x="1461.8887" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">ssh_nat_rule_front_end_port_0</text>
 </g>
 <!-- [root] var.os_image_publisher&#45;&gt;[root] var.ssh_nat_rule_front_end_port_0 -->
-<g id="edge_346" class="edge">
+<g id="edge_114" class="edge">
 <title>[root] var.os_image_publisher&#45;&gt;[root] var.ssh_nat_rule_front_end_port_0</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1530.2523,-447.8314C1530.4028,-437 1530.5932,-423.2876 1530.7443,-412.4133"/>
 </g>
@@ -1030,7 +1030,7 @@
 <text text-anchor="start" x="1465.8887" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">ssh_nat_rule_front_end_port_1</text>
 </g>
 <!-- [root] var.ssh_nat_rule_front_end_port_0&#45;&gt;[root] var.ssh_nat_rule_front_end_port_1 -->
-<g id="edge_347" class="edge">
+<g id="edge_115" class="edge">
 <title>[root] var.ssh_nat_rule_front_end_port_0&#45;&gt;[root] var.ssh_nat_rule_front_end_port_1</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1532.0094,-375.8314C1532.6111,-365 1533.3729,-351.2876 1533.977,-340.4133"/>
 </g>
@@ -1043,7 +1043,7 @@
 <text text-anchor="start" x="1488.9922" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">template_api_version</text>
 </g>
 <!-- [root] var.ssh_nat_rule_front_end_port_1&#45;&gt;[root] var.template_api_version -->
-<g id="edge_348" class="edge">
+<g id="edge_116" class="edge">
 <title>[root] var.ssh_nat_rule_front_end_port_1&#45;&gt;[root] var.template_api_version</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1535.5047,-303.8314C1535.8056,-293 1536.1865,-279.2876 1536.4885,-268.4133"/>
 </g>
@@ -1056,7 +1056,7 @@
 <text text-anchor="start" x="1460.7871" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_existing_resource_group_name</text>
 </g>
 <!-- [root] var.template_api_version&#45;&gt;[root] var.vnet_existing_resource_group_name -->
-<g id="edge_349" class="edge">
+<g id="edge_117" class="edge">
 <title>[root] var.template_api_version&#45;&gt;[root] var.vnet_existing_resource_group_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1537.757,-231.8314C1538.2083,-221 1538.7797,-207.2876 1539.2328,-196.4133"/>
 </g>
@@ -1069,7 +1069,7 @@
 <text text-anchor="start" x="1491.9922" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">vnet_new_or_existing</text>
 </g>
 <!-- [root] var.vnet_existing_resource_group_name&#45;&gt;[root] var.vnet_new_or_existing -->
-<g id="edge_350" class="edge">
+<g id="edge_118" class="edge">
 <title>[root] var.vnet_existing_resource_group_name&#45;&gt;[root] var.vnet_new_or_existing</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1540,-159.8314C1540,-149 1540,-135.2876 1540,-124.4133"/>
 </g>
@@ -1082,7 +1082,7 @@
 <text text-anchor="start" x="1520.7969" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">wpdbname</text>
 </g>
 <!-- [root] var.vnet_new_or_existing&#45;&gt;[root] var.wpdbname -->
-<g id="edge_351" class="edge">
+<g id="edge_119" class="edge">
 <title>[root] var.vnet_new_or_existing&#45;&gt;[root] var.wpdbname</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1540,-87.8314C1540,-77 1540,-63.2876 1540,-52.4133"/>
 </g>
@@ -1101,7 +1101,7 @@
 <text text-anchor="start" x="1192.9961" y="-888.6" font-family="courier new" font-size="8.00" fill="#000000">ip_address</text>
 </g>
 <!-- [root] output.fqdn&#45;&gt;[root] output.ip_address -->
-<g id="edge_353" class="edge">
+<g id="edge_120" class="edge">
 <title>[root] output.fqdn&#45;&gt;[root] output.ip_address</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1217,-951.8314C1217,-941 1217,-927.2876 1217,-916.4133"/>
 </g>

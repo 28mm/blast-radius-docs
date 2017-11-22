@@ -79,15 +79,9 @@
             "target": "[root] provider.aws (close)"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.aws_amis",
-            "svg_id": "edge_13",
-            "target": "[root] var.key_name"
-        },
-        {
             "edge_type": 3,
             "source": "[root] var.aws_amis",
-            "svg_id": "edge_14",
+            "svg_id": "edge_13",
             "target": "[root] var.key_name"
         }
     ],

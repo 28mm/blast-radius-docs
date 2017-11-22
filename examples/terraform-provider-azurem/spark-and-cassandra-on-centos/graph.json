@@ -739,255 +739,99 @@
             "target": "[root] provisioner.remote-exec (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.nic_cassandra_name",
             "svg_id": "edge_123",
             "target": "[root] var.nic_cassandra_node_ip"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.nic_cassandra_name",
+            "source": "[root] var.nic_slave_name_prefix",
             "svg_id": "edge_124",
-            "target": "[root] var.nic_cassandra_node_ip"
+            "target": "[root] var.nic_slave_node_ip_prefix"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.nic_slave_name_prefix",
+            "edge_type": 3,
+            "source": "[root] var.storage_cassandra_account_tier",
             "svg_id": "edge_125",
-            "target": "[root] var.nic_slave_node_ip_prefix"
+            "target": "[root] var.storage_cassandra_replication_type"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.nic_slave_name_prefix",
+            "source": "[root] var.storage_master_account_tier",
             "svg_id": "edge_126",
-            "target": "[root] var.nic_slave_node_ip_prefix"
+            "target": "[root] var.storage_master_replication_type"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.storage_cassandra_account_tier",
+            "edge_type": 3,
+            "source": "[root] var.storage_slave_account_tier",
             "svg_id": "edge_127",
-            "target": "[root] var.storage_cassandra_replication_type"
+            "target": "[root] var.storage_slave_replication_type"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.storage_cassandra_account_tier",
+            "source": "[root] var.vnet_spark_subnet1_name",
             "svg_id": "edge_128",
-            "target": "[root] var.storage_cassandra_replication_type"
+            "target": "[root] var.vnet_spark_subnet1_prefix"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.storage_master_account_tier",
+            "edge_type": 3,
+            "source": "[root] var.vnet_spark_subnet2_name",
             "svg_id": "edge_129",
-            "target": "[root] var.storage_master_replication_type"
+            "target": "[root] var.vnet_spark_subnet2_prefix"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.storage_master_account_tier",
+            "source": "[root] var.vnet_spark_subnet3_name",
             "svg_id": "edge_130",
-            "target": "[root] var.storage_master_replication_type"
+            "target": "[root] var.vnet_spark_subnet3_prefix"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.storage_slave_account_tier",
+            "edge_type": 3,
+            "source": "[root] var.script_cassandra_provisioner_script_file_name",
             "svg_id": "edge_131",
-            "target": "[root] var.storage_slave_replication_type"
+            "target": "[root] var.vm_cassandra_name"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.storage_slave_account_tier",
+            "source": "[root] var.vm_cassandra_name",
             "svg_id": "edge_132",
-            "target": "[root] var.storage_slave_replication_type"
+            "target": "[root] var.vm_cassandra_os_disk_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.vnet_spark_subnet1_name",
+            "edge_type": 3,
+            "source": "[root] var.vm_cassandra_os_disk_name",
             "svg_id": "edge_133",
-            "target": "[root] var.vnet_spark_subnet1_prefix"
+            "target": "[root] var.vm_cassandra_vm_size"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.vnet_spark_subnet1_name",
+            "source": "[root] var.vm_master_name",
             "svg_id": "edge_134",
-            "target": "[root] var.vnet_spark_subnet1_prefix"
+            "target": "[root] var.vm_master_os_disk_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.vnet_spark_subnet2_name",
+            "edge_type": 3,
+            "source": "[root] var.vm_master_os_disk_name",
             "svg_id": "edge_135",
-            "target": "[root] var.vnet_spark_subnet2_prefix"
+            "target": "[root] var.vm_master_vm_size"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.vnet_spark_subnet2_name",
+            "source": "[root] var.vm_slave_name_prefix",
             "svg_id": "edge_136",
-            "target": "[root] var.vnet_spark_subnet2_prefix"
+            "target": "[root] var.vm_slave_os_disk_name_prefix"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.vnet_spark_subnet3_name",
+            "edge_type": 3,
+            "source": "[root] var.vm_slave_os_disk_name_prefix",
             "svg_id": "edge_137",
-            "target": "[root] var.vnet_spark_subnet3_prefix"
+            "target": "[root] var.vm_slave_vm_size"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.vnet_spark_subnet3_name",
+            "source": "[root] output.master_ip_address",
             "svg_id": "edge_138",
-            "target": "[root] var.vnet_spark_subnet3_prefix"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.script_cassandra_provisioner_script_file_name",
-            "svg_id": "edge_139",
-            "target": "[root] var.vm_cassandra_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_cassandra_name",
-            "svg_id": "edge_140",
-            "target": "[root] var.vm_cassandra_os_disk_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_cassandra_os_disk_name",
-            "svg_id": "edge_141",
-            "target": "[root] var.vm_cassandra_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.script_cassandra_provisioner_script_file_name",
-            "svg_id": "edge_142",
-            "target": "[root] var.vm_cassandra_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_cassandra_name",
-            "svg_id": "edge_143",
-            "target": "[root] var.vm_cassandra_os_disk_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_cassandra_os_disk_name",
-            "svg_id": "edge_144",
-            "target": "[root] var.vm_cassandra_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.script_cassandra_provisioner_script_file_name",
-            "svg_id": "edge_145",
-            "target": "[root] var.vm_cassandra_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_cassandra_name",
-            "svg_id": "edge_146",
-            "target": "[root] var.vm_cassandra_os_disk_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_cassandra_os_disk_name",
-            "svg_id": "edge_147",
-            "target": "[root] var.vm_cassandra_vm_size"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.script_cassandra_provisioner_script_file_name",
-            "svg_id": "edge_148",
-            "target": "[root] var.vm_cassandra_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.vm_cassandra_name",
-            "svg_id": "edge_149",
-            "target": "[root] var.vm_cassandra_os_disk_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.vm_cassandra_os_disk_name",
-            "svg_id": "edge_150",
-            "target": "[root] var.vm_cassandra_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_master_name",
-            "svg_id": "edge_151",
-            "target": "[root] var.vm_master_os_disk_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_master_os_disk_name",
-            "svg_id": "edge_152",
-            "target": "[root] var.vm_master_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_master_name",
-            "svg_id": "edge_153",
-            "target": "[root] var.vm_master_os_disk_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_master_os_disk_name",
-            "svg_id": "edge_154",
-            "target": "[root] var.vm_master_vm_size"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.vm_master_name",
-            "svg_id": "edge_155",
-            "target": "[root] var.vm_master_os_disk_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.vm_master_os_disk_name",
-            "svg_id": "edge_156",
-            "target": "[root] var.vm_master_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_slave_name_prefix",
-            "svg_id": "edge_157",
-            "target": "[root] var.vm_slave_os_disk_name_prefix"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_slave_os_disk_name_prefix",
-            "svg_id": "edge_158",
-            "target": "[root] var.vm_slave_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_slave_name_prefix",
-            "svg_id": "edge_159",
-            "target": "[root] var.vm_slave_os_disk_name_prefix"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_slave_os_disk_name_prefix",
-            "svg_id": "edge_160",
-            "target": "[root] var.vm_slave_vm_size"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.vm_slave_name_prefix",
-            "svg_id": "edge_161",
-            "target": "[root] var.vm_slave_os_disk_name_prefix"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.vm_slave_os_disk_name_prefix",
-            "svg_id": "edge_162",
-            "target": "[root] var.vm_slave_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.master_ip_address",
-            "svg_id": "edge_163",
-            "target": "[root] output.master_web_ui_public_ip"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.master_ip_address",
-            "svg_id": "edge_164",
             "target": "[root] output.master_web_ui_public_ip"
         }
     ],

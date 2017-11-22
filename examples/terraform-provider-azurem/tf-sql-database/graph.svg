@@ -236,7 +236,7 @@
 <text text-anchor="start" x="19.8945" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">resource_group</text>
 </g>
 <!-- [root] var.location&#45;&gt;[root] var.resource_group -->
-<g id="edge_30" class="edge">
+<g id="edge_29" class="edge">
 <title>[root] var.location&#45;&gt;[root] var.resource_group</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M55.9906,-87.8314C55.3889,-77 54.6271,-63.2876 54.023,-52.4133"/>
 </g>
@@ -249,7 +249,7 @@
 <text text-anchor="start" x="64.6973" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">db_name</text>
 </g>
 <!-- [root] var.db_edition&#45;&gt;[root] var.db_name -->
-<g id="edge_32" class="edge">
+<g id="edge_30" class="edge">
 <title>[root] var.db_edition&#45;&gt;[root] var.db_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M81,-303.8314C81,-293 81,-279.2876 81,-268.4133"/>
 </g>
@@ -262,7 +262,7 @@
 <text text-anchor="start" x="204.5938" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">start_ip_address</text>
 </g>
 <!-- [root] var.end_ip_address&#45;&gt;[root] var.start_ip_address -->
-<g id="edge_34" class="edge">
+<g id="edge_31" class="edge">
 <title>[root] var.end_ip_address&#45;&gt;[root] var.start_ip_address</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M241.5047,-447.8314C241.8056,-437 242.1865,-423.2876 242.4885,-412.4133"/>
 </g>
@@ -275,7 +275,7 @@
 <text text-anchor="start" x="201.6953" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">sql_password</text>
 </g>
 <!-- [root] var.sql_admin_username&#45;&gt;[root] var.sql_password -->
-<g id="edge_36" class="edge">
+<g id="edge_32" class="edge">
 <title>[root] var.sql_admin_username&#45;&gt;[root] var.sql_password</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M230,-159.8314C230,-149 230,-135.2876 230,-124.4133"/>
 </g>
@@ -288,7 +288,7 @@
 <text text-anchor="start" x="62.7949" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">database_name</text>
 </g>
 <!-- [root] output.connection_string&#45;&gt;[root] output.database_name -->
-<g id="edge_38" class="edge">
+<g id="edge_33" class="edge">
 <title>[root] output.connection_string&#45;&gt;[root] output.database_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M101.4766,-519.8314C99.9722,-509 98.0677,-495.2876 96.5574,-484.4133"/>
 </g>
@@ -307,7 +307,7 @@
 <text text-anchor="start" x="311.8926" y="-456.6" font-family="courier new" font-size="8.00" fill="#000000">sql_server_location</text>
 </g>
 <!-- [root] output.sql_server_fqdn&#45;&gt;[root] output.sql_server_location -->
-<g id="edge_48" class="edge">
+<g id="edge_34" class="edge">
 <title>[root] output.sql_server_fqdn&#45;&gt;[root] output.sql_server_location</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M354.0094,-519.8314C354.6111,-509 355.3729,-495.2876 355.977,-484.4133"/>
 </g>
@@ -320,7 +320,7 @@
 <text text-anchor="start" x="319.9941" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">sql_server_name</text>
 </g>
 <!-- [root] output.sql_server_location&#45;&gt;[root] output.sql_server_name -->
-<g id="edge_49" class="edge">
+<g id="edge_35" class="edge">
 <title>[root] output.sql_server_location&#45;&gt;[root] output.sql_server_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M356.7477,-447.8314C356.5972,-437 356.4068,-423.2876 356.2557,-412.4133"/>
 </g>
@@ -333,7 +333,7 @@
 <text text-anchor="start" x="311.793" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">sql_server_version</text>
 </g>
 <!-- [root] output.sql_server_name&#45;&gt;[root] output.sql_server_version -->
-<g id="edge_50" class="edge">
+<g id="edge_36" class="edge">
 <title>[root] output.sql_server_name&#45;&gt;[root] output.sql_server_version</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M355.7477,-375.8314C355.5972,-365 355.4068,-351.2876 355.2557,-340.4133"/>
 </g>

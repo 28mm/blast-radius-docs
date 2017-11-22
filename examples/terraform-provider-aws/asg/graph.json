@@ -145,75 +145,27 @@
             "target": "[root] provider.aws (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.asg_desired",
             "svg_id": "edge_24",
             "target": "[root] var.asg_max"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.asg_max",
             "svg_id": "edge_25",
             "target": "[root] var.asg_min"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.asg_desired",
+            "edge_type": 3,
+            "source": "[root] var.aws_amis",
             "svg_id": "edge_26",
-            "target": "[root] var.asg_max"
+            "target": "[root] var.instance_type"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.asg_max",
+            "edge_type": 3,
+            "source": "[root] var.instance_type",
             "svg_id": "edge_27",
-            "target": "[root] var.asg_min"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.asg_desired",
-            "svg_id": "edge_28",
-            "target": "[root] var.asg_max"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.asg_max",
-            "svg_id": "edge_29",
-            "target": "[root] var.asg_min"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.aws_amis",
-            "svg_id": "edge_30",
-            "target": "[root] var.instance_type"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.instance_type",
-            "svg_id": "edge_31",
-            "target": "[root] var.key_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.aws_amis",
-            "svg_id": "edge_32",
-            "target": "[root] var.instance_type"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.instance_type",
-            "svg_id": "edge_33",
-            "target": "[root] var.key_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.aws_amis",
-            "svg_id": "edge_34",
-            "target": "[root] var.instance_type"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.instance_type",
-            "svg_id": "edge_35",
             "target": "[root] var.key_name"
         }
     ],

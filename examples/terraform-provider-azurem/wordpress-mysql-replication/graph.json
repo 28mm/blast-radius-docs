@@ -541,1587 +541,189 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.storage_account_name",
             "svg_id": "edge_90",
             "target": "[root] var.storage_account_tier"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.storage_account_tier",
             "svg_id": "edge_91",
             "target": "[root] var.storage_replication_type"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.storage_account_name",
+            "edge_type": 3,
+            "source": "[root] var.db_subnet_address_prefix",
             "svg_id": "edge_92",
-            "target": "[root] var.storage_account_tier"
+            "target": "[root] var.db_subnet_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.storage_account_tier",
+            "edge_type": 3,
+            "source": "[root] var.hosting_plan_name",
             "svg_id": "edge_93",
-            "target": "[root] var.storage_replication_type"
+            "target": "[root] var.mysql_front_end_port_0"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.storage_account_name",
+            "source": "[root] var.mysql_front_end_port_0",
             "svg_id": "edge_94",
-            "target": "[root] var.storage_account_tier"
+            "target": "[root] var.site_name"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.storage_account_tier",
+            "source": "[root] var.site_name",
             "svg_id": "edge_95",
-            "target": "[root] var.storage_replication_type"
+            "target": "[root] var.sku"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_address_prefix",
+            "edge_type": 3,
+            "source": "[root] var.sku",
             "svg_id": "edge_96",
-            "target": "[root] var.db_subnet_name"
+            "target": "[root] var.worker_size"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.db_subnet_address_prefix",
+            "source": "[root] var.image_offer",
             "svg_id": "edge_97",
-            "target": "[root] var.db_subnet_name"
+            "target": "[root] var.image_publisher"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.hosting_plan_name",
+            "edge_type": 3,
+            "source": "[root] var.image_publisher",
             "svg_id": "edge_98",
-            "target": "[root] var.mysql_front_end_port_0"
+            "target": "[root] var.os_version"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_0",
+            "edge_type": 3,
+            "source": "[root] var.os_version",
             "svg_id": "edge_99",
-            "target": "[root] var.site_name"
+            "target": "[root] var.vm_admin_password"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.site_name",
+            "edge_type": 3,
+            "source": "[root] var.vm_admin_password",
             "svg_id": "edge_100",
-            "target": "[root] var.sku"
+            "target": "[root] var.vm_size"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.sku",
+            "edge_type": 3,
+            "source": "[root] var.artifacts_location",
             "svg_id": "edge_101",
-            "target": "[root] var.worker_size"
+            "target": "[root] var.azuremysql_script"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.hosting_plan_name",
+            "edge_type": 3,
+            "source": "[root] var.azuremysql_script",
             "svg_id": "edge_102",
-            "target": "[root] var.mysql_front_end_port_0"
+            "target": "[root] var.mysql_cfg_file_path"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_0",
+            "edge_type": 3,
+            "source": "[root] var.mysql_cfg_file_path",
             "svg_id": "edge_103",
-            "target": "[root] var.site_name"
+            "target": "[root] var.mysql_probe_password"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.site_name",
+            "edge_type": 3,
+            "source": "[root] var.mysql_probe_password",
             "svg_id": "edge_104",
-            "target": "[root] var.sku"
+            "target": "[root] var.mysql_replication_password"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.sku",
+            "edge_type": 3,
+            "source": "[root] var.mysql_replication_password",
             "svg_id": "edge_105",
-            "target": "[root] var.worker_size"
+            "target": "[root] var.mysql_root_password"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.hosting_plan_name",
+            "edge_type": 3,
+            "source": "[root] var.virtual_network_name",
             "svg_id": "edge_106",
-            "target": "[root] var.mysql_front_end_port_0"
+            "target": "[root] var.vnet_address_prefix"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_0",
+            "edge_type": 3,
+            "source": "[root] var.api_version",
             "svg_id": "edge_107",
-            "target": "[root] var.site_name"
+            "target": "[root] var.db_subnet_start_address"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.site_name",
+            "edge_type": 3,
+            "source": "[root] var.db_subnet_start_address",
             "svg_id": "edge_108",
-            "target": "[root] var.sku"
+            "target": "[root] var.image_sku"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.sku",
+            "edge_type": 3,
+            "source": "[root] var.image_sku",
             "svg_id": "edge_109",
-            "target": "[root] var.worker_size"
+            "target": "[root] var.mysql_front_end_port_1"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.hosting_plan_name",
+            "edge_type": 3,
+            "source": "[root] var.mysql_front_end_port_1",
             "svg_id": "edge_110",
-            "target": "[root] var.mysql_front_end_port_0"
+            "target": "[root] var.mysql_probe_port_0"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_0",
+            "edge_type": 3,
+            "source": "[root] var.mysql_probe_port_0",
             "svg_id": "edge_111",
-            "target": "[root] var.site_name"
+            "target": "[root] var.mysql_probe_port_1"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.site_name",
+            "edge_type": 3,
+            "source": "[root] var.mysql_probe_port_1",
             "svg_id": "edge_112",
-            "target": "[root] var.sku"
+            "target": "[root] var.os_image_offer"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.sku",
+            "edge_type": 3,
+            "source": "[root] var.os_image_offer",
             "svg_id": "edge_113",
-            "target": "[root] var.worker_size"
+            "target": "[root] var.os_image_publisher"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.hosting_plan_name",
+            "source": "[root] var.os_image_publisher",
             "svg_id": "edge_114",
-            "target": "[root] var.mysql_front_end_port_0"
+            "target": "[root] var.ssh_nat_rule_front_end_port_0"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.mysql_front_end_port_0",
+            "source": "[root] var.ssh_nat_rule_front_end_port_0",
             "svg_id": "edge_115",
-            "target": "[root] var.site_name"
+            "target": "[root] var.ssh_nat_rule_front_end_port_1"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.site_name",
+            "source": "[root] var.ssh_nat_rule_front_end_port_1",
             "svg_id": "edge_116",
-            "target": "[root] var.sku"
+            "target": "[root] var.template_api_version"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.sku",
+            "source": "[root] var.template_api_version",
             "svg_id": "edge_117",
-            "target": "[root] var.worker_size"
+            "target": "[root] var.vnet_existing_resource_group_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.image_offer",
+            "edge_type": 3,
+            "source": "[root] var.vnet_existing_resource_group_name",
             "svg_id": "edge_118",
-            "target": "[root] var.image_publisher"
+            "target": "[root] var.vnet_new_or_existing"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.image_publisher",
+            "edge_type": 3,
+            "source": "[root] var.vnet_new_or_existing",
             "svg_id": "edge_119",
-            "target": "[root] var.os_version"
+            "target": "[root] var.wpdbname"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.os_version",
+            "edge_type": 3,
+            "source": "[root] output.fqdn",
             "svg_id": "edge_120",
-            "target": "[root] var.vm_admin_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_admin_password",
-            "svg_id": "edge_121",
-            "target": "[root] var.vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_offer",
-            "svg_id": "edge_122",
-            "target": "[root] var.image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_publisher",
-            "svg_id": "edge_123",
-            "target": "[root] var.os_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_version",
-            "svg_id": "edge_124",
-            "target": "[root] var.vm_admin_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_admin_password",
-            "svg_id": "edge_125",
-            "target": "[root] var.vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_offer",
-            "svg_id": "edge_126",
-            "target": "[root] var.image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_publisher",
-            "svg_id": "edge_127",
-            "target": "[root] var.os_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_version",
-            "svg_id": "edge_128",
-            "target": "[root] var.vm_admin_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_admin_password",
-            "svg_id": "edge_129",
-            "target": "[root] var.vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_offer",
-            "svg_id": "edge_130",
-            "target": "[root] var.image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_publisher",
-            "svg_id": "edge_131",
-            "target": "[root] var.os_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_version",
-            "svg_id": "edge_132",
-            "target": "[root] var.vm_admin_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vm_admin_password",
-            "svg_id": "edge_133",
-            "target": "[root] var.vm_size"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.image_offer",
-            "svg_id": "edge_134",
-            "target": "[root] var.image_publisher"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.image_publisher",
-            "svg_id": "edge_135",
-            "target": "[root] var.os_version"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.os_version",
-            "svg_id": "edge_136",
-            "target": "[root] var.vm_admin_password"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.vm_admin_password",
-            "svg_id": "edge_137",
-            "target": "[root] var.vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.artifacts_location",
-            "svg_id": "edge_138",
-            "target": "[root] var.azuremysql_script"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.azuremysql_script",
-            "svg_id": "edge_139",
-            "target": "[root] var.mysql_cfg_file_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_cfg_file_path",
-            "svg_id": "edge_140",
-            "target": "[root] var.mysql_probe_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_password",
-            "svg_id": "edge_141",
-            "target": "[root] var.mysql_replication_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_replication_password",
-            "svg_id": "edge_142",
-            "target": "[root] var.mysql_root_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.artifacts_location",
-            "svg_id": "edge_143",
-            "target": "[root] var.azuremysql_script"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.azuremysql_script",
-            "svg_id": "edge_144",
-            "target": "[root] var.mysql_cfg_file_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_cfg_file_path",
-            "svg_id": "edge_145",
-            "target": "[root] var.mysql_probe_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_password",
-            "svg_id": "edge_146",
-            "target": "[root] var.mysql_replication_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_replication_password",
-            "svg_id": "edge_147",
-            "target": "[root] var.mysql_root_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.artifacts_location",
-            "svg_id": "edge_148",
-            "target": "[root] var.azuremysql_script"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.azuremysql_script",
-            "svg_id": "edge_149",
-            "target": "[root] var.mysql_cfg_file_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_cfg_file_path",
-            "svg_id": "edge_150",
-            "target": "[root] var.mysql_probe_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_password",
-            "svg_id": "edge_151",
-            "target": "[root] var.mysql_replication_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_replication_password",
-            "svg_id": "edge_152",
-            "target": "[root] var.mysql_root_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.artifacts_location",
-            "svg_id": "edge_153",
-            "target": "[root] var.azuremysql_script"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.azuremysql_script",
-            "svg_id": "edge_154",
-            "target": "[root] var.mysql_cfg_file_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_cfg_file_path",
-            "svg_id": "edge_155",
-            "target": "[root] var.mysql_probe_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_password",
-            "svg_id": "edge_156",
-            "target": "[root] var.mysql_replication_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_replication_password",
-            "svg_id": "edge_157",
-            "target": "[root] var.mysql_root_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.artifacts_location",
-            "svg_id": "edge_158",
-            "target": "[root] var.azuremysql_script"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.azuremysql_script",
-            "svg_id": "edge_159",
-            "target": "[root] var.mysql_cfg_file_path"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_cfg_file_path",
-            "svg_id": "edge_160",
-            "target": "[root] var.mysql_probe_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_password",
-            "svg_id": "edge_161",
-            "target": "[root] var.mysql_replication_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_replication_password",
-            "svg_id": "edge_162",
-            "target": "[root] var.mysql_root_password"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.artifacts_location",
-            "svg_id": "edge_163",
-            "target": "[root] var.azuremysql_script"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.azuremysql_script",
-            "svg_id": "edge_164",
-            "target": "[root] var.mysql_cfg_file_path"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.mysql_cfg_file_path",
-            "svg_id": "edge_165",
-            "target": "[root] var.mysql_probe_password"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.mysql_probe_password",
-            "svg_id": "edge_166",
-            "target": "[root] var.mysql_replication_password"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.mysql_replication_password",
-            "svg_id": "edge_167",
-            "target": "[root] var.mysql_root_password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.virtual_network_name",
-            "svg_id": "edge_168",
-            "target": "[root] var.vnet_address_prefix"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.virtual_network_name",
-            "svg_id": "edge_169",
-            "target": "[root] var.vnet_address_prefix"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_170",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_171",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_172",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_173",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_174",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_175",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_176",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_177",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_178",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_179",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_180",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_181",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_182",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_183",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_184",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_185",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_186",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_187",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_188",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_189",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_190",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_191",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_192",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_193",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_194",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_195",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_196",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_197",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_198",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_199",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_200",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_201",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_202",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_203",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_204",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_205",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_206",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_207",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_208",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_209",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_210",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_211",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_212",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_213",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_214",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_215",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_216",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_217",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_218",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_219",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_220",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_221",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_222",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_223",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_224",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_225",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_226",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_227",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_228",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_229",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_230",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_231",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_232",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_233",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_234",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_235",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_236",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_237",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_238",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_239",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_240",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_241",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_242",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_243",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_244",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_245",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_246",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_247",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_248",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_249",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_250",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_251",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_252",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_253",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_254",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_255",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_256",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_257",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_258",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_259",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_260",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_261",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_262",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_263",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_264",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_265",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_266",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_267",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_268",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_269",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_270",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_271",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_272",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_273",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_274",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_275",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_276",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_277",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_278",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_279",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_280",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_281",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_282",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_283",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_284",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_285",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_286",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_287",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_288",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_289",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_290",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_291",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_292",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_293",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_294",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_295",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_296",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_297",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_298",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_299",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_300",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_301",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_302",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_303",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_304",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_305",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_306",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_307",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_308",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_309",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_310",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_311",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_312",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_313",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_314",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_315",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_316",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_317",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_318",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_319",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_320",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_321",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_322",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_323",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_324",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_325",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_326",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_327",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_328",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_329",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_330",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_331",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_332",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_333",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_334",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_335",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_336",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_337",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_338",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_339",
-            "target": "[root] var.db_subnet_start_address"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.db_subnet_start_address",
-            "svg_id": "edge_340",
-            "target": "[root] var.image_sku"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.image_sku",
-            "svg_id": "edge_341",
-            "target": "[root] var.mysql_front_end_port_1"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.mysql_front_end_port_1",
-            "svg_id": "edge_342",
-            "target": "[root] var.mysql_probe_port_0"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.mysql_probe_port_0",
-            "svg_id": "edge_343",
-            "target": "[root] var.mysql_probe_port_1"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.mysql_probe_port_1",
-            "svg_id": "edge_344",
-            "target": "[root] var.os_image_offer"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.os_image_offer",
-            "svg_id": "edge_345",
-            "target": "[root] var.os_image_publisher"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.os_image_publisher",
-            "svg_id": "edge_346",
-            "target": "[root] var.ssh_nat_rule_front_end_port_0"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.ssh_nat_rule_front_end_port_0",
-            "svg_id": "edge_347",
-            "target": "[root] var.ssh_nat_rule_front_end_port_1"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.ssh_nat_rule_front_end_port_1",
-            "svg_id": "edge_348",
-            "target": "[root] var.template_api_version"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.template_api_version",
-            "svg_id": "edge_349",
-            "target": "[root] var.vnet_existing_resource_group_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.vnet_existing_resource_group_name",
-            "svg_id": "edge_350",
-            "target": "[root] var.vnet_new_or_existing"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.vnet_new_or_existing",
-            "svg_id": "edge_351",
-            "target": "[root] var.wpdbname"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.fqdn",
-            "svg_id": "edge_352",
-            "target": "[root] output.ip_address"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.fqdn",
-            "svg_id": "edge_353",
             "target": "[root] output.ip_address"
         }
     ],

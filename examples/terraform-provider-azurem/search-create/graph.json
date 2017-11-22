@@ -85,87 +85,27 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.location",
             "svg_id": "edge_14",
             "target": "[root] var.resource_group"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.location",
+            "source": "[root] var.partition_count",
             "svg_id": "edge_15",
-            "target": "[root] var.resource_group"
+            "target": "[root] var.replica_count"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.partition_count",
+            "edge_type": 3,
+            "source": "[root] var.replica_count",
             "svg_id": "edge_16",
-            "target": "[root] var.replica_count"
+            "target": "[root] var.search_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.replica_count",
+            "edge_type": 3,
+            "source": "[root] var.search_name",
             "svg_id": "edge_17",
-            "target": "[root] var.search_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.search_name",
-            "svg_id": "edge_18",
-            "target": "[root] var.sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.partition_count",
-            "svg_id": "edge_19",
-            "target": "[root] var.replica_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.replica_count",
-            "svg_id": "edge_20",
-            "target": "[root] var.search_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.search_name",
-            "svg_id": "edge_21",
-            "target": "[root] var.sku"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.partition_count",
-            "svg_id": "edge_22",
-            "target": "[root] var.replica_count"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.replica_count",
-            "svg_id": "edge_23",
-            "target": "[root] var.search_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.search_name",
-            "svg_id": "edge_24",
-            "target": "[root] var.sku"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.partition_count",
-            "svg_id": "edge_25",
-            "target": "[root] var.replica_count"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.replica_count",
-            "svg_id": "edge_26",
-            "target": "[root] var.search_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.search_name",
-            "svg_id": "edge_27",
             "target": "[root] var.sku"
         }
     ],

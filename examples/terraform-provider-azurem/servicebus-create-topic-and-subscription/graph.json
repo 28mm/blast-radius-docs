@@ -91,27 +91,15 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.location",
             "svg_id": "edge_15",
             "target": "[root] var.resource_group"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.location",
+            "source": "[root] output.Namespace Connection String",
             "svg_id": "edge_16",
-            "target": "[root] var.resource_group"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.Namespace Connection String",
-            "svg_id": "edge_17",
-            "target": "[root] output.Shared Access Policy PrimaryKey"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.Namespace Connection String",
-            "svg_id": "edge_18",
             "target": "[root] output.Shared Access Policy PrimaryKey"
         }
     ],

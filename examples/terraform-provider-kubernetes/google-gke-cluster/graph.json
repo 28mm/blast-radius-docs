@@ -121,195 +121,45 @@
             "target": "[root] provider.google (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.cluster_name",
             "svg_id": "edge_20",
             "target": "[root] var.kubernetes_version"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.kubernetes_version",
             "svg_id": "edge_21",
             "target": "[root] var.password"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.password",
             "svg_id": "edge_22",
             "target": "[root] var.username"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.cluster_name",
+            "edge_type": 3,
+            "source": "[root] output.additional_zones",
             "svg_id": "edge_23",
-            "target": "[root] var.kubernetes_version"
+            "target": "[root] output.cluster_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.kubernetes_version",
+            "edge_type": 3,
+            "source": "[root] output.cluster_name",
             "svg_id": "edge_24",
-            "target": "[root] var.password"
+            "target": "[root] output.endpoint"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.password",
+            "edge_type": 3,
+            "source": "[root] output.endpoint",
             "svg_id": "edge_25",
-            "target": "[root] var.username"
+            "target": "[root] output.node_version"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.cluster_name",
+            "edge_type": 3,
+            "source": "[root] output.node_version",
             "svg_id": "edge_26",
-            "target": "[root] var.kubernetes_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.kubernetes_version",
-            "svg_id": "edge_27",
-            "target": "[root] var.password"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.password",
-            "svg_id": "edge_28",
-            "target": "[root] var.username"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.cluster_name",
-            "svg_id": "edge_29",
-            "target": "[root] var.kubernetes_version"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.kubernetes_version",
-            "svg_id": "edge_30",
-            "target": "[root] var.password"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.password",
-            "svg_id": "edge_31",
-            "target": "[root] var.username"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.additional_zones",
-            "svg_id": "edge_32",
-            "target": "[root] output.cluster_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.cluster_name",
-            "svg_id": "edge_33",
-            "target": "[root] output.endpoint"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.endpoint",
-            "svg_id": "edge_34",
-            "target": "[root] output.node_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.node_version",
-            "svg_id": "edge_35",
-            "target": "[root] output.primary_zone"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.additional_zones",
-            "svg_id": "edge_36",
-            "target": "[root] output.cluster_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.cluster_name",
-            "svg_id": "edge_37",
-            "target": "[root] output.endpoint"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.endpoint",
-            "svg_id": "edge_38",
-            "target": "[root] output.node_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.node_version",
-            "svg_id": "edge_39",
-            "target": "[root] output.primary_zone"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.additional_zones",
-            "svg_id": "edge_40",
-            "target": "[root] output.cluster_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.cluster_name",
-            "svg_id": "edge_41",
-            "target": "[root] output.endpoint"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.endpoint",
-            "svg_id": "edge_42",
-            "target": "[root] output.node_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.node_version",
-            "svg_id": "edge_43",
-            "target": "[root] output.primary_zone"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.additional_zones",
-            "svg_id": "edge_44",
-            "target": "[root] output.cluster_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.cluster_name",
-            "svg_id": "edge_45",
-            "target": "[root] output.endpoint"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.endpoint",
-            "svg_id": "edge_46",
-            "target": "[root] output.node_version"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] output.node_version",
-            "svg_id": "edge_47",
-            "target": "[root] output.primary_zone"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.additional_zones",
-            "svg_id": "edge_48",
-            "target": "[root] output.cluster_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.cluster_name",
-            "svg_id": "edge_49",
-            "target": "[root] output.endpoint"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.endpoint",
-            "svg_id": "edge_50",
-            "target": "[root] output.node_version"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] output.node_version",
-            "svg_id": "edge_51",
             "target": "[root] output.primary_zone"
         }
     ],

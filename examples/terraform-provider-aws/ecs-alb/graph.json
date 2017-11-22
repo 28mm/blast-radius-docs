@@ -439,51 +439,21 @@
             "target": "[root] provider.template (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.asg_desired",
             "svg_id": "edge_73",
             "target": "[root] var.asg_max"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.asg_max",
             "svg_id": "edge_74",
             "target": "[root] var.asg_min"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.asg_desired",
+            "edge_type": 3,
+            "source": "[root] var.instance_type",
             "svg_id": "edge_75",
-            "target": "[root] var.asg_max"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.asg_max",
-            "svg_id": "edge_76",
-            "target": "[root] var.asg_min"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.asg_desired",
-            "svg_id": "edge_77",
-            "target": "[root] var.asg_max"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.asg_max",
-            "svg_id": "edge_78",
-            "target": "[root] var.asg_min"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.instance_type",
-            "svg_id": "edge_79",
-            "target": "[root] var.key_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.instance_type",
-            "svg_id": "edge_80",
             "target": "[root] var.key_name"
         }
     ],

@@ -775,7 +775,7 @@
 <text text-anchor="start" x="28.6973" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">asg_max</text>
 </g>
 <!-- [root] var.asg_desired&#45;&gt;[root] var.asg_max -->
-<g id="edge_77" class="edge">
+<g id="edge_73" class="edge">
 <title>[root] var.asg_desired&#45;&gt;[root] var.asg_max</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M45,-375.8314C45,-365 45,-351.2876 45,-340.4133"/>
 </g>
@@ -788,7 +788,7 @@
 <text text-anchor="start" x="28.6973" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">asg_min</text>
 </g>
 <!-- [root] var.asg_max&#45;&gt;[root] var.asg_min -->
-<g id="edge_78" class="edge">
+<g id="edge_74" class="edge">
 <title>[root] var.asg_max&#45;&gt;[root] var.asg_min</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M45,-303.8314C45,-293 45,-279.2876 45,-268.4133"/>
 </g>
@@ -801,7 +801,7 @@
 <text text-anchor="start" x="770.7969" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">key_name</text>
 </g>
 <!-- [root] var.instance_type&#45;&gt;[root] var.key_name -->
-<g id="edge_80" class="edge">
+<g id="edge_75" class="edge">
 <title>[root] var.instance_type&#45;&gt;[root] var.key_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M790,-303.8314C790,-293 790,-279.2876 790,-268.4133"/>
 </g>

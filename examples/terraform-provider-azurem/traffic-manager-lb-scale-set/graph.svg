@@ -463,7 +463,7 @@
 <text text-anchor="start" x="505.7949" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">client_secret</text>
 </g>
 <!-- [root] var.client_id&#45;&gt;[root] var.client_secret -->
-<g id="edge_115" class="edge">
+<g id="edge_106" class="edge">
 <title>[root] var.client_id&#45;&gt;[root] var.client_secret</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-231.8314C537,-221 537,-207.2876 537,-196.4133"/>
 </g>
@@ -476,7 +476,7 @@
 <text text-anchor="start" x="500.9941" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">subscription_id</text>
 </g>
 <!-- [root] var.client_secret&#45;&gt;[root] var.subscription_id -->
-<g id="edge_116" class="edge">
+<g id="edge_107" class="edge">
 <title>[root] var.client_secret&#45;&gt;[root] var.subscription_id</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-159.8314C537,-149 537,-135.2876 537,-124.4133"/>
 </g>
@@ -489,7 +489,7 @@
 <text text-anchor="start" x="515.8965" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">tenant_id</text>
 </g>
 <!-- [root] var.subscription_id&#45;&gt;[root] var.tenant_id -->
-<g id="edge_117" class="edge">
+<g id="edge_108" class="edge">
 <title>[root] var.subscription_id&#45;&gt;[root] var.tenant_id</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-87.8314C537,-77 537,-63.2876 537,-52.4133"/>
 </g>

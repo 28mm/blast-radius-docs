@@ -157,7 +157,7 @@
 <text text-anchor="start" x="92.3945" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">resource_group</text>
 </g>
 <!-- [root] var.location&#45;&gt;[root] var.resource_group -->
-<g id="edge_13" class="edge">
+<g id="edge_12" class="edge">
 <title>[root] var.location&#45;&gt;[root] var.resource_group</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M122.5094,-87.8314C123.1111,-77 123.8729,-63.2876 124.477,-52.4133"/>
 </g>

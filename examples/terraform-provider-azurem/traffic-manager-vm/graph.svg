@@ -338,7 +338,7 @@
 <text text-anchor="start" x="167.8945" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">resource_group</text>
 </g>
 <!-- [root] var.location&#45;&gt;[root] var.resource_group -->
-<g id="edge_35" class="edge">
+<g id="edge_34" class="edge">
 <title>[root] var.location&#45;&gt;[root] var.resource_group</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M198.0094,-159.8314C198.6111,-149 199.3729,-135.2876 199.977,-124.4133"/>
 </g>
@@ -351,7 +351,7 @@
 <text text-anchor="start" x="366.7949" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">subnet_prefix</text>
 </g>
 <!-- [root] var.subnet_name&#45;&gt;[root] var.subnet_prefix -->
-<g id="edge_37" class="edge">
+<g id="edge_35" class="edge">
 <title>[root] var.subnet_name&#45;&gt;[root] var.subnet_prefix</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M396.5047,-303.8314C396.8056,-293 397.1865,-279.2876 397.4885,-268.4133"/>
 </g>
@@ -364,7 +364,7 @@
 <text text-anchor="start" x="460.8945" y="-384.6" font-family="courier new" font-size="8.00" fill="#000000">admin_username</text>
 </g>
 <!-- [root] var.admin_password&#45;&gt;[root] var.admin_username -->
-<g id="edge_74" class="edge">
+<g id="edge_36" class="edge">
 <title>[root] var.admin_password&#45;&gt;[root] var.admin_username</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M493.2523,-447.8314C493.4028,-437 493.5932,-423.2876 493.7443,-412.4133"/>
 </g>
@@ -377,7 +377,7 @@
 <text text-anchor="start" x="467.5957" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">image_offer</text>
 </g>
 <!-- [root] var.admin_username&#45;&gt;[root] var.image_offer -->
-<g id="edge_75" class="edge">
+<g id="edge_37" class="edge">
 <title>[root] var.admin_username&#45;&gt;[root] var.image_offer</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M494,-375.8314C494,-365 494,-351.2876 494,-340.4133"/>
 </g>
@@ -390,7 +390,7 @@
 <text text-anchor="start" x="458.9941" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">image_publisher</text>
 </g>
 <!-- [root] var.image_offer&#45;&gt;[root] var.image_publisher -->
-<g id="edge_76" class="edge">
+<g id="edge_38" class="edge">
 <title>[root] var.image_offer&#45;&gt;[root] var.image_publisher</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M494.2523,-303.8314C494.4028,-293 494.5932,-279.2876 494.7443,-268.4133"/>
 </g>
@@ -403,7 +403,7 @@
 <text text-anchor="start" x="473.8965" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">image_sku</text>
 </g>
 <!-- [root] var.image_publisher&#45;&gt;[root] var.image_sku -->
-<g id="edge_77" class="edge">
+<g id="edge_39" class="edge">
 <title>[root] var.image_publisher&#45;&gt;[root] var.image_sku</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M495,-231.8314C495,-221 495,-207.2876 495,-196.4133"/>
 </g>
@@ -416,7 +416,7 @@
 <text text-anchor="start" x="463.7949" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">image_version</text>
 </g>
 <!-- [root] var.image_sku&#45;&gt;[root] var.image_version -->
-<g id="edge_78" class="edge">
+<g id="edge_40" class="edge">
 <title>[root] var.image_sku&#45;&gt;[root] var.image_version</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M495,-159.8314C495,-149 495,-135.2876 495,-124.4133"/>
 </g>
@@ -429,7 +429,7 @@
 <text text-anchor="start" x="478.6973" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">vm_size</text>
 </g>
 <!-- [root] var.image_version&#45;&gt;[root] var.vm_size -->
-<g id="edge_79" class="edge">
+<g id="edge_41" class="edge">
 <title>[root] var.image_version&#45;&gt;[root] var.vm_size</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M495,-87.8314C495,-77 495,-63.2876 495,-52.4133"/>
 </g>
@@ -442,7 +442,7 @@
 <text text-anchor="start" x="288.8984" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">vnet</text>
 </g>
 <!-- [root] var.address_space&#45;&gt;[root] var.vnet -->
-<g id="edge_81" class="edge">
+<g id="edge_42" class="edge">
 <title>[root] var.address_space&#45;&gt;[root] var.vnet</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M298,-231.8314C298,-221 298,-207.2876 298,-196.4133"/>
 </g>

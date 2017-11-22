@@ -973,279 +973,69 @@
             "target": "[root] provisioner.remote-exec (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.resource_group_location",
             "svg_id": "edge_162",
             "target": "[root] var.resource_group_name"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.resource_group_location",
+            "source": "[root] var.default_sub_domain_type",
             "svg_id": "edge_163",
-            "target": "[root] var.resource_group_name"
+            "target": "[root] var.key_vault_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.default_sub_domain_type",
+            "edge_type": 3,
+            "source": "[root] var.key_vault_name",
             "svg_id": "edge_164",
-            "target": "[root] var.key_vault_name"
+            "target": "[root] var.key_vault_secret"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.key_vault_name",
+            "edge_type": 3,
+            "source": "[root] var.key_vault_secret",
             "svg_id": "edge_165",
-            "target": "[root] var.key_vault_secret"
+            "target": "[root] var.master_vm_size"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.key_vault_secret",
+            "edge_type": 3,
+            "source": "[root] var.api_version",
             "svg_id": "edge_166",
-            "target": "[root] var.master_vm_size"
+            "target": "[root] var.api_version_compute"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.default_sub_domain_type",
+            "edge_type": 3,
+            "source": "[root] var.api_version_compute",
             "svg_id": "edge_167",
-            "target": "[root] var.key_vault_name"
+            "target": "[root] var.default_sub_domain"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.key_vault_name",
+            "edge_type": 3,
+            "source": "[root] var.default_sub_domain",
             "svg_id": "edge_168",
-            "target": "[root] var.key_vault_secret"
+            "target": "[root] var.disk_size_gb"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.key_vault_secret",
+            "edge_type": 3,
+            "source": "[root] var.disk_size_gb",
             "svg_id": "edge_169",
-            "target": "[root] var.master_vm_size"
+            "target": "[root] var.key_vault_resource_group"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.default_sub_domain_type",
+            "edge_type": 3,
+            "source": "[root] var.aad_client_id",
             "svg_id": "edge_170",
-            "target": "[root] var.key_vault_name"
+            "target": "[root] var.aad_client_secret"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.key_vault_name",
+            "edge_type": 3,
+            "source": "[root] var.aad_client_secret",
             "svg_id": "edge_171",
-            "target": "[root] var.key_vault_secret"
+            "target": "[root] var.subscription_id"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.key_vault_secret",
+            "edge_type": 3,
+            "source": "[root] var.subscription_id",
             "svg_id": "edge_172",
-            "target": "[root] var.master_vm_size"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.default_sub_domain_type",
-            "svg_id": "edge_173",
-            "target": "[root] var.key_vault_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.key_vault_name",
-            "svg_id": "edge_174",
-            "target": "[root] var.key_vault_secret"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.key_vault_secret",
-            "svg_id": "edge_175",
-            "target": "[root] var.master_vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_176",
-            "target": "[root] var.api_version_compute"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version_compute",
-            "svg_id": "edge_177",
-            "target": "[root] var.default_sub_domain"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.default_sub_domain",
-            "svg_id": "edge_178",
-            "target": "[root] var.disk_size_gb"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.disk_size_gb",
-            "svg_id": "edge_179",
-            "target": "[root] var.key_vault_resource_group"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_180",
-            "target": "[root] var.api_version_compute"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version_compute",
-            "svg_id": "edge_181",
-            "target": "[root] var.default_sub_domain"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.default_sub_domain",
-            "svg_id": "edge_182",
-            "target": "[root] var.disk_size_gb"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.disk_size_gb",
-            "svg_id": "edge_183",
-            "target": "[root] var.key_vault_resource_group"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_184",
-            "target": "[root] var.api_version_compute"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version_compute",
-            "svg_id": "edge_185",
-            "target": "[root] var.default_sub_domain"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.default_sub_domain",
-            "svg_id": "edge_186",
-            "target": "[root] var.disk_size_gb"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.disk_size_gb",
-            "svg_id": "edge_187",
-            "target": "[root] var.key_vault_resource_group"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_188",
-            "target": "[root] var.api_version_compute"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.api_version_compute",
-            "svg_id": "edge_189",
-            "target": "[root] var.default_sub_domain"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.default_sub_domain",
-            "svg_id": "edge_190",
-            "target": "[root] var.disk_size_gb"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.disk_size_gb",
-            "svg_id": "edge_191",
-            "target": "[root] var.key_vault_resource_group"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.api_version",
-            "svg_id": "edge_192",
-            "target": "[root] var.api_version_compute"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.api_version_compute",
-            "svg_id": "edge_193",
-            "target": "[root] var.default_sub_domain"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.default_sub_domain",
-            "svg_id": "edge_194",
-            "target": "[root] var.disk_size_gb"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.disk_size_gb",
-            "svg_id": "edge_195",
-            "target": "[root] var.key_vault_resource_group"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.aad_client_id",
-            "svg_id": "edge_196",
-            "target": "[root] var.aad_client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.aad_client_secret",
-            "svg_id": "edge_197",
-            "target": "[root] var.subscription_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.subscription_id",
-            "svg_id": "edge_198",
-            "target": "[root] var.tenant_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.aad_client_id",
-            "svg_id": "edge_199",
-            "target": "[root] var.aad_client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.aad_client_secret",
-            "svg_id": "edge_200",
-            "target": "[root] var.subscription_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.subscription_id",
-            "svg_id": "edge_201",
-            "target": "[root] var.tenant_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.aad_client_id",
-            "svg_id": "edge_202",
-            "target": "[root] var.aad_client_secret"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.aad_client_secret",
-            "svg_id": "edge_203",
-            "target": "[root] var.subscription_id"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.subscription_id",
-            "svg_id": "edge_204",
-            "target": "[root] var.tenant_id"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.aad_client_id",
-            "svg_id": "edge_205",
-            "target": "[root] var.aad_client_secret"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.aad_client_secret",
-            "svg_id": "edge_206",
-            "target": "[root] var.subscription_id"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.subscription_id",
-            "svg_id": "edge_207",
             "target": "[root] var.tenant_id"
         }
     ],

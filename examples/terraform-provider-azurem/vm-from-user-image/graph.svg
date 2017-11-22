@@ -341,7 +341,7 @@
 <text text-anchor="start" x="294.8945" y="-24.6" font-family="courier new" font-size="8.00" fill="#000000">resource_group</text>
 </g>
 <!-- [root] var.location&#45;&gt;[root] var.resource_group -->
-<g id="edge_32" class="edge">
+<g id="edge_31" class="edge">
 <title>[root] var.location&#45;&gt;[root] var.resource_group</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M330.9906,-87.8314C330.3889,-77 329.6271,-63.2876 329.023,-52.4133"/>
 </g>
@@ -354,7 +354,7 @@
 <text text-anchor="start" x="49.8965" y="-312.6" font-family="courier new" font-size="8.00" fill="#000000">image_uri</text>
 </g>
 <!-- [root] var.admin_password&#45;&gt;[root] var.image_uri -->
-<g id="edge_49" class="edge">
+<g id="edge_32" class="edge">
 <title>[root] var.admin_password&#45;&gt;[root] var.image_uri</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M75.4859,-375.8314C74.5833,-365 73.4406,-351.2876 72.5344,-340.4133"/>
 </g>
@@ -367,7 +367,7 @@
 <text text-anchor="start" x="53.6973" y="-240.6" font-family="courier new" font-size="8.00" fill="#000000">os_type</text>
 </g>
 <!-- [root] var.image_uri&#45;&gt;[root] var.os_type -->
-<g id="edge_50" class="edge">
+<g id="edge_33" class="edge">
 <title>[root] var.image_uri&#45;&gt;[root] var.os_type</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M70.7477,-303.8314C70.5972,-293 70.4068,-279.2876 70.2557,-268.4133"/>
 </g>
@@ -380,7 +380,7 @@
 <text text-anchor="start" x="18.9922" y="-168.6" font-family="courier new" font-size="8.00" fill="#000000">storage_account_name</text>
 </g>
 <!-- [root] var.os_type&#45;&gt;[root] var.storage_account_name -->
-<g id="edge_51" class="edge">
+<g id="edge_34" class="edge">
 <title>[root] var.os_type&#45;&gt;[root] var.storage_account_name</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M69.243,-231.8314C68.7917,-221 68.2203,-207.2876 67.7672,-196.4133"/>
 </g>
@@ -393,7 +393,7 @@
 <text text-anchor="start" x="50.6973" y="-96.6" font-family="courier new" font-size="8.00" fill="#000000">vm_size</text>
 </g>
 <!-- [root] var.storage_account_name&#45;&gt;[root] var.vm_size -->
-<g id="edge_52" class="edge">
+<g id="edge_35" class="edge">
 <title>[root] var.storage_account_name&#45;&gt;[root] var.vm_size</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M67,-159.8314C67,-149 67,-135.2876 67,-124.4133"/>
 </g>

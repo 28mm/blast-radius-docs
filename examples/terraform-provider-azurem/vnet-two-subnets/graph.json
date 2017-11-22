@@ -73,15 +73,9 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.location",
-            "svg_id": "edge_12",
-            "target": "[root] var.resource_group"
-        },
-        {
             "edge_type": 3,
             "source": "[root] var.location",
-            "svg_id": "edge_13",
+            "svg_id": "edge_12",
             "target": "[root] var.resource_group"
         }
     ],

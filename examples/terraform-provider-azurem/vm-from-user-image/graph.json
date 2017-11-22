@@ -187,135 +187,33 @@
             "target": "[root] provider.azurerm (close)"
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "source": "[root] var.location",
             "svg_id": "edge_31",
             "target": "[root] var.resource_group"
         },
         {
             "edge_type": 3,
-            "source": "[root] var.location",
+            "source": "[root] var.admin_password",
             "svg_id": "edge_32",
-            "target": "[root] var.resource_group"
+            "target": "[root] var.image_uri"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.admin_password",
+            "edge_type": 3,
+            "source": "[root] var.image_uri",
             "svg_id": "edge_33",
-            "target": "[root] var.image_uri"
+            "target": "[root] var.os_type"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.image_uri",
+            "edge_type": 3,
+            "source": "[root] var.os_type",
             "svg_id": "edge_34",
-            "target": "[root] var.os_type"
+            "target": "[root] var.storage_account_name"
         },
         {
-            "edge_type": 2,
-            "source": "[root] var.os_type",
+            "edge_type": 3,
+            "source": "[root] var.storage_account_name",
             "svg_id": "edge_35",
-            "target": "[root] var.storage_account_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage_account_name",
-            "svg_id": "edge_36",
-            "target": "[root] var.vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.admin_password",
-            "svg_id": "edge_37",
-            "target": "[root] var.image_uri"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_uri",
-            "svg_id": "edge_38",
-            "target": "[root] var.os_type"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_type",
-            "svg_id": "edge_39",
-            "target": "[root] var.storage_account_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage_account_name",
-            "svg_id": "edge_40",
-            "target": "[root] var.vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.admin_password",
-            "svg_id": "edge_41",
-            "target": "[root] var.image_uri"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_uri",
-            "svg_id": "edge_42",
-            "target": "[root] var.os_type"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_type",
-            "svg_id": "edge_43",
-            "target": "[root] var.storage_account_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage_account_name",
-            "svg_id": "edge_44",
-            "target": "[root] var.vm_size"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.admin_password",
-            "svg_id": "edge_45",
-            "target": "[root] var.image_uri"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.image_uri",
-            "svg_id": "edge_46",
-            "target": "[root] var.os_type"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.os_type",
-            "svg_id": "edge_47",
-            "target": "[root] var.storage_account_name"
-        },
-        {
-            "edge_type": 2,
-            "source": "[root] var.storage_account_name",
-            "svg_id": "edge_48",
-            "target": "[root] var.vm_size"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.admin_password",
-            "svg_id": "edge_49",
-            "target": "[root] var.image_uri"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.image_uri",
-            "svg_id": "edge_50",
-            "target": "[root] var.os_type"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.os_type",
-            "svg_id": "edge_51",
-            "target": "[root] var.storage_account_name"
-        },
-        {
-            "edge_type": 3,
-            "source": "[root] var.storage_account_name",
-            "svg_id": "edge_52",
             "target": "[root] var.vm_size"
         }
     ],
