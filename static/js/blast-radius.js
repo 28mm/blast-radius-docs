@@ -165,13 +165,13 @@ blastradius = function (selector, svg_url, json_url, br_state) {
                 var deps_cbox   = document.querySelector(selector + '-tooltip-deps');
 
                 if ((! title_cbox) || (! json_cbox) || (! deps_cbox)) 
-                    return title_html(d) + (d.definition.length == 0 ? child_html(d) : "<p class='explain'>" + JSON.stringify(d.definition, replacer, 2) + "</p><br>" + child_html(d));
+                    return title_html(d) + (d.definition.length == 0 ? '' : "<p class='explain'>" + JSON.stringify(d.definition, replacer, 2) + "</p><br>" + child_html(d));
 
                 var ttip = ''; 
                 if (title_cbox.checked)
                     ttip += title_html(d);
                 if (json_cbox.checked)
-                    ttip += (d.definition.length == 0 ? child_html(d) : "<p class='explain'>" + JSON.stringify(d.definition, replacer, 2) + "</p><br>");
+                    ttip += (d.definition.length == 0 ? '' : "<p class='explain'>" + JSON.stringify(d.definition, replacer, 2) + "</p><br>");
                 if (deps_cbox.checked)
                     ttip += child_html(d);
                 return ttip;
