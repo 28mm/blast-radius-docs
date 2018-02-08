@@ -12,6 +12,21 @@
 <g id="clust2" class="cluster">
 <title>cluster[root] azurerm_availability_set.slave_var_</title>
 </g>
+<g id="clust3" class="cluster">
+<title>cluster[root] azurerm_network_interface.cassandra_var_</title>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster[root] azurerm_network_interface.master_var_</title>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster[root] azurerm_network_interface.slave_var_</title>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster[root] azurerm_network_security_group.cassandra_var_</title>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster[root] azurerm_network_security_group.master_var_</title>
+</g>
 <g id="clust8" class="cluster">
 <title>cluster[root] azurerm_network_security_group.slave_var_</title>
 </g>
@@ -74,21 +89,6 @@
 </g>
 <g id="clust28" class="cluster">
 <title>cluster[root] meta.count&#45;boundary (count boundary fixup)_output_[root] var.resource_group</title>
-</g>
-<g id="clust3" class="cluster">
-<title>cluster[root] azurerm_network_interface.cassandra_var_</title>
-</g>
-<g id="clust4" class="cluster">
-<title>cluster[root] azurerm_network_interface.master_var_</title>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster[root] azurerm_network_interface.slave_var_</title>
-</g>
-<g id="clust6" class="cluster">
-<title>cluster[root] azurerm_network_security_group.cassandra_var_</title>
-</g>
-<g id="clust7" class="cluster">
-<title>cluster[root] azurerm_network_security_group.master_var_</title>
 </g>
 <!-- [root] azurerm_availability_set.slave -->
 <g id="node_0" class="node">

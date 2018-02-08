@@ -3,16 +3,33 @@
 <head>
         <title>Blast Radius</title>
         <meta charset="utf-8">
+
+        <script src="/blast-radius-docs/static/js/jquery.slim.min.js"></script>
+        <script src="/blast-radius-docs/static/js/bootstrap.min.js"></script>
+        <script src="/blast-radius-docs/static/js/fontawesome-all.min.js"></script>
+
         <script src="/blast-radius-docs/static/js/d3.v4.js"></script>
         <script src="/blast-radius-docs/static/js/d3-tip.js"></script>
-        <script src="/blast-radius-docs/static/js/terraform-graph.js"></script>
+        <script src="/blast-radius-docs/static/js/blast-radius.js"></script>
         <script src="/blast-radius-docs/static/js/categories.js"></script>
+        <script src="/blast-radius-docs/static/js/svg-pan-zoom.js"></script>
+        <script src="/blast-radius-docs/static/js/selectize.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="/blast-radius-docs/static/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/blast-radius-docs/static/css/selectize.css">
         <link rel="stylesheet" type="text/css" href="/blast-radius-docs/static/css/style.css">
-                <style>
-            svg {
-                margin: 0px 0px 0px 20px;
-            }
+        <style>
+        body {
+            padding-top: 55px;
+        }
+        .navbar-nav > li {
+            padding-left:6px;
+        }
+        .navbar-brand {
+            font-family: 'courier new';
+        }
         </style>
+ 
         <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99802310-1"></script>
 <script>
@@ -25,16 +42,76 @@
 
 </head>
 <body>
-    <ul class="breadcrumb"><li><a href="/blast-radius-docs">🔥</a></li><li>Blast Radius</li></ul>
-        <h1>Blast Radius</h1>
-        <p class="descr"><i>Blast Radius</i> is a tool for reasoning about <i>Terraform</i> dependency graphs through interactive visualizations. Use <i>Blast Radius</i> to:</p>
+<nav class="navbar fixed-top navbar-expand bg-light">
+<ul class="navbar-nav">
+<li class="nav-item"><a class="navbar-brand" href="/blast-radius-docs/">Blast Radius</a></li>
+                <li class="nav-item">                    
+                    <form class="form-inline my-2 my-lg-0" id="graph-search-form" >
+                        <select style="width: 400px;" id="graph-search"></select>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" id="graph-zoom-out" title="zoom out">&nbsp;<i class="fas fa-search-minus"></i></button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" id="graph-zoom-in" title="zoom in">&nbsp;<i class="fas fa-search-plus"></i></button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" id="graph-download" title="download svg">&nbsp;<i class="fas fa-download"></i></button>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="tooltip options">
+                            <i class="fas fa-magic"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">
+                                <label><b>Tooltip Options</b></label>
+                            </div>
+
+
+                            <div class="dropdown-divider"></div>
+
+                            <!-- Resource Name-->
+                            <div class="dropdown-item form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" id="graph-tooltip-title" checked>
+                                  Resource Name
+                                </label>
+                              </div>
+
+                              <!-- JSON-->
+                              <div class="dropdown-item form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" id="graph-tooltip-json" checked>
+                                  JSON Definition
+                                </label>
+                              </div>
+
+                              <!-- Immediate Dependencies-->
+                              <div class="dropdown-item form-check">
+                                    <label class="form-check-label">
+                                      <input class="form-check-input" type="checkbox" value="" id="graph-tooltip-deps" checked>
+                                      Dependencies
+                                    </label>
+                                  </div>
+                            </div>
+                    </div>
+                </li>
+
+
+
+</ul>
+</nav>
+<div class="container">
+        <!--<h1>Blast Radius</h1>-->
+        <p><a href="https://www.github.com/28mm/blast-radius"><i>Blast Radius</i></a> is a tool for reasoning about <a href="https://www.terraform.io"><i>Terraform</i></a> dependency graphs through interactive visualizations. Use <i>Blast Radius</i> to:</p>
         <ol>
-        <li>Learn about Terraform or one of its cloud providers, through <a href="/blast-radius-docs/examples">example configurations</a>.</li>
+        <li>Learn about Terraform or one of its cloud providers, through <a href="/blast-radius-docs/examples">example configurations</a></li>
         <li>Document your infrastructure.</li>
         <li>reason about relationships between resources, and evaluate changes to them.</li>
         </ol>
-        <div id="graph"></div>
-        <h2>A Catalog of Examples</h2>
+        <h3>Online Examples</h3>
         <p></p>
         <ol>
         
@@ -51,27 +128,37 @@
         <li><a href="/blast-radius-docs/examples/terraform-provider-openstack">OpenStack</a></li>
         
         </ol>
-        <h2>Quickstart</h2>
+ <h3>For Instance</h3>
+ <p>Below is a typical (small) <i>Terraform</i> configuration: enough to launch a single web server and elastic load balancer. Use the searchbox or mouse to highlight a resource of interest, and its dependencies. Click again to dismiss the tooltip, and highlight dependents.</p>
+        <div id="graph"></div>
+       <h3>Quickstart</h3>
         <p class="descr">Install blastradius with pip, and Graphviz with e.g. Homebrew.</p>
         <div class="code"><code>[...]$ pip3 install blastradius
 [...]$ brew install graphviz</code></div>
         <p class="descr">Point Blast Radius at an init-ed Terraform project, and connect with your browser.</p>
         <div class="code"><code>[...]$ blast-radius --serve /path/to/terraform-project
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</code></div>
-    <h2>Further Reading</h2>
-    <ol>
-    <li>The motivations for <i>Blast Radius</i> are documented in a series of blog posts: <a href="https://28mm.github.io/notes/d3-terraform-graphs">part 1</a>, and <a href="https://28mm.github.io/notes/d3-terraform-graphs-2">part 2</a>.</li>
-    <li>Source for <i>Blast Radius</i> is hosted on <a href="http://www.github.com/28mm/blast-radius">GitHub</a></li>
-    </ol>
-
-
-<ul class="breadcrumb">
-<li><iframe src="https://ghbtns.com/github-btn.html?user=28mm&repo=blast-radius&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></li>
-
+    <h3>Further Reading</h3>
+    <p>I've been writing about the development of <i>Blast Radius</i> in a series of blog posts:</p>
+    <ul>
+    <li><a href="https://28mm.github.io/notes/d3-terraform-graphs">part one</a> d3 force-directed layouts vs. vanilla graphviz.</li>
+    <li><a href="https://28mm.github.io/notes/d3-terraform-graphs-2">part two</a> d3-enhanced graphviz layouts, meaningful coloration, animations.</li>
+    <li><a href="https://28mm.github.io/notes/terraform-graphs-3">part three</a> limiting horizontal sprawl, supporting modules</li>
+    </ul>
+    <p>Source is hosted on <a href="http://www.github.com/28mm/blast-radius">GitHub</a>, as is issue reporting.</p>
+    <h3>About the Author</h3>
+    <p><i><a href="mailto:patrick.mcmurchie@gmail.com">Patrick McMurchie</a></i> is a Seattle-resident systems administrator and quite a strong typist. Offers of beer and/or employment looked upon with equal favor.</p>
+<p>&nbsp;</p>
+</div><!-- end container -->
+<nav class="navbar fixed-bottom navbar-expand bg-light">
+<ul class="navbar-nav">
+<li class="nav-item"><iframe src="https://ghbtns.com/github-btn.html?user=28mm&repo=blast-radius&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></li>
 </ul>
+</nav>
 </body>
 <script>
-   svg_activate('#graph', '/blast-radius-docs/examples/terraform-provider-aws/two-tier/graph.svg', '/blast-radius-docs/examples/terraform-provider-aws/two-tier/graph.json', "50%");
+   var br_state = { '#graph' : { 'no_scroll_zoom' : true } };
+   blastradius('#graph', '/blast-radius-docs/examples/terraform-provider-aws/two-tier/graph.svg', '/blast-radius-docs/examples/terraform-provider-aws/two-tier/graph.json', br_state);
 </script>
 
 </html>

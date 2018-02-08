@@ -326,315 +326,315 @@
         },
         {
             "edge_type": 1,
-            "source": "[root] module.us-east-1.provider.aws",
+            "source": "[root] module.us-east-1.provider.aws (close)",
             "svg_id": "edge_54",
+            "target": "[root] module.us-east-1.aws_internet_gateway.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-east-1.provider.aws (close)",
+            "svg_id": "edge_55",
+            "target": "[root] module.us-east-1.aws_security_group.internal-all"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-east-1.provider.aws (close)",
+            "svg_id": "edge_56",
+            "target": "[root] module.us-east-1.aws_security_group.region"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-east-1.provider.aws (close)",
+            "svg_id": "edge_57",
+            "target": "[root] module.us-east-1.module.primary_subnet.aws_route_table_association.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-east-1.provider.aws (close)",
+            "svg_id": "edge_58",
+            "target": "[root] module.us-east-1.module.primary_subnet.aws_security_group.az"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-east-1.provider.aws (close)",
+            "svg_id": "edge_59",
+            "target": "[root] module.us-east-1.module.secondary_subnet.aws_route_table_association.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-east-1.provider.aws (close)",
+            "svg_id": "edge_60",
+            "target": "[root] module.us-east-1.module.secondary_subnet.aws_security_group.az"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-east-1.provider.aws",
+            "svg_id": "edge_61",
             "target": "[root] module.us-east-1.var.region"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-east-1.var.base_cidr_block",
-            "svg_id": "edge_55",
+            "svg_id": "edge_62",
             "target": "[root] var.base_cidr_block"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.aws_internet_gateway.main",
-            "svg_id": "edge_56",
+            "svg_id": "edge_63",
             "target": "[root] module.us-west-2.aws_vpc.main"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.aws_security_group.internal-all",
-            "svg_id": "edge_57",
+            "svg_id": "edge_64",
             "target": "[root] module.us-west-2.aws_vpc.main"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.aws_security_group.region",
-            "svg_id": "edge_58",
+            "svg_id": "edge_65",
             "target": "[root] module.us-west-2.aws_vpc.main"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.aws_vpc.main",
-            "svg_id": "edge_59",
+            "svg_id": "edge_66",
             "target": "[root] module.us-west-2.provider.aws"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.aws_vpc.main",
-            "svg_id": "edge_60",
+            "svg_id": "edge_67",
             "target": "[root] module.us-west-2.var.base_cidr_block"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.aws_vpc.main",
-            "svg_id": "edge_61",
+            "svg_id": "edge_68",
             "target": "[root] module.us-west-2.var.region_numbers"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.data.aws_availability_zones.all",
-            "svg_id": "edge_62",
+            "svg_id": "edge_69",
             "target": "[root] module.us-west-2.provider.aws"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.module.primary_subnet.aws_route_table.main",
-            "svg_id": "edge_63",
+            "svg_id": "edge_70",
             "target": "[root] module.us-west-2.module.primary_subnet.var.vpc_id"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.module.primary_subnet.aws_route_table_association.main",
-            "svg_id": "edge_64",
+            "svg_id": "edge_71",
             "target": "[root] module.us-west-2.module.primary_subnet.aws_route_table.main"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.module.primary_subnet.aws_route_table_association.main",
-            "svg_id": "edge_65",
-            "target": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.primary_subnet.aws_security_group.az",
-            "svg_id": "edge_66",
-            "target": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
-            "svg_id": "edge_67",
-            "target": "[root] module.us-west-2.module.primary_subnet.data.aws_availability_zone.target"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
-            "svg_id": "edge_68",
-            "target": "[root] module.us-west-2.module.primary_subnet.data.aws_vpc.target"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
-            "svg_id": "edge_69",
-            "target": "[root] module.us-west-2.module.primary_subnet.var.az_numbers"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.primary_subnet.data.aws_availability_zone.target",
-            "svg_id": "edge_70",
-            "target": "[root] module.us-west-2.module.primary_subnet.var.availability_zone"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.primary_subnet.data.aws_vpc.target",
-            "svg_id": "edge_71",
-            "target": "[root] module.us-west-2.module.primary_subnet.var.vpc_id"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.primary_subnet.output.subnet_id",
             "svg_id": "edge_72",
             "target": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main"
         },
         {
             "edge_type": 1,
-            "source": "[root] module.us-west-2.module.primary_subnet.var.availability_zone",
+            "source": "[root] module.us-west-2.module.primary_subnet.aws_security_group.az",
             "svg_id": "edge_73",
+            "target": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
+            "svg_id": "edge_74",
+            "target": "[root] module.us-west-2.module.primary_subnet.data.aws_availability_zone.target"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
+            "svg_id": "edge_75",
+            "target": "[root] module.us-west-2.module.primary_subnet.data.aws_vpc.target"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main",
+            "svg_id": "edge_76",
+            "target": "[root] module.us-west-2.module.primary_subnet.var.az_numbers"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.primary_subnet.data.aws_availability_zone.target",
+            "svg_id": "edge_77",
+            "target": "[root] module.us-west-2.module.primary_subnet.var.availability_zone"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.primary_subnet.data.aws_vpc.target",
+            "svg_id": "edge_78",
+            "target": "[root] module.us-west-2.module.primary_subnet.var.vpc_id"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.primary_subnet.output.subnet_id",
+            "svg_id": "edge_79",
+            "target": "[root] module.us-west-2.module.primary_subnet.aws_subnet.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.primary_subnet.var.availability_zone",
+            "svg_id": "edge_80",
             "target": "[root] module.us-west-2.data.aws_availability_zones.all"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.module.primary_subnet.var.vpc_id",
-            "svg_id": "edge_74",
+            "svg_id": "edge_81",
             "target": "[root] module.us-west-2.aws_vpc.main"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.module.secondary_subnet.aws_route_table.main",
-            "svg_id": "edge_75",
+            "svg_id": "edge_82",
             "target": "[root] module.us-west-2.module.secondary_subnet.var.vpc_id"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.module.secondary_subnet.aws_route_table_association.main",
-            "svg_id": "edge_76",
+            "svg_id": "edge_83",
             "target": "[root] module.us-west-2.module.secondary_subnet.aws_route_table.main"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.module.secondary_subnet.aws_route_table_association.main",
-            "svg_id": "edge_77",
-            "target": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.secondary_subnet.aws_security_group.az",
-            "svg_id": "edge_78",
-            "target": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
-            "svg_id": "edge_79",
-            "target": "[root] module.us-west-2.module.secondary_subnet.data.aws_availability_zone.target"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
-            "svg_id": "edge_80",
-            "target": "[root] module.us-west-2.module.secondary_subnet.data.aws_vpc.target"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
-            "svg_id": "edge_81",
-            "target": "[root] module.us-west-2.module.secondary_subnet.var.az_numbers"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.secondary_subnet.data.aws_availability_zone.target",
-            "svg_id": "edge_82",
-            "target": "[root] module.us-west-2.module.secondary_subnet.var.availability_zone"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.secondary_subnet.data.aws_vpc.target",
-            "svg_id": "edge_83",
-            "target": "[root] module.us-west-2.module.secondary_subnet.var.vpc_id"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] module.us-west-2.module.secondary_subnet.output.subnet_id",
             "svg_id": "edge_84",
             "target": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main"
         },
         {
             "edge_type": 1,
-            "source": "[root] module.us-west-2.module.secondary_subnet.var.availability_zone",
+            "source": "[root] module.us-west-2.module.secondary_subnet.aws_security_group.az",
             "svg_id": "edge_85",
+            "target": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
+            "svg_id": "edge_86",
+            "target": "[root] module.us-west-2.module.secondary_subnet.data.aws_availability_zone.target"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
+            "svg_id": "edge_87",
+            "target": "[root] module.us-west-2.module.secondary_subnet.data.aws_vpc.target"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main",
+            "svg_id": "edge_88",
+            "target": "[root] module.us-west-2.module.secondary_subnet.var.az_numbers"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.secondary_subnet.data.aws_availability_zone.target",
+            "svg_id": "edge_89",
+            "target": "[root] module.us-west-2.module.secondary_subnet.var.availability_zone"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.secondary_subnet.data.aws_vpc.target",
+            "svg_id": "edge_90",
+            "target": "[root] module.us-west-2.module.secondary_subnet.var.vpc_id"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.secondary_subnet.output.subnet_id",
+            "svg_id": "edge_91",
+            "target": "[root] module.us-west-2.module.secondary_subnet.aws_subnet.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.module.secondary_subnet.var.availability_zone",
+            "svg_id": "edge_92",
             "target": "[root] module.us-west-2.data.aws_availability_zones.all"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.module.secondary_subnet.var.vpc_id",
-            "svg_id": "edge_86",
+            "svg_id": "edge_93",
             "target": "[root] module.us-west-2.aws_vpc.main"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.output.primary_subnet_id",
-            "svg_id": "edge_87",
+            "svg_id": "edge_94",
             "target": "[root] module.us-west-2.module.primary_subnet.output.subnet_id"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.output.secondary_subnet_id",
-            "svg_id": "edge_88",
+            "svg_id": "edge_95",
             "target": "[root] module.us-west-2.module.secondary_subnet.output.subnet_id"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.output.vpc_id",
-            "svg_id": "edge_89",
+            "svg_id": "edge_96",
             "target": "[root] module.us-west-2.aws_vpc.main"
         },
         {
             "edge_type": 1,
+            "source": "[root] module.us-west-2.provider.aws (close)",
+            "svg_id": "edge_97",
+            "target": "[root] module.us-west-2.aws_internet_gateway.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.provider.aws (close)",
+            "svg_id": "edge_98",
+            "target": "[root] module.us-west-2.aws_security_group.internal-all"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.provider.aws (close)",
+            "svg_id": "edge_99",
+            "target": "[root] module.us-west-2.aws_security_group.region"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.provider.aws (close)",
+            "svg_id": "edge_100",
+            "target": "[root] module.us-west-2.module.primary_subnet.aws_route_table_association.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.provider.aws (close)",
+            "svg_id": "edge_101",
+            "target": "[root] module.us-west-2.module.primary_subnet.aws_security_group.az"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.provider.aws (close)",
+            "svg_id": "edge_102",
+            "target": "[root] module.us-west-2.module.secondary_subnet.aws_route_table_association.main"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] module.us-west-2.provider.aws (close)",
+            "svg_id": "edge_103",
+            "target": "[root] module.us-west-2.module.secondary_subnet.aws_security_group.az"
+        },
+        {
+            "edge_type": 1,
             "source": "[root] module.us-west-2.provider.aws",
-            "svg_id": "edge_90",
+            "svg_id": "edge_104",
             "target": "[root] module.us-west-2.var.region"
         },
         {
             "edge_type": 1,
             "source": "[root] module.us-west-2.var.base_cidr_block",
-            "svg_id": "edge_91",
-            "target": "[root] var.base_cidr_block"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_92",
-            "target": "[root] module.us-east-1.aws_internet_gateway.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_93",
-            "target": "[root] module.us-east-1.aws_security_group.internal-all"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_94",
-            "target": "[root] module.us-east-1.aws_security_group.region"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_95",
-            "target": "[root] module.us-east-1.module.primary_subnet.aws_route_table_association.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_96",
-            "target": "[root] module.us-east-1.module.primary_subnet.aws_security_group.az"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_97",
-            "target": "[root] module.us-east-1.module.secondary_subnet.aws_route_table_association.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_98",
-            "target": "[root] module.us-east-1.module.secondary_subnet.aws_security_group.az"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_99",
-            "target": "[root] module.us-west-2.aws_internet_gateway.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_100",
-            "target": "[root] module.us-west-2.aws_security_group.internal-all"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_101",
-            "target": "[root] module.us-west-2.aws_security_group.region"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_102",
-            "target": "[root] module.us-west-2.module.primary_subnet.aws_route_table_association.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_103",
-            "target": "[root] module.us-west-2.module.primary_subnet.aws_security_group.az"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
-            "svg_id": "edge_104",
-            "target": "[root] module.us-west-2.module.secondary_subnet.aws_route_table_association.main"
-        },
-        {
-            "edge_type": 1,
-            "source": "[root] provider.aws (close)",
             "svg_id": "edge_105",
-            "target": "[root] module.us-west-2.module.secondary_subnet.aws_security_group.az"
+            "target": "[root] var.base_cidr_block"
         },
         {
             "edge_type": 1,
@@ -646,7 +646,13 @@
             "edge_type": 1,
             "source": "[root] root",
             "svg_id": "edge_107",
-            "target": "[root] provider.aws (close)"
+            "target": "[root] module.us-east-1.provider.aws (close)"
+        },
+        {
+            "edge_type": 1,
+            "source": "[root] root",
+            "svg_id": "edge_108",
+            "target": "[root] module.us-west-2.provider.aws (close)"
         }
     ],
     "nodes": [
@@ -1636,6 +1642,22 @@
             "type": "output"
         },
         {
+            "cluster": "root",
+            "definition": {
+                "region": "${var.region}"
+            },
+            "group": 20000,
+            "label": "[root] module.us-east-1.provider.aws (close)",
+            "module": "module.us-east-1",
+            "modules": [
+                "us-east-1"
+            ],
+            "resource_name": "aws",
+            "simple_name": "module.us-east-1.provider.aws (close)",
+            "svg_id": "node_53",
+            "type": "provider"
+        },
+        {
             "cluster": "cluster[root] module.us-east-1.provider.aws_var_",
             "definition": {
                 "description": "The name of the AWS region to set up a network within"
@@ -1648,7 +1670,7 @@
             ],
             "resource_name": "region",
             "simple_name": "module.us-east-1.var.region",
-            "svg_id": "node_53",
+            "svg_id": "node_54",
             "type": "var"
         },
         {
@@ -1664,7 +1686,7 @@
             ],
             "resource_name": "base_cidr_block",
             "simple_name": "var.base_cidr_block",
-            "svg_id": "node_54",
+            "svg_id": "node_55",
             "type": "var"
         },
         {
@@ -1678,7 +1700,7 @@
             ],
             "resource_name": "base_cidr_block",
             "simple_name": "module.us-west-2.var.base_cidr_block",
-            "svg_id": "node_55",
+            "svg_id": "node_56",
             "type": "var"
         },
         {
@@ -1699,7 +1721,7 @@
             ],
             "resource_name": "region_numbers",
             "simple_name": "module.us-west-2.var.region_numbers",
-            "svg_id": "node_56",
+            "svg_id": "node_57",
             "type": "var"
         },
         {
@@ -1714,7 +1736,7 @@
             ],
             "resource_name": "vpc_id",
             "simple_name": "module.us-west-2.module.primary_subnet.var.vpc_id",
-            "svg_id": "node_57",
+            "svg_id": "node_58",
             "type": "var"
         },
         {
@@ -1746,7 +1768,7 @@
             ],
             "resource_name": "az_numbers",
             "simple_name": "module.us-west-2.module.primary_subnet.var.az_numbers",
-            "svg_id": "node_58",
+            "svg_id": "node_59",
             "type": "var"
         },
         {
@@ -1761,7 +1783,7 @@
             ],
             "resource_name": "availability_zone",
             "simple_name": "module.us-west-2.module.primary_subnet.var.availability_zone",
-            "svg_id": "node_59",
+            "svg_id": "node_60",
             "type": "var"
         },
         {
@@ -1778,7 +1800,7 @@
             ],
             "resource_name": "subnet_id",
             "simple_name": "module.us-west-2.module.primary_subnet.output.subnet_id",
-            "svg_id": "node_60",
+            "svg_id": "node_61",
             "type": "output"
         },
         {
@@ -1793,7 +1815,7 @@
             ],
             "resource_name": "vpc_id",
             "simple_name": "module.us-west-2.module.secondary_subnet.var.vpc_id",
-            "svg_id": "node_61",
+            "svg_id": "node_62",
             "type": "var"
         },
         {
@@ -1825,7 +1847,7 @@
             ],
             "resource_name": "az_numbers",
             "simple_name": "module.us-west-2.module.secondary_subnet.var.az_numbers",
-            "svg_id": "node_62",
+            "svg_id": "node_63",
             "type": "var"
         },
         {
@@ -1840,7 +1862,7 @@
             ],
             "resource_name": "availability_zone",
             "simple_name": "module.us-west-2.module.secondary_subnet.var.availability_zone",
-            "svg_id": "node_63",
+            "svg_id": "node_64",
             "type": "var"
         },
         {
@@ -1857,8 +1879,24 @@
             ],
             "resource_name": "subnet_id",
             "simple_name": "module.us-west-2.module.secondary_subnet.output.subnet_id",
-            "svg_id": "node_64",
+            "svg_id": "node_65",
             "type": "output"
+        },
+        {
+            "cluster": "root",
+            "definition": {
+                "region": "${var.region}"
+            },
+            "group": 20000,
+            "label": "[root] module.us-west-2.provider.aws (close)",
+            "module": "module.us-west-2",
+            "modules": [
+                "us-west-2"
+            ],
+            "resource_name": "aws",
+            "simple_name": "module.us-west-2.provider.aws (close)",
+            "svg_id": "node_66",
+            "type": "provider"
         },
         {
             "cluster": "cluster[root] module.us-west-2.provider.aws_var_",
@@ -1873,22 +1911,8 @@
             ],
             "resource_name": "region",
             "simple_name": "module.us-west-2.var.region",
-            "svg_id": "node_65",
+            "svg_id": "node_67",
             "type": "var"
-        },
-        {
-            "cluster": "root",
-            "definition": "",
-            "group": 20000,
-            "label": "[root] provider.aws (close)",
-            "module": "root",
-            "modules": [
-                "root"
-            ],
-            "resource_name": "aws",
-            "simple_name": "provider.aws (close)",
-            "svg_id": "node_66",
-            "type": "provider"
         },
         {
             "cluster": "root",
@@ -1901,7 +1925,7 @@
             ],
             "resource_name": "",
             "simple_name": "root",
-            "svg_id": "node_67",
+            "svg_id": "node_68",
             "type": ""
         }
     ]

@@ -3,11 +3,33 @@
 <head>
         <title>vm-custom-image-new-storage-account</title>
         <meta charset="utf-8">
+
+        <script src="/blast-radius-docs/static/js/jquery.slim.min.js"></script>
+        <script src="/blast-radius-docs/static/js/bootstrap.min.js"></script>
+        <script src="/blast-radius-docs/static/js/fontawesome-all.min.js"></script>
+
         <script src="/blast-radius-docs/static/js/d3.v4.js"></script>
         <script src="/blast-radius-docs/static/js/d3-tip.js"></script>
-        <script src="/blast-radius-docs/static/js/terraform-graph.js"></script>
+        <script src="/blast-radius-docs/static/js/blast-radius.js"></script>
         <script src="/blast-radius-docs/static/js/categories.js"></script>
+        <script src="/blast-radius-docs/static/js/svg-pan-zoom.js"></script>
+        <script src="/blast-radius-docs/static/js/selectize.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="/blast-radius-docs/static/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/blast-radius-docs/static/css/selectize.css">
         <link rel="stylesheet" type="text/css" href="/blast-radius-docs/static/css/style.css">
+        <style>
+        body {
+            padding-top: 55px;
+        }
+        .navbar-nav > li {
+            padding-left:6px;
+        }
+        .navbar-brand {
+            font-family: 'courier new';
+        }
+        </style>
+ 
         <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99802310-1"></script>
 <script>
@@ -20,17 +42,100 @@
 
 </head>
 <body>
-        <ul class="breadcrumb"><li><a href="/blast-radius-docs/">🔥</a></li><li><a href="/blast-radius-docs/examples">examples</a></li><li><a href="/blast-radius-docs/examples/terraform-provider-azurem">terraform-provider-azurem</a></li><li>vm-custom-image-new-storage-account</li></ul>
-        <div id="graph"></div>
-        
-        <p class="descr">This example is borrowed from the <a href="https://github.com/terraform-providers/terraform-provider-azurerm">Azure</a> Terraform Provider, under the MPL-2.0 License.</p>
-<ul class="breadcrumb"><li><iframe src="https://ghbtns.com/github-btn.html?user=28mm&repo=blast-radius&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></li>
+
+<nav class="navbar fixed-top navbar-expand bg-light">
+<ul class="navbar-nav">
+<li class="nav-item"><a class="navbar-brand" href="/blast-radius-docs/">Blast Radius</a></li>
+                <li class="nav-item">                    
+                    <form class="form-inline my-2 my-lg-0" id="graph-search-form" >
+                        <select style="width: 400px;" id="graph-search"></select>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" id="graph-zoom-out" title="zoom out">&nbsp;<i class="fas fa-search-minus"></i></button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" id="graph-zoom-in" title="zoom in">&nbsp;<i class="fas fa-search-plus"></i></button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" id="graph-download" title="download svg">&nbsp;<i class="fas fa-download"></i></button>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="tooltip options">
+                            <i class="fas fa-magic"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">
+                                <label><b>Tooltip Options</b></label>
+                            </div>
+
+
+                            <div class="dropdown-divider"></div>
+
+                            <!-- Resource Name-->
+                            <div class="dropdown-item form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" id="graph-tooltip-title" checked>
+                                  Resource Name
+                                </label>
+                              </div>
+
+                              <!-- JSON-->
+                              <div class="dropdown-item form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" id="graph-tooltip-json" checked>
+                                  JSON Definition
+                                </label>
+                              </div>
+
+                              <!-- Immediate Dependencies-->
+                              <div class="dropdown-item form-check">
+                                    <label class="form-check-label">
+                                      <input class="form-check-input" type="checkbox" value="" id="graph-tooltip-deps" checked>
+                                      Dependencies
+                                    </label>
+                                  </div>
+                            </div>
+                    </div>
+                </li>
+
+
 
 </ul>
+</nav>
+
+
+    <div class="container" style="padding-bottom: 60px;">
+        <div id="graph"></div>    
+        <p class="descr">This example is borrowed from the <a href="https://github.com/terraform-providers/terraform-provider-azurerm">Azure</a> Terraform Provider, under the MPL-2.0 License.</p>
+    </div>
+
+<nav class="navbar fixed-bottom navbar-expand bg-light">
+<ul class="navbar-nav">
+    <li class="nav-item"><iframe src="https://ghbtns.com/github-btn.html?user=28mm&repo=blast-radius&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></li>
+            <li class="breadcrumb-item">
+                <a href="/blast-radius-docs/">home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/blast-radius-docs/examples">examples</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/blast-radius-docs/examples/terraform-provider-azurem">terraform-provider-azurem</a>
+            </li>
+            <li class="breadcrumb-item" active>
+                vm-custom-image-new-storage-account
+            </li>
+        
+
+</ul>
+</nav>
+
+
 </body>
 
 <script>
-   svg_activate('#graph', 'graph.svg', 'graph.json');
+   blastradius('#graph', 'graph.svg', 'graph.json');
 </script>
 
 </html>
